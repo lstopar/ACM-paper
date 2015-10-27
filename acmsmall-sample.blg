@@ -1,0 +1,73 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: acmsmall-sample.aux
+The style file: ACM-Reference-Format-Journals.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: acmsmall-sample-bibfile.bib
+Warning--no key, author in Editor00
+Warning--no key, author in Editor00
+Warning--no key, author in Editor00a
+Warning--no key, author in Editor00a
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--require articleno with numpages field in Babcock:2002:MID:543613.543615
+Warning--empty address in kmeans
+Warning--empty chapter and pages in Editor00
+Warning--page numbers missing in Editor00a
+Warning--require articleno with numpages field in Jain:1999:DCR:331499.331504
+Warning--require articleno with numpages field in Kirschmer:2010:AEI:1958016.1958018
+Warning--empty address in Knuth97
+Warning--page numbers missing in both pages and numpages fields in DBLP:journals/corr/abs-1111-0352
+Warning--articleno field, but no numpages field, in Lee05
+Warning--page numbers missing in both pages and numpages fields in Lee05
+Warning--require pages or numpages fields with articleno field in Lee05
+Warning--page numbers missing in both pages and numpages fields in DBLP:journals/corr/abs-1105-0121
+Warning--empty address in norris1998markov
+Warning--unrecognized DOI value [99.9999/woot07-S422]
+Warning--articleno field, but no numpages field, in rous08
+Warning--page numbers missing in both pages and numpages fields in rous08
+Warning--require pages or numpages fields with articleno field in rous08
+Warning--page numbers missing in both pages and numpages fields in SaeediJETC10
+Warning--unrecognized DOI value [99.9999/woot07-S422]
+You've used 37 entries,
+            5290 wiz_defined-function locations,
+            1722 strings with 23799 characters,
+and the built_in function-call counts, 35258 in all, are:
+= -- 4688
+> -- 1076
+< -- 14
++ -- 311
+- -- 703
+* -- 2162
+:= -- 3941
+add.period$ -- 209
+call.type$ -- 37
+change.case$ -- 214
+chr.to.int$ -- 35
+cite$ -- 62
+duplicate$ -- 2651
+empty$ -- 1929
+format.name$ -- 457
+if$ -- 8052
+int.to.chr$ -- 3
+int.to.str$ -- 0
+missing$ -- 88
+newline$ -- 390
+num.names$ -- 296
+pop$ -- 891
+preamble$ -- 1
+purify$ -- 393
+quote$ -- 0
+skip$ -- 724
+stack$ -- 0
+substring$ -- 3537
+swap$ -- 214
+text.length$ -- 631
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 464
+warning$ -- 23
+while$ -- 304
+width$ -- 0
+write$ -- 758
+(There were 23 warnings)

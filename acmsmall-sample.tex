@@ -15,12 +15,19 @@
 
 % Package to generate and customize Algorithm as per ACM style
 \usepackage[ruled]{algorithm2e}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{graphicx}
 \renewcommand{\algorithmcfname}{ALGORITHM}
 \SetAlFnt{\small}
 \SetAlCapFnt{\small}
 \SetAlCapNameFnt{\small}
 \SetAlCapHSkip{0pt}
 \IncMargin{-\parindent}
+
+\graphicspath{{img/}}
+
+\DeclareMathOperator*{\argmin}{\arg\!\min}
 
 % Metadata Information
 \acmVolume{9}
@@ -51,21 +58,17 @@
 \markboth{G. Zhou et al.}{A Multifrequency MAC Specially Designed for WSN Applications}
 
 % Title portion
-\title{A Multifrequency MAC Specially Designed for Wireless Sensor Network Applications}
-\author{GANG ZHOU
-\affil{College of William and Mary}
-YAFENG WU
-\affil{University of Virginia}
-TING YAN
-\affil{Eaton Innovation Center}
-TIAN HE
-\affil{University of Minnesota}
-CHENGDU HUANG
-\affil{Google}
-JOHN A. STANKOVIC
-\affil{University of Virginia}
-TAREK F. ABDELZAHER
-\affil{University of Illinois at Urbana-Champaign}}
+\title{A Multi-Level Methodology for Explaining Data Streams}
+\author{
+LUKA STOPAR
+\affil{Jozef Stefan Institute}
+PRIMOZ SKRABA
+\affil{Jozef Stefan Institute}
+DUNJA MLADENIC
+\affil{Jozef Stefan Institute}
+MARKO GROBELNIK
+\affil{Jozef Stefan Institute}
+}
 % NOTE! Affiliations placed here should be for the institution where the
 %       BULK of the research was done. If the author has gone to a new
 %       institution, before publication, the (above) affiliation should NOT be changed.
@@ -74,24 +77,10 @@ TAREK F. ABDELZAHER
 %       currently affiliated with NASA.
 
 \begin{abstract}
-Multifrequency media access control has been well understood in
-general wireless ad hoc networks, while in wireless sensor networks,
-researchers still focus on single frequency solutions. In wireless
-sensor networks, each device is typically equipped with a single
-radio transceiver and applications adopt much smaller packet sizes
-compared to those in general wireless ad hoc networks. Hence, the
-multifrequency MAC protocols proposed for general wireless ad hoc
-networks are not suitable for wireless sensor network applications,
-which we further demonstrate through our simulation experiments. In
-this article, we propose MMSN, which takes advantage of
-multifrequency availability while, at the same time, takes into
-consideration the restrictions of wireless sensor networks. Through
-extensive experiments, MMSN exhibits the prominent ability to utilize
-parallel transmissions among neighboring nodes. When multiple physical
-frequencies are available, it also achieves increased energy
-efficiency, demonstrating the ability to work against radio
-interference and the tolerance to a wide range of measured time
-synchronization errors.
+This paper presents a novel multi-scale methodology for modeling a collection of continuously time-varying
+data streams. The data streams are first aggregated and, using unsupervised data mining methods,
+typical system states are computed. This is achieved by use of one of two available clustering
+methods. After the states are computed, they are aggregated using an agglomerative clustering algorithm.
 \end{abstract}
 
 
@@ -137,12 +126,10 @@ synchronization errors.
 % We no longer use \terms command
 %\terms{Design, Algorithms, Performance}
 
-\keywords{Wireless sensor networks, media access control,
-multi-channel, radio interference, time synchronization}
+\keywords{\textcolor{red}{[TODO]}}
 
-\acmformat{Gang Zhou, Yafeng Wu, Ting Yan, Tian He, Chengdu Huang, John A. Stankovic,
-and Tarek F. Abdelzaher, 2010. A multifrequency MAC specially
-designed for  wireless sensor network applications.}
+\acmformat{Luka Stopar, Primoz Skraba, Dunja Mladenic, Marko Grobelnik, 2015. A Multi-Level 
+Methodology for Explaining Data Streams.}
 % At a minimum you need to supply the author names, year and a title.
 % IMPORTANT:
 % Full first names whenever they are known, surname last, followed by a period.
@@ -155,6 +142,7 @@ designed for  wireless sensor network applications.}
 % The remaining information (journal title, volume, article number, date, etc.) is 'auto-generated'.
 
 \begin{bottomstuff}
+\textcolor{red}{[TODO]}
 This work is supported by the National Science Foundation, under
 grant CNS-0435060, grant CCR-0325197 and grant EN-CS-0329609.
 
@@ -170,50 +158,289 @@ University of Minnesota; C. Huang, Google; T. F. Abdelzaher,
 
 
 \section{Introduction}
+\label{sec:introduction}
 
-As a new technology, Wireless Sensor Networks (WSNs) has a wide
-range of applications [Culler 2001,Bahl 2002,Akyildiz 2001], including
-environment monitoring, smart buildings, medical care, industrial and
-military applications. Among them, a recent trend is to develop
-commercial sensor networks that require pervasive sensing of both
-environment and human beings, for example, assisted living
-[Akyildiz 2002,Harvard 2001,CROSSBOW] and smart homes
-[Harvard 2001,Adya 2001,CROSSBOW].
-% quote
-\begin{quote}
-``For these applications, sensor devices are incorporated into human
-cloths [Natarajan 2001,Zhou 2006,Bahl 2002,Adya 2001] for monitoring
-health related information like EKG readings, fall detection, and voice recognition".
-\end{quote}
-While collecting all these multimedia information
-[Akyildiz 2002] requires a high network throughput, off-the-shelf
-sensor devices only provide very limited bandwidth in a single
-channel: 19.2Kbps in MICA2 [Bahl 2002] and 250Kbps in MICAz.
+Sensory systems typically operate in cycles with a continuously time-varying. These 
+systems include, for example, the solar system, manufacturing systems or weather 
+systems. Such systems can be characterized by a set of states, along with associated
+state transitions. States, on a high level, may include a "day" state and a "night"
+state or maybe states with high and low productivity. For example, when a pilot wishes
+to change an aircrafts heading, they will put the aircraft into state "banking turn"
+by lowering one aileron and raising the other, causing the aircraft to perform a
+circular arc. After some time, the wings of the aircraft will be brought level by
+an opposing motion of the ailerons and the aircraft will go back into state "level".
 
-In this article, we propose MMSN, abbreviation for Multifrequency
-Media access control for wireless Sensor Networks. The main
-contributions of this work can be summarized as follows.
-% itemize
-\begin{itemize}
-\item To the best of our knowledge, the MMSN protocol is the first
-multifrequency MAC protocol especially designed for WSNs, in which
-each device is equipped with a single radio transceiver and
-the MAC layer packet size is very small.
-\item Instead of using pairwise RTS/CTS frequency negotiation
-[Adya 2001,Culler 2001; Tzamaloukas 2001; Zhou 2006],
-we propose lightweight frequency assignments, which are good choices
-for many deployed comparatively static WSNs.
-\item We develop new toggle transmission and snooping techniques to
-enable a single radio transceiver in a sensor device to achieve
-scalable performance, avoiding the nonscalable ``one
-control channel + multiple data channels'' design [Natarajan 2001].
-\end{itemize}
+Such high-level states can be decomposed into lower-level states, giving us a 
+multi-level view of the system and allowing us to observe the system on multiple 
+aggregation levels. For example, a "banking turn" state can be decomposed by the
+aircrafts roll and angular velocity, resulting in perhaps three states: "initiate
+turn", "full turn" and "end turn".
+
+We present a methodology for modeling such systems and demonstrate its implementation
+called StreamStory. StreamStory models such systems as a hierarchical Markovian process
+by automatically learning the typical low-level states and transitions, and aggregating 
+them into a hierarchy of Markovian processes. As such it gives users a unique view into
+the monitored system.
+
+Furthermore, we divide the inputs streams into two sets: observation and control set.
+Attributes in the observation set are the attributes that tell us the state of the 
+system and, we assume, cannot directly influence its dynamics. These are parameters
+that users cannot directly manipulate, like aircraft tilt from the previous example,
+which must be indirectly manipulated through the angles of ailerons. We use observation
+attributes to identify, and aggregate, low-level states, detect outliers (anomalies) 
+and determine the current state of the system.
+
+In contrast, users can directly manipulate attributes in the control set. These 
+are attributes like angles of ailerons that may directly influence the behavior 
+(observation attributes) and performance of the system. For example, when an operator 
+in a steel factory sets the cooling temperature to a high value, the product will
+take longer to go from state "hot" to state "cool". As such, we assume, control attributes
+may influence the occurrence, and expected time, of undesired states, associated with
+undesired events.
+
+Our system uses control attributes to model state transitions, allowing us to observe
+the dynamics with respect to the current configuration and gives us insight into the
+expected dynamics with respect to some alternate attribute configuration.
+
+We implement our methodology in a four step process, which includes:
+\begin{enumerate}
+	\label{label:procedure-high-level}
+	\item \label{label:procedure-preprocessing} aggregating and resampling the input
+	streams, interpolating wherever needed, producing feature vectors,
+	\item clustering the feature vectors to obtain lowest-level states and computing 
+	statistics on each state,
+	\item aggregating lowest-level states into a state hierarchy and computing the level
+	on which each aggregated state lives and
+	\item modeling state transitions with respect to control attributes and computing
+	statistics on transitions.
+\end{enumerate}
+\textcolor{red}{[TODO The remainder of this paper is structured as follows]}
 
 % Head 1
-\section{MMSN Protocol}
+\section{Theory and Implementation}
+
+This section presents the detailed implementation of the StreamStory system, by 
+presenting in details each step of our four step process. We begin the section
+by first discussing the preprocessing step proposed in step \ref{label:procedure-preprocessing} 
+of our four step process defined in section \ref{sec:introduction}.
 
 % Head 2
-\subsection{Frequency Assignment}
+\subsection{Data Stream Aggregation and Resampling}
+
+In recent years much attention in the research community has been focused on a new
+class of applications: applications in which the data is modeled best not as persistent
+relations but rather as transient data stream \cite{Babcock:2002:MID:543613.543615}.
+
+Data streams differ from conventional batch data in several ways:
+\begin{list}{-}{}
+	\item the data elements arrive online, sequentially and the system has no control
+	over their order and
+	\item data streams are potentially unbounded.
+\end{list}
+
+As such a data stream can be defined as a sequence of pairs $(t_i,x_i)_{i \ge 0}$, 
+where $t_i$ represents the timestamp if the $i$-th measurement and $x_i$ represents 
+its value. In our work we assume the streams follow the following model: 
+$x_{i+1} = x_i + X$, where $X$ is a normally distributed random variable $X \sim N(\mu, \sigma)$.
+\textcolor{red}{[TODO really???]}
+
+To build a model in offline mode, StreamStory consumes batches of multiple such
+data streams and merges them, to that all the stream are sampled at the same timestamps.
+This results in a single joined data stream in the following form:
+
+\begin{equation}
+	\nonumber
+	\left\{\left(t_1, x_1^{(1)}, x_1^{(2)}, ..., x_1^{(d)}\right), \left(t_1 + \Delta t, x_2^{(1)}, x_2^{(2)}, ..., x_2^{(d)}\right), ..., \left(t_0 + (k-1)\Delta t, x_k^{(1)}, x_k^{(2)}, ..., x_k^{(d)}\right)\right\}
+\end{equation}
+
+Since in general not all the input streams are equally sampled, missing values need
+to be interpolated. For this purpose StreamStory supports two interpolation methods:
+linear and previous point interpolation. The choice of the interpolation method
+influences the online behavior of the system. Although in theory linear interpolation
+produces better results \textcolor{red}{[TODO ref]}, linear interpolation cannot 
+interpolate a value until it observes at least one value in the \textcolor{red}{[TODO future]}.
+Which results in a certain lag (non-real-time behavior) of the system.
+
+\subsection{State Identification}
+
+Once the data streams are preprocessed, StreamStory identifies their typical lowest-level
+states. This is achieved by clustering the joined data stream.
+
+Clustering is an unsupervised machine learning procedure, which organizes a collection
+of patterns, usually represented as a vectors of measurements or points in a 
+multidimensional space, into clusters based on a chosen measure of similarity or distance 
+\cite{Jain:1999:DCR:331499.331504}. There is no universally agreed upon definition of a 
+cluster. Most researchers describe it by considering the internal homogeneity and 
+external separation \cite{1427769}.
+
+Intuitively patterns in the same cluster should be more similar to each other than to patterns
+in other clusters. There are many clustering algorithms that solve different problems. These 
+include partitioning, \textcolor{red}{[TODO]}.
+
+We support two partitioning methods: K-Means and DPMeans. The first is a well studied method
+which, given $k$ - the desired number of clusters, partitions the dataset into $k$ clusters by 
+minimizing the distance between data points and the nearest centroid \cite{kmeans}. It works
+by, initially selecting $k$ random centroids, then in each iteration it first assigns all the 
+feature vectors to their nearest centroid constructing a Voronoi diagram regions are associated
+with centroids $C = \left\{c_1, c_2, ..., c_k\right\}$. More formally a region of the diagram
+is defined as $R(c_i) = \left\{x \in \mathbb{R}^d | d(c_i,x) \le d(c_j,x) \: \forall j\right\}$.
+The method then recomputes each centroid $c_i$ as the mean value of all the data points that lie
+in region $R(c_i)$:
+
+\begin{equation}
+	\label{eq:kmeans-centroids}
+	\nonumber
+	c_i = \frac{1}{\|R_i\|}\sum\limits_{p_j \in R(c_i)}p_j.
+\end{equation}
+
+The procedure terminates when the partitions are the same in two consecutive iterations.
+
+The second method, DP-means, proposed by \cite{DBLP:journals/corr/abs-1111-0352} behaves
+similarly to K-Means with the exception that a new cluster is formed whenever a feature
+vector is further than $\lambda$ away from every existing centroid. Thus, the number of 
+clusters on the output is not known in advance, but is controlled by $\lambda$.
+
+When identifying states, we first remove timestamps from the joined data stream, resulting 
+in feature vectors of the form 
+
+\begin{equation}
+	\nonumber
+	x_i = \left(x_i^{(1)}, x_i^{(2)}, ..., x_i^{(d)}\right).
+\end{equation}
+
+These are then clustered using one of the above methods, resulting in a set
+of $k$ partitions which are used as lowest level states. When StreamStory \textcolor{red}{[TODO sees]}
+a new data point it will assign it to the state (partition) with the nearest centroid.
+\begin{equation}
+	\label{eq:low-level-assignment}
+	\nonumber
+	S(p_i) = \argmin_{p_j \in R(c_j)} d(p_i, c_j)
+\end{equation}
+Where $d$ represents the Euclidean distance.
+
+\subsection{State Aggregation}
+
+Once the lowest level states are computed, StreamStory aggregates them into a state hierarchy.
+Before grouping states, we need to measure their relative distance to each other. Since StreamStory
+was developed to work with dense dataset, we use the Euclidean distance. Many hierarchical
+clustering techniques have been proposed in the literature. They can be characterized
+as greedy in the algorithmic sense \cite{DBLP:journals/corr/abs-1105-0121}. Assuming that a pair
+of states is merged or agglomerated at each step, the techniques construct a binary tree
+commonly known as a dendrogram. This produces a set of states at each level - or each threshold 
+value which produces a new partition. Hierarchical clustering methods generally fall into two
+groups \cite{Maimon:2005:DMK:1088958}: 
+\begin{list}{-}{}
+	\item \textbf{Agglomerative} - each object initially represents a cluster of its own. Clusters are
+	then iteratively merged, until the desired structure is obtained.
+	\item \textbf{Divisive} - when the procedure starts, all object belong to the same cluster. Then
+	clusters are recursively divided into sub-clusters until the desired structure is obtained.
+\end{list}
+These groups can be further subdivided according to the manner that the distance measure is
+calculated:
+\begin{list}{-}{}
+	\item \textbf{Single-link} - methods that consider the distance between two clusters equal to the
+	minimum distance of any member of one cluster to any member of the other.
+	\item \textbf{Complete-link} - methods that consider the distance between two clusters equal to
+	the maximum distance of any member of one cluster to any member of the other.
+	\item \textbf{Complete-line} - methods that consider the distance between two clusters equal to
+	the average distance of any member of one cluster to any member of the other.
+\end{list}
+StreamStory uses an agglomerative clustering technique and supports all three of the above
+mentioned linkage strategies.
+
+\subsection{Modeling Transitions}
+
+We model transitions using a Markovian model. The main characteristic of Markovian models
+is that it retains no memory of where it has been in the past. This means that only the
+current state can influence where the process will go next. In this work, we are interested
+only in processes that can assume a finite set of states, referred to as Markov chains.
+What makes these processes useful is that not only do they model many phenomena of interest,
+but also the lack of memory property makes it possible to predict how a Markov chain may
+behave, and to compute probabilities and expected values which quantify that behavior
+\cite{norris1998markov}.
+A Markov chain is a memoryless stochastic process $\left(X_k\right)_{k \ge 0}$ that can assume only 
+a finite or countable set of states $i \in I$, where $I$ is called the state space.
+Markov chains generally fall into two categories: discrete time and continuous time.
+
+Discrete time Markov chains move in discrete time steps. They are defined using a 
+stochastic matrix $P$ where $(P)_{ij} = p_{ij}$ is the probability of jumping from state
+$i \in I$ to state $j \in I$ in a single time step. More formally we say that a stochastic
+process $\left(X_n\right)_{n \ge 0}$ is a discrete time Markov chain with initial distribution
+$\lambda$ if
+\begin{enumerate}
+	\item $X_0$ has distribution $\lambda$ and
+	\item $P(X_{n+1} = i_{n+1} | X_0 = i_0, X_1 = i_1, ..., X_n = i_n) = p_{i_ni_{n+1}}$
+\end{enumerate}
+Once of the interesting properties of Markov chains are their stationary distributions. A 
+stationary distribution describes the proportion of time the process spends in each state
+and can be computed as the left eigenvector of $P$ with the corresponding eigenvalue 1.
+
+\subsection{Visualization}
+
+[TODO]
+
+\section{Visualization and User Interaction}
+
+When interacting with the StreamStory system, the user is presented with a two panel user interface
+shown in figure \ref{fig:ui-initial}.
+ 
+
+\begin{figure}[h!]
+	\centering
+	\makebox[\textwidth]{\includegraphics[width=\textwidth]{ui-initial}}
+	\caption{User interface of the StreamStory system.}
+	\label{fig:ui-initial}
+\end{figure}
+
+The visualization panel on the left visualizes the hierarchical Markovian model. States are 
+represented by circles, while transitions are represented by arrows. The size of a state
+is proportional to the fraction of time the monitored process spends in the state. When 
+StreamStory is used in online mode, the current state is colored green, the most likely
+future states blue and the previous state has a red border.
+
+The thickness of an arrow is proportional to the probability of the corresponding transition,
+and the most likely transitions have a darker color.
+
+When first opening user interface the user is presented with a top-level chain with only two 
+states. They can then use the scroll function to zoom into the hierarchy and the states get 
+automatically expanded.
+
+By clicking on a state, the state becomes selected and its details are shown in the "Details"
+panel on the right side of figure \ref{fig:ui-initial}. The details panel allows the user
+to name the state which, we believe, increases the models interpretability. It also
+shows the distribution of all the parameters inside the state as well as the mean value
+of each parameter in the state. The mean value is highlighted red or green depending on
+how specific the value is for that state. If the value is gray it means that the
+value of the attribute is normal compared to the value of the same attribute in other 
+states. However, if the value is green or red, it indicates the value is the value is
+specific for this state compared to other states.
+
+This is achieved by classifying the instances of the selected state against instances off
+all the other states on the same level using a logistic regression model [TODO ref] and 
+extracting weights. Values highlighted green indicate a positive weight, while values
+highlighted red indicate a negative weight.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
 
 We propose a suboptimal distribution to be used by each node, which is
 easy to compute and does not depend on the number of competing
