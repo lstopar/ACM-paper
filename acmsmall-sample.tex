@@ -383,10 +383,12 @@ the transition probability from set $A$ to set $B$:
 \begin{equation}
 	\label{eq:dt-aggregation}
 	\begin{split}
-		P(X_{n+1} \in A | X_n \in B) = \sum\limits_{j \in A}P(X_{n+1} = j | X_n \in B) = \\
+		p_{AB} = 
+		P(X_{n+1} \in A | X_n \in B) = 
+		\sum\limits_{j \in A}P(X_{n+1} = j | X_n \in B) = \\
 		\sum_{j \in A}\frac{P(X_{n+1} = j)P(X_n \in B | X_{n+1} = j)}{P(X_n \in B)} = 
 		\frac{\sum_{j \in A} \pi_j \sum_{i \in B}p_{ij}\frac{\pi_i}{\pi_j}}{\sum_{j \in B} \pi_i} = \\
-		\frac{\sum_{j \in A}\pi_i\sum_{i \in B}p_{ij}}{\sum_{j \in B} \pi_i} = p_{AB}
+		\frac{\sum_{i \in B}\pi_i\sum_{j \in A}p_{ij}}{\sum_{j \in B} \pi_i}
 	\end{split}
 \end{equation}
 
