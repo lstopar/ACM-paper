@@ -372,8 +372,23 @@ $\lambda$ if
 	\item $P(X_{n+1} = i_{n+1} | X_0 = i_0, X_1 = i_1, ..., X_n = i_n) = p_{i_ni_{n+1}}$
 \end{enumerate}
 Once of the interesting properties of Markov chains are their stationary distributions. A 
-stationary distribution describes the proportion of time the process spends in each state
-and can be computed as the left eigenvector of $P$ with the corresponding eigenvalue 1.
+stationary distribution describes the proportion of time the process spends in each state.
+In our visualization it represents the size of states. The stationary distribution can be
+computed as the left eigenvector of $P$ with the corresponding eigenvalue 1.
+
+When drawing the hierarchy we need some way of aggregating states in the Markov chain. 
+Suppose we have two non-intersecting sets of states $A = \left\{j_1, j_2, ..., j_k\right\}$ and
+$B = \left\{i_1, i_2, ..., i_h\right\}$. Then we use the following formula to compute
+the transition probability from set $A$ to set $B$:
+\begin{equation}
+	\label{eq:dt-aggregation}
+	\begin{split}
+		P(X_{n+1} \in A | X_n \in B) = \sum\limits_{j \in A}P(X_{n+1} = j | X_n \in B) = \\
+		\sum_{j \in A}\frac{P(X_{n+1} = j)P(X_n \in B | X_{n+1} = j)}{P(X_n \in B)} = 
+		\frac{\sum_{j \in A} \pi_j \sum_{i \in B}p_{ij}\frac{\pi_i}{\pi_j}}{\sum_{j \in B} \pi_i} = \\
+		\frac{\sum_{j \in A}\pi_i\sum_{i \in B}p_{ij}}{\sum_{j \in B} \pi_i} = p_{AB}
+	\end{split}
+\end{equation}
 
 \subsection{Visualization}
 
