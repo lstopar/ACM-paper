@@ -24,8 +24,6 @@ Warning--articleno field, but no numpages field, in Lee05
 Warning--page numbers missing in both pages and numpages fields in Lee05
 Warning--require pages or numpages fields with articleno field in Lee05
 Warning--page numbers missing in both pages and numpages fields in DBLP:journals/corr/abs-1105-0121
-Warning--empty publisher in 6558109
-Warning--empty address in 6558109
 Warning--empty address in norris1998markov
 Warning--unrecognized DOI value [99.9999/woot07-S422]
 Warning--articleno field, but no numpages field, in rous08
@@ -35,43 +33,43 @@ Warning--page numbers missing in both pages and numpages fields in SaeediJETC10
 Warning--unrecognized DOI value [99.9999/woot07-S422]
 You've used 41 entries,
             5290 wiz_defined-function locations,
-            1749 strings with 24581 characters,
-and the built_in function-call counts, 39249 in all, are:
-= -- 5250
-> -- 1216
+            1750 strings with 24712 characters,
+and the built_in function-call counts, 39360 in all, are:
+= -- 5279
+> -- 1213
 < -- 14
-+ -- 351
-- -- 751
-* -- 2403
-:= -- 4361
-add.period$ -- 229
++ -- 353
+- -- 787
+* -- 2411
+:= -- 4384
+add.period$ -- 231
 call.type$ -- 41
-change.case$ -- 239
+change.case$ -- 238
 chr.to.int$ -- 39
-cite$ -- 70
-duplicate$ -- 2981
-empty$ -- 2166
-format.name$ -- 517
-if$ -- 9066
+cite$ -- 68
+duplicate$ -- 2937
+empty$ -- 2140
+format.name$ -- 521
+if$ -- 9037
 int.to.chr$ -- 3
 int.to.str$ -- 0
-missing$ -- 105
-newline$ -- 425
+missing$ -- 102
+newline$ -- 428
 num.names$ -- 328
-pop$ -- 1013
+pop$ -- 994
 preamble$ -- 1
-purify$ -- 438
+purify$ -- 437
 quote$ -- 0
-skip$ -- 821
+skip$ -- 812
 stack$ -- 0
-substring$ -- 3834
-swap$ -- 246
-text.length$ -- 631
+substring$ -- 3919
+swap$ -- 238
+text.length$ -- 696
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 520
-warning$ -- 27
-while$ -- 335
+type$ -- 514
+warning$ -- 25
+while$ -- 338
 width$ -- 0
-write$ -- 828
-(There were 27 warnings)
+write$ -- 832
+(There were 25 warnings)

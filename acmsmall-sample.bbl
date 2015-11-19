@@ -143,6 +143,20 @@ Retrieved February 28, 2008 from
 \newblock
 
 
+\bibitem[\protect\citeauthoryear{Dobson and Barnett}{Dobson and
+  Barnett}{2008}]%
+        {glm-introduction}
+{Annette~J. Dobson} {and} {Adrian~G. Barnett}. 2008.
+\newblock {\em An Introduction to Generalized Linear Models, Third Edition}.
+\newblock Chapman \& Hall/CRC Press, Boca Raton, FL.
+\newblock
+\showURL{%
+\url{http://eprints.qut.edu.au/15448/}}
+\newblock
+\shownote{For more information about this book please refer to the publisher's
+  website (see link) or contact the author.}
+
+
 \bibitem[\protect\citeauthoryear{Douglass, Harel, and Trakhtenbrot}{Douglass
   et~al\mbox{.}}{1998}]%
         {Douglass98}
@@ -317,18 +331,6 @@ Retrieved February 28, 2008 from
 \newblock
 \showURL{%
 \url{http://arxiv.org/abs/1105.0121}}
-
-
-\bibitem[\protect\citeauthoryear{Nagpal, Jatain, and Gaur}{Nagpal
-  et~al\mbox{.}}{2013}]%
-        {6558109}
-{A. Nagpal}, {A. Jatain}, {and} {D. Gaur}. 2013.
-\newblock \showarticletitle{Review based on data clustering algorithms}. In
-  {\em Information Communication Technologies (ICT), 2013 IEEE Conference on}.
-  298--303.
-\newblock
-\showDOI{%
-\url{http://dx.doi.org/10.1109/CICT.2013.6558109}}
 
 
 \bibitem[\protect\citeauthoryear{Norris}{Norris}{1998}]%

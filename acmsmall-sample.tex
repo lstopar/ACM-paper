@@ -29,6 +29,7 @@
 \graphicspath{{img/}}
 
 \DeclareMathOperator*{\argmin}{\arg\!\min}
+\DeclareMathOperator{\logit}{logit}
 
 % Metadata Information
 \acmVolume{9}
@@ -271,7 +272,7 @@ into two groups \cite{Maimon:2005:DMK:1088958}:
 In general however, the time complexity of agglomerative clustering algorithms
 is $\Omega(n^2)$ \cite{Sibson01011973}, which is impractical for large datasets.
 Thus we compute an initial set of partitions using k-means and use them as
-singletons of the dendrogram and as the lowest level state space in our methodology.
+singletons of the dendrogram as well as the lowest level state space in our methodology.
 
 
 \begin{comment}
@@ -306,6 +307,76 @@ usually represented
 
 \subsection{Modeling Transitions}
 
+We model transitions using a Markovian model. The main characteristics of Markovian
+models is that they retain no memory of where they have been in the past. This means
+that only the current state can influence where the process will go next. In this 
+work we are interested only in processes that can assume a finite set of states, 
+called Markov chains \cite{norris1998markov}.
+More formally, we are interested in Markov chains $(X_t)_{t \ge 0}$ which can assume
+values in a finite state space $S$. We define $p_{ij}(t)$ to be the probability of
+the process being in state $j$ at time $t$ when starting from state $i$ at time $0$.
+We define a stochastic matrix $P(t)$, where $(P(t))_ij = p_{ij}(t)$. Thus each row
+of $P(t)$ is a probability distribution over the state space. Such a chain can be 
+represented by a transition rate matrix $Q$, where $Q$ satisfies the following system
+of equations:
+\begin{equation}
+	\label{eq:q-matrix}
+	\frac{d}{dt}P(t) = P(t)Q, \qquad P(0) = I.
+\end{equation}
+Each non-diagonal entry of $Q$ thus represents the rate of going from one state
+to another. $Q$ has the following properties:
+
+The $ij$-th entry of $Q$ then represents the rate of going from state $i$ to state $j$.
+
+We assume that $P(t)$
+is recurrent for all $t$ and define $\pi_j = \lim_{t \rightarrow \infty} p_{ij}(t)$.
+It can be shown that for recurrent chains $\pi_j$ is independent of the starting state.
+The vector $\pi = (\pi_1, \pi_2, ..., \pi_k)$ is called the stationary distribution
+of $(X_t)_{t \ge 0}$ and represents the proportion of time the process spends in 
+each state after funning for an infinite amount of time.
+\begin{enumerate}
+	\item $-\infty < q_{ii} \le 0$
+	\item $q_{ij} \ge 0$ for $j \neq i$
+	\item $\sum_{i \in S}q_{ij} = 0$
+\end{enumerate}
+Using this representation, the stationary distribution $\pi$ can be computed as the
+left eigenvector of $Q$ corresponding to eigenvalue $0$.
+
+\subsection{Transition Rate Estimation}
+
+We estimate the transition rates of $(X_t)_{t \ge 0}$ by first discretizing the
+the continuous parameter space $t \in \left[0,\infty\right)$ into a discrete 
+sequence $(0, h, 2h, ...)$ and estimating the transition probabilities
+$\tilde{p}_{ij} = p_{ij}(h)$. Once $\tilde{p}_{ij}$ are estimated, the transition
+intensities can be calculated as 
+\begin{equation}
+	q_{ij} = \frac{h}{\tilde{p}_{ij}}.
+\end{equation}
+As proposed in section \ref{sec:introduction} we allow the users to simulate
+the dynamics based on an alternate configuration of the attributes in the 
+control set $A_S$.
+Lets say the process is in state $i$ at time $0$ and define a random variable
+$J_i = j \Leftrightarrow X_h = j$. Thus $J_i$ has a multinomial distribution
+with parameters $(p_{i1}, p_{i2}, ..., p_{in})$ which can be modeled using
+a generalized linear model (GLM) \cite{glm-introduction}. Because there is
+no natural ordering in the response category, we use nominal logistic regression
+to estimate $p_{ij}$ based on values $x_k \in A_S$. We select reference category
+as $p_{ii}$ and model the relationship between $x_k$ and $p_{ij}$ as follows:
+\begin{equation}
+	\logit(p_{ij}) = \log\left(\frac{p_{ij}}{p_{ii}}\right) = \beta_{ij} x_k
+\end{equation}
+thus, for each state we get a set of $n-1$ equations which are used simultaneously
+to estimate the parameters $\beta_{ij}$. Once these have been obtained, the linear
+predictors can be calculated as:
+\begin{equation}
+	\tilde{p}_{ij}(x_k) = \frac{e^{\beta_{ij}x_k}}{1 + \sum_{l \neq i}e^{\beta_{il}x_k}}.
+\end{equation}
+
+
+\subsection{State Aggregation}
+
+Now that the transitions are being modeled on the lowest level, we need to model
+them on each level of our hierarchical model.
 [TODO]
 
 \section{Theory}
