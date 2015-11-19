@@ -133,6 +133,16 @@ Retrieved February 28, 2008 from
 \url{http://dx.doi.org/10.1145/1219092.1219093}}
 
 
+\bibitem[\protect\citeauthoryear{{Crosskey} and {Maggioni}}{{Crosskey} and
+  {Maggioni}}{2014}]%
+        {2014arXiv1404.0667C}
+{M. {Crosskey}} {and} {M. {Maggioni}}. 2014.
+\newblock \showarticletitle{{ATLAS: A geometric approach to learning
+  high-dimensional stochastic systems near manifolds}}.
+\newblock {\em ArXiv e-prints\/} (April 2014).
+\newblock
+
+
 \bibitem[\protect\citeauthoryear{Douglass, Harel, and Trakhtenbrot}{Douglass
   et~al\mbox{.}}{1998}]%
         {Douglass98}
@@ -309,6 +319,18 @@ Retrieved February 28, 2008 from
 \url{http://arxiv.org/abs/1105.0121}}
 
 
+\bibitem[\protect\citeauthoryear{Nagpal, Jatain, and Gaur}{Nagpal
+  et~al\mbox{.}}{2013}]%
+        {6558109}
+{A. Nagpal}, {A. Jatain}, {and} {D. Gaur}. 2013.
+\newblock \showarticletitle{Review based on data clustering algorithms}. In
+  {\em Information Communication Technologies (ICT), 2013 IEEE Conference on}.
+  298--303.
+\newblock
+\showDOI{%
+\url{http://dx.doi.org/10.1109/CICT.2013.6558109}}
+
+
 \bibitem[\protect\citeauthoryear{Norris}{Norris}{1998}]%
         {norris1998markov}
 {J.R. Norris}. 1998.
@@ -341,6 +363,16 @@ Retrieved February 28, 2008 from
 \showURL{%
 Retrieved March 21, 2008 from
   \url{http://video.google.com/videoplay?docid=6528042696351994555}}
+
+
+\bibitem[\protect\citeauthoryear{Pande, Beauchamp, and Bowman}{Pande
+  et~al\mbox{.}}{2010}]%
+        {pande-beauchamp-bowman:2010:methods:markov-model-review}
+{Vijay~S. Pande}, {Kyle Beauchamp}, {and} {Gregory~R. Bowman}. 2010.
+\newblock \showarticletitle{Everything you wanted to know about {Markov State
+  Models} but were afraid to ask}.
+\newblock {\em Methods\/}  {52} (2010), 99--105.
+\newblock
 
 
 \bibitem[\protect\citeauthoryear{Poker-Edge.Com}{Poker-Edge.Com}{2006}]%
@@ -392,6 +424,17 @@ Retrieved June 7, 2006 from \url{http://www.poker-edge.com/stats.php}}
 \newblock
 \newblock
 \shownote{Patent No. 12345, Filed July 1st., 2008, Issued Aug. 9th., 2009.}
+
+
+\bibitem[\protect\citeauthoryear{Sibson}{Sibson}{1973}]%
+        {Sibson01011973}
+{R. Sibson}. 1973.
+\newblock \showarticletitle{SLINK: An optimally efficient algorithm for the
+  single-link cluster method}.
+\newblock {\it Comput. J.} {16}, 1 (1973), 30--34.
+\newblock
+\showDOI{%
+\url{http://dx.doi.org/10.1093/comjnl/16.1.30}}
 
 
 \bibitem[\protect\citeauthoryear{Smith}{Smith}{2010}]%

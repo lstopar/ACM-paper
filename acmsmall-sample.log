@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.6.18)  28 OCT 2015 08:54
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.6.18)  18 NOV 2015 16:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -319,28 +319,34 @@ Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 338.
 Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 339.
 Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 340.
 )
+(/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks22
+\verbatim@line=\toks23
+\verbatim@in@stream=\read1
+)
 (./acmsmall-sample.aux)
 \openout1 = `acmsmall-sample.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 55.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 55.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 56.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 56.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Try loading font information for OT1+pnc on input line 55.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Try loading font information for OT1+pnc on input line 56.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pnc.fd
 File: ot1pnc.fd 2001/06/04 font definitions for OT1/pnc.
 )
@@ -351,12 +357,12 @@ File: ot1pnc.fd 2001/06/04 font definitions for OT1/pnc.
 \scratchbox=\box44
 \nofMPsegments=\count109
 \nofMParguments=\count110
-\everyMPshowfont=\toks22
+\everyMPshowfont=\toks24
 \MPscratchCnt=\count111
 \MPscratchDim=\dimen129
 \MPnumerator=\count112
 \makeMPintoPDFobject=\count113
-\everyMPtoPDFconversion=\toks23
+\everyMPtoPDFconversion=\toks25
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -402,70 +408,63 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 Excluding 'CCSXML' comment.
-LaTeX Font Info:    Try loading font information for TS1+pnc on input line 155.
+LaTeX Font Info:    Try loading font information for TS1+pnc on input line 157.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pnc.fd
 File: ts1pnc.fd 2001/06/04 font definitions for TS1/pnc.
 )
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 157.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 159.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 157.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 159.
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <8> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 157.
-LaTeX Font Info:    Try loading font information for U+lasy on input line 157.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 159.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 159.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 160.
-
-Underfull \vbox (badness 6575) has occurred while \output is active []
-
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 162.
 
 Overfull \vbox (72.27pt too high) has occurred while \output is active []
 
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 Non-PDF special ignored!
 
-] [2]
-Overfull \hbox (8.23848pt too wide) detected at line 254
+]
+<img/methodology.png, id=13, 890.3664pt x 140.2038pt>
+File: img/methodology.png Graphic file (type png)
+
+<use img/methodology.png>
+Package pdftex.def Info: img/methodology.png used on input line 228.
+(pdftex.def)             Requested size: 396.0pt x 62.35733pt.
+ [2 <./img/methodology.png>]
+LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 265.
+ [3] [4]
+Overfull \hbox (8.23848pt too wide) detected at line 418
 []
  []
 
-[3]
-LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 333.
- [4] <img/ui-initial.png, id=31, 1749.53625pt x 712.6625pt>
+[5] [6]
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 547.
+ <img/ui-initial.png, id=39, 1749.53625pt x 712.6625pt>
 File: img/ui-initial.png Graphic file (type png)
 
 <use img/ui-initial.png>
-Package pdftex.def Info: img/ui-initial.png used on input line 407.
+Package pdftex.def Info: img/ui-initial.png used on input line 630.
 (pdftex.def)             Requested size: 396.0pt x 161.29909pt.
- [5 <./img/ui-initial.png>] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 487--497
-[]\OT1/pnc/m/n/10 So pro-to-cols [Bahl 2002,Culler 2001,Zhou 2006,Adya 2001,Cul
-ler 2001;
- []
+ [7 <./img/ui-initial.png>] (./acmsmall-sample.bbl
+Underfull \vbox (badness 3668) has occurred while \output is active []
 
-LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 501.
-LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 524.
-[7] <acmsmall-mouse.pdf, id=47, 151.56625pt x 134.5025pt>
-File: acmsmall-mouse.pdf Graphic file (type pdf)
-
-<use acmsmall-mouse.pdf>
-Package pdftex.def Info: acmsmall-mouse.pdf used on input line 598.
-(pdftex.def)             Requested size: 151.56587pt x 134.50215pt.
- [8 <./acmsmall-mouse.pdf>] [9] (./acmsmall-sample.bbl
-[10]
+ [8]
 Missing character: There is no Ã in font pncr7t!
 Missing character: There is no © in font pncr7t!
 Missing character: There is no Ã in font pncr7t!
@@ -484,71 +483,75 @@ Underfull \hbox (badness 2443) in paragraph at lines 105--114
 r Berlin Hei-del-berg, 561--580.
  []
 
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 325--332
+[]\OT1/pnc/m/n/8 A. Nag-pal, A. Jatain, and D. Gaur. 2013. Re-view based on dat
+a clus-ter-ing al-go-rithms.
+ []
 
-Underfull \hbox (badness 5217) in paragraph at lines 326--333
+
+Underfull \hbox (badness 10000) in paragraph at lines 325--332
+\OT1/pnc/m/n/8 In \OT1/pnc/m/it/8 In-for-ma-tion Com-mu-ni-ca-tion Tech-nolo-gi
+es (ICT), 2013 IEEE Con-fer-ence on\OT1/pnc/m/n/8 . 298--303.
+ []
+
+
+Underfull \hbox (badness 5217) in paragraph at lines 348--355
 []\OT1/pnc/m/n/8 Dave No-vak. 2003. Sol-der man. Video. In \OT1/pnc/m/it/8 ACM 
 SIG-GRAPH 2003 Video Re-view on An-i-ma-
  []
 
 
-Underfull \hbox (badness 1953) in paragraph at lines 326--333
+Underfull \hbox (badness 1953) in paragraph at lines 348--355
 \OT1/pnc/m/it/8 tion the-ater Pro-gram: Part I - Vol. 145 (July 27--27, 2003)\O
 T1/pnc/m/n/8 . ACM Press, New York, NY, 4.
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [11]
-Underfull \hbox (badness 2103) in paragraph at lines 399--407
+Underfull \hbox (badness 2103) in paragraph at lines 442--450
 \OT1/pnc/m/n/8 In \OT1/pnc/m/it/8 Pro-ceed-ings of the 3rd. an-nual work-shop o
 n Li-brar-i-ans and Com-put-ers (LAC '10)\OT1/pnc/m/n/8 , Regi-
  []
 
 
-Underfull \hbox (badness 2005) in paragraph at lines 399--407
+Underfull \hbox (badness 2005) in paragraph at lines 442--450
 \OT1/pnc/m/n/8 nald N. Smythe and Alexan-der No-ble (Eds.), Vol. 3. Pa-parazzi 
 Press, Mi-lan Italy, 422--431.
  []
 
-) [12] [1
+) [10] [1
 
 ] (./acmsmall-sample.aux) ) 
 Here is how much of TeX's memory you used:
- 5036 strings out of 495028
- 68242 string characters out of 6181497
- 162074 words of memory out of 5000000
- 8144 multiletter control sequences out of 15000+600000
- 37651 words of font info for 82 fonts, out of 8000000 for 9000
+ 5040 strings out of 495028
+ 68578 string characters out of 6181497
+ 161851 words of memory out of 5000000
+ 8156 multiletter control sequences out of 15000+600000
+ 28978 words of font info for 65 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,17n,37p,312b,516s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,9n,37p,312b,326s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/
 8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/font
-s/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
-helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhv
-ro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/ncntrsbk/uncb8a.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/urw/ncntrsbk/uncr8a.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/urw/ncntrsbk/uncri8a.pfb>
-Output written on acmsmall-sample.pdf (13 pages, 340113 bytes).
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmtt8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/m
+sbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/urw/ncntrsbk/uncb8a.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/urw/ncntrsbk/uncr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/nc
+ntrsbk/uncri8a.pfb>
+Output written on acmsmall-sample.pdf (11 pages, 303048 bytes).
 PDF statistics:
- 153 PDF objects out of 1000 (max. 8388607)
- 108 compressed objects within 2 object streams
+ 118 PDF objects out of 1000 (max. 8388607)
+ 82 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

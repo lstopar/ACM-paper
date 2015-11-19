@@ -18,6 +18,7 @@
 \usepackage{amsmath}
 \usepackage{textcomp}
 \usepackage{graphicx}
+\usepackage{verbatim}
 \renewcommand{\algorithmcfname}{ALGORITHM}
 \SetAlFnt{\small}
 \SetAlCapFnt{\small}
@@ -78,9 +79,10 @@ MARKO GROBELNIK
 
 \begin{abstract}
 This paper presents a novel multi-scale methodology for modeling a collection of continuously time-varying
-data streams. The data streams are first aggregated and, using unsupervised data mining methods,
-typical system states are computed. This is achieved by use of one of two available clustering
-methods. After the states are computed, they are aggregated using an agglomerative clustering algorithm.
+data streams. The data streams are aggregated using unsupervised data mining methods. Typical system states
+are then computed on the aggregated data. This is used as input to construct a Markovian transition model
+capturing the dynamics of the monitored system. The hierarchical organization of the states enables a
+visual representation of the dynamics on multiple aggregation levels.
 \end{abstract}
 
 
@@ -216,8 +218,170 @@ We implement our methodology in a four step process, which includes:
 \end{enumerate}
 \textcolor{red}{[TODO The remainder of this paper is structured as follows]}
 
+\section{Proposed Multi-Level Methodology}
+
+To implement our multi-level approach, we propose a three step methodology shown
+in figure \ref{fig:methodology}.
+
+\begin{figure}[h!]
+	\centering
+	\makebox[\textwidth]{\includegraphics[width=\textwidth]{methodology}}
+	\caption{The proposed multi-level methodology.}
+	\label{fig:methodology}
+\end{figure}
+
+As shown in the figure, we split our methodology into three main steps: merging and
+processing data streams, state aggregation and transition modeling. These will be 
+explained in detail in the following subsections.
+
+\subsection{Merging and Processing Data Streams}
+
+In recent years much attention of the research community has been focused on a
+class of applications where the data are modeled best not as persistent relations,
+but rather as transient data streams \cite{Babcock:2002:MID:543613.543615}. Data 
+streams differ from conventional batch data in several ways:
+\begin{enumerate}
+	\item the data elements arrive online, sequentially and the system has no
+	control over their order,
+	\item data streams are potentially unbounded.
+\end{enumerate}
+As such a data stream can be defined as a sequence of pairs $(t_i,x_i)_{i \ge 0}$
+where $t_i$ is the timestamp of the $i$-th example and $x_i$ is its value.
+In the first step our methodology consumes batches of multiple such streams and
+merges them to produce feature vectors, interpolating the values wherever
+appropriate resulting in a [TODO].
+
+\subsection{State Aggregation}
+
+To be able to represent the data streams in a qualitative manner
+
+Once the data streams are merged we construct a state hierarchy. We do this 
+by constructing a dendrogram of the previously constructed feature vectors.
+A dendrogram is a nested sequence of partitions with associated numerical
+level and is thus ideal for our multi-level representation. The literature
+proposes many algorithms for constructing dendrograms. These generally fall
+into two groups \cite{Maimon:2005:DMK:1088958}: 
+\begin{enumerate}
+	\item \textbf{Agglomerative} - each object initially represents a cluster of its own. Clusters are
+	then iteratively merged, until the desired structure is obtained.
+	\item \textbf{Divisive} - when the procedure starts, all object belong to the same cluster. Then
+	clusters are recursively divided into sub-clusters until the desired structure is obtained.
+\end{enumerate}
+
+In general however, the time complexity of agglomerative clustering algorithms
+is $\Omega(n^2)$ \cite{Sibson01011973}, which is impractical for large datasets.
+Thus we compute an initial set of partitions using k-means and use them as
+singletons of the dendrogram and as the lowest level state space in our methodology.
+
+
+\begin{comment}
+
+
+ We
+first partition the feature vectors into a set of $k$ partitions. While partitioning is an
+NP complete problem, there are several methods available which compute an approximation
+efficiently. These include k-means, k-modes, CLARA, DP-means, etc. \cite{6558109,DBLP:journals/corr/abs-1111-0352}.
+
+In our methodology we choose k-means for its simplicity [TODO].
+
+The algorithm outputs a set of $k$ centroids $c_i$ where 
+
+We note that when using our methodology, the number of partitions should be selected
+based on domain knowledge or user experience. For instance in the example below
+we chose $k = 12$, one for each month in a year.
+
+
+
+ using clustering. 
+
+ The advantages of cluster
+partitions come from their geometric properties.
+We do this by
+first partitioning the feature vectors obtaining a set of $k$ partitions. The literature
+proposes many partitioning algorithms.
+ Clustering is an
+unsupervised machine learning procedure, which organizes a collection of patterns,
+usually represented
+\end{comment}
+
+\subsection{Modeling Transitions}
+
+[TODO]
+
+\section{Theory}
+
+This section presents the theory behind the StreamStory systems. We begin with
+a general discussion about data streams, then we give some insight into the 
+theory behind clustering algorithms and stochastic processes.
+
+\begin{comment}
+High dimensional systems arise in a variety of applications. In many cases these are
+stochastic by nature or can be well approximated by stochastic processes. Other systems
+that model high dimensional data include systems that model the system as a Markovian 
+state model [TODO ref] and milestoning [TODO ref]. There are also several other techniques
+[TODO ref] [TODO razdelaj].
+\end{comment}
+
+Data streams can be defined by a set of tuples $(t_i, x_i)$, where $t_i$ represents
+the timestamp of the $i$-th observation $x_i$. They can be characterized by the following:
+\begin{enumerate}
+	\item the elements of the data stream arrive sequentially, and the developer
+	has no control over their timing,
+	\item each stream can provide elements at its own schedule: they do not need
+	to have the same data rates or types
+	\item a data stream is potentially unbounded in size.
+\end{enumerate}
+A data stream may contain sensor data, image data or maybe internet and web traffic.
+High dimensional data streams arise in many applications. In many cases these
+are stochastic in nature or can be approximated by a stochastic process \cite{2014arXiv1404.0667C}.
+
+One of the major challenges when modeling such processes is the ability to reach
+experimentally relevant timescales \cite{pande-beauchamp-bowman:2010:methods:markov-model-review}.
+
+Markov state models build models with $N$ states and parametrize the model with the
+rates between states. The challenges when building Markov state models include \cite{pande-beauchamp-bowman:2010:methods:markov-model-review}:
+\begin{enumerate}
+	\item defining the states of the model and
+	\item using the state decomposition to build a transition matrix in an efficient
+	manner.
+\end{enumerate}
+
+To define the models' states, we chose to partition the data streams.
+
+\subsection{Gaussian Mixture Models and K-means}
+
+A mixture model is a probabilistic model that represents the presents of subpopulations
+in an observed population. A mixture model corresponds to a mixture distribution
+that represents the distribution of observations in the overall population.
+In a Gaussian mixture model, the data is assumed to arise from the following distribution:
+\begin{equation}
+	\label{eq:gaussian-mixture}
+	p(x) = \sum_{i=1}^{k}\pi_i N(\mu_i, \Sigma_i)
+\end{equation}
+where $k$ is the number of components, $\pi$ is the mixing coefficient and $\mu_i$ and
+$\Sigma_i$ are parameters of a Gaussian distribution. \textcolor{yellow}{[TODO]}
+A related model is provided by the K-means objective function, which constructs a 
+hard partitioning of the data set. Given a set of points $x_1, x_2, ..., x_n$, the 
+K-means objective function attempts to find partitions $c_1, c_2, ..., c_k$ that
+minimize the following objective function:
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\begin{equation}
+	\label{eq:k-means-obj}
+	\min_{bounds} \sum_{j = 1}^{k}\sum_{x_i \in r(j)} \norm{x_i - \mu_j}_2^2
+	where \mu_j = \frac{1}{|r(j)|}\sum_{x_i \in r(j)} x_i
+\end{equation}
+
+\subsection{What is left}
+
+Once the model is build it can be used for quantitative simulations as well as
+qualitative interpretation.
+
+To define the models' states, we use 
+
 % Head 1
-\section{Theory and Implementation}
+\section{Implementation}
 
 This section presents the detailed implementation of the StreamStory system, by 
 presenting in details each step of our four step process. We begin the section
@@ -350,17 +514,58 @@ mentioned linkage strategies.
 
 \subsection{Modeling Transitions}
 
+% TODO theory and implementation razlicna
+% teorija
+% nato implementacija
+% zvezni proces v evklidskem prostory
+% how to do data mining
+% nikoli ne recoveramo zveznega procesa (remark)
+
 We model transitions using a Markovian model. The main characteristic of Markovian models
-is that it retains no memory of where it has been in the past. This means that only the
+is that they retain no memory of where they have been in the past. This means that only the
 current state can influence where the process will go next. In this work, we are interested
-only in processes that can assume a finite set of states, referred to as Markov chains.
+only in processes that can assume a finite set of states, called Markov chains \cite{norris1998markov}.
+
+More formally, we are interested in Markov chains $(X_k)_{k \ge 0}$, which can assume 
+values in a finite state space $S$. We define $p_{ij}(k) = P(X_k = j | X_0 = i)$ to be the probability
+of the process being in state $j$ at time $k$ when starting from state $i$ at time $0$.
+Because of the memoryless property $P(X_k = j | X_0 = i) = P(X_{k+m} = j | X_m = i) = p_{ij}(k)$.
+
+We define a stochastic matrix $P(t)$, where $\left(P(t)\right)_{ij} = p_{ij}(t)$. Thus the
+$i$-th row of $P(t)$ is a probability distribution over the state space at time $t$
+when the process starts from state $i$. We assume that $P(t)$ is recurrent and define 
+$\pi_j = \lim\limits_{t \rightarrow \infty} p_{ij}(t)$. Then $\pi = \left(\pi_1, \pi_2, ..., \pi_m\right)$
+is the stationary distribution of $\left(X_t\right)_{t \ge 0}$ and represents the proportion
+of time the process spends in each state after running for an infinite amount of time.
+
+Let us now observe the elements if $P(t)$. Since each row of $P(t)$ is a probability
+distribution it is clear that $p_{ij}(t) \ge 0$ and $\sum_{j \in S}p_{ij}(t) = 1$.
+Furthermore $p_{ij}(t)$ must satisfy the memoryless property $P(X_{t+s} = j | X_s = i) = p_{ij}(t)$.
+
+\subsubsection{State Aggregation}
+
+When observing the process on multiple resolutions we need a way to aggregate states
+in $S$. When aggregating states of the Markov chain, we choose a formula which preserves
+the stationary distribution. Suppose $A$ and $B$ are non-intersecting subsets of $S$.
+Then we can calculate the probability of the process going from set $A$ to set $B$ for any
+$t$ as follows:
+\begin{equation}
+	\label{eq:markov-aggregation}
+	p_{AB}(t) = \frac{\sum\pi_i\sum_{j \in A}p_{ij}(t)}{\sum_{i \in B}\pi_i}
+\end{equation}
+
+
+
+\begin{comment}
+
+
 What makes these processes useful is that not only do they model many phenomena of interest,
 but also the lack of memory property makes it possible to predict how a Markov chain may
 behave, and to compute probabilities and expected values which quantify that behavior
 \cite{norris1998markov}.
-A Markov chain is a memoryless stochastic process $\left(X_k\right)_{k \ge 0}$ that can assume only 
-a finite or countable set of states $i \in I$, where $I$ is called the state space.
-Markov chains generally fall into two categories: discrete time and continuous time.
+We define a Markov chain as a memoryless stochastic process $\left(X_k\right)_{k \ge 0}$
+that can assume a finite set of states $i \in I$, where $I$ is called the state space.
+
 
 Discrete time Markov chains move in discrete time steps. They are defined using a 
 stochastic matrix $P$ where $(P)_{ij} = p_{ij}$ is the probability of jumping from state
@@ -387,10 +592,28 @@ the transition probability from set $A$ to set $B$:
 		P(X_{n+1} \in A | X_n \in B) = 
 		\sum\limits_{j \in A}P(X_{n+1} = j | X_n \in B) = \\
 		\sum_{j \in A}\frac{P(X_{n+1} = j)P(X_n \in B | X_{n+1} = j)}{P(X_n \in B)} = 
-		\frac{\sum_{j \in A} \pi_j \sum_{i \in B}p_{ij}\frac{\pi_i}{\pi_j}}{\sum_{j \in B} \pi_i} = \\
+		\frac{\sum_{j \in A} \pi_j \sum_{i \in B}\frac{p_{ij}\pi_i}{\pi_j}}{\sum_{j \in B} \pi_i} = \\
 		\frac{\sum_{i \in B}\pi_i\sum_{j \in A}p_{ij}}{\sum_{j \in B} \pi_i}
 	\end{split}
 \end{equation}
+
+A natural way of interpolating discrete time steps $\left(p^n\right)_{n \in \mathbb{N}}$ is by the
+exponential function $\left(e^{tq}\right)_{t \in \mathbb{R}^{+}}$. Consider a finite state set $I$ and a stochastic
+matrix $P$. For any matrix $Q = (q_ij)_{i,j \in I}$, the series
+\begin{equation}
+	\sum_{k=0}^{\infty}\frac{Q^k}{k!}
+\end{equation}
+converges componentwise to $e^Q$. Now suppose that we can find a matrix $Q$ such that $e^Q = P$. Then
+$e^{nQ} = (e^Q)^n = P^n$, so $\left(e^{tq}\right)_{t \in \mathbb{R}^{+}}$ fills the gaps in the 
+discrete sequence.
+
+If we now set $P(t) = e^{tQ}$, then $P(t)$ has the following properties:
+\begin{enumerate}
+	\item $P(s+t) = P(s)P(t)$
+	\item $P(t)$ is the unique solution to equations $P'(t) = P(t)Q$ and $P'(t) = QP(t)$ with
+	initial condition $P(0) = I$.
+\end{enumerate}
+\end{comment}
 
 \subsection{Visualization}
 
@@ -456,7 +679,7 @@ highlighted red indicate a negative weight.
 
 
 
-
+\begin{comment}
 \newpage
 
 We propose a suboptimal distribution to be used by each node, which is
@@ -686,6 +909,8 @@ choices for frequency assignments and also discuss the nonuniform
 back-off algorithms for the slotted media access design.
 
 % Start of "Sample References" section
+
+\end{comment}
 
 \section{Typical references in new ACM Reference Format}
 A paginated journal article \cite{Abril07}, an enumerated

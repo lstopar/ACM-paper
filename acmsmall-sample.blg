@@ -12,6 +12,8 @@ Warning--no key, author in Editor00a
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Warning--require articleno with numpages field in Babcock:2002:MID:543613.543615
 Warning--empty address in kmeans
+Warning--no number and no volume in 2014arXiv1404.0667C
+Warning--page numbers missing in both pages and numpages fields in 2014arXiv1404.0667C
 Warning--empty chapter and pages in Editor00
 Warning--page numbers missing in Editor00a
 Warning--require articleno with numpages field in Jain:1999:DCR:331499.331504
@@ -22,6 +24,8 @@ Warning--articleno field, but no numpages field, in Lee05
 Warning--page numbers missing in both pages and numpages fields in Lee05
 Warning--require pages or numpages fields with articleno field in Lee05
 Warning--page numbers missing in both pages and numpages fields in DBLP:journals/corr/abs-1105-0121
+Warning--empty publisher in 6558109
+Warning--empty address in 6558109
 Warning--empty address in norris1998markov
 Warning--unrecognized DOI value [99.9999/woot07-S422]
 Warning--articleno field, but no numpages field, in rous08
@@ -29,45 +33,45 @@ Warning--page numbers missing in both pages and numpages fields in rous08
 Warning--require pages or numpages fields with articleno field in rous08
 Warning--page numbers missing in both pages and numpages fields in SaeediJETC10
 Warning--unrecognized DOI value [99.9999/woot07-S422]
-You've used 37 entries,
+You've used 41 entries,
             5290 wiz_defined-function locations,
-            1722 strings with 23799 characters,
-and the built_in function-call counts, 35258 in all, are:
-= -- 4688
-> -- 1076
+            1749 strings with 24581 characters,
+and the built_in function-call counts, 39249 in all, are:
+= -- 5250
+> -- 1216
 < -- 14
-+ -- 311
-- -- 703
-* -- 2162
-:= -- 3941
-add.period$ -- 209
-call.type$ -- 37
-change.case$ -- 214
-chr.to.int$ -- 35
-cite$ -- 62
-duplicate$ -- 2651
-empty$ -- 1929
-format.name$ -- 457
-if$ -- 8052
++ -- 351
+- -- 751
+* -- 2403
+:= -- 4361
+add.period$ -- 229
+call.type$ -- 41
+change.case$ -- 239
+chr.to.int$ -- 39
+cite$ -- 70
+duplicate$ -- 2981
+empty$ -- 2166
+format.name$ -- 517
+if$ -- 9066
 int.to.chr$ -- 3
 int.to.str$ -- 0
-missing$ -- 88
-newline$ -- 390
-num.names$ -- 296
-pop$ -- 891
+missing$ -- 105
+newline$ -- 425
+num.names$ -- 328
+pop$ -- 1013
 preamble$ -- 1
-purify$ -- 393
+purify$ -- 438
 quote$ -- 0
-skip$ -- 724
+skip$ -- 821
 stack$ -- 0
-substring$ -- 3537
-swap$ -- 214
+substring$ -- 3834
+swap$ -- 246
 text.length$ -- 631
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 464
-warning$ -- 23
-while$ -- 304
+type$ -- 520
+warning$ -- 27
+while$ -- 335
 width$ -- 0
-write$ -- 758
-(There were 23 warnings)
+write$ -- 828
+(There were 27 warnings)
