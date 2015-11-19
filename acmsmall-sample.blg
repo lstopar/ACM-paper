@@ -5,71 +5,54 @@ The style file: ACM-Reference-Format-Journals.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Database file #1: acmsmall-sample-bibfile.bib
-Warning--no key, author in Editor00
-Warning--no key, author in Editor00
-Warning--no key, author in Editor00a
-Warning--no key, author in Editor00a
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Warning--require articleno with numpages field in Babcock:2002:MID:543613.543615
 Warning--empty address in kmeans
 Warning--no number and no volume in 2014arXiv1404.0667C
 Warning--page numbers missing in both pages and numpages fields in 2014arXiv1404.0667C
-Warning--empty chapter and pages in Editor00
-Warning--page numbers missing in Editor00a
 Warning--require articleno with numpages field in Jain:1999:DCR:331499.331504
-Warning--require articleno with numpages field in Kirschmer:2010:AEI:1958016.1958018
-Warning--empty address in Knuth97
 Warning--page numbers missing in both pages and numpages fields in DBLP:journals/corr/abs-1111-0352
-Warning--articleno field, but no numpages field, in Lee05
-Warning--page numbers missing in both pages and numpages fields in Lee05
-Warning--require pages or numpages fields with articleno field in Lee05
 Warning--page numbers missing in both pages and numpages fields in DBLP:journals/corr/abs-1105-0121
 Warning--empty address in norris1998markov
-Warning--unrecognized DOI value [99.9999/woot07-S422]
-Warning--articleno field, but no numpages field, in rous08
-Warning--page numbers missing in both pages and numpages fields in rous08
-Warning--require pages or numpages fields with articleno field in rous08
-Warning--page numbers missing in both pages and numpages fields in SaeediJETC10
-Warning--unrecognized DOI value [99.9999/woot07-S422]
-You've used 41 entries,
+You've used 12 entries,
             5290 wiz_defined-function locations,
-            1750 strings with 24712 characters,
-and the built_in function-call counts, 39360 in all, are:
-= -- 5279
-> -- 1213
-< -- 14
-+ -- 353
-- -- 787
-* -- 2411
-:= -- 4384
-add.period$ -- 231
-call.type$ -- 41
-change.case$ -- 238
-chr.to.int$ -- 39
-cite$ -- 68
-duplicate$ -- 2937
-empty$ -- 2140
-format.name$ -- 521
-if$ -- 9037
-int.to.chr$ -- 3
+            1527 strings with 19964 characters,
+and the built_in function-call counts, 13455 in all, are:
+= -- 1894
+> -- 462
+< -- 2
++ -- 141
+- -- 312
+* -- 873
+:= -- 1458
+add.period$ -- 67
+call.type$ -- 12
+change.case$ -- 75
+chr.to.int$ -- 12
+cite$ -- 20
+duplicate$ -- 895
+empty$ -- 650
+format.name$ -- 215
+if$ -- 3119
+int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 102
-newline$ -- 428
-num.names$ -- 328
-pop$ -- 994
+missing$ -- 40
+newline$ -- 155
+num.names$ -- 98
+pop$ -- 309
 preamble$ -- 1
-purify$ -- 437
+purify$ -- 135
 quote$ -- 0
-skip$ -- 812
+skip$ -- 273
 stack$ -- 0
-substring$ -- 3919
-swap$ -- 238
-text.length$ -- 696
+substring$ -- 1347
+swap$ -- 80
+text.length$ -- 280
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 514
-warning$ -- 25
-while$ -- 338
+type$ -- 150
+warning$ -- 8
+while$ -- 104
 width$ -- 0
-write$ -- 832
-(There were 25 warnings)
+write$ -- 267
+(There were 8 warnings)

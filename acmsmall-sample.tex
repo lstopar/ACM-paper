@@ -253,6 +253,7 @@ merges them to produce feature vectors, interpolating the values wherever
 appropriate resulting in a [TODO].
 
 \subsection{State Aggregation}
+\label{sec:state-aggregation}
 
 To be able to represent the data streams in a qualitative manner
 
@@ -337,7 +338,7 @@ each state after funning for an infinite amount of time.
 \begin{enumerate}
 	\item $-\infty < q_{ii} \le 0$
 	\item $q_{ij} \ge 0$ for $j \neq i$
-	\item $\sum_{i \in S}q_{ij} = 0$
+	\item $\sum_{j \in S}q_{ij} = 0$
 \end{enumerate}
 Using this representation, the stationary distribution $\pi$ can be computed as the
 left eigenvector of $Q$ corresponding to eigenvalue $0$.
@@ -348,7 +349,7 @@ We estimate the transition rates of $(X_t)_{t \ge 0}$ by first discretizing the
 the continuous parameter space $t \in \left[0,\infty\right)$ into a discrete 
 sequence $(0, h, 2h, ...)$ and estimating the transition probabilities
 $\tilde{p}_{ij} = p_{ij}(h)$. Once $\tilde{p}_{ij}$ are estimated, the transition
-intensities can be calculated as 
+rates can be calculated as 
 \begin{equation}
 	q_{ij} = \frac{h}{\tilde{p}_{ij}}.
 \end{equation}
@@ -375,8 +376,39 @@ predictors can be calculated as:
 
 \subsection{State Aggregation}
 
-Now that the transitions are being modeled on the lowest level, we need to model
-them on each level of our hierarchical model.
+Once the low level process is being modeled we need to be able to model it on 
+higher levels. Recall from section \ref{sec:state-aggregation} that our methodology
+partitions the data space using a dendrogram. A dendrogram is a nested sequence
+of partitions with associated numerical levels. Thus it provides, on each level $l$,
+a unique partition of the data space $P^l = (P_1, P_2, ... P_{k_l})$ where each partition
+$P_i$ is the union of one or more partitions on level $0$. Since each state of the 
+Markov chain corresponds to a single partition on level $0$, we aggregate
+then to be able model the higher level process on level $l$. Suppose
+the data space is partitioned into partitions $(P_1, P_2, ..., P_k)$ on level $0$.
+
+We note that simply lumping lower level states is not sufficient since it may
+result in a non-Markovian process [TODO ref]. Therefore we construct a new
+Markov chain $(Y_t)_{t \ge 0}$ which should retain some the behavior of the original
+chain $(X_t)_{t \ge 0}$. Let $(X_t)_{t \ge 0}$ be the Markov chain on level $0$ with state space $S = {1, 2, ..., n}$
+and transition rate matrix $Q$. Now suppose we would like to aggregate two sets of 
+states  $A = \{i_1, i_2, ..., i_k\} \subset S$ and $B = \{j_1, j_2, ..., j_h\} \subset S$
+and would like to preserve the stationary distribution of the original process. Let
+$\tilde{\pi}$ be the stationary distribution of $(Y_t)_{t \ge 0}$. Then $\tilde{\pi}$
+should have the following properties:
+\begin{enumerate}
+	\item $\tilde{\pi}_A = \sum_{i \in A}\pi_i$, $\tilde{\pi}_B = \sum_{j \in B}\pi_j$
+	\item $\tilde{\pi}_k = \pi_k$ for all $k \notin A \cup B$.
+\end{enumerate}
+We can compute the transition rate matrix of such a process using the following 
+formula:
+\begin{equation}
+	q_{AB} = \frac{\sum_{i \in A}\pi_i\sum_{j \in B}q_{ij}}{\sum_{i \in A}\pi_i}.
+\end{equation}
+
+[TODO we not that this formula is already in you know where]
+
+\subsection{Visualization}
+
 [TODO]
 
 \section{Theory}
@@ -981,7 +1013,7 @@ back-off algorithms for the slotted media access design.
 
 % Start of "Sample References" section
 
-\end{comment}
+
 
 \section{Typical references in new ACM Reference Format}
 A paginated journal article \cite{Abril07}, an enumerated
@@ -1005,6 +1037,8 @@ work accepted for publication \cite{rous08}, 'YYYYb'-test for prolific author
 'duplicate' DOI and URLs (some SIAM articles) \cite{Kirschmer:2010:AEI:1958016.1958018}.
 Boris / Barbara Beeton: multi-volume works as books
 \cite{MR781536} and \cite{MR781537}.
+
+\end{comment}
 
 % Appendix
 \appendix
