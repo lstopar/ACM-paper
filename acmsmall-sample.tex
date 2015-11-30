@@ -30,6 +30,7 @@
 
 \DeclareMathOperator*{\argmin}{\arg\!\min}
 \DeclareMathOperator{\logit}{logit}
+\DeclareMathOperator{\Ima}{Im}
 
 % Metadata Information
 \acmVolume{9}
@@ -252,6 +253,7 @@ In the first step our methodology consumes batches of multiple such streams and
 merges them to produce feature vectors, interpolating the values wherever
 appropriate resulting in a [TODO].
 
+\begin{comment}
 \subsection{State Aggregation}
 \label{sec:state-aggregation}
 
@@ -275,7 +277,7 @@ is $\Omega(n^2)$ \cite{Sibson01011973}, which is impractical for large datasets.
 Thus we compute an initial set of partitions using k-means and use them as
 singletons of the dendrogram as well as the lowest level state space in our methodology.
 
-
+\end{comment}
 \begin{comment}
 
 
@@ -316,34 +318,33 @@ called Markov chains \cite{norris1998markov}.
 More formally, we are interested in Markov chains $(X_t)_{t \ge 0}$ which can assume
 values in a finite state space $S$. We define $p_{ij}(t)$ to be the probability of
 the process being in state $j$ at time $t$ when starting from state $i$ at time $0$.
-We define a stochastic matrix $P(t)$, where $(P(t))_ij = p_{ij}(t)$. Thus each row
+We define a stochastic matrix $P(t)$, where $(P(t))_{ij} = p_{ij}(t)$. Thus each row
 of $P(t)$ is a probability distribution over the state space. Such a chain can be 
 represented by a transition rate matrix $Q$, where $Q$ satisfies the following system
-of equations:
+of equations
 \begin{equation}
 	\label{eq:q-matrix}
 	\frac{d}{dt}P(t) = P(t)Q, \qquad P(0) = I.
 \end{equation}
-Each non-diagonal entry of $Q$ thus represents the rate of going from one state
-to another. $Q$ has the following properties:
-
-The $ij$-th entry of $Q$ then represents the rate of going from state $i$ to state $j$.
-
-We assume that $P(t)$
-is recurrent for all $t$ and define $\pi_j = \lim_{t \rightarrow \infty} p_{ij}(t)$.
-It can be shown that for recurrent chains $\pi_j$ is independent of the starting state.
-The vector $\pi = (\pi_1, \pi_2, ..., \pi_k)$ is called the stationary distribution
-of $(X_t)_{t \ge 0}$ and represents the proportion of time the process spends in 
-each state after funning for an infinite amount of time.
+and has the following properties:
 \begin{enumerate}
 	\item $-\infty < q_{ii} \le 0$
 	\item $q_{ij} \ge 0$ for $j \neq i$
 	\item $\sum_{j \in S}q_{ij} = 0$
 \end{enumerate}
+Each non-diagonal entry of $Q$, $q_{ij}$ thus represents the rate of going from state $i$
+to state $j$ while the diagonal entries $-q_{ii}$ represent the rate of leaving state $i$.
+
+We assume that $P(t)$ is recurrent for all $t$ and define $\pi_j = \lim_{t \rightarrow \infty} p_{ij}(t)$.
+It can be shown that for recurrent chains $\pi_j$ is independent of the starting state and
+vector $\pi = (\pi_1, \pi_2, ..., \pi_k)$ is called the stationary distribution
+of $(X_t)_{t \ge 0}$ and represents the proportion of time the process spends in 
+each state after funning for an infinite amount of time.
+
 Using this representation, the stationary distribution $\pi$ can be computed as the
 left eigenvector of $Q$ corresponding to eigenvalue $0$.
 
-\subsection{Transition Rate Estimation}
+\subsubsection{Transition Rate Estimation}
 
 We estimate the transition rates of $(X_t)_{t \ge 0}$ by first discretizing the
 the continuous parameter space $t \in \left[0,\infty\right)$ into a discrete 
@@ -373,11 +374,120 @@ predictors can be calculated as:
 	\tilde{p}_{ij}(x_k) = \frac{e^{\beta_{ij}x_k}}{1 + \sum_{l \neq i}e^{\beta_{il}x_k}}.
 \end{equation}
 
-
 \subsection{State Aggregation}
 
-Once the low level process is being modeled we need to be able to model it on 
-higher levels. Recall from section \ref{sec:state-aggregation} that our methodology
+Once the low level process is modeled on the lowest level, we aggregate states
+to obtain a hierarchy of Markov chains. State aggregation can be defined as a
+partitioning problem.
+
+
+To partition the Markov chain we adapt the algorithm proposed
+in \cite{5160607} and modify it to work in the continuous time setting. Let a 
+Markov chain on a state space $X$ be defined by a 
+transition rate matrix $Q$. We define a surjective partition function $\phi: X \rightarrow Y$
+and a corresponding transition rate matrix transformation function 
+$\Phi: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}^{m \times m}$ using the following formula:
+\begin{equation}
+	\Phi (Q) = (P'\Pi P)^{-1}P'\Pi QP
+\end{equation}
+where $\Pi = diag(\pi)$ and $P$ is a $\left|X\right| \times \left|Y\right|$ partition matrix
+with elements
+\begin{equation}
+	\left(P\right)_{ij} = 
+	\left\{
+		\begin{array}{ll}
+			1 & \mbox{if } \phi(i) = j \\
+			0 & \mbox{otherwise}.
+		\end{array}
+	\right.
+\end{equation}
+
+\subsubsection{Bi-Partitioning Markov Chains}
+\label{sec:bi-partition}
+
+The spectral analysis of undirected graphs has been studied extensively in the literature and
+many algorithms proposed for bi-partitioning such graphs proposed. These papers use the Cheeger
+inequality, one of the main tools for bounding the mixing times for random walks on undirected
+graphs. The transition rate matrix of a Markov chain is exactly the negative Laplacian
+of a directed weighted graph $Q = -L(G)$ \cite{Agaev2005157}.
+The Laplacian is however not symmetric and in general does not have real eigenvalues.
+Therefore we transform the Laplacian using the following formula:
+\begin{equation}
+	Q_s = \frac{1}{2}(\Pi Q + Q'\Pi)
+\end{equation}
+The transformation above has the effect of symmetrizing the transition rate matrix and furthermore
+the matrix $\Pi^{-1}Q_s$ preserves the ergodic properties of the original Markov chain. To
+obtain a bi-partition of the original Markov chain we solve the following generalized eigenvalue
+problem:
+\begin{equation}
+	Q_s v = \lambda_2 \Pi v
+\end{equation}
+The bi-partition function $\phi$ is then constructed using the following rule:
+\begin{equation}
+	\phi(i) = 
+	\left\{
+		\begin{array}{ll}
+			1 & \mbox{if } v_i \ge 0 \\
+			0 & \mbox{otherwise}
+		\end{array}
+	\right.
+\end{equation}
+
+\subsubsection{Partitioning Markov Chains}
+
+Since the bi-partitioning problem can be solved using the second eigenvector of the transformed
+Laplacian we can now present a recursive algorithm for the partitioning of continuous time Markov chains.
+We first define the entropy rate function
+\begin{equation}
+	D(Q||\tilde{Q}) = \sum_{A \in \Ima \phi}\sum_{B \in \Ima \phi}\sum_{i \in \phi^{-1}(A)}\pi_i \sum_{j \in \phi^{-1}(B)} q_{ij} \log \frac{\sum_{j \in \phi^{-1}(B)} q_{ij}}{\tilde{q}_{AB}}
+\end{equation}
+[TODO entropy rate not yet developed]
+
+The algorithm starts with an initial partition containing all the states of the original Markov chain.
+On the $n$-th iteration the algorithm assumes that $n$ partitions (aggregated states) are given. The objective then is
+to select the best aggregated state to split, obtaining $n+1$ partitions. For $i=1,2, ..., n$ we denote $Q^{(i)}$ to
+be the transition rate matrix of a Markov chain within the $i$-th partition. A bi-partition of $Q^{(i)}$
+provides $n+1$ partitions, which we denote $Q_{n+1}^{(i)}$. The objective then is to select the best 
+partition $Q^{(i)}$ to split. This is achieved by minimizing the following criteria:
+\begin{equation}
+	\argmin_{i \in \{1, 2, ..., n\}} D(Q||Q_{n+1}^{(i)})
+\end{equation}
+
+
+\newpage
+
+
+
+\begin{comment}
+ The methods proposed
+in these papers use the sign structure of the second largest eigenvalue as an approximate
+solution of the bi-partitioning problem. However all these papers assume a symmetric Laplacian.
+
+
+
+
+While the spectral analysis of undirected graphs has been studied extensively, there
+are few papers discussing the spectral properties of directed graphs.
+
+It has been shown that an approximate solution to the min-cut problem
+
+
+
+In general partitioning is an NP-complete problem, however in the pioneering
+work of Wentzell and Freidin it is shown that an optimal aggregation is 
+obtained through the sign structure of the second eigenvector.
+
+In the work of Wentzell and Freidlin it is shown that an optimal aggregation
+is obtained through the sign structure of the second eigenvector.
+
+The partitioning of a continuous time Markov chain can
+be viewed as an optimization problem where we minimize the total relative 
+entropy between a Markov chain Q and an aggregated chain  where
+the partition function $\pi : S \rightarrow S$ is defined by:
+
+
+
+Recall from section \ref{sec:state-aggregation} that our methodology
 partitions the data space using a dendrogram. A dendrogram is a nested sequence
 of partitions with associated numerical levels. Thus it provides, on each level $l$,
 a unique partition of the data space $P^l = (P_1, P_2, ... P_{k_l})$ where each partition
@@ -405,11 +515,17 @@ formula:
 	q_{AB} = \frac{\sum_{i \in A}\pi_i\sum_{j \in B}q_{ij}}{\sum_{i \in A}\pi_i}.
 \end{equation}
 
-[TODO we not that this formula is already in you know where]
+[TODO ta formula je dokazana v clanku ki ga imas + se DTMC partitioning, 
+mogoce lahko partitioning razsiris na CTMC, vrzes ven trenutni dendrogram
+in to opsises v clanku]
+
+\end{comment}
 
 \subsection{Visualization}
 
 [TODO]
+
+\begin{comment}
 
 \section{Theory}
 
@@ -423,7 +539,6 @@ stochastic by nature or can be well approximated by stochastic processes. Other 
 that model high dimensional data include systems that model the system as a Markovian 
 state model [TODO ref] and milestoning [TODO ref]. There are also several other techniques
 [TODO ref] [TODO razdelaj].
-\end{comment}
 
 Data streams can be defined by a set of tuples $(t_i, x_i)$, where $t_i$ represents
 the timestamp of the $i$-th observation $x_i$. They can be characterized by the following:
@@ -716,11 +831,10 @@ If we now set $P(t) = e^{tQ}$, then $P(t)$ has the following properties:
 	\item $P(t)$ is the unique solution to equations $P'(t) = P(t)Q$ and $P'(t) = QP(t)$ with
 	initial condition $P(0) = I$.
 \end{enumerate}
-\end{comment}
 
 \subsection{Visualization}
 
-[TODO]
+\end{comment}
 
 \section{Visualization and User Interaction}
 
