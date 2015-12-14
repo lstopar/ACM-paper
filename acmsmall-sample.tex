@@ -206,6 +206,7 @@ Our system uses control attributes to model state transitions, allowing us to ob
 the dynamics with respect to the current configuration and gives us insight into the
 expected dynamics with respect to some alternate attribute configuration.
 
+[TODO daj v section 2]
 We implement our methodology in a four step process, which includes:
 \begin{enumerate}
 	\label{label:procedure-high-level}
@@ -218,17 +219,20 @@ We implement our methodology in a four step process, which includes:
 	\item modeling state transitions with respect to control attributes and computing
 	statistics on transitions.
 \end{enumerate}
-\textcolor{red}{[TODO The remainder of this paper is structured as follows]}
+\textcolor{red}{[TODO The remainder of this paper is structured as follows in contributions]}
 
 \section{Proposed Multi-Level Methodology}
 
 To implement our multi-level approach, we propose a three step methodology shown
-in figure \ref{fig:methodology}.
+in Figure \ref{fig:methodology}.
+
+[TODO Figure in Section z veliko]
+[TODO thickness \& darkness]
 
 \begin{figure}[h!]
 	\centering
 	\makebox[\textwidth]{\includegraphics[width=\textwidth]{methodology}}
-	\caption{The proposed multi-level methodology.}
+	\caption{The proposed multi-level methodology. [TODO imena na slikice]}
 	\label{fig:methodology}
 \end{figure}
 
@@ -307,6 +311,10 @@ proposes many partitioning algorithms.
 unsupervised machine learning procedure, which organizes a collection of patterns,
 usually represented
 \end{comment}
+
+\subsection{Data Stream Partitioning}
+
+[TODO]
 
 \subsection{Modeling Transitions}
 
@@ -856,7 +864,7 @@ StreamStory is used in online mode, the current state is colored green, the most
 future states blue and the previous state has a red border.
 
 The thickness of an arrow is proportional to the probability of the corresponding transition,
-and the most likely transitions have a darker color.
+thus the more likely transitions have a darker color.
 
 When first opening user interface the user is presented with a top-level chain with only two 
 states. They can then use the scroll function to zoom into the hierarchy and the states get 
