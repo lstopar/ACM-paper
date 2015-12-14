@@ -176,15 +176,15 @@ an opposing motion of the ailerons and the aircraft will go back into state "lev
 
 Such high-level states can be decomposed into lower-level states, giving us a 
 multi-level view of the system and allowing us to observe the system on multiple 
-aggregation levels. For example, a "banking turn" state can be decomposed by the
+detail levels. For example, a "banking turn" state can be decomposed by the
 aircrafts roll and angular velocity, resulting in perhaps three states: "initiate
 turn", "full turn" and "end turn".
 
 We present a methodology for modeling such systems and demonstrate its implementation
 called StreamStory. StreamStory models such systems as a hierarchical Markovian process
-by automatically learning the typical low-level states and transitions, and aggregating 
-them into a hierarchy of Markovian processes. As such it gives users a unique view into
-the monitored system.
+by automatically learning the typical low-level states, transitions and aggregating 
+them into a hierarchy, obtaining a unique Markovian process on multiple detail levels.
+As such it gives users a unique view into the monitored system.
 
 Furthermore, we divide the inputs streams into two sets: observation and control set.
 Attributes in the observation set are the attributes that tell us the state of the 
@@ -206,7 +206,41 @@ Our system uses control attributes to model state transitions, allowing us to ob
 the dynamics with respect to the current configuration and gives us insight into the
 expected dynamics with respect to some alternate attribute configuration.
 
-We implement our methodology in a four step process, which includes:
+The main research contributions presented in this paper can be summarized as follows:
+\begin{list}{-}{}
+	\item We present a novel methodology for modeling multivariate continuously time-varying data streams
+	in a hierarchical manner providing a unique model of the several detail levels.
+	\item We present a novel approach for modeling state transitions in a Markov chain allowing
+	to observe the dynamics of the chain under alternate configurations.
+	\item We propose a recursive algorithm for partitioning recurrent continuous time Markov chains.
+\end{list}
+
+
+The remainder of this paper is structured as follows. In Section \ref{sec:methodology} we present
+our methodology in detail. Section \ref{sec:ui} we present user interaction. Section \ref{sec:experiment}
+we present our experimental results and finally in Section \ref{sec:conclusion} we conclude this
+paper and give some ideas for further work.
+
+
+\section{Proposed Multi-Level Methodology}
+\label{sec:methodology}
+
+\begin{comment}
+
+\begin{equation}
+	\left(x_1, x_2, x_3, ...\right)
+\end{equation}
+
+\end{comment}
+
+We begin this section with an overview of our multi-level methodology show in figure \ref{fig:methodology}.
+\begin{figure}[h!]
+	\centering
+	\makebox[\textwidth]{\includegraphics[width=300pt]{methodology}}
+	\caption{The proposed multi-level methodology.}
+	\label{fig:methodology}
+\end{figure}
+As shown in the figure our methodology encompasses four main steps. These include:
 \begin{enumerate}
 	\label{label:procedure-high-level}
 	\item \label{label:procedure-preprocessing} aggregating and resampling the input
@@ -218,40 +252,50 @@ We implement our methodology in a four step process, which includes:
 	\item modeling state transitions with respect to control attributes and computing
 	statistics on transitions.
 \end{enumerate}
-\textcolor{red}{[TODO The remainder of this paper is structured as follows]}
-
-\section{Proposed Multi-Level Methodology}
-
-To implement our multi-level approach, we propose a three step methodology shown
-in figure \ref{fig:methodology}.
-
-\begin{figure}[h!]
-	\centering
-	\makebox[\textwidth]{\includegraphics[width=\textwidth]{methodology}}
-	\caption{The proposed multi-level methodology.}
-	\label{fig:methodology}
-\end{figure}
-
-As shown in the figure, we split our methodology into three main steps: merging and
-processing data streams, state aggregation and transition modeling. These will be 
-explained in detail in the following subsections.
+Each of these steps will be presented in the next subsections in detail.
 
 \subsection{Merging and Processing Data Streams}
 
 In recent years much attention of the research community has been focused on a
 class of applications where the data are modeled best not as persistent relations,
 but rather as transient data streams \cite{Babcock:2002:MID:543613.543615}. Data 
-streams differ from conventional batch data in several ways:
-\begin{enumerate}
-	\item the data elements arrive online, sequentially and the system has no
-	control over their order,
-	\item data streams are potentially unbounded.
-\end{enumerate}
+streams differ from conventional batch data in two main aspects: (1) their elements arrive online, sequentially
+and the system has no control over their order and (2) data streams are potentially unbounded.
+
 As such a data stream can be defined as a sequence of pairs $(t_i,x_i)_{i \ge 0}$
 where $t_i$ is the timestamp of the $i$-th example and $x_i$ is its value.
-In the first step our methodology consumes batches of multiple such streams and
-merges them to produce feature vectors, interpolating the values wherever
-appropriate resulting in a [TODO].
+In the first step our methodology consumes a batch of data streams and preprocesses 
+them to obtain feature vectors which can be used to model the data in further steps.
+The preprocessing is done by first merging the data streams to produce feature vectors with
+a common time stamp and later resampling them using a domain-specific appropriate sampling rate.
+After the resampling step, the methodology foresees the calculation of domain specific features
+which the user would like to use when modeling the data. The last step can include the addition of
+generic features like current derivative or some domain specific calculation like perhaps
+the number of times an attribute was above a threshold in a domain specific time window.
+
+\subsection{State Identification}
+
+Once the data is represented as feature vectors it is ready to be modeled. Our next step includes identifying 
+typical low-level system states from the feature vectors created in step 1. We do this by partitioning 
+the feature vectors and associating each state with a partition. There are many partitioning algorithms 
+available in the literature including algorithms that produce hierarchical partitions. In general however
+the computational complexity of these algorithms is $O(n^2)$ which renders them unsuitable for big data
+scenarios.
+We therefore propose a flat partition using k-means resulting in a Voronoi diagram on the data space and
+enabling us to construct states by assigning feature vectors to the partition with the nearest centroid
+and constructing a hierarchical representation later in the process.
+We then collect statistics in the states including
+\begin{list}{-}{}
+	\item Distribution of attributes - we store the distribution of all the attributes in a state as a
+	histogram. The number of bins in a histogram is a configuration parameter and should be based on domain
+	knowledge.
+	\item Mean value and median of each attribute inside a state.
+	\item Percentiles for each attribute.
+\end{list}
+These statistics can be used when the model is applied in real-time and provide a clustering-based anomaly detection
+technique.
+
+ and later aggregate it do obtain a hierarchical partition.
 
 \begin{comment}
 \subsection{State Aggregation}
@@ -355,9 +399,9 @@ rates can be calculated as
 	q_{ij} = \frac{h}{\tilde{p}_{ij}}.
 \end{equation}
 As proposed in section \ref{sec:introduction} we allow the users to simulate
-the dynamics based on an alternate configuration of the attributes in the 
-control set $A_S$.
-Lets say the process is in state $i$ at time $0$ and define a random variable
+the dynamics based on an alternate configurations of the predefined attributes
+which we denote $A_S$.
+Suppose the process is in state $i$ at time $0$ and define a random variable
 $J_i = j \Leftrightarrow X_h = j$. Thus $J_i$ has a multinomial distribution
 with parameters $(p_{i1}, p_{i2}, ..., p_{in})$ which can be modeled using
 a generalized linear model (GLM) \cite{glm-introduction}. Because there is
@@ -376,13 +420,10 @@ predictors can be calculated as:
 
 \subsection{State Aggregation}
 
-Once the low level process is modeled on the lowest level, we aggregate states
-to obtain a hierarchy of Markov chains. State aggregation can be defined as a
-partitioning problem.
-
-
-To partition the Markov chain we adapt the algorithm proposed
-in \cite{5160607} and modify it to work in the continuous time setting. Let a 
+Once the process is modeled on the lowest level, we aggregate states
+to obtain a hierarchy of such processes. We define state aggregation as the problem
+of partitioning a Markov chain and adapt the algorithm proposed in \cite{5160607} to
+work in a continuous time setting. Let a 
 Markov chain on a state space $X$ be defined by a 
 transition rate matrix $Q$. We define a surjective partition function $\phi: X \rightarrow Y$
 and a corresponding transition rate matrix transformation function 
@@ -401,14 +442,21 @@ with elements
 		\end{array}
 	\right.
 \end{equation}
+Thus once knowing the partition function on a specific detail level, the associated Markov chain
+can be computed efficiently. We note however that information is lost when aggregating the state
+space of a Markov chain and the original chain can never be computed from only the aggregated one.
+
+Now that we can represent a Markov chain knowing a partition function, we present an algorithm
+for partitioning such chains using spectral graph theory. We first propose a bi-partitioning
+algorithm which is used recursively to split the aggregated states.
 
 \subsubsection{Bi-Partitioning Markov Chains}
 \label{sec:bi-partition}
 
 The spectral analysis of undirected graphs has been studied extensively in the literature and
-many algorithms proposed for bi-partitioning such graphs proposed. These papers use the Cheeger
+many algorithms for bi-partitioning such graphs proposed. These papers use the Cheeger
 inequality, one of the main tools for bounding the mixing times for random walks on undirected
-graphs. The transition rate matrix of a Markov chain is exactly the negative Laplacian
+graphs, on the graph Laplacian. The transition rate matrix of a Markov chain is exactly the negative Laplacian
 of a directed weighted graph $Q = -L(G)$ \cite{Agaev2005157}.
 The Laplacian is however not symmetric and in general does not have real eigenvalues.
 Therefore we transform the Laplacian using the following formula:
@@ -417,7 +465,7 @@ Therefore we transform the Laplacian using the following formula:
 \end{equation}
 The transformation above has the effect of symmetrizing the transition rate matrix and furthermore
 the matrix $\Pi^{-1}Q_s$ preserves the ergodic properties of the original Markov chain. To
-obtain a bi-partition of the original Markov chain we solve the following generalized eigenvalue
+obtain a bi-partition of the original Markov chain we then solve the following generalized eigenvalue
 problem:
 \begin{equation}
 	Q_s v = \lambda_2 \Pi v
@@ -442,6 +490,13 @@ We first define the entropy rate function
 	D(Q||\tilde{Q}) = \sum_{A \in \Ima \phi}\sum_{B \in \Ima \phi}\sum_{i \in \phi^{-1}(A)}\pi_i \sum_{j \in \phi^{-1}(B)} q_{ij} \log \frac{\sum_{j \in \phi^{-1}(B)} q_{ij}}{\tilde{q}_{AB}}
 \end{equation}
 [TODO entropy rate not yet developed]
+
+There are a couple of options to calculate the distance between Markov chains:
+\begin{list}{-}{}
+	\item Wasserstein
+	\item Total Variation
+	\item Entropy rat
+\end{list}
 
 The algorithm starts with an initial partition containing all the states of the original Markov chain.
 On the $n$-th iteration the algorithm assumes that $n$ partitions (aggregated states) are given. The objective then is
@@ -523,7 +578,17 @@ in to opsises v clanku]
 
 \subsection{Visualization}
 
-[TODO]
+In the user interface, the model is presented on only one level of the hierarchy. States are presented
+as circles while transitions are presented as arrows between states. The area of each state is proportional to
+the mean time the process spends in the state which is extracted from the stationary distribution of the
+Markov chain on the current detail level. The user can zoom into and out of
+more detailed levels by using the zoom function. We offer several services that allow the users to identify
+the meaning of states, which are presented in Section \ref{sec:ui}.
+
+To visualize states, their planar coordinates are precomputed by the state identification component. This
+is achieved by computing the initial or seed positions using principal component analysis (PCA) on the
+state centroids. To avoid state overlap, we then refine state positions using a repulsive-simulation based
+technique across all the detail levels simultaneously.
 
 \begin{comment}
 
@@ -832,11 +897,11 @@ If we now set $P(t) = e^{tQ}$, then $P(t)$ has the following properties:
 	initial condition $P(0) = I$.
 \end{enumerate}
 
-\subsection{Visualization}
 
 \end{comment}
 
 \section{Visualization and User Interaction}
+\label{sec:ui}
 
 When interacting with the StreamStory system, the user is presented with a two panel user interface
 shown in figure \ref{fig:ui-initial}.
@@ -859,8 +924,20 @@ The thickness of an arrow is proportional to the probability of the correspondin
 and the most likely transitions have a darker color.
 
 When first opening user interface the user is presented with a top-level chain with only two 
-states. They can then use the scroll function to zoom into the hierarchy and the states get 
-automatically expanded.
+states. They can then use the scroll function to zoom into the hierarchy and the states are expanded
+automatically.
+
+Users can view a state by using the click function. By doing this, the state becomes selected and
+the user is presented with several services that allow them to identify the meaning of the state.
+These will be presented shortly in the following subsections.
+
+\subsection{State Details and Attribute Highlighting}
+
+\subsection{Decision Trees}
+
+\subsection{Rule Extraction}
+
+
 
 By clicking on a state, the state becomes selected and its details are shown in the "Details"
 panel on the right side of figure \ref{fig:ui-initial}. The details panel allows the user
