@@ -206,14 +206,18 @@ Our system uses control attributes to model state transitions, allowing us to ob
 the dynamics with respect to the current configuration and gives us insight into the
 expected dynamics with respect to some alternate attribute configuration.
 
+<<<<<<< HEAD
+[TODO daj v section 2]
+We implement our methodology in a four step process, which includes:
+=======
 The main research contributions presented in this paper can be summarized as follows:
-\begin{enumerate}{}
+\begin{list}{-}{}
 	\item We present a novel methodology for modeling multivariate continuously time-varying data streams
 	in a hierarchical manner providing a unique model of the several detail levels.
 	\item We present a novel approach for modeling state transitions in a Markov chain allowing
 	to observe the dynamics of the chain under alternate configurations.
 	\item We propose a recursive algorithm for partitioning recurrent continuous time Markov chains.
-\end{enumerate}
+\end{list}
 
 
 The remainder of this paper is structured as follows. In Section \ref{sec:methodology} we present
@@ -233,8 +237,6 @@ paper and give some ideas for further work.
 
 \end{comment}
 
-[TODO thickness \& darkness]
-
 We begin this section with an overview of our multi-level methodology show in figure \ref{fig:methodology}.
 \begin{figure}[h!]
 	\centering
@@ -243,6 +245,7 @@ We begin this section with an overview of our multi-level methodology show in fi
 	\label{fig:methodology}
 \end{figure}
 As shown in the figure our methodology encompasses four main steps. These include:
+>>>>>>> 8e470826cf783a35dbfbbb1499993629911c7b26
 \begin{enumerate}
 	\label{label:procedure-high-level}
 	\item \label{label:procedure-preprocessing} aggregating and resampling the input
@@ -254,7 +257,30 @@ As shown in the figure our methodology encompasses four main steps. These includ
 	\item modeling state transitions with respect to control attributes and computing
 	statistics on transitions.
 \end{enumerate}
+<<<<<<< HEAD
+\textcolor{red}{[TODO The remainder of this paper is structured as follows in contributions]}
+
+\section{Proposed Multi-Level Methodology}
+
+To implement our multi-level approach, we propose a three step methodology shown
+in Figure \ref{fig:methodology}.
+
+[TODO Figure in Section z veliko]
+[TODO thickness \& darkness]
+
+\begin{figure}[h!]
+	\centering
+	\makebox[\textwidth]{\includegraphics[width=\textwidth]{methodology}}
+	\caption{The proposed multi-level methodology. [TODO imena na slikice]}
+	\label{fig:methodology}
+\end{figure}
+
+As shown in the figure, we split our methodology into three main steps: merging and
+processing data streams, state aggregation and transition modeling. These will be 
+explained in detail in the following subsections.
+=======
 Each of these steps will be presented in the next subsections in detail.
+>>>>>>> 8e470826cf783a35dbfbbb1499993629911c7b26
 
 \subsection{Merging and Processing Data Streams}
 
@@ -356,7 +382,7 @@ usually represented
 
 \subsection{Data Stream Partitioning}
 
-[TODO zamenjaj zgornji naslov s trenutnim]
+[TODO]
 
 \subsection{Modeling Transitions}
 
@@ -903,7 +929,6 @@ If we now set $P(t) = e^{tQ}$, then $P(t)$ has the following properties:
 	initial condition $P(0) = I$.
 \end{enumerate}
 
-\subsection{Visualization}
 
 \end{comment}
 
@@ -911,8 +936,9 @@ If we now set $P(t) = e^{tQ}$, then $P(t)$ has the following properties:
 \label{sec:ui}
 
 When interacting with the StreamStory system, the user is presented with a two panel user interface
-shown in Figure \ref{fig:ui-initial}.
+shown in figure \ref{fig:ui-initial}.
  
+
 \begin{figure}[h!]
 	\centering
 	\makebox[\textwidth]{\includegraphics[width=\textwidth]{ui-initial}}
@@ -927,89 +953,24 @@ StreamStory is used in online mode, the current state is colored green, the most
 future states blue and the previous state has a red border.
 
 The thickness of an arrow is proportional to the probability of the corresponding transition,
-and the most likely transitions have a darker color.
+thus the more likely transitions have a darker color.
 
 When first opening user interface the user is presented with a top-level chain with only two 
 states. They can then use the scroll function to zoom into the hierarchy and the states are expanded
 automatically.
 
 Users can view a state by using the click function. By doing this, the state becomes selected and
-the user is presented with several services that assist them in identifying the meaning of the state.
+the user is presented with several services that allow them to identify the meaning of the state.
 These will be presented shortly in the following subsections.
 
 \subsection{State Details and Attribute Highlighting}
 
-\begin{list}{-}{}
-	\item Histograms
-	\item Means values, median
-	\item Percentiles
-	\item Suggesting attributes that are unique to the state - logistic regression weight extraction - classifying instances of the selected state against instances of other states
-\end{list}
-
 \subsection{Decision Trees}
-\label{sec:ui-decision-trees}
-
-The next state assist service are decision trees. Decision trees are classification models
-often used in domains such as medicine for their explanatory power. When a decision tree
-is induced, a split attribute and cut value are chosen recursively by a design time
-criteria. The user can then interpret the tree by traversing the path from the root
-to one of the leafs.
-
-We use decision trees as a tool that assists users identify the meaning of a state. To do this,
-we induce a single decision tree per state, by classifying instances of the selected state
-against the instances of all the other states thus obtaining a qualitative description of the
-state and displaying it to the end user upon request. We show an example of a decision tree
-describing a middle detail level state which we identified as summer in the England temperature
-dataset in Figure \ref{fig:ui-decision-tree}.
-
-\begin{figure}[h!]
-	\centering
-	\makebox[\textwidth]{\includegraphics[width=\textwidth]{decision-tree}}
-	\caption{An example tree describing a state in our user interface.}
-	\label{fig:ui-decision-tree}
-\end{figure}
-
-Let us now observe what happens when inducing a decision tree and two attributes, for example $A$ 
-and $B$ take exactly the same values when splitting a node. One of the two attributes, for 
-example $A$ will be selected
-as the split attribute. All the instances with the value of $A$ (and therefore also $B$) less
-than the cut value will be passed to the left child, while all the instances with value of $A$ (also $B$) greater than the cut value will be passed to the right child. If this happens multiple
-times when inducing the tree, the descriptive power of attribute $B$ can be totally neutralized
-even though both attributes have the same meaning.
-
-We avoid this problem by calculating the correlation between each of the attributes with the
-split attribute and, if the correlation is high enough, display it as an alternate split in the 
-visualization.
 
 \subsection{Rule Extraction}
 
-The next step is to display human readable rules that describe states. We do this by extracting
-rules out of the decision trees described in Section \ref{sec:ui-decision-trees} using a recursive
-algorithm. An example of a rule describing the "Summer" state presented above is shown in Figure 
-\ref{fig:ui-rules}.
-
-\begin{figure}[h!]
-	\centering
-	\makebox[\textwidth]{\includegraphics[width=200pt]{rules}}
-	\caption{A rule extracted from the above presented decision tree describing the summer
-	middle level state of the England temperature dataset.}
-	\label{fig:ui-rules}
-\end{figure}
-
-The rules are extracted as a union of intersections using a recursive algorithm. The algorithm
-works by creating initial intersection at the leafs which have a majority of positive instances.
-It then traverses the tree upwards adding conditions to the intersection as it passes a node with 
-only one intersection and creating a union of intersections when traversing a node with 
-intersection on both its children.
-
-\section{Experimantal Results}
-\label{sec:experiment}
-
-\section{Conclusion and Future Work}
-\label{sec:conclusion}
 
 
-\begin{comment}
 By clicking on a state, the state becomes selected and its details are shown in the "Details"
 panel on the right side of figure \ref{fig:ui-initial}. The details panel allows the user
 to name the state which, we believe, increases the models interpretability. It also
@@ -1024,7 +985,7 @@ This is achieved by classifying the instances of the selected state against inst
 all the other states on the same level using a logistic regression model [TODO ref] and 
 extracting weights. Values highlighted green indicate a positive weight, while values
 highlighted red indicate a negative weight.
-\end{comment}
+
 
 
 
@@ -1305,9 +1266,7 @@ Boris / Barbara Beeton: multi-volume works as books
 % Appendix
 \appendix
 \section*{APPENDIX}
-
 \setcounter{section}{1}
-\begin{comment}
 In this appendix, we measure
 the channel switching time of Micaz [CROSSBOW] sensor devices.
 In our experiments, one mote alternatingly switches between Channels
@@ -1323,17 +1282,13 @@ s=\frac{10}{N_{1}}-\frac{10}{N_{2}}. \nonumber
 \end{eqnarray}%
 By repeating the experiments 100 times, we get the average
 channel-switching time of Micaz motes: 24.3$\mu$s.
-\end{comment}
 
 \appendixhead{ZHOU}
 
 % Acknowledgments
 \begin{acks}
-[TODO ackgnowledgements]
-\begin{comment}
 The authors would like to thank Dr. Maura Turolla of Telecom
 Italia for providing specifications about the application scenario.
-\end{comment}
 \end{acks}
 
 % Bibliography

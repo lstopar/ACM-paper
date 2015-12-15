@@ -1,0 +1,203 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{00}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{{\tt DOI:}\penalty0{#1}\ }
+  \fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       #1{#1}          \fi
+
+\bibitem[\protect\citeauthoryear{Agaev and Chebotarev}{Agaev and
+  Chebotarev}{2005}]%
+        {Agaev2005157}
+{Rafig Agaev} {and} {Pavel Chebotarev}. 2005.
+\newblock \showarticletitle{On the spectra of nonsymmetric Laplacian matrices}.
+\newblock {\it Linear Algebra Appl.}  {399} (2005), 157 -- 168.
+\newblock
+\showISSN{0024-3795}
+\showDOI{%
+\url{http://dx.doi.org/10.1016/j.laa.2004.09.003}}
+\newblock
+\shownote{Special Issue devoted to papers presented at the International
+  Meeting on Matrix Analysis and Applications, Ft. Lauderdale, FL, 14-16
+  December 2003.}
+
+
+\bibitem[\protect\citeauthoryear{Babcock, Babu, Datar, Motwani, and
+  Widom}{Babcock et~al\mbox{.}}{2002}]%
+        {Babcock:2002:MID:543613.543615}
+{Brian Babcock}, {Shivnath Babu}, {Mayur Datar}, {Rajeev Motwani}, {and}
+  {Jennifer Widom}. 2002.
+\newblock \showarticletitle{Models and Issues in Data Stream Systems}. In {\em
+  Proceedings of the Twenty-first ACM SIGMOD-SIGACT-SIGART Symposium on
+  Principles of Database Systems} {\em (PODS '02)}. ACM, New York, NY, USA,
+  1--16.
+\newblock
+\showISBNx{1-58113-507-6}
+\showDOI{%
+\url{http://dx.doi.org/10.1145/543613.543615}}
+
+
+\bibitem[\protect\citeauthoryear{Coates and Ng}{Coates and Ng}{2012}]%
+        {kmeans}
+{Adam Coates} {and} {AndrewY. Ng}. 2012.
+\newblock \showarticletitle{Learning Feature Representations with K-Means}.
+\newblock In {\em Neural Networks: Tricks of the Trade}, {Grégoire Montavon},
+  {GenevièveB. Orr}, {and} {Klaus-Robert Müller} (Eds.). Lecture Notes in
+  Computer Science, Vol. 7700. Springer Berlin Heidelberg, 561--580.
+\newblock
+\showISBNx{978-3-642-35288-1}
+\showDOI{%
+\url{http://dx.doi.org/10.1007/978-3-642-35289-8_30}}
+
+
+\bibitem[\protect\citeauthoryear{{Crosskey} and {Maggioni}}{{Crosskey} and
+  {Maggioni}}{2014}]%
+        {2014arXiv1404.0667C}
+{M. {Crosskey}} {and} {M. {Maggioni}}. 2014.
+\newblock \showarticletitle{{ATLAS: A geometric approach to learning
+  high-dimensional stochastic systems near manifolds}}.
+\newblock {\em ArXiv e-prints\/} (April 2014).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Deng, Sun, Mehta, and Meyn}{Deng
+  et~al\mbox{.}}{2009}]%
+        {5160607}
+{Kun Deng}, {Yu Sun}, {P.G. Mehta}, {and} {S.P. Meyn}. 2009.
+\newblock \showarticletitle{An information-theoretic framework to aggregate a
+  Markov chain}. In {\em American Control Conference, 2009. ACC '09.} 731--736.
+\newblock
+\showISSN{0743-1619}
+\showDOI{%
+\url{http://dx.doi.org/10.1109/ACC.2009.5160607}}
+
+
+\bibitem[\protect\citeauthoryear{Dobson and Barnett}{Dobson and
+  Barnett}{2008}]%
+        {glm-introduction}
+{Annette~J. Dobson} {and} {Adrian~G. Barnett}. 2008.
+\newblock {\em An Introduction to Generalized Linear Models, Third Edition}.
+\newblock Chapman \& Hall/CRC Press, Boca Raton, FL.
+\newblock
+\showURL{%
+\url{http://eprints.qut.edu.au/15448/}}
+\newblock
+\shownote{For more information about this book please refer to the publisher's
+  website (see link) or contact the author.}
+
+
+\bibitem[\protect\citeauthoryear{Jain, Murty, and Flynn}{Jain
+  et~al\mbox{.}}{1999}]%
+        {Jain:1999:DCR:331499.331504}
+{A.~K. Jain}, {M.~N. Murty}, {and} {P.~J. Flynn}. 1999.
+\newblock \showarticletitle{Data Clustering: A Review}.
+\newblock {\em ACM Comput. Surv.\/} {31}, 3 (Sept. 1999), 264--323.
+\newblock
+\showISSN{0360-0300}
+\showDOI{%
+\url{http://dx.doi.org/10.1145/331499.331504}}
+
+
+\bibitem[\protect\citeauthoryear{Kulis and Jordan}{Kulis and Jordan}{2011}]%
+        {DBLP:journals/corr/abs-1111-0352}
+{Brian Kulis} {and} {Michael~I. Jordan}. 2011.
+\newblock \showarticletitle{Revisiting k-means: New Algorithms via Bayesian
+  Nonparametrics}.
+\newblock {\em CoRR\/}  {abs/1111.0352} (2011).
+\newblock
+\showURL{%
+\url{http://arxiv.org/abs/1111.0352}}
+
+
+\bibitem[\protect\citeauthoryear{Maimon and Rokach}{Maimon and Rokach}{2005}]%
+        {Maimon:2005:DMK:1088958}
+{Oded Maimon} {and} {Lior Rokach}. 2005.
+\newblock {\em Data Mining and Knowledge Discovery Handbook}.
+\newblock Springer-Verlag New York, Inc., Secaucus, NJ, USA.
+\newblock
+\showISBNx{0387244352, 9780387244358}
+
+
+\bibitem[\protect\citeauthoryear{Murtagh and Contreras}{Murtagh and
+  Contreras}{2011}]%
+        {DBLP:journals/corr/abs-1105-0121}
+{Fionn Murtagh} {and} {Pedro Contreras}. 2011.
+\newblock \showarticletitle{Methods of Hierarchical Clustering}.
+\newblock {\em CoRR\/}  {abs/1105.0121} (2011).
+\newblock
+\showURL{%
+\url{http://arxiv.org/abs/1105.0121}}
+
+
+\bibitem[\protect\citeauthoryear{Norris}{Norris}{1998}]%
+        {norris1998markov}
+{J.R. Norris}. 1998.
+\newblock {\em Markov Chains}.
+\newblock Number {\v{s}}t. 2008 in Cambridge Series in Statistical and
+  Probabilistic Mathematics. Cambridge University Press.
+\newblock
+\showISBNx{9780521633963}
+\showURL{%
+\url{https://books.google.si/books?id=qM65VRmOJZAC}}
+
+
+\bibitem[\protect\citeauthoryear{Pande, Beauchamp, and Bowman}{Pande
+  et~al\mbox{.}}{2010}]%
+        {pande-beauchamp-bowman:2010:methods:markov-model-review}
+{Vijay~S. Pande}, {Kyle Beauchamp}, {and} {Gregory~R. Bowman}. 2010.
+\newblock \showarticletitle{Everything you wanted to know about {Markov State
+  Models} but were afraid to ask}.
+\newblock {\em Methods\/}  {52} (2010), 99--105.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Sibson}{Sibson}{1973}]%
+        {Sibson01011973}
+{R. Sibson}. 1973.
+\newblock \showarticletitle{SLINK: An optimally efficient algorithm for the
+  single-link cluster method}.
+\newblock {\it Comput. J.} {16}, 1 (1973), 30--34.
+\newblock
+\showDOI{%
+\url{http://dx.doi.org/10.1093/comjnl/16.1.30}}
+
+
+\bibitem[\protect\citeauthoryear{Xu and Wunsch}{Xu and Wunsch}{2005}]%
+        {1427769}
+{Rui Xu} {and} {II Wunsch, D.} 2005.
+\newblock \showarticletitle{Survey of clustering algorithms}.
+\newblock {\em Neural Networks, IEEE Transactions on\/} {16}, 3 (May 2005),
+  645--678.
+\newblock
+\showISSN{1045-9227}
+\showDOI{%
+\url{http://dx.doi.org/10.1109/TNN.2005.845141}}
+
+
+\end{thebibliography}
