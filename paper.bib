@@ -1,0 +1,460 @@
+%%% ====================================================================
+%%%  BibTeX-file{
+%%%     author          = "Gerry Murray",
+%%%     version         = "1.2",
+%%%     date            = "2 April 2012",
+%%%     filename        = "acmsmall-sample-bibfile.bib",
+%%%     address         = "ACM, NY",
+%%%     email           = "murray at hq.acm.org",
+%%%     codetable       = "ISO/ASCII",
+%%%     keywords        = "ACM Reference Format, bibliography, citation, references",
+%%%     supported       = "yes",
+%%%     docstring       = "This BibTeX database file contains 'bibdata' entries
+%%%                        that 'match' the examples provided in the Specifications Document
+%%%                        AND, also, 'legacy'-type bibs. It should assist authors in 
+%%%                        choosing the 'correct' at-bibtype and necessary bib-fields
+%%%                        so as to obtain the appropriate ACM Reference Format output. 
+%%%			   It also contains many 'Standard Abbreviations'. "
+%%%  }
+%%% ====================================================================
+
+% Journals
+
+% First the Full Name is given, then the abbreviation used in the AMS Math
+% Reviews, with an indication if it could not be found there.
+% Note the 2nd overwrites the 1st, so swap them if you want the full name.
+
+ %{AMS}
+ @String{AMSTrans = "American Mathematical Society Translations" }
+ @String{AMSTrans = "Amer. Math. Soc. Transl." }
+ @String{BullAMS = "Bulletin of the American Mathematical Society" }
+ @String{BullAMS = "Bull. Amer. Math. Soc." }
+ @String{ProcAMS = "Proceedings of the American Mathematical Society" }
+ @String{ProcAMS = "Proc. Amer. Math. Soc." }
+ @String{TransAMS = "Transactions of the American Mathematical Society" }
+ @String{TransAMS = "Trans. Amer. Math. Soc." }
+
+ %ACM
+ @String{CACM = "Communications of the {ACM}" }
+ @String{CACM = "Commun. {ACM}" }
+ @String{CompServ = "Comput. Surveys" }
+ @String{JACM = "J. ACM" }
+ @String{ACMMathSoft = "{ACM} Transactions on Mathematical Software" }
+ @String{ACMMathSoft = "{ACM} Trans. Math. Software" }
+ @String{SIGNUM = "{ACM} {SIGNUM} Newsletter" }
+ @String{SIGNUM = "{ACM} {SIGNUM} Newslett." }
+
+ @String{AmerSocio = "American Journal of Sociology" }
+ @String{AmerStatAssoc = "Journal of the American Statistical Association" }
+ @String{AmerStatAssoc = "J. Amer. Statist. Assoc." }
+ @String{ApplMathComp = "Applied Mathematics and Computation" }
+ @String{ApplMathComp = "Appl. Math. Comput." }
+ @String{AmerMathMonthly = "American Mathematical Monthly" }
+ @String{AmerMathMonthly = "Amer. Math. Monthly" }
+ @String{BIT = "{BIT}" }
+ @String{BritStatPsych = "British Journal of Mathematical and Statistical
+          Psychology" }
+ @String{BritStatPsych = "Brit. J. Math. Statist. Psych." }
+ @String{CanMathBull = "Canadian Mathematical Bulletin" }
+ @String{CanMathBull = "Canad. Math. Bull." }
+ @String{CompApplMath = "Journal of Computational and Applied Mathematics" }
+ @String{CompApplMath = "J. Comput. Appl. Math." }
+ @String{CompPhys = "Journal of Computational Physics" }
+ @String{CompPhys = "J. Comput. Phys." }
+ @String{CompStruct = "Computers and Structures" }
+ @String{CompStruct = "Comput. \& Structures" }
+ @String{CompJour = "The Computer Journal" }
+ @String{CompJour = "Comput. J." }
+ @String{CompSysSci = "Journal of Computer and System Sciences" }
+ @String{CompSysSci = "J. Comput. System Sci." }
+ @String{Computing = "Computing" }
+ @String{ContempMath = "Contemporary Mathematics" }
+ @String{ContempMath = "Contemp. Math." }
+ @String{Crelle = "Crelle's Journal" }
+ @String{GiornaleMath = "Giornale di Mathematiche" }
+ @String{GiornaleMath = "Giorn. Mat." } % didn't find in AMS MR., ibid.
+
+ %IEEE
+ @String{Computer = "{IEEE} Computer" }
+ @String{IEEETransComp = "{IEEE} Transactions on Computers" }
+ @String{IEEETransComp = "{IEEE} Trans. Comput." }
+ @String{IEEETransAC = "{IEEE} Transactions on Automatic Control" }
+ @String{IEEETransAC = "{IEEE} Trans. Automat. Control" }
+ @String{IEEESpec = "{IEEE} Spectrum" } % didn't find in AMS MR
+ @String{ProcIEEE = "Proceedings of the {IEEE}" }
+ @String{ProcIEEE = "Proc. {IEEE}" } % didn't find in AMS MR
+ @String{IEEETransAeroElec = "{IEEE} Transactions on Aerospace and Electronic
+     Systems" }
+ @String{IEEETransAeroElec = "{IEEE} Trans. Aerospace Electron. Systems" }
+
+ @String{IMANumerAna = "{IMA} Journal of Numerical Analysis" }
+ @String{IMANumerAna = "{IMA} J. Numer. Anal." }
+ @String{InfProcLet = "Information Processing Letters" }
+ @String{InfProcLet = "Inform. Process. Lett." }
+ @String{InstMathApp = "Journal of the Institute of Mathematics and
+     its Applications" }
+ @String{InstMathApp = "J. Inst. Math. Appl." }
+ @String{IntControl = "International Journal of Control" }
+ @String{IntControl = "Internat. J. Control" }
+ @String{IntNumerEng = "International Journal for Numerical Methods in
+     Engineering" }
+ @String{IntNumerEng = "Internat. J. Numer. Methods Engrg." }
+ @String{IntSuper = "International Journal of Supercomputing Applications" }
+ @String{IntSuper = "Internat. J. Supercomputing Applic." } % didn't find
+%% in AMS MR
+ @String{Kibernetika = "Kibernetika" }
+ @String{JResNatBurStand = "Journal of Research of the National Bureau
+     of Standards" }
+ @String{JResNatBurStand = "J. Res. Nat. Bur. Standards" }
+ @String{LinAlgApp = "Linear Algebra and its Applications" }
+ @String{LinAlgApp = "Linear Algebra Appl." }
+ @String{MathAnaAppl = "Journal of Mathematical Analysis and Applications" }
+ @String{MathAnaAppl = "J. Math. Anal. Appl." }
+ @String{MathAnnalen = "Mathematische Annalen" }
+ @String{MathAnnalen = "Math. Ann." }
+ @String{MathPhys = "Journal of Mathematical Physics" }
+ @String{MathPhys = "J. Math. Phys." }
+ @String{MathComp = "Mathematics of Computation" }
+ @String{MathComp = "Math. Comp." }
+ @String{MathScand = "Mathematica Scandinavica" }
+ @String{MathScand = "Math. Scand." }
+ @String{TablesAidsComp = "Mathematical Tables and Other Aids to Computation" }
+ @String{TablesAidsComp = "Math. Tables Aids Comput." }
+ @String{NumerMath = "Numerische Mathematik" }
+ @String{NumerMath = "Numer. Math." }
+ @String{PacificMath = "Pacific Journal of Mathematics" }
+ @String{PacificMath = "Pacific J. Math." }
+ @String{ParDistComp = "Journal of Parallel and Distributed Computing" }
+ @String{ParDistComp = "J. Parallel and Distrib. Comput." } % didn't find
+%% in AMS MR
+ @String{ParComputing = "Parallel Computing" }
+ @String{ParComputing = "Parallel Comput." }
+ @String{PhilMag = "Philosophical Magazine" }
+ @String{PhilMag = "Philos. Mag." }
+ @String{ProcNAS = "Proceedings of the National Academy of Sciences
+                    of the USA" }
+ @String{ProcNAS = "Proc. Nat. Acad. Sci. U. S. A." }
+ @String{Psychometrika = "Psychometrika" }
+ @String{QuartMath = "Quarterly Journal of Mathematics, Oxford, Series (2)" }
+ @String{QuartMath = "Quart. J. Math. Oxford Ser. (2)" }
+ @String{QuartApplMath = "Quarterly of Applied Mathematics" }
+ @String{QuartApplMath = "Quart. Appl. Math." }
+ @String{RevueInstStat = "Review of the International Statisical Institute" }
+ @String{RevueInstStat = "Rev. Inst. Internat. Statist." }
+
+ %SIAM
+ @String{JSIAM = "Journal of the Society for Industrial and Applied
+     Mathematics" }
+ @String{JSIAM = "J. Soc. Indust. Appl. Math." }
+ @String{JSIAMB = "Journal of the Society for Industrial and Applied
+     Mathematics, Series B, Numerical Analysis" }
+ @String{JSIAMB = "J. Soc. Indust. Appl. Math. Ser. B Numer. Anal." }
+ @String{SIAMAlgMeth = "{SIAM} Journal on Algebraic and Discrete Methods" }
+ @String{SIAMAlgMeth = "{SIAM} J. Algebraic Discrete Methods" }
+ @String{SIAMAppMath = "{SIAM} Journal on Applied Mathematics" }
+ @String{SIAMAppMath = "{SIAM} J. Appl. Math." }
+ @String{SIAMComp = "{SIAM} Journal on Computing" }
+ @String{SIAMComp = "{SIAM} J. Comput." }
+ @String{SIAMMatrix = "{SIAM} Journal on Matrix Analysis and Applications" }
+ @String{SIAMMatrix = "{SIAM} J. Matrix Anal. Appl." }
+ @String{SIAMNumAnal = "{SIAM} Journal on Numerical Analysis" }
+ @String{SIAMNumAnal = "{SIAM} J. Numer. Anal." }
+ @String{SIAMReview = "{SIAM} Review" }
+ @String{SIAMReview = "{SIAM} Rev." }
+ @String{SIAMSciStat = "{SIAM} Journal on Scientific and Statistical
+     Computing" }
+ @String{SIAMSciStat = "{SIAM} J. Sci. Statist. Comput." }
+
+ @String{SoftPracExp = "Software Practice and Experience" }
+ @String{SoftPracExp = "Software Prac. Experience" } % didn't find in AMS MR
+ @String{StatScience = "Statistical Science" }
+ @String{StatScience = "Statist. Sci." }
+ @String{Techno = "Technometrics" }
+ @String{USSRCompMathPhys = "{USSR} Computational Mathematics and Mathematical
+     Physics" }
+ @String{USSRCompMathPhys = "{U. S. S. R.} Comput. Math. and Math. Phys." }
+ @String{VLSICompSys = "Journal of {VLSI} and Computer Systems" }
+ @String{VLSICompSys = "J. {VLSI} Comput. Syst." }
+ @String{ZAngewMathMech = "Zeitschrift fur Angewandte Mathematik und
+     Mechanik" }
+ @String{ZAngewMathMech = "Z. Angew. Math. Mech." }
+ @String{ZAngewMathPhys = "Zeitschrift fur Angewandte Mathematik und Physik" }
+ @String{ZAngewMathPhys = "Z. Angew. Math. Phys." }
+
+% Publishers % ================================================= |
+
+ @String{Academic = "Academic Press" }
+ @String{ACMPress = "{ACM} Press" }
+ @String{AdamHilger = "Adam Hilger" }
+ @String{AddisonWesley = "Addison-Wesley" }
+ @String{AllynBacon = "Allyn and Bacon" }
+ @String{AMS = "American Mathematical Society" }
+ @String{Birkhauser = "Birkha{\"u}ser" }
+ @String{CambridgePress = "Cambridge University Press" }
+ @String{Chelsea = "Chelsea" }
+ @String{ClaredonPress = "Claredon Press" }
+ @String{DoverPub = "Dover Publications" }
+ @String{Eyolles = "Eyolles" }
+ @String{HoltRinehartWinston = "Holt, Rinehart and Winston" }
+ @String{Interscience = "Interscience" }
+ @String{JohnsHopkinsPress = "The Johns Hopkins University Press" }
+ @String{JohnWileySons = "John Wiley and Sons" }
+ @String{Macmillan = "Macmillan" }
+ @String{MathWorks = "The Math Works Inc." }
+ @String{McGrawHill = "McGraw-Hill" }
+ @String{NatBurStd = "National Bureau of Standards" }
+ @String{NorthHolland = "North-Holland" }
+ @String{OxfordPress = "Oxford University Press" }  %address Oxford or London?
+ @String{PergamonPress = "Pergamon Press" }
+ @String{PlenumPress = "Plenum Press" }
+ @String{PrenticeHall = "Prentice-Hall" }
+ @String{SIAMPub = "{SIAM} Publications" }
+ @String{Springer = "Springer-Verlag" }
+ @String{TexasPress = "University of Texas Press" }
+ @String{VanNostrand = "Van Nostrand" }
+ @String{WHFreeman = "W. H. Freeman and Co." }
+
+%Entries
+
+@inproceedings{Babcock:2002:MID:543613.543615,
+ author = {Babcock, Brian and Babu, Shivnath and Datar, Mayur and Motwani, Rajeev and Widom, Jennifer},
+ title = {Models and Issues in Data Stream Systems},
+ booktitle = {Proceedings of the Twenty-first ACM SIGMOD-SIGACT-SIGART Symposium on Principles of Database Systems},
+ series = {PODS '02},
+ year = {2002},
+ isbn = {1-58113-507-6},
+ location = {Madison, Wisconsin},
+ pages = {1--16},
+ numpages = {16},
+ url = {http://doi.acm.org/10.1145/543613.543615},
+ doi = {10.1145/543613.543615},
+ acmid = {543615},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+} 
+
+@article{Jain:1999:DCR:331499.331504,
+ author = {Jain, A. K. and Murty, M. N. and Flynn, P. J.},
+ title = {Data Clustering: A Review},
+ journal = {ACM Comput. Surv.},
+ issue_date = {Sept. 1999},
+ volume = {31},
+ number = {3},
+ month = sep,
+ year = {1999},
+ issn = {0360-0300},
+ pages = {264--323},
+ numpages = {60},
+ url = {http://doi.acm.org/10.1145/331499.331504},
+ doi = {10.1145/331499.331504},
+ acmid = {331504},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {cluster analysis, clustering applications, exploratory data analysis, incremental clustering, similarity indices, unsupervised learning},
+} 
+
+@ARTICLE{1427769, 
+author={Rui Xu and Wunsch, D., II}, 
+journal={Neural Networks, IEEE Transactions on}, 
+title={Survey of clustering algorithms}, 
+year={2005}, 
+volume={16}, 
+number={3}, 
+pages={645-678}, 
+keywords={data analysis;pattern classification;pattern clustering;benchmark data sets;bioinformatics;cluster analysis;data analysis;traveling salesman problem;Application software;Bioinformatics;Clustering algorithms;Computer science;Data analysis;Humans;Machine learning;Machine learning algorithms;Statistics;Traveling salesman problems;Adaptive resonance theory (ART);cluster validation;clustering;clustering algorithm;neural networks;proximity;self-organizing feature map (SOFM);Algorithms;Computer Simulation;Models, Statistical;Neural Networks (Computer);Numerical Analysis, Computer-Assisted;Pattern Recognition, Automated;Signal Processing, Computer-Assisted;Stochastic Processes}, 
+doi={10.1109/TNN.2005.845141}, 
+ISSN={1045-9227}, 
+month={May},
+}
+
+@incollection{kmeans,
+year={2012},
+isbn={978-3-642-35288-1},
+booktitle={Neural Networks: Tricks of the Trade},
+volume={7700},
+series={Lecture Notes in Computer Science},
+editor={Montavon, Grégoire and Orr, GenevièveB. and Müller, Klaus-Robert},
+doi={10.1007/978-3-642-35289-8_30},
+title={Learning Feature Representations with K-Means},
+url={http://dx.doi.org/10.1007/978-3-642-35289-8_30},
+publisher={Springer Berlin Heidelberg},
+author={Coates, Adam and Ng, AndrewY.},
+pages={561-580},
+language={English},
+}
+
+@article{DBLP:journals/corr/abs-1111-0352,
+  author    = {Brian Kulis and
+               Michael I. Jordan},
+  title     = {Revisiting k-means: New Algorithms via Bayesian Nonparametrics},
+  journal   = {CoRR},
+  volume    = {abs/1111.0352},
+  year      = {2011},
+  url       = {http://arxiv.org/abs/1111.0352},
+  timestamp = {Mon, 05 Dec 2011 18:04:16 +0100},
+  biburl    = {http://dblp.uni-trier.de/rec/bib/journals/corr/abs-1111-0352},
+  bibsource = {dblp computer science bibliography, http://dblp.org}
+}
+
+@article{DBLP:journals/corr/abs-1105-0121,
+  author    = {Fionn Murtagh and
+               Pedro Contreras},
+  title     = {Methods of Hierarchical Clustering},
+  journal   = {CoRR},
+  volume    = {abs/1105.0121},
+  year      = {2011},
+  url       = {http://arxiv.org/abs/1105.0121},
+  timestamp = {Wed, 10 Oct 2012 21:28:43 +0200},
+  biburl    = {http://dblp.uni-trier.de/rec/bib/journals/corr/abs-1105-0121},
+  bibsource = {dblp computer science bibliography, http://dblp.org}
+}
+
+@book{Maimon:2005:DMK:1088958,
+ author = {Maimon, Oded and Rokach, Lior},
+ title = {Data Mining and Knowledge Discovery Handbook},
+ year = {2005},
+ isbn = {0387244352, 9780387244358},
+ publisher = {Springer-Verlag New York, Inc.},
+ address = {Secaucus, NJ, USA},
+} 
+
+@book{norris1998markov,
+  title={Markov Chains},
+  author={Norris, J.R.},
+  number={{\v{s}}t. 2008},
+  isbn={9780521633963},
+  series={Cambridge Series in Statistical and Probabilistic Mathematics},
+  url={https://books.google.si/books?id=qM65VRmOJZAC},
+  year={1998},
+  publisher={Cambridge University Press}
+}
+
+@ARTICLE{2014arXiv1404.0667C,
+   author = {{Crosskey}, M. and {Maggioni}, M.},
+    title = "{ATLAS: A geometric approach to learning high-dimensional stochastic systems near manifolds}",
+  journal = {ArXiv e-prints},
+archivePrefix = "arXiv",
+   eprint = {1404.0667},
+ primaryClass = "math.DS",
+ keywords = {Mathematics - Dynamical Systems, Mathematics - Probability},
+     year = 2014,
+    month = apr,
+   adsurl = {http://adsabs.harvard.edu/abs/2014arXiv1404.0667C},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@article{pande-beauchamp-bowman:2010:methods:markov-model-review,
+    author = {Pande, Vijay S. and Beauchamp, Kyle and Bowman, Gregory R.},
+    citeulike-article-id = {9520312},
+    journal = {Methods},
+    keywords = {free\_energy, markov},
+    pages = {99--105},
+    posted-at = {2011-07-19 10:48:48},
+    priority = {2},
+    title = {Everything you wanted to know about {Markov State Models} but were afraid to ask},
+    volume = {52},
+    year = {2010}
+}
+
+@INPROCEEDINGS{6558109, 
+author={Nagpal, A. and Jatain, A. and Gaur, D.}, 
+booktitle={Information Communication Technologies (ICT), 2013 IEEE Conference on}, 
+title={Review based on data clustering algorithms}, 
+year={2013}, 
+pages={298-303}, 
+keywords={data handling;pattern clustering;statistical analysis;comparative statistical analysis;data clustering algorithms;data set cluster;optimal solution;similarity metric;statistical application;Algorithm design and analysis;Clustering algorithms;Clustering methods;Communications technology;Conferences;Couplings;Partitioning algorithms;Data Clustering;Special;Statistical analysis;hierarchical clustering;temporal}, 
+doi={10.1109/CICT.2013.6558109}, 
+month={April},}
+
+@article{Sibson01011973,
+author = {Sibson, R.}, 
+title = {SLINK: An optimally efficient algorithm for the single-link cluster method},
+volume = {16}, 
+number = {1}, 
+pages = {30-34}, 
+year = {1973}, 
+doi = {10.1093/comjnl/16.1.30}, 
+abstract ={The SLINK algorithm carries out single-link (nearest-neighbour) cluster analysis on an arbitrary dissimilarity coefficient and provides a representation of the resultant dendrogram which can readily be converted into the usual tree-diagram. The algorithm achieves the theoretical order-of-magnitude bounds for both compactness of storage and speed of operation, and makes the application of the single-link method feasible for a number of OTU's well into the range 103 to 104. The algorithm is easily programmable in a variety of languages including FORTRAN.}, 
+URL = {http://comjnl.oxfordjournals.org/content/16/1/30.abstract}, 
+eprint = {http://comjnl.oxfordjournals.org/content/16/1/30.full.pdf+html}, 
+journal = {The Computer Journal} 
+}
+
+@book{glm-introduction,
+           title = {An Introduction to Generalized Linear Models, Third Edition},
+          author = {Annette J. Dobson and Adrian G. Barnett},
+         address = {Boca Raton, FL},
+       publisher = {Chapman \& Hall/CRC Press},
+            year = {2008},
+          series = {Texts in Statistical Science},
+            note = {For more information about this book please refer to the publisher's website (see link) or contact the author.},
+             url = {http://eprints.qut.edu.au/15448/},
+        abstract = {- Introduces GLMs in a way that enables readers to understand the unifying structure that underpins them. 
+
+- Discusses common concepts and principles of advanced GLMs, including nominal and ordinal regression, survival analysis, and longitudinal analysis. 
+
+- Connects Bayesian analysis and MCMC methods to fit GLMs. 
+
+- Contains numerous examples from business, medicine, engineering, and the social sciences. 
+
+- Provides the example code for R, Stata, and WinBUGS to encourage implementation of the methods. 
+
+- Offers the data sets and solutions to the exercises online. 
+
+
+
+Continuing to emphasize numerical and graphical methods, An Introduction to Generalized Linear Models, Third Edition provides a cohesive framework for statistical modeling. This new edition of a bestseller has been updated with Stata, R, and WinBUGS code as well as three new chapters on Bayesian analysis. 
+
+Like its predecessor, this edition presents the theoretical background of generalized linear models (GLMs) before focusing on methods for analyzing particular kinds of data. It covers normal, Poisson, and binomial distributions; linear regression models; classical estimation and model fitting methods; and frequentist methods of statistical inference. After forming this foundation, the authors explore multiple linear regression, analysis of variance (ANOVA), logistic regression, log-linear models, survival analysis, multilevel modeling, Bayesian models, and Markov chain Monte Carlo (MCMC) methods. 
+
+
+
+Using popular statistical software programs, this concise and accessible text illustrates practical approaches to estimation, model fitting, and model comparisons. It includes examples and exercises with complete data sets for nearly all the models covered.}
+}
+
+@INPROCEEDINGS{5160607, 
+author={Deng, Kun and Yu Sun and Mehta, P.G. and Meyn, S.P.}, 
+booktitle={American Control Conference, 2009. ACC '09.}, 
+title={An information-theoretic framework to aggregate a Markov chain}, 
+year={2009}, 
+pages={731-736}, 
+keywords={Markov processes;eigenvalues and eigenfunctions;optimisation;reduced order systems;Kullback-Leibler divergence rate;Markov chain;bi-partition problem;eigenvalue problem;information-theoretic framework;model reduction;optimization problem;recursive algorithm;reduced order Markov model;Aggregates;Clustering algorithms;Convergence;Eigenvalues and eigenfunctions;Information theory;Large-scale systems;Partitioning algorithms;Reduced order systems;State-space methods;Sun}, 
+doi={10.1109/ACC.2009.5160607}, 
+ISSN={0743-1619}, 
+month={June},}
+
+@article{Agaev2005157,
+
+title = "On the spectra of nonsymmetric Laplacian matrices ",
+
+journal = "Linear Algebra and its Applications ",
+
+volume = "399",
+
+number = "",
+
+pages = "157 - 168",
+
+year = "2005",
+
+note = "Special Issue devoted to papers presented at the International Meeting on Matrix Analysis and Applications, Ft. Lauderdale, FL, 14-16 December 2003 ",
+
+issn = "0024-3795",
+
+doi = "http://dx.doi.org/10.1016/j.laa.2004.09.003",
+
+url = "http://www.sciencedirect.com/science/article/pii/S0024379504004094",
+
+author = "Rafig Agaev and Pavel Chebotarev",
+
+keywords = "Laplacian matrix",
+
+keywords = "Laplacian spectrum of graph",
+
+keywords = "Weighted directed graph",
+
+keywords = "Forest dimension of digraph",
+
+keywords = "Stochastic matrix "
+
+}
