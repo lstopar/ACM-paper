@@ -1374,6 +1374,10 @@ We then have several options to measure the distance between $Q$ and $\tilde{Q}$
 	D_3(Q, \tilde{Q}) = \int\limits_{t = 0}^{\infty}\sum_{i=1}^{n}\sum_{j=1}^{n}p_{ij}(t)\log{ \frac{p_{ij}(t)}{\tilde{p_{ij}}(t)}} dt
 \end{equation}
 
+\begin{equation}
+	I(Q, \tilde{Q}) = \sum_{i=1}^{n}\sum_{j=1}^{n}p_{ij}(t)\log{ \frac{p_{ij}(t)}{\tilde{p_{ij}}(t)}} dt
+\end{equation}
+
 Where $p_{ij}(t) = \left(P(t)\right)_{ij} = \left(e^{Qt}\right)_{ij} = p_i'e^{Qt}p_j$ where $p_i$ is a vector with zeros everywhere except on the $i$-th position.
 $Q$ can be decomposed using the eigen decomposition
 \begin{equation}
@@ -1409,6 +1413,97 @@ $p_{\phi(i)\phi(j)}(t)$ can be written as:
 	&=& \frac{1}{\pi_{\psi(i)}} \sum_{h \in \psi(i)}\pi_h\sum_{l \in \psi(j)}\sum_{k \in X} v_{hk}e^{\lambda_k t}u_{kl}
 \end{eqnarray}
 where $\pi_{\psi(i)} = \sum_{k \in \psi(i)}\pi_k$.
+
+\subsection{Solving $I$}
+
+We look at the equation for small $h$ for comparing the two chains in state space $Y$:
+
+\begin{eqnarray}
+	\label{eq:rel-entropy-orig}
+	I(P(h), \tilde{P}(h)) &=& \sum_{\psi(i)}\sum_{\psi(j)}\pi_{\psi(i)}p_{\psi(i)\psi(j)}(h)\log\frac{p_{\psi(i)\psi(j)}(h)}{\tilde{p}_{\psi(i)\psi(j)}(h)}
+\end{eqnarray}
+
+We will modify this equation so that the original chain starts from a specific state $i$. The probability of starting from
+$i$ if we know we are in $\psi(i)$ is $\frac{\pi_i}{\pi_{\psi(i)}}$. We modify equation \ref{eq:rel-entropy-orig}:
+
+\begin{eqnarray}
+	\label{eq:rel-entropy-mod}
+	I(P(h), \tilde{P}(h))
+		&=& \sum_{\psi(i)}\sum_{\psi(j)}\pi_{\psi(i)}\sum_{i \in \psi(i)}\frac{\pi_i}{\pi_{\psi(i)}}p_{i\psi(j)}(h)\log\frac{p_{i\psi(j)}(h)}{\tilde{p}_{\psi(i)\psi(j)}(h)} \\ \nonumber
+		&=& \sum_{i}\sum_{\psi(j)}\pi_{i}p_{i\psi(j)}(h)\log\frac{p_{i\psi(j)}(h)}{\tilde{p}_{\psi(i)\psi(j)}(h)}
+\end{eqnarray}
+
+We know that $p_{i\psi(j)}(h) = \sum_{j \in \psi(j)}p_{ij}(h)$:
+
+\begin{eqnarray}
+	I(P(h), \tilde{P}(h))
+		&=& \sum_{i}\sum_{\psi(j)}\pi_{i}\sum_{j \in \psi(j)}p_{ij}(h)\log\frac{\sum_{j \in \psi(j)}p_{ij}(h)}{\tilde{p}_{\psi(i)\psi(j)}(h)}
+\end{eqnarray}
+
+Now lets calculate this in terms of intensities $q_{ij}$. For small $h$ we can approximate $p_{ij}(h) \approx \delta_{ij} + q_{ij}h$, where 
+$\delta$ is the Dirac function:
+
+\begin{eqnarray}
+	I(P(h), \tilde{P}(h))
+		&\approx& \sum_{i}\sum_{\psi(j)}\pi_{i}\sum_{j \in \psi(j)}(\delta_{ij} + q_{ij}h)\log\frac{\sum_{j \in \psi(j)}(\delta_{ij} + q_{ij}h)}{\delta_{\psi(i)\psi(j)} + \tilde{q}_{ij}h}	\\	\nonumber	
+		&=& \sum_{i}\sum_{\psi(j)} S_{i\psi(j)}
+\end{eqnarray}
+
+We now have 3 cases.
+
+\subsubsection{Case 1: $i \neq j$, $i \not\in \psi(j)$}
+
+In this case $\delta_{ij} = 0$ and $\delta_{\psi(i)\psi(j)} = 0$ and we get:
+
+\begin{eqnarray}
+	S_{i\psi(j)}
+		&\approx& \pi_{i}\sum_{j \in \psi(j)}q_{ij}h\log\frac{\sum_{j \in \psi(j)}q_{ij}h}{\tilde{q_{ij}}h}	\\ \nonumber
+		&=& \pi_{i}\sum_{j \in \psi(j)}q_{ij}h\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{ij}}
+\end{eqnarray}
+
+Taking the derivative we get:
+\begin{eqnarray}
+	\frac{d}{dh}S_{i\psi(j)}
+		&\approx& \pi_{i}\sum_{j \in \psi(j)}q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{ij}}
+\end{eqnarray}
+
+Sending $h \downarrow 0$ we get the solution:
+\begin{eqnarray}
+	\lim_{h \downarrow 0}\frac{d}{dh}S_{i\psi(j)}
+		&\approx& \pi_{i}\sum_{j \in \psi(j)}q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{ij}}
+\end{eqnarray}
+
+
+\subsubsection{Case 2: $i \neq j$, $i \in \psi(j)$}
+\label{sec:case2}
+
+In this case $\sum_{j \in \psi(j)}\delta_{ij} = 1$, $\delta_{\psi(i)\psi(j)} = 1$ and we get:
+
+\begin{eqnarray}
+	S_{i\psi(j)}
+		&\approx& \pi_{i}(1 + h\sum_{j \in \psi(j)}q_{ij})\log\frac{1 + h\sum_{j \in \psi(j)}q_{ij}}{1 + \tilde{q_{ij}}h}	\\ \nonumber
+	\frac{d}{dh}S_{i\psi(j)}
+		&=& \pi_{i}\left[ \sum_{j \in \psi(j)}q_{ij}\log\frac{1 + h\sum_{j \in \psi(j)}q_{ij}}{1 + \tilde{q_{ij}}h} + \left( \sum_{j \in \psi(j)}q_{ij} - \tilde{q}_{\psi(i)\psi(j)}\frac{1 + h\sum_{j \in \psi(j)}q_{ij}}{1 + \tilde{q}_{ij}h} \right) \right]	\\ 	\nonumber
+	\lim_{h \downarrow 0} \frac{d}{dh}S_{i\psi(j)}
+		&=& \pi_{i}\left( \sum_{j \in \psi(j)}q_{ij} - \tilde{q}_{\psi(i)\psi(j)} \right)	\\ 	\nonumber
+\end{eqnarray}
+
+\subsubsection{Case 3: $i = j \Rightarrow i \in \psi(j)$}
+
+In this case $\delta_{ij} = 1$ and $\sum_{j \in \psi(j)}\delta_{ij} = 1$, $\delta_{\psi(i)\psi(j)} = 1$ and we get the same as \ref{sec:case2}.
+
+\subsubsection{Case 4: $i \neq j$, $\exists j \in \psi(j): j \in \psi(i)$}
+
+In this case $\delta_{ij} = 0$ and $\sum_{j \in \psi(j)}\delta_{ij} = 1$, $\delta_{\psi(i)\psi(j)} = 1$ and we get the same as \ref{sec:case2}.
+
+\subsubsection{FINAL SOLUTION}
+
+\begin{eqnarray}
+	I(Q, \tilde{Q})
+			&=& \sum_{i}\left[\sum_{\psi(j): i \not\in \psi(j)}\pi_{i}\sum_{j \in \psi(j)}q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{ij}} + \pi_{i}\left( \sum_{j \in \psi(i)}q_{ij} - \tilde{q}_{\psi(i)\psi(i)} \right) \right]	\\	\nonumber
+			&=& \sum_{\substack{\psi(i),\psi(j) \\ \psi(j) \neq \psi(i)}}\sum_{\substack{i \in \psi(i) \\ j \in \psi(j)}}\pi_i q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{ij}} + \sum_{\psi(i)}\left(\sum_{i,j \in \psi(i)}\pi_i q_{ij} - \tilde{q}_{\psi(i)\psi(i)}\right)
+\end{eqnarray}
+
 
 \subsection{Solving $D_1$}
 
