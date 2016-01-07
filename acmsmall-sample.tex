@@ -1375,7 +1375,7 @@ We then have several options to measure the distance between $Q$ and $\tilde{Q}$
 \end{equation}
 
 \begin{equation}
-	I(Q, \tilde{Q}) = \sum_{i=1}^{n}\sum_{j=1}^{n}p_{ij}(t)\log{ \frac{p_{ij}(t)}{\tilde{p_{ij}}(t)}} dt
+	I(Q, \tilde{Q}) = \lim_{h \downarrow 0}\frac{d}{dh}\sum_{i=1}^{n}\sum_{j=1}^{n}p_{ij}(h)\log{ \frac{p_{ij}(h)}{\tilde{p_{ij}}(h)}}
 \end{equation}
 
 Where $p_{ij}(t) = \left(P(t)\right)_{ij} = \left(e^{Qt}\right)_{ij} = p_i'e^{Qt}p_j$ where $p_i$ is a vector with zeros everywhere except on the $i$-th position.
@@ -1414,7 +1414,7 @@ $p_{\phi(i)\phi(j)}(t)$ can be written as:
 \end{eqnarray}
 where $\pi_{\psi(i)} = \sum_{k \in \psi(i)}\pi_k$.
 
-\subsection{Solving $I$}
+\subsection{Solving $I(Q, \tilde{Q})$}
 
 We look at the equation for small $h$ for comparing the two chains in state space $Y$:
 
@@ -1445,7 +1445,7 @@ $\delta$ is the Dirac function:
 
 \begin{eqnarray}
 	I(P(h), \tilde{P}(h))
-		&\approx& \sum_{i}\sum_{\psi(j)}\pi_{i}\sum_{j \in \psi(j)}(\delta_{ij} + q_{ij}h)\log\frac{\sum_{j \in \psi(j)}(\delta_{ij} + q_{ij}h)}{\delta_{\psi(i)\psi(j)} + \tilde{q}_{ij}h}	\\	\nonumber	
+		&\approx& \sum_{i}\sum_{\psi(j)}\pi_{i}\sum_{j \in \psi(j)}(\delta_{ij} + q_{ij}h)\log\frac{\sum_{j \in \psi(j)}(\delta_{ij} + q_{ij}h)}{\delta_{\psi(i)\psi(j)} + \tilde{q}_{\psi(i)\psi(j)}h}	\\	\nonumber	
 		&=& \sum_{i}\sum_{\psi(j)} S_{i\psi(j)}
 \end{eqnarray}
 
@@ -1458,19 +1458,19 @@ In this case $\delta_{ij} = 0$ and $\delta_{\psi(i)\psi(j)} = 0$ and we get:
 \begin{eqnarray}
 	S_{i\psi(j)}
 		&\approx& \pi_{i}\sum_{j \in \psi(j)}q_{ij}h\log\frac{\sum_{j \in \psi(j)}q_{ij}h}{\tilde{q_{ij}}h}	\\ \nonumber
-		&=& \pi_{i}\sum_{j \in \psi(j)}q_{ij}h\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{ij}}
+		&=& \pi_{i}\sum_{j \in \psi(j)}q_{ij}h\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{\psi(i)\psi(j)}}
 \end{eqnarray}
 
 Taking the derivative we get:
 \begin{eqnarray}
 	\frac{d}{dh}S_{i\psi(j)}
-		&\approx& \pi_{i}\sum_{j \in \psi(j)}q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{ij}}
+		&\approx& \pi_{i}\sum_{j \in \psi(j)}q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{\psi(i)\psi(j)}}
 \end{eqnarray}
 
 Sending $h \downarrow 0$ we get the solution:
 \begin{eqnarray}
 	\lim_{h \downarrow 0}\frac{d}{dh}S_{i\psi(j)}
-		&\approx& \pi_{i}\sum_{j \in \psi(j)}q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{ij}}
+		&\approx& \pi_{i}\sum_{j \in \psi(j)}q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{\psi(i)\psi(j)}}
 \end{eqnarray}
 
 
@@ -1481,9 +1481,9 @@ In this case $\sum_{j \in \psi(j)}\delta_{ij} = 1$, $\delta_{\psi(i)\psi(j)} = 1
 
 \begin{eqnarray}
 	S_{i\psi(j)}
-		&\approx& \pi_{i}(1 + h\sum_{j \in \psi(j)}q_{ij})\log\frac{1 + h\sum_{j \in \psi(j)}q_{ij}}{1 + \tilde{q_{ij}}h}	\\ \nonumber
+		&\approx& \pi_{i}(1 + h\sum_{j \in \psi(j)}q_{ij})\log\frac{1 + h\sum_{j \in \psi(j)}q_{ij}}{1 + \tilde{q_{\psi(i)\psi(j)}}h}	\\ \nonumber
 	\frac{d}{dh}S_{i\psi(j)}
-		&=& \pi_{i}\left[ \sum_{j \in \psi(j)}q_{ij}\log\frac{1 + h\sum_{j \in \psi(j)}q_{ij}}{1 + \tilde{q_{ij}}h} + \left( \sum_{j \in \psi(j)}q_{ij} - \tilde{q}_{\psi(i)\psi(j)}\frac{1 + h\sum_{j \in \psi(j)}q_{ij}}{1 + \tilde{q}_{ij}h} \right) \right]	\\ 	\nonumber
+		&=& \pi_{i}\left[ \sum_{j \in \psi(j)}q_{ij}\log\frac{1 + h\sum_{j \in \psi(j)}q_{ij}}{1 + \tilde{q_{ij}}h} + \left( \sum_{j \in \psi(j)}q_{ij} - \tilde{q}_{\psi(i)\psi(j)}\frac{1 + h\sum_{j \in \psi(j)}q_{ij}}{1 + \tilde{q}_{\psi(i)\psi(j)}h} \right) \right]	\\ 	\nonumber
 	\lim_{h \downarrow 0} \frac{d}{dh}S_{i\psi(j)}
 		&=& \pi_{i}\left( \sum_{j \in \psi(j)}q_{ij} - \tilde{q}_{\psi(i)\psi(j)} \right)	\\ 	\nonumber
 \end{eqnarray}
@@ -1500,8 +1500,8 @@ In this case $\delta_{ij} = 0$ and $\sum_{j \in \psi(j)}\delta_{ij} = 1$, $\delt
 
 \begin{eqnarray}
 	I(Q, \tilde{Q})
-			&=& \sum_{i}\left[\sum_{\psi(j): i \not\in \psi(j)}\pi_{i}\sum_{j \in \psi(j)}q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{ij}} + \pi_{i}\left( \sum_{j \in \psi(i)}q_{ij} - \tilde{q}_{\psi(i)\psi(i)} \right) \right]	\\	\nonumber
-			&=& \sum_{\substack{\psi(i),\psi(j) \\ \psi(j) \neq \psi(i)}}\sum_{\substack{i \in \psi(i) \\ j \in \psi(j)}}\pi_i q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{ij}} + \sum_{\psi(i)}\left(\sum_{i,j \in \psi(i)}\pi_i q_{ij} - \tilde{q}_{\psi(i)\psi(i)}\right)
+			&=& \sum_{i}\left[\sum_{\psi(j): i \not\in \psi(j)}\pi_{i}\sum_{j \in \psi(j)}q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{\psi(i)\psi(j)}} + \pi_{i}\left( \sum_{j \in \psi(i)}q_{ij} - \tilde{q}_{\psi(i)\psi(i)} \right) \right]	\\	\nonumber
+			&=& \sum_{\substack{\psi(i),\psi(j) \\ \psi(j) \neq \psi(i)}}\sum_{\substack{i \in \psi(i) \\ j \in \psi(j)}}\pi_i q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{\psi(i)\psi(j)}} + \sum_{\psi(i)}\left(\sum_{i,j \in \psi(i)}\pi_i q_{ij} - \tilde{q}_{\psi(i)\psi(i)}\right)
 \end{eqnarray}
 
 
