@@ -516,106 +516,8 @@ We refer the reader to Appendix \ref{sec:rel-entropy-rate} for more details.
 
 \newpage
 
-\begin{comment}
-In our specific case we have a Markov chain $Q$ which is partitioned into aggregated states, where the 
-partition is defined by a surjective partitioning function $\phi: X \rightarrow Y$. We compute the "distance"
-between the two 
-
-
-  of the 
-
-
-We first define the entropy rate function
-\begin{equation}
-	D(Q||\tilde{Q}) = \sum_{A \in \Ima \phi}\sum_{B \in \Ima \phi}\sum_{i \in \phi^{-1}(A)}\pi_i \sum_{j \in \phi^{-1}(B)} q_{ij} \log \frac{\sum_{j \in \phi^{-1}(B)} q_{ij}}{\tilde{q}_{AB}}
-\end{equation}
-[TODO entropy rate not yet developed]
-
-There are a couple of options to calculate the distance between Markov chains:
-\begin{list}{-}{}
-	\item Wasserstein
-	\item Total Variation
-	\item Entropy rat
-\end{list}
-
-The algorithm starts with an initial partition containing all the states of the original Markov chain.
-On the $n$-th iteration the algorithm assumes that $n$ partitions (aggregated states) are given. The objective then is
-to select the best aggregated state to split, obtaining $n+1$ partitions. For $i=1,2, ..., n$ we denote $Q^{(i)}$ to
-be the transition rate matrix of a Markov chain within the $i$-th partition. A bi-partition of $Q^{(i)}$
-provides $n+1$ partitions, which we denote $Q_{n+1}^{(i)}$. The objective then is to select the best 
-partition $Q^{(i)}$ to split. This is achieved by minimizing the following criteria:
-\begin{equation}
-	\argmin_{i \in \{1, 2, ..., n\}} D(Q||Q_{n+1}^{(i)})
-\end{equation}
-\end{comment}
-
 
 \newpage
-
-
-
-\begin{comment}
- The methods proposed
-in these papers use the sign structure of the second largest eigenvalue as an approximate
-solution of the bi-partitioning problem. However all these papers assume a symmetric Laplacian.
-
-
-
-
-While the spectral analysis of undirected graphs has been studied extensively, there
-are few papers discussing the spectral properties of directed graphs.
-
-It has been shown that an approximate solution to the min-cut problem
-
-
-
-In general partitioning is an NP-complete problem, however in the pioneering
-work of Wentzell and Freidin it is shown that an optimal aggregation is 
-obtained through the sign structure of the second eigenvector.
-
-In the work of Wentzell and Freidlin it is shown that an optimal aggregation
-is obtained through the sign structure of the second eigenvector.
-
-The partitioning of a continuous time Markov chain can
-be viewed as an optimization problem where we minimize the total relative 
-entropy between a Markov chain Q and an aggregated chain  where
-the partition function $\pi : S \rightarrow S$ is defined by:
-
-
-
-Recall from section \ref{sec:state-aggregation} that our methodology
-partitions the data space using a dendrogram. A dendrogram is a nested sequence
-of partitions with associated numerical levels. Thus it provides, on each level $l$,
-a unique partition of the data space $P^l = (P_1, P_2, ... P_{k_l})$ where each partition
-$P_i$ is the union of one or more partitions on level $0$. Since each state of the 
-Markov chain corresponds to a single partition on level $0$, we aggregate
-then to be able model the higher level process on level $l$. Suppose
-the data space is partitioned into partitions $(P_1, P_2, ..., P_k)$ on level $0$.
-
-We note that simply lumping lower level states is not sufficient since it may
-result in a non-Markovian process [TODO ref]. Therefore we construct a new
-Markov chain $(Y_t)_{t \ge 0}$ which should retain some the behavior of the original
-chain $(X_t)_{t \ge 0}$. Let $(X_t)_{t \ge 0}$ be the Markov chain on level $0$ with state space $S = {1, 2, ..., n}$
-and transition rate matrix $Q$. Now suppose we would like to aggregate two sets of 
-states  $A = \{i_1, i_2, ..., i_k\} \subset S$ and $B = \{j_1, j_2, ..., j_h\} \subset S$
-and would like to preserve the stationary distribution of the original process. Let
-$\tilde{\pi}$ be the stationary distribution of $(Y_t)_{t \ge 0}$. Then $\tilde{\pi}$
-should have the following properties:
-\begin{enumerate}
-	\item $\tilde{\pi}_A = \sum_{i \in A}\pi_i$, $\tilde{\pi}_B = \sum_{j \in B}\pi_j$
-	\item $\tilde{\pi}_k = \pi_k$ for all $k \notin A \cup B$.
-\end{enumerate}
-We can compute the transition rate matrix of such a process using the following 
-formula:
-\begin{equation}
-	q_{AB} = \frac{\sum_{i \in A}\pi_i\sum_{j \in B}q_{ij}}{\sum_{i \in A}\pi_i}.
-\end{equation}
-
-[TODO ta formula je dokazana v clanku ki ga imas + se DTMC partitioning, 
-mogoce lahko partitioning razsiris na CTMC, vrzes ven trenutni dendrogram
-in to opsises v clanku]
-
-\end{comment}
 
 \subsection{Visualization}
 
@@ -992,12 +894,24 @@ In the first experiment we generated a random block diagonal \textcolor{red}{not
 	\label{fig:rand-qmat}
 	\centering
 	\makebox[\textwidth]{\includegraphics[width=300pt]{q-heatmap}}
-	\caption{A rule extracted from the above presented decision tree describing the summer
-	middle level state of the England temperature dataset. \textcolor{red}{[TODO] daj boljso sliko}}
+	\caption{A heatmap of the generated transition rate matrix used as input to the Markov chain partitioning algorithm.}
 \end{figure}
 
 \subsection{Experiment 2}
 \label{sec:experiment-part}
+
+In the second experiment we evaluate our second contribution: approach for modeling state transitions based on the current value
+of pre-selected data streams. Our methodology models the transition rates in the current state based on the value of pre-selected
+data streams. We compare our approach to a baseline approach, where transition rates are extracted using using the maximum 
+likelihood estimation technique and no additional information is used to model transitions.
+
+To evaluate our approach, we generated simulated data of an aircraft in flight, where the states of our Markovian model are
+a discretization of the aircrafts tilt, toll and pan. As the control variable, we select an artificial signal indicating
+if the aircraft is about to enter a turn and the angle of the turn.
+The simulated data includes a total of \textcolor{red}{X} hours of the aircrafts flight containing \textcolor{red}{Y} data
+points. The aircraft performs a turn based on an exponential distribution with parameter $\lambda = \frac{1}{10}$ turns per
+minute.
+
 
 \begin{comment}
 \begin{enumerate}{}
@@ -1008,6 +922,7 @@ In the first experiment we generated a random block diagonal \textcolor{red}{not
 	\item We propose a recursive algorithm for partitioning recurrent continuous time Markov chains.
 \end{enumerate}
 \end{comment}
+
 
 \section{Conclusion and Future Work}
 \label{sec:conclusion}
