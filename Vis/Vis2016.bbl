@@ -1,0 +1,25 @@
+\begin{thebibliography}{1}
+
+\bibitem{Benz2004239}
+U.~C. Benz, P.~Hofmann, G.~Willhauck, I.~Lingenfelder, and M.~Heynen.
+\newblock Multi-resolution, object-oriented fuzzy analysis of remote sensing
+  data for gis-ready information.
+\newblock {\em \{ISPRS\} Journal of Photogrammetry and Remote Sensing},
+  58(3–4):239 -- 258, 2004.
+\newblock Integration of Geodata and Imagery for Automated Refinement and
+  Update of Spatial Databases.
+
+\bibitem{5746509}
+K.~Deng, P.~G. Mehta, and S.~P. Meyn.
+\newblock Optimal kullback-leibler aggregation via spectral theory of markov
+  chains.
+\newblock {\em IEEE Transactions on Automatic Control}, 56(12):2793--2808, Dec
+  2011.
+
+\bibitem{pande-beauchamp-bowman:2010:methods:markov-model-review}
+V.~S. Pande, K.~Beauchamp, and G.~R. Bowman.
+\newblock Everything you wanted to know about {Markov State Models} but were
+  afraid to ask.
+\newblock {\em Methods}, 52:99--105, 2010.
+
+\end{thebibliography}
