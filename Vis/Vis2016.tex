@@ -1,0 +1,244 @@
+\documentclass[journal]{vgtc}                % final (journal style)
+%\documentclass[review,journal]{vgtc}         % review (journal style)
+%\documentclass[widereview]{vgtc}             % wide-spaced review
+%\documentclass[preprint,journal]{vgtc}       % preprint (journal style)
+%\documentclass[electronic,journal]{vgtc}     % electronic version, journal
+
+%% Uncomment one of the lines above depending on where your paper is
+%% in the conference process. ``review'' and ``widereview'' are for review
+%% submission, ``preprint'' is for pre-publication, and the final version
+%% doesn't use a specific qualifier. Further, ``electronic'' includes
+%% hyperreferences for more convenient online viewing.
+
+%% Please use one of the ``review'' options in combination with the
+%% assigned online id (see below) ONLY if your paper uses a double blind
+%% review process. Some conferences, like IEEE Vis and InfoVis, have NOT
+%% in the past.
+
+%% Please note that the use of figures other than the optional teaser is not permitted on the first page
+%% of the journal version.  Figures should begin on the second page and be
+%% in CMYK or Grey scale format, otherwise, colour shifting may occur
+%% during the printing process.  Papers submitted with figures other than the optional teaser on the
+%% first page will be refused.
+
+%% These three lines bring in essential packages: ``mathptmx'' for Type 1
+%% typefaces, ``graphicx'' for inclusion of EPS figures. and ``times''
+%% for proper handling of the times font family.
+
+\usepackage{mathptmx}
+\usepackage{graphicx}
+\usepackage{times}
+
+%% We encourage the use of mathptmx for consistent usage of times font
+%% throughout the proceedings. However, if you encounter conflicts
+%% with other math-related packages, you may want to disable it.
+
+%% This turns references into clickable hyperlinks.
+\usepackage[bookmarks,backref=true,linkcolor=black]{hyperref} %,colorlinks
+\hypersetup{
+  pdfauthor = {},
+  pdftitle = {},
+  pdfsubject = {},
+  pdfkeywords = {},
+  colorlinks=true,
+  linkcolor= black,
+  citecolor= black,
+  pageanchor=true,
+  urlcolor = black,
+  plainpages = false,
+  linktocpage
+}
+
+%% If you are submitting a paper to a conference for review with a double
+%% blind reviewing process, please replace the value ``0'' below with your
+%% OnlineID. Otherwise, you may safely leave it at ``0''.
+\onlineid{0}
+
+%% declare the category of your paper, only shown in review mode
+\vgtccategory{Research}
+
+%% allow for this line if you want the electronic option to work properly
+\vgtcinsertpkg
+
+%% In preprint mode you may define your own headline.
+%\preprinttext{To appear in an IEEE VGTC sponsored conference.}
+
+%% Paper title.
+
+\title{A Multi-Level Methodology for Explaining Data Streams}
+
+%% This is how authors are specified in the journal style
+
+%% indicate IEEE Member or Student Member in form indicated below
+\author{Luka Stopar and Primoz Skraba}
+\authorfooter{
+%% insert punctuation at end of each item
+\item
+Luka Stopar is with Jozef Stefan Institute. E-mail: luka.stopar@ijs.si.
+\item
+Primoz Skraba is with Jozef Stefan Institute. E-mail: pri0moz.skraba@ijs.si.
+}
+
+%other entries to be set up for journal
+\shortauthortitle{Stopar \MakeLowercase{\textit{et al.}}: A Multi-Level Methodology for Explaining Data Streams}
+%\shortauthortitle{Firstauthor \MakeLowercase{\textit{et al.}}: Paper Title}
+
+%% Abstract section.
+\abstract{This paper presents a novel multi-scale methodology for modeling a collection of continuously time-varying
+data streams. The data streams are aggregated using unsupervised data mining methods. Typical system states
+are then computed on the aggregated data. This is used as input to construct a Markovian transition model
+capturing the dynamics of the monitored system. The hierarchical organization of the states enables a
+visual representation of the dynamics on multiple aggregation levels.} % end of abstract
+
+%% Keywords that describe your work. Will show as 'Index Terms' in journal
+%% please capitalize first letter and insert punctuation after last keyword
+\keywords{Radiosity, global illumination, constant time}
+
+%% ACM Computing Classification System (CCS). 
+%% See <http://www.acm.org/class/1998/> for details.
+%% The ``\CCScat'' command takes four arguments.
+
+\CCScatlist{ % not used in journal version
+ \CCScat{K.6.1}{Management of Computing and Information Systems}%
+{Project and People Management}{Life Cycle};
+ \CCScat{K.7.m}{The Computing Profession}{Miscellaneous}{Ethics}
+}
+
+
+%% UNDO!!!
+%% Uncomment below to include a teaser figure.
+%  \teaser{
+% \centering
+% \includegraphics[width=16cm]{}
+%  \caption{}
+%  }
+
+%% Uncomment below to disable the manuscript note
+%\renewcommand{\manuscriptnotetxt}{}
+
+%% Copyright space is enabled by default as required by guidelines.
+%% It is disabled by the 'review' option or via the following command:
+% \nocopyrightspace
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% START OF THE PAPER %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%% The ``\maketitle'' command must be the first command after the
+%% ``\begin{document}'' command. It prepares and prints the title block.
+
+\maketitle
+
+%% the only exception to this rule is the \firstsection command
+\section{Introduction}
+\label{sec:introduction}
+
+Sensory systems typically operate in cycles with a continuously time-varying. These 
+systems include, for example, the solar system, manufacturing systems or weather 
+systems. Such systems can be characterized by a set of states, along with associated
+state transitions. States, on a high level, may include a "day" state and a "night"
+state or maybe states with high and low productivity. For example, when a pilot wishes
+to change an aircrafts heading, they will put the aircraft into state "banking turn"
+by lowering one aileron and raising the other, causing the aircraft to perform a
+circular arc. After some time, the wings of the aircraft will be brought level by
+an opposing motion of the ailerons and the aircraft will go back into state "level".
+
+Such high-level states can be decomposed into lower-level states, giving us a 
+multi-level view of the system and allowing us to observe the system on multiple 
+detail levels. For example, a "banking turn" state can be decomposed by the
+aircrafts roll and angular velocity, resulting in perhaps three states: "initiate
+turn", "full turn" and "end turn".
+
+We present a methodology for modeling such systems and demonstrate its implementation
+called StreamStory. StreamStory models such systems as a hierarchical Markovian process
+by automatically learning the typical low-level states, transitions and aggregating 
+them into a hierarchy, obtaining a unique Markovian process on multiple detail levels.
+As such it gives users a unique view into the monitored system.
+
+Furthermore, we divide the inputs streams into two sets: observation and control set.
+Attributes in the observation set are the attributes that tell us the state of the 
+system and, we assume, cannot directly influence its dynamics. These are parameters
+that users cannot directly manipulate, like aircraft tilt from the previous example,
+which must be indirectly manipulated through the angles of ailerons. We use observation
+attributes to identify, and aggregate, low-level states, detect outliers (anomalies) 
+and determine the current state of the system.
+
+In contrast, users can directly manipulate attributes in the control set. These 
+are attributes like angles of ailerons that may directly influence the behavior 
+(observation attributes) and performance of the system. For example, when an operator 
+in a steel factory sets the cooling temperature to a high value, the product will
+take longer to go from state "hot" to state "cool". As such, we assume, control attributes
+may influence the occurrence, and expected time, of undesired states, associated with
+undesired events.
+
+Our system uses control attributes to model state transitions, allowing us to observe
+the dynamics with respect to the current configuration and gives us insight into the
+expected dynamics with respect to some alternate attribute configuration.
+
+The main research contributions presented in this paper can be summarized as follows:
+\begin{enumerate}{}
+  \item We present a novel methodology for modeling multivariate continuously time-varying data streams
+  in a hierarchical manner providing a unique model of the several detail levels.
+  \item We present a novel approach for modeling state transitions in a Markov chain allowing
+  to observe the dynamics of the chain under alternate configurations.
+  \item We propose a recursive algorithm for partitioning recurrent continuous time Markov chains.
+\end{enumerate}
+
+
+The remainder of this paper is structured as follows. In Section \ref{sec:methodology} we present
+our methodology in detail. Section \ref{sec:ui} we present user interaction. Section \ref{sec:experiment}
+we present our experimental results and finally in Section \ref{sec:conclusion} we conclude this
+paper and give some ideas for further work.
+
+
+%% \section{Introduction} %for journal use above \firstsection{..} instead
+
+
+\section{Previous Work}
+
+\section{Preliminaries}
+\begin{itemize}
+\item Model of data: paths in Euclidean page
+\item Markov chains
+\end{itemize}
+
+\section{Multiscale Hierarchies - Framework}
+\begin{itemize}
+\item Initial state construction 
+\item Aggregation 
+\item Transition probabililties
+\end{itemize}
+
+
+\section{Multiscale Hierarchies - Implementation}
+\begin{itemize}
+\item clustering
+\item criteria for aggregation 
+\end{itemize}
+
+\section{User Interface}
+Features  
+
+\section{Implementation}
+
+\section{Experiments}
+\subsection{Prediction Evaluation}
+
+\subsection{Weather Data}
+\subsection{Domain Experts}
+
+
+\section{Discussion}
+
+%% if specified like this the section will be committed in review mode
+\acknowledgments{
+The authors wish to thank A, B, C. }
+
+\bibliographystyle{abbrv}
+%%use following if all content of bibtex file should be shown
+%\nocite{*}
+\bibliography{template}
+\end{document}
+
