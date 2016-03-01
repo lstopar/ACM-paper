@@ -877,6 +877,29 @@ It then traverses the tree upwards adding conditions to the intersection as it p
 only one intersection and creating a union of intersections when traversing a node with 
 intersection on both its children.
 
+\subsection{Automatic State Naming}
+
+To assist users in identifying the meaning of states, we provide an automatic state naming service.
+When constructing the model, our system tags each state with its most outstanding attribute
+and a discrete level: lowest, low, mean, high and highest. If none of the attributes stands out of the global distribution,
+the state is names "mean". We perform the tagging by comparing the distribution of each attribute
+inside the state to the global distribution of the attribute. We tag the attribute as "lowest" when
+the 40th percentile of the attribute inside the state falls below the 12th percentile of the global
+distribution of the attribute and as "low" when the 40th percentile of the attribute inside the state
+falls below the 25th percentile of the global distribution. An analogous naming is used for the "high"
+and "highest" labels.
+
+Figure \ref{fig:ui-naming} shows an example of the output of our automatic state naming algorithm.
+
+\begin{figure}[h!]
+	\centering
+	\makebox[\textwidth]{\includegraphics[width=400pt]{naming}}
+	\caption{An example output of our automatic state naming procedure run on the weather dataset presented above. The output shows four states,
+	two of which are names "mean" indicating that all their attributes lie in the mean of the global distribution, the other two states are
+	named "Rainfall LOW" and "Rainfall HIGHEST" indicating low and high rainfall while the system is in those states.}
+	\label{fig:ui-naming}
+\end{figure}
+
 \section{Experimantal Results}
 \label{sec:experiment}
 
