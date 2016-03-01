@@ -130,7 +130,7 @@ visual representation of the dynamics on multiple aggregation levels.
 % We no longer use \terms command
 %\terms{Design, Algorithms, Performance}
 
-\keywords{\textcolor{red}{[TODO]}}
+\keywords{data stream, Markov chains, clustering, data mining, visualization}
 
 \acmformat{Luka Stopar, Primoz Skraba, Dunja Mladenic, Marko Grobelnik, 2015. A Multi-Level 
 Methodology for Explaining Data Streams.}
@@ -233,7 +233,7 @@ paper and give some ideas for further work.
 
 \end{comment}
 
-[TODO thickness \& darkness]
+\textcolor{red}{[TODO thickness \& darkness]}
 
 We begin this section with an overview of our multi-level methodology show in figure \ref{fig:methodology}.
 \begin{figure}[h!]
@@ -275,17 +275,16 @@ which the user would like to use when modeling the data. The last step can inclu
 generic features like current derivative or some domain specific calculation like perhaps
 the number of times an attribute was above a threshold in a domain specific time window.
 
-\subsection{State Identification}
+\subsection{Data Stream Partitioning}
 
 Once the data is represented as feature vectors it is ready to be modeled. Our next step includes identifying 
 typical low-level system states from the feature vectors created in step 1. We do this by partitioning 
-the feature vectors and associating each state with a partition. There are many partitioning algorithms 
+the feature vectors and associating each state with a single partition. There are many partitioning algorithms 
 available in the literature including algorithms that produce hierarchical partitions. In general however
 the computational complexity of these algorithms is $O(n^2)$ which renders them unsuitable for big data
 scenarios.
 We therefore propose a flat partition using k-means resulting in a Voronoi diagram on the data space and
-enabling us to construct states by assigning feature vectors to the partition with the nearest centroid
-and constructing a hierarchical representation later in the process.
+enabling us to construct states by assigning feature vectors to the partition with the nearest centroid, constructing a hierarchical representation later in the process.
 We then collect statistics in the states including
 \begin{list}{-}{}
 	\item Distribution of attributes - we store the distribution of all the attributes in a state as a
@@ -294,10 +293,7 @@ We then collect statistics in the states including
 	\item Mean value and median of each attribute inside a state.
 	\item Percentiles for each attribute.
 \end{list}
-These statistics can be used when the model is applied in real-time and provide a clustering-based anomaly detection
-technique.
-
- and later aggregate it do obtain a hierarchical partition.
+These statistics can be used when the model is applied in real-time and provide a clustering-based anomaly detection technique.
 
 \begin{comment}
 \subsection{State Aggregation}
@@ -353,10 +349,6 @@ proposes many partitioning algorithms.
 unsupervised machine learning procedure, which organizes a collection of patterns,
 usually represented
 \end{comment}
-
-\subsection{Data Stream Partitioning}
-
-[TODO zamenjaj zgornji naslov s trenutnim]
 
 \subsection{Modeling Transitions}
 
@@ -491,96 +483,41 @@ The bi-partition function $\phi$ is then constructed using the following rule:
 
 Since the bi-partitioning problem can be solved using the second eigenvector of the transformed
 Laplacian we can now present a recursive algorithm for the partitioning of continuous time Markov chains.
-We first define the entropy rate function
-\begin{equation}
-	D(Q||\tilde{Q}) = \sum_{A \in \Ima \phi}\sum_{B \in \Ima \phi}\sum_{i \in \phi^{-1}(A)}\pi_i \sum_{j \in \phi^{-1}(B)} q_{ij} \log \frac{\sum_{j \in \phi^{-1}(B)} q_{ij}}{\tilde{q}_{AB}}
-\end{equation}
-[TODO entropy rate not yet developed]
 
-There are a couple of options to calculate the distance between Markov chains:
-\begin{list}{-}{}
-	\item Wasserstein
-	\item Total Variation
-	\item Entropy rat
-\end{list}
+The algorithm starts with an initial partition with a single super state containing all 
+the states of the origin chain. On the $n$-th iteration the algorithm assumes that $n$ 
+partitions are already given. The objective then is to select the best partition to split,
+obtaining $n+1$ partitions. We denote $Q^{(i)}$ to be the transition rate matrix of a Markov 
+chain within the $i$-th partition. A bi-partition of $Q^{(i)}$ then provides $n+1$ partitions
+, which we denote $Q^(i)_{n+1}$. The objective of the $i$-th step then is to select the 
+best partition $Q^(i)$ to split. We select the partition which minimizes the following criterion:
 
-The algorithm starts with an initial partition containing all the states of the original Markov chain.
-On the $n$-th iteration the algorithm assumes that $n$ partitions (aggregated states) are given. The objective then is
-to select the best aggregated state to split, obtaining $n+1$ partitions. For $i=1,2, ..., n$ we denote $Q^{(i)}$ to
-be the transition rate matrix of a Markov chain within the $i$-th partition. A bi-partition of $Q^{(i)}$
-provides $n+1$ partitions, which we denote $Q_{n+1}^{(i)}$. The objective then is to select the best 
-partition $Q^{(i)}$ to split. This is achieved by minimizing the following criteria:
 \begin{equation}
 	\argmin_{i \in \{1, 2, ..., n\}} D(Q||Q_{n+1}^{(i)})
 \end{equation}
+Where $D(Q||Q_{n+1}^{(i)})$ represents the relative entropy rate and provides a measure of "distance"
+between the aggregated Markov chain and the original. The relative entropy rate between two
+continuous time Markov chains on the same state space $X$ is defined as:
 
+\begin{equation}
+	\label{eq:rel-entropy-rate}
+	D(Q|\tilde{Q}) = \sum_{\substack{i,j \in X \\ i \neq j}} \pi_i q_{ij}\log\frac{q_{ij}}{\tilde{q}_{ij}} + \sum_{i \in X}\pi_i\left( q_{ii} - \tilde{q}_{ii} \right)
+\end{equation}
+
+However, in our case the Markov chains do not live in the same state space, so then cannot be compared directly using equation \ref{eq:rel-entropy-rate}. We compare the original Markov chain $Q$ to the partitioned Markov chain $\tilde{Q}$ defined by a surjective partitioning function $\phi: X \rightarrow Y$ on state space $Y$.
+If we define $\phi = \psi^{-1} \circ \psi$, then we are interested in the information that is gained by using
+the conditional probability $P(X_{t+h} \in \phi(j) | X_t = i)$ instead of $P(X_{t+h} \in \phi(j) | X_t \in \phi(i))$. This results in the following relative entropy rate measure:
+
+\begin{equation}
+	\label{eq:rel-entropy-rate2}
+	D(Q|\tilde{Q}) = \sum_{\substack{\psi(i),\psi(j) \in Y \\ \psi(j) \neq \psi(i)}}\sum_{\substack{i \in \psi(i) \\ j \in \psi(j)}}\pi_i q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{\psi(i)\psi(j)}} + \sum_{i \in X}\pi_i\left(\sum_{j \in \psi(i)}q_{ij} - \tilde{q}_{\psi(i)\psi(i)}\right)
+\end{equation}
+We refer the reader to Appendix \ref{sec:rel-entropy-rate} for more details.
 
 \newpage
 
 
-
-\begin{comment}
- The methods proposed
-in these papers use the sign structure of the second largest eigenvalue as an approximate
-solution of the bi-partitioning problem. However all these papers assume a symmetric Laplacian.
-
-
-
-
-While the spectral analysis of undirected graphs has been studied extensively, there
-are few papers discussing the spectral properties of directed graphs.
-
-It has been shown that an approximate solution to the min-cut problem
-
-
-
-In general partitioning is an NP-complete problem, however in the pioneering
-work of Wentzell and Freidin it is shown that an optimal aggregation is 
-obtained through the sign structure of the second eigenvector.
-
-In the work of Wentzell and Freidlin it is shown that an optimal aggregation
-is obtained through the sign structure of the second eigenvector.
-
-The partitioning of a continuous time Markov chain can
-be viewed as an optimization problem where we minimize the total relative 
-entropy between a Markov chain Q and an aggregated chain  where
-the partition function $\pi : S \rightarrow S$ is defined by:
-
-
-
-Recall from section \ref{sec:state-aggregation} that our methodology
-partitions the data space using a dendrogram. A dendrogram is a nested sequence
-of partitions with associated numerical levels. Thus it provides, on each level $l$,
-a unique partition of the data space $P^l = (P_1, P_2, ... P_{k_l})$ where each partition
-$P_i$ is the union of one or more partitions on level $0$. Since each state of the 
-Markov chain corresponds to a single partition on level $0$, we aggregate
-then to be able model the higher level process on level $l$. Suppose
-the data space is partitioned into partitions $(P_1, P_2, ..., P_k)$ on level $0$.
-
-We note that simply lumping lower level states is not sufficient since it may
-result in a non-Markovian process [TODO ref]. Therefore we construct a new
-Markov chain $(Y_t)_{t \ge 0}$ which should retain some the behavior of the original
-chain $(X_t)_{t \ge 0}$. Let $(X_t)_{t \ge 0}$ be the Markov chain on level $0$ with state space $S = {1, 2, ..., n}$
-and transition rate matrix $Q$. Now suppose we would like to aggregate two sets of 
-states  $A = \{i_1, i_2, ..., i_k\} \subset S$ and $B = \{j_1, j_2, ..., j_h\} \subset S$
-and would like to preserve the stationary distribution of the original process. Let
-$\tilde{\pi}$ be the stationary distribution of $(Y_t)_{t \ge 0}$. Then $\tilde{\pi}$
-should have the following properties:
-\begin{enumerate}
-	\item $\tilde{\pi}_A = \sum_{i \in A}\pi_i$, $\tilde{\pi}_B = \sum_{j \in B}\pi_j$
-	\item $\tilde{\pi}_k = \pi_k$ for all $k \notin A \cup B$.
-\end{enumerate}
-We can compute the transition rate matrix of such a process using the following 
-formula:
-\begin{equation}
-	q_{AB} = \frac{\sum_{i \in A}\pi_i\sum_{j \in B}q_{ij}}{\sum_{i \in A}\pi_i}.
-\end{equation}
-
-[TODO ta formula je dokazana v clanku ki ga imas + se DTMC partitioning, 
-mogoce lahko partitioning razsiris na CTMC, vrzes ven trenutni dendrogram
-in to opsises v clanku]
-
-\end{comment}
+\newpage
 
 \subsection{Visualization}
 
@@ -842,70 +779,8 @@ $t$ as follows:
 	\label{eq:markov-aggregation}
 	p_{AB}(t) = \frac{\sum\pi_i\sum_{j \in A}p_{ij}(t)}{\sum_{i \in B}\pi_i}
 \end{equation}
-
-
-
-\begin{comment}
-
-
-What makes these processes useful is that not only do they model many phenomena of interest,
-but also the lack of memory property makes it possible to predict how a Markov chain may
-behave, and to compute probabilities and expected values which quantify that behavior
-\cite{norris1998markov}.
-We define a Markov chain as a memoryless stochastic process $\left(X_k\right)_{k \ge 0}$
-that can assume a finite set of states $i \in I$, where $I$ is called the state space.
-
-
-Discrete time Markov chains move in discrete time steps. They are defined using a 
-stochastic matrix $P$ where $(P)_{ij} = p_{ij}$ is the probability of jumping from state
-$i \in I$ to state $j \in I$ in a single time step. More formally we say that a stochastic
-process $\left(X_n\right)_{n \ge 0}$ is a discrete time Markov chain with initial distribution
-$\lambda$ if
-\begin{enumerate}
-	\item $X_0$ has distribution $\lambda$ and
-	\item $P(X_{n+1} = i_{n+1} | X_0 = i_0, X_1 = i_1, ..., X_n = i_n) = p_{i_ni_{n+1}}$
-\end{enumerate}
-Once of the interesting properties of Markov chains are their stationary distributions. A 
-stationary distribution describes the proportion of time the process spends in each state.
-In our visualization it represents the size of states. The stationary distribution can be
-computed as the left eigenvector of $P$ with the corresponding eigenvalue 1.
-
-When drawing the hierarchy we need some way of aggregating states in the Markov chain. 
-Suppose we have two non-intersecting sets of states $A = \left\{j_1, j_2, ..., j_k\right\}$ and
-$B = \left\{i_1, i_2, ..., i_h\right\}$. Then we use the following formula to compute
-the transition probability from set $A$ to set $B$:
-\begin{equation}
-	\label{eq:dt-aggregation}
-	\begin{split}
-		p_{AB} = 
-		P(X_{n+1} \in A | X_n \in B) = 
-		\sum\limits_{j \in A}P(X_{n+1} = j | X_n \in B) = \\
-		\sum_{j \in A}\frac{P(X_{n+1} = j)P(X_n \in B | X_{n+1} = j)}{P(X_n \in B)} = 
-		\frac{\sum_{j \in A} \pi_j \sum_{i \in B}\frac{p_{ij}\pi_i}{\pi_j}}{\sum_{j \in B} \pi_i} = \\
-		\frac{\sum_{i \in B}\pi_i\sum_{j \in A}p_{ij}}{\sum_{j \in B} \pi_i}
-	\end{split}
-\end{equation}
-
-A natural way of interpolating discrete time steps $\left(p^n\right)_{n \in \mathbb{N}}$ is by the
-exponential function $\left(e^{tq}\right)_{t \in \mathbb{R}^{+}}$. Consider a finite state set $I$ and a stochastic
-matrix $P$. For any matrix $Q = (q_ij)_{i,j \in I}$, the series
-\begin{equation}
-	\sum_{k=0}^{\infty}\frac{Q^k}{k!}
-\end{equation}
-converges componentwise to $e^Q$. Now suppose that we can find a matrix $Q$ such that $e^Q = P$. Then
-$e^{nQ} = (e^Q)^n = P^n$, so $\left(e^{tq}\right)_{t \in \mathbb{R}^{+}}$ fills the gaps in the 
-discrete sequence.
-
-If we now set $P(t) = e^{tQ}$, then $P(t)$ has the following properties:
-\begin{enumerate}
-	\item $P(s+t) = P(s)P(t)$
-	\item $P(t)$ is the unique solution to equations $P'(t) = P(t)Q$ and $P'(t) = QP(t)$ with
-	initial condition $P(0) = I$.
-\end{enumerate}
-
-\subsection{Visualization}
-
 \end{comment}
+
 
 \section{Visualization and User Interaction}
 \label{sec:ui}
@@ -990,9 +865,9 @@ algorithm. An example of a rule describing the "Summer" state presented above is
 
 \begin{figure}[h!]
 	\centering
-	\makebox[\textwidth]{\includegraphics[width=200pt]{rules}}
+	\makebox[\textwidth]{\includegraphics[width=100pt]{rules}}
 	\caption{A rule extracted from the above presented decision tree describing the summer
-	middle level state of the England temperature dataset.}
+	middle level state of the England temperature dataset. \textcolor{red}{[TODO] daj boljso sliko}}
 	\label{fig:ui-rules}
 \end{figure}
 
@@ -1005,325 +880,60 @@ intersection on both its children.
 \section{Experimantal Results}
 \label{sec:experiment}
 
+In this section we conduct two experiments using synthetic and \textcolor{red}{real-world} datasets.
+
+The first experiment is designed to our transition modeling approach, while the second experiment is
+designed to evaluate the Markov chain partitioning method.
+
+\subsection{Experiment 1}
+\label{sec:experiment-sim}
+
+In the first experiment we generated a random block diagonal \textcolor{red}{not block diagonal, since everything is non-zero} transition rate matrix to represent the original Markov chain. Figure \ref{fig:rand-qmat} shows a heatmap of the generated matrix. We note that when drawing the matrix we set the diagonal elements to zero, since they contain the negative row sum and provide no additional information.
+
+\begin{figure}[h!]
+	\label{fig:rand-qmat}
+	\centering
+	\makebox[\textwidth]{\includegraphics[width=300pt]{q-heatmap}}
+	\caption{A heatmap of the generated transition rate matrix used as input to the Markov chain partitioning algorithm.}
+\end{figure}
+
+\subsection{Experiment 2}
+\label{sec:experiment-part}
+
+In the second experiment we evaluate our second contribution: approach for modeling state transitions based on the current value
+of pre-selected data streams. Our methodology models the transition rates in the current state based on the value of pre-selected
+data streams. We compare our approach to a baseline approach, where transition rates are extracted using using the maximum 
+likelihood estimation technique and no additional information is used to model transitions.
+
+To evaluate our approach, we generated simulated data of an aircraft in flight, where the states of our Markovian model are
+a discretization of the aircrafts tilt, toll and pan. As the control variable, we select an artificial signal indicating
+if the aircraft is about to enter a turn and the angle of the turn.
+The simulated data includes a total of \textcolor{red}{X} hours of the aircrafts flight containing \textcolor{red}{Y} data
+points. The aircraft performs a turn based on an exponential distribution with parameter $\lambda = \frac{1}{10}$ turns per
+minute.
+
+
+\begin{comment}
+\begin{enumerate}{}
+	\item We present a novel methodology for modeling multivariate continuously time-varying data streams
+	in a hierarchical manner providing a unique model of the several detail levels.
+	\item We present a novel approach for modeling state transitions in a Markov chain allowing
+	to observe the dynamics of the chain under alternate configurations.
+	\item We propose a recursive algorithm for partitioning recurrent continuous time Markov chains.
+\end{enumerate}
+\end{comment}
+
+
 \section{Conclusion and Future Work}
 \label{sec:conclusion}
 
-
-\begin{comment}
-By clicking on a state, the state becomes selected and its details are shown in the "Details"
-panel on the right side of figure \ref{fig:ui-initial}. The details panel allows the user
-to name the state which, we believe, increases the models interpretability. It also
-shows the distribution of all the parameters inside the state as well as the mean value
-of each parameter in the state. The mean value is highlighted red or green depending on
-how specific the value is for that state. If the value is gray it means that the
-value of the attribute is normal compared to the value of the same attribute in other 
-states. However, if the value is green or red, it indicates the value is the value is
-specific for this state compared to other states.
-
-This is achieved by classifying the instances of the selected state against instances off
-all the other states on the same level using a logistic regression model [TODO ref] and 
-extracting weights. Values highlighted green indicate a positive weight, while values
-highlighted red indicate a negative weight.
-\end{comment}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\begin{comment}
 \newpage
-
-We propose a suboptimal distribution to be used by each node, which is
-easy to compute and does not depend on the number of competing
-nodes. A natural candidate is an increasing geometric sequence, in
-which
-% Numbered Equation
-\begin{equation}
-\label{eqn:01}
-P(t)=\frac{b^{\frac{t+1}{T+1}}-b^{\frac{t}{T+1}}}{b-1},
-\end{equation}
-where $t=0,{\ldots}\,,T$, and $b$ is a number greater than $1$.
-
-In our algorithm, we use the suboptimal approach for simplicity and
-generality. We need to make the distribution of the selected back-off
-time slice at each node conform to what is shown in Equation
-(\ref{eqn:01}). It is implemented as follows: First, a random
-variable $\alpha$ with a uniform distribution within the interval
-$(0, 1)$ is generated on each node, then time slice $i$ is selected
-according to the following equation:
-% Unnumbered Equation
-\[
-i=\lfloor(T+1)\log_b[\alpha(b-1)+1]\rfloor.
-\]
-It can be easily proven that the distribution of $i$ conforms to Equation
-(\ref{eqn:01}).
-
-So protocols [Bahl 2002,Culler 2001,Zhou 2006,Adya 2001,Culler 2001;
-Tzamaloukas-01; Akyildiz-01] that use RTS/CTS
-controls\footnote{RTS/CTS controls are required to be implemented by
-802.11-compliant devices. They can be used as an optional mechanism
-to avoid Hidden Terminal Problems in the 802.11 standard and
-protocols based on those similar to [Akyildiz 2001] and
-[Adya 2001].} for frequency negotiation and reservation are not
-suitable for WSN applications, even though they exhibit good
-performance in general wireless ad hoc
-networks.
-
-% Head 3
-\subsubsection{Exclusive Frequency Assignment}
-
-In exclusive frequency assignment, nodes first exchange their IDs
-among two communication hops so that each node knows its two-hop
-neighbors' IDs. In the second broadcast, each node beacons all
-neighbors' IDs it has collected during the first broadcast period.
-
-% Head 4
-\paragraph{Eavesdropping}
-
-Even though the even selection scheme leads to even sharing of
-available frequencies among any two-hop neighborhood, it involves a
-number of two-hop broadcasts. To reduce the communication cost, we
-propose a lightweight eavesdropping scheme.
-
-\subsection{Basic Notations}
-
-As Algorithm~\ref{alg:one} states, for each frequency
-number, each node calculates a random number (${\textit{Rnd}}_{\alpha}$) for
-itself and a random number (${\textit{Rnd}}_{\beta}$) for each of its two-hop
-neighbors with the same pseudorandom number generator.
-% Algorithm
-\begin{algorithm}[t]
-\SetAlgoNoLine
-\KwIn{Node $\alpha$'s ID ($ID_{\alpha}$), and node $\alpha$'s
-neighbors' IDs within two communication hops.}
-\KwOut{The frequency number ($FreNum_{\alpha}$) node $\alpha$ gets assigned.}
-$index$ = 0; $FreNum_{\alpha}$ = -1\;
-\Repeat{$FreNum_{\alpha} > -1$}{
-        $Rnd_{\alpha}$ = Random($ID_{\alpha}$, $index$)\;
-        $Found$ = $TRUE$\;
-        \For{each node $\beta$ in $\alpha$'s two communication hops
-    }{
-      $Rnd_{\beta}$ = Random($ID_{\beta}$, $index$)\;
-      \If{($Rnd_{\alpha} < Rnd_{\beta}$) \text{or} ($Rnd_{\alpha}$ ==
-          $Rnd_{\beta}$ \text{and} $ID_{\alpha} < ID_{\beta}$)\;
-      }{
-        $Found$ = $FALSE$; break\;
-      }
-        }
-     \eIf{$Found$}{
-           $FreNum_{\alpha}$ = $index$\;
-         }{
-           $index$ ++\;
-     }
-      }
-\caption{Frequency Number Computation}
-\label{alg:one}
-\end{algorithm}
-
-Bus masters are divided into two disjoint sets, $\mathcal{M}_{RT}$
-and $\mathcal{M}_{NRT}$.
-% description
-\begin{description}
-\item[RT Masters]
-$\mathcal{M}_{RT}=\{ \vec{m}_{1},\dots,\vec{m}_{n}\}$ denotes the
-$n$ RT masters issuing real-time constrained requests. To model the
-current request issued by an $\vec{m}_{i}$ in $\mathcal{M}_{RT}$,
-three parameters---the recurrence time $(r_i)$, the service cycle
-$(c_i)$, and the relative deadline $(d_i)$---are used, with their
-relationships.
-\item[NRT Masters]
-$\mathcal{M}_{NRT}=\{ \vec{m}_{n+1},\dots,\vec{m}_{n+m}\}$ is a set
-of $m$ masters issuing nonreal-time constrained requests. In our
-model, each $\vec{m}_{j}$ in $\mathcal{M}_{NRT}$ needs only one
-parameter, the service cycle, to model the current request it
-issues.
-\end{description}
-
-Here, a question may arise, since each node has a global ID. Why
-don't we just map nodes' IDs within two hops into a group of
-frequency numbers and assign those numbers to all nodes within two
-hops?
-
-\section{Simulator}
-\label{sec:sim}
-
-If the model checker requests successors of a state which are not
-created yet, the state space uses the simulator to create the
-successors on-the-fly. To create successor states the simulator
-conducts the following steps.
-% enumerate
-\begin{enumerate}
-\item Load state into microcontroller model.
-\item Determine assignments needed for resolving nondeterminism.
-\item For each assignment.
-      \begin{enumerate}
-      \item either call interrupt handler or simulate effect of next instruction, or
-      \item evaluate truth values of atomic propositions.
-      \end{enumerate}
-\item Return resulting states.
-\end{enumerate}
-Figure~\ref{fig:one} shows a typical microcontroller C program that
-controls an automotive power window lift. The program is one of the
-programs used in the case study described in Section~\ref{sec:sim}.
-At first sight, the programs looks like an ANSI~C program. It
-contains function calls, assignments, if clauses, and while loops.
-% Figure
-\begin{figure}
-\centerline{\includegraphics{acmsmall-mouse}}
-\caption{Code before preprocessing.}
-\label{fig:one}
-\end{figure}
-
-\subsection{Problem Formulation}
-
-The objective of variable coalescence-based offset assignment is to find
-both the coalescence scheme and the MWPC on the coalesced graph. We start
-with a few definitions and lemmas for variable coalescence.
-
-% Enunciations
-\begin{definition}[Coalesced Node (C-Node)]A C-node is a set of
-live ranges (webs) in the AG or IG that are coalesced. Nodes within the same
-C-node cannot interfere with each other on the IG. Before any coalescing is
-done, each live range is a C-node by itself.
-\end{definition}
-
-\begin{definition}[C-AG (Coalesced Access Graph)]The C-AG is the access
-graph after node coalescence, which is composed of all C-nodes and C-edges.
-\end{definition}
-
-\begin{lemma}
-The C-MWPC problem is NP-complete.
-\end{lemma}
-\begin{proof} C-MWPC can be easily reduced to the MWPC problem assuming a
-coalescence graph without any edge or a fully connected interference graph.
-Therefore, each C-node is an uncoalesced live range after value separation
-and C-PC is equivalent to PC. A fully connected interference graph is made
-possible when all live ranges interfere with each other. Thus, the C-MWPC
-problem is NP-complete.
-\end{proof}
-
-\begin{lemma}[Lemma Subhead]The solution to the C-MWPC problem is no
-worse than the solution to the MWPC.
-\end{lemma}
-\begin{proof}
-Simply, any solution to the MWPC is also a solution to the
-C-MWPC. But some solutions to C-MWPC may not apply to the MWPC (if any
-coalescing were made).
-\end{proof}
-
-\section{Performance Evaluation}
-
-During all the experiments, the Geographic Forwarding (GF)
-[Akyildiz 2001] routing protocol is used. GF exploits geographic
-information of nodes and conducts local data-forwarding to achieve
-end-to-end routing. Our simulation is
-configured according to the settings in
-Table~\ref{tab:one}. Each run lasts for 2 minutes and
-repeated 100 times. For each data value we present in the results,
-we also give its 90\% confidence interval.
-% Table
-\begin{table}%
-\tbl{Simulation Configuration\label{tab:one}}{%
-\begin{tabular}{|l|l|}
-\hline
-TERRAIN{$^a$}   & (200m$\times$200m) Square\\\hline
-Node Number     & 289\\\hline
-Node Placement  & Uniform\\\hline
-Application     & Many-to-Many/Gossip CBR Streams\\\hline
-Payload Size    & 32 bytes\\\hline
-Routing Layer   & GF\\\hline
-MAC Layer       & CSMA/MMSN\\\hline
-Radio Layer     & RADIO-ACCNOISE\\\hline
-Radio Bandwidth & 250Kbps\\\hline
-Radio Range     & 20m--45m\\\hline
-\end{tabular}}
-\begin{tabnote}%
-\Note{Source:}{This is a table
-sourcenote. This is a table sourcenote. This is a table
-sourcenote.}
-\vskip2pt
-\Note{Note:}{This is a table footnote.}
-\tabnoteentry{$^a$}{This is a table footnote. This is a
-table footnote. This is a table footnote.}
-\end{tabnote}%
-\end{table}%
-
-\section{Conclusions}
-
-In this article, we develop the first multifrequency MAC protocol for
-WSN applications in which each device adopts a
-single radio transceiver. The different MAC design requirements for
-WSNs and general wireless ad-hoc networks are
-compared, and a complete WSN multifrequency MAC design (MMSN) is
-put forth. During the MMSN design, we analyze and evaluate different
-choices for frequency assignments and also discuss the nonuniform
-back-off algorithms for the slotted media access design.
-
-% Start of "Sample References" section
-
-
-
-\section{Typical references in new ACM Reference Format}
-A paginated journal article \cite{Abril07}, an enumerated
-journal article \cite{Cohen07}, a reference to an entire issue \cite{JCohen96},
-a monograph (whole book) \cite{Kosiur01}, a monograph/whole book in a series (see 2a in spec. document)
-\cite{Harel79}, a divisible-book such as an anthology or compilation \cite{Editor00}
-followed by the same example, however we only output the series if the volume number is given
-\cite{Editor00a} (so Editor00a's series should NOT be present since it has no vol. no.),
-a chapter in a divisible book \cite{Spector90}, a chapter in a divisible book
-in a series \cite{Douglass98}, a multi-volume work as book \cite{Knuth97},
-an article in a proceedings (of a conference, symposium, workshop for example)
-(paginated proceedings article) \cite{Andler79}, a proceedings article
-with all possible elements \cite{Smith10}, an example of an enumerated
-proceedings article \cite{VanGundy07},
-an informally published work \cite{Harel78}, a doctoral dissertation \cite{Clarkson85},
-a master's thesis: \cite{anisi03}, an online document / world wide web resource \cite{Thornburg01}, \cite{Ablamowicz07},
-\cite{Poker06}, a video game (Case 1) \cite{Obama08} and (Case 2) \cite{Novak03}
-and \cite{Lee05} and (Case 3) a patent \cite{JoeScientist001},
-work accepted for publication \cite{rous08}, 'YYYYb'-test for prolific author
-\cite{SaeediMEJ10} and \cite{SaeediJETC10}. Other cites might contain
-'duplicate' DOI and URLs (some SIAM articles) \cite{Kirschmer:2010:AEI:1958016.1958018}.
-Boris / Barbara Beeton: multi-volume works as books
-\cite{MR781536} and \cite{MR781537}.
-
-\end{comment}
 
 % Appendix
 \appendix
 \section*{APPENDIX}
 
 \setcounter{section}{1}
-\begin{comment}
-In this appendix, we measure
-the channel switching time of Micaz [CROSSBOW] sensor devices.
-In our experiments, one mote alternatingly switches between Channels
-11 and 12. Every time after the node switches to a channel, it sends
-out a packet immediately and then changes to a new channel as soon
-as the transmission is finished. We measure the
-number of packets the test mote can send in 10 seconds, denoted as
-$N_{1}$. In contrast, we also measure the same value of the test
-mote without switching channels, denoted as $N_{2}$. We calculate
-the channel-switching time $s$ as
-\begin{eqnarray}%
-s=\frac{10}{N_{1}}-\frac{10}{N_{2}}. \nonumber
-\end{eqnarray}%
-By repeating the experiments 100 times, we get the average
-channel-switching time of Micaz motes: 24.3$\mu$s.
-\end{comment}
 
 \appendixhead{ZHOU}
 
@@ -1371,7 +981,11 @@ We then have several options to measure the distance between $Q$ and $\tilde{Q}$
 \end{equation}
 
 \begin{equation}
-	D_2(Q, \tilde{Q}) = \int\limits_{t = 0}^{\infty}\sum_{i=1}^{n}\sum_{j=1}^{n}p_{ij}(t)\log{ \frac{p_{ij}(t)}{\tilde{p_{ij}}(t)}} dt
+	D_3(Q, \tilde{Q}) = \int\limits_{t = 0}^{\infty}\sum_{i=1}^{n}\sum_{j=1}^{n}p_{ij}(t)\log{ \frac{p_{ij}(t)}{\tilde{p_{ij}}(t)}} dt
+\end{equation}
+
+\begin{equation}
+	I(Q, \tilde{Q}) = \lim_{h \downarrow 0}\frac{d}{dh}\sum_{i=1}^{n}\sum_{j=1}^{n}p_{ij}(h)\log{ \frac{p_{ij}(h)}{\tilde{p_{ij}}(h)}}
 \end{equation}
 
 Where $p_{ij}(t) = \left(P(t)\right)_{ij} = \left(e^{Qt}\right)_{ij} = p_i'e^{Qt}p_j$ where $p_i$ is a vector with zeros everywhere except on the $i$-th position.
@@ -1409,6 +1023,98 @@ $p_{\phi(i)\phi(j)}(t)$ can be written as:
 	&=& \frac{1}{\pi_{\psi(i)}} \sum_{h \in \psi(i)}\pi_h\sum_{l \in \psi(j)}\sum_{k \in X} v_{hk}e^{\lambda_k t}u_{kl}
 \end{eqnarray}
 where $\pi_{\psi(i)} = \sum_{k \in \psi(i)}\pi_k$.
+
+\subsection{Solving $I(Q, \tilde{Q})$}
+\label{sec:rel-entropy-rate}
+
+We look at the equation for small $h$ for comparing the two chains in state space $Y$:
+
+\begin{eqnarray}
+	\label{eq:rel-entropy-orig}
+	I(P(h), \tilde{P}(h)) &=& \sum_{\psi(i)}\sum_{\psi(j)}\pi_{\psi(i)}p_{\psi(i)\psi(j)}(h)\log\frac{p_{\psi(i)\psi(j)}(h)}{\tilde{p}_{\psi(i)\psi(j)}(h)}
+\end{eqnarray}
+
+We will modify this equation so that the original chain starts from a specific state $i$. The probability of starting from
+$i$ if we know we are in $\psi(i)$ is $\frac{\pi_i}{\pi_{\psi(i)}}$. We modify equation \ref{eq:rel-entropy-orig}:
+
+\begin{eqnarray}
+	\label{eq:rel-entropy-mod}
+	I(P(h), \tilde{P}(h))
+		&=& \sum_{\psi(i)}\sum_{\psi(j)}\pi_{\psi(i)}\sum_{i \in \psi(i)}\frac{\pi_i}{\pi_{\psi(i)}}p_{i\psi(j)}(h)\log\frac{p_{i\psi(j)}(h)}{\tilde{p}_{\psi(i)\psi(j)}(h)} \\ \nonumber
+		&=& \sum_{i}\sum_{\psi(j)}\pi_{i}p_{i\psi(j)}(h)\log\frac{p_{i\psi(j)}(h)}{\tilde{p}_{\psi(i)\psi(j)}(h)}
+\end{eqnarray}
+
+We know that $p_{i\psi(j)}(h) = \sum_{j \in \psi(j)}p_{ij}(h)$:
+
+\begin{eqnarray}
+	I(P(h), \tilde{P}(h))
+		&=& \sum_{i}\sum_{\psi(j)}\pi_{i}\sum_{j \in \psi(j)}p_{ij}(h)\log\frac{\sum_{j \in \psi(j)}p_{ij}(h)}{\tilde{p}_{\psi(i)\psi(j)}(h)}
+\end{eqnarray}
+
+Now lets calculate this in terms of intensities $q_{ij}$. For small $h$ we can approximate $p_{ij}(h) \approx \delta_{ij} + q_{ij}h$, where 
+$\delta$ is the Dirac function:
+
+\begin{eqnarray}
+	I(P(h), \tilde{P}(h))
+		&\approx& \sum_{i}\sum_{\psi(j)}\pi_{i}\sum_{j \in \psi(j)}(\delta_{ij} + q_{ij}h)\log\frac{\sum_{j \in \psi(j)}(\delta_{ij} + q_{ij}h)}{\delta_{\psi(i)\psi(j)} + \tilde{q}_{\psi(i)\psi(j)}h}	\\	\nonumber	
+		&=& \sum_{i}\sum_{\psi(j)} S_{i\psi(j)}
+\end{eqnarray}
+
+We now have 3 cases.
+
+\subsubsection{Case 1: $i \neq j$, $i \not\in \psi(j)$}
+
+In this case $\delta_{ij} = 0$ and $\delta_{\psi(i)\psi(j)} = 0$ and we get:
+
+\begin{eqnarray}
+	S_{i\psi(j)}
+		&\approx& \pi_{i}\sum_{j \in \psi(j)}q_{ij}h\log\frac{\sum_{j \in \psi(j)}q_{ij}h}{\tilde{q_{ij}}h}	\\ \nonumber
+		&=& \pi_{i}\sum_{j \in \psi(j)}q_{ij}h\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{\psi(i)\psi(j)}}
+\end{eqnarray}
+
+Taking the derivative we get:
+\begin{eqnarray}
+	\frac{d}{dh}S_{i\psi(j)}
+		&\approx& \pi_{i}\sum_{j \in \psi(j)}q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{\psi(i)\psi(j)}}
+\end{eqnarray}
+
+Sending $h \downarrow 0$ we get the solution:
+\begin{eqnarray}
+	\lim_{h \downarrow 0}\frac{d}{dh}S_{i\psi(j)}
+		&\approx& \pi_{i}\sum_{j \in \psi(j)}q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{\psi(i)\psi(j)}}
+\end{eqnarray}
+
+
+\subsubsection{Case 2: $i \neq j$, $i \in \psi(j)$}
+\label{sec:case2}
+
+In this case $\sum_{j \in \psi(j)}\delta_{ij} = 1$, $\delta_{\psi(i)\psi(j)} = 1$ and we get:
+
+\begin{eqnarray}
+	S_{i\psi(j)}
+		&\approx& \pi_{i}(1 + h\sum_{j \in \psi(j)}q_{ij})\log\frac{1 + h\sum_{j \in \psi(j)}q_{ij}}{1 + \tilde{q_{\psi(i)\psi(j)}}h}	\\ \nonumber
+	\frac{d}{dh}S_{i\psi(j)}
+		&=& \pi_{i}\left[ \sum_{j \in \psi(j)}q_{ij}\log\frac{1 + h\sum_{j \in \psi(j)}q_{ij}}{1 + \tilde{q_{ij}}h} + \left( \sum_{j \in \psi(j)}q_{ij} - \tilde{q}_{\psi(i)\psi(j)}\frac{1 + h\sum_{j \in \psi(j)}q_{ij}}{1 + \tilde{q}_{\psi(i)\psi(j)}h} \right) \right]	\\ 	\nonumber
+	\lim_{h \downarrow 0} \frac{d}{dh}S_{i\psi(j)}
+		&=& \pi_{i}\left( \sum_{j \in \psi(j)}q_{ij} - \tilde{q}_{\psi(i)\psi(j)} \right)	\\ 	\nonumber
+\end{eqnarray}
+
+\subsubsection{Case 3: $i = j \Rightarrow i \in \psi(j)$}
+
+In this case $\delta_{ij} = 1$ and $\sum_{j \in \psi(j)}\delta_{ij} = 1$, $\delta_{\psi(i)\psi(j)} = 1$ and we get the same as \ref{sec:case2}.
+
+\subsubsection{Case 4: $i \neq j$, $\exists j \in \psi(j): j \in \psi(i)$}
+
+In this case $\delta_{ij} = 0$ and $\sum_{j \in \psi(j)}\delta_{ij} = 1$, $\delta_{\psi(i)\psi(j)} = 1$ and we get the same as \ref{sec:case2}.
+
+\subsubsection{FINAL SOLUTION}
+
+\begin{eqnarray}
+	I(Q, \tilde{Q})
+			&=& \sum_{i}\left[\sum_{\psi(j): i \not\in \psi(j)}\pi_{i}\sum_{j \in \psi(j)}q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{\psi(i)\psi(j)}} + \pi_{i}\left( \sum_{j \in \psi(i)}q_{ij} - \tilde{q}_{\psi(i)\psi(i)} \right) \right]	\\	\nonumber
+			&=& \sum_{\substack{\psi(i),\psi(j) \\ \psi(j) \neq \psi(i)}}\sum_{\substack{i \in \psi(i) \\ j \in \psi(j)}}\pi_i q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{\psi(i)\psi(j)}} + \sum_{i}\pi_i\left(\sum_{j \in \psi(i)}q_{ij} - \tilde{q}_{\psi(i)\psi(i)}\right)
+\end{eqnarray}
+
 
 \subsection{Solving $D_1$}
 

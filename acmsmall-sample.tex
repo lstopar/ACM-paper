@@ -130,7 +130,7 @@ visual representation of the dynamics on multiple aggregation levels.
 % We no longer use \terms command
 %\terms{Design, Algorithms, Performance}
 
-\keywords{\textcolor{red}{[TODO]}}
+\keywords{data stream, Markov chains, clustering, data mining, visualization}
 
 \acmformat{Luka Stopar, Primoz Skraba, Dunja Mladenic, Marko Grobelnik, 2015. A Multi-Level 
 Methodology for Explaining Data Streams.}
@@ -275,17 +275,16 @@ which the user would like to use when modeling the data. The last step can inclu
 generic features like current derivative or some domain specific calculation like perhaps
 the number of times an attribute was above a threshold in a domain specific time window.
 
-\subsection{State Identification}
+\subsection{Data Stream Partitioning}
 
 Once the data is represented as feature vectors it is ready to be modeled. Our next step includes identifying 
 typical low-level system states from the feature vectors created in step 1. We do this by partitioning 
-the feature vectors and associating each state with a partition. There are many partitioning algorithms 
+the feature vectors and associating each state with a single partition. There are many partitioning algorithms 
 available in the literature including algorithms that produce hierarchical partitions. In general however
 the computational complexity of these algorithms is $O(n^2)$ which renders them unsuitable for big data
 scenarios.
 We therefore propose a flat partition using k-means resulting in a Voronoi diagram on the data space and
-enabling us to construct states by assigning feature vectors to the partition with the nearest centroid
-and constructing a hierarchical representation later in the process.
+enabling us to construct states by assigning feature vectors to the partition with the nearest centroid, constructing a hierarchical representation later in the process.
 We then collect statistics in the states including
 \begin{list}{-}{}
 	\item Distribution of attributes - we store the distribution of all the attributes in a state as a
@@ -294,10 +293,7 @@ We then collect statistics in the states including
 	\item Mean value and median of each attribute inside a state.
 	\item Percentiles for each attribute.
 \end{list}
-These statistics can be used when the model is applied in real-time and provide a clustering-based anomaly detection
-technique.
-
- and later aggregate it do obtain a hierarchical partition.
+These statistics can be used when the model is applied in real-time and provide a clustering-based anomaly detection technique.
 
 \begin{comment}
 \subsection{State Aggregation}
@@ -353,10 +349,6 @@ proposes many partitioning algorithms.
 unsupervised machine learning procedure, which organizes a collection of patterns,
 usually represented
 \end{comment}
-
-\subsection{Data Stream Partitioning}
-
-[TODO zamenjaj zgornji naslov s trenutnim]
 
 \subsection{Modeling Transitions}
 
@@ -491,6 +483,48 @@ The bi-partition function $\phi$ is then constructed using the following rule:
 
 Since the bi-partitioning problem can be solved using the second eigenvector of the transformed
 Laplacian we can now present a recursive algorithm for the partitioning of continuous time Markov chains.
+
+The algorithm starts with an initial partition with a single super state containing all 
+the states of the origin chain. On the $n$-th iteration the algorithm assumes that $n$ 
+partitions are already given. The objective then is to select the best partition to split,
+obtaining $n+1$ partitions. We denote $Q^{(i)}$ to be the transition rate matrix of a Markov 
+chain within the $i$-th partition. A bi-partition of $Q^{(i)}$ then provides $n+1$ partitions
+, which we denote $Q^(i)_{n+1}$. The objective of the $i$-th step then is to select the 
+best partition $Q^(i)$ to split. We select the partition which minimizes the following criterion:
+
+\begin{equation}
+	\argmin_{i \in \{1, 2, ..., n\}} D(Q||Q_{n+1}^{(i)})
+\end{equation}
+Where $D(Q||Q_{n+1}^{(i)})$ represents the relative entropy rate and provides a measure of "distance"
+between the aggregated Markov chain and the original. The relative entropy rate between two
+continuous time Markov chains on the same state space $X$ is defined as:
+
+\begin{equation}
+	\label{eq:rel-entropy-rate}
+	D(Q|\tilde{Q}) = \sum_{\substack{i,j \in X \\ i \neq j}} \pi_i q_{ij}\log\frac{q_{ij}}{\tilde{q}_{ij}} + \sum_{i \in X}\pi_i\left( q_{ii} - \tilde{q}_{ii} \right)
+\end{equation}
+
+However, in our case the Markov chains do not live in the same state space, so then cannot be compared directly using equation \ref{eq:rel-entropy-rate}. We compare the original Markov chain $Q$ to the partitioned Markov chain $\tilde{Q}$ defined by a surjective partitioning function $\phi: X \rightarrow Y$ on state space $Y$.
+If we define $\phi = \psi^{-1} \circ \psi$, then we are interested in the information that is gained by using
+the conditional probability $P(X_{t+h} \in \phi(j) | X_t = i)$ instead of $P(X_{t+h} \in \phi(j) | X_t \in \phi(i))$. This results in the following relative entropy rate measure:
+
+\begin{equation}
+	\label{eq:rel-entropy-rate2}
+	D(Q|\tilde{Q}) = \sum_{\substack{\psi(i),\psi(j) \in Y \\ \psi(j) \neq \psi(i)}}\sum_{\substack{i \in \psi(i) \\ j \in \psi(j)}}\pi_i q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{\psi(i)\psi(j)}} + \sum_{i \in X}\pi_i\left(\sum_{j \in \psi(i)}q_{ij} - \tilde{q}_{\psi(i)\psi(i)}\right)
+\end{equation}
+We refer the reader to Appendix \ref{sec:rel-entropy-rate} for more details.
+
+\newpage
+
+\begin{comment}
+In our specific case we have a Markov chain $Q$ which is partitioned into aggregated states, where the 
+partition is defined by a surjective partitioning function $\phi: X \rightarrow Y$. We compute the "distance"
+between the two 
+
+
+  of the 
+
+
 We first define the entropy rate function
 \begin{equation}
 	D(Q||\tilde{Q}) = \sum_{A \in \Ima \phi}\sum_{B \in \Ima \phi}\sum_{i \in \phi^{-1}(A)}\pi_i \sum_{j \in \phi^{-1}(B)} q_{ij} \log \frac{\sum_{j \in \phi^{-1}(B)} q_{ij}}{\tilde{q}_{AB}}
@@ -513,6 +547,7 @@ partition $Q^{(i)}$ to split. This is achieved by minimizing the following crite
 \begin{equation}
 	\argmin_{i \in \{1, 2, ..., n\}} D(Q||Q_{n+1}^{(i)})
 \end{equation}
+\end{comment}
 
 
 \newpage
@@ -1338,7 +1373,7 @@ Italia for providing specifications about the application scenario.
 
 % Bibliography
 \bibliographystyle{ACM-Reference-Format-Journals}
-\bibliography{acmsmall-sample-bibfile}
+\bibliography{paper}
                              % Sample .bib file with references that match those in
                              % the 'Specifications Document (V1.5)' as well containing
                              % 'legacy' bibs and bibs with 'alternate codings'.
@@ -1371,7 +1406,11 @@ We then have several options to measure the distance between $Q$ and $\tilde{Q}$
 \end{equation}
 
 \begin{equation}
-	D_2(Q, \tilde{Q}) = \int\limits_{t = 0}^{\infty}\sum_{i=1}^{n}\sum_{j=1}^{n}p_{ij}(t)\log{ \frac{p_{ij}(t)}{\tilde{p_{ij}}(t)}} dt
+	D_3(Q, \tilde{Q}) = \int\limits_{t = 0}^{\infty}\sum_{i=1}^{n}\sum_{j=1}^{n}p_{ij}(t)\log{ \frac{p_{ij}(t)}{\tilde{p_{ij}}(t)}} dt
+\end{equation}
+
+\begin{equation}
+	I(Q, \tilde{Q}) = \lim_{h \downarrow 0}\frac{d}{dh}\sum_{i=1}^{n}\sum_{j=1}^{n}p_{ij}(h)\log{ \frac{p_{ij}(h)}{\tilde{p_{ij}}(h)}}
 \end{equation}
 
 Where $p_{ij}(t) = \left(P(t)\right)_{ij} = \left(e^{Qt}\right)_{ij} = p_i'e^{Qt}p_j$ where $p_i$ is a vector with zeros everywhere except on the $i$-th position.
@@ -1409,6 +1448,97 @@ $p_{\phi(i)\phi(j)}(t)$ can be written as:
 	&=& \frac{1}{\pi_{\psi(i)}} \sum_{h \in \psi(i)}\pi_h\sum_{l \in \psi(j)}\sum_{k \in X} v_{hk}e^{\lambda_k t}u_{kl}
 \end{eqnarray}
 where $\pi_{\psi(i)} = \sum_{k \in \psi(i)}\pi_k$.
+
+\subsection{Solving $I(Q, \tilde{Q})$}
+
+We look at the equation for small $h$ for comparing the two chains in state space $Y$:
+
+\begin{eqnarray}
+	\label{eq:rel-entropy-orig}
+	I(P(h), \tilde{P}(h)) &=& \sum_{\psi(i)}\sum_{\psi(j)}\pi_{\psi(i)}p_{\psi(i)\psi(j)}(h)\log\frac{p_{\psi(i)\psi(j)}(h)}{\tilde{p}_{\psi(i)\psi(j)}(h)}
+\end{eqnarray}
+
+We will modify this equation so that the original chain starts from a specific state $i$. The probability of starting from
+$i$ if we know we are in $\psi(i)$ is $\frac{\pi_i}{\pi_{\psi(i)}}$. We modify equation \ref{eq:rel-entropy-orig}:
+
+\begin{eqnarray}
+	\label{eq:rel-entropy-mod}
+	I(P(h), \tilde{P}(h))
+		&=& \sum_{\psi(i)}\sum_{\psi(j)}\pi_{\psi(i)}\sum_{i \in \psi(i)}\frac{\pi_i}{\pi_{\psi(i)}}p_{i\psi(j)}(h)\log\frac{p_{i\psi(j)}(h)}{\tilde{p}_{\psi(i)\psi(j)}(h)} \\ \nonumber
+		&=& \sum_{i}\sum_{\psi(j)}\pi_{i}p_{i\psi(j)}(h)\log\frac{p_{i\psi(j)}(h)}{\tilde{p}_{\psi(i)\psi(j)}(h)}
+\end{eqnarray}
+
+We know that $p_{i\psi(j)}(h) = \sum_{j \in \psi(j)}p_{ij}(h)$:
+
+\begin{eqnarray}
+	I(P(h), \tilde{P}(h))
+		&=& \sum_{i}\sum_{\psi(j)}\pi_{i}\sum_{j \in \psi(j)}p_{ij}(h)\log\frac{\sum_{j \in \psi(j)}p_{ij}(h)}{\tilde{p}_{\psi(i)\psi(j)}(h)}
+\end{eqnarray}
+
+Now lets calculate this in terms of intensities $q_{ij}$. For small $h$ we can approximate $p_{ij}(h) \approx \delta_{ij} + q_{ij}h$, where 
+$\delta$ is the Dirac function:
+
+\begin{eqnarray}
+	I(P(h), \tilde{P}(h))
+		&\approx& \sum_{i}\sum_{\psi(j)}\pi_{i}\sum_{j \in \psi(j)}(\delta_{ij} + q_{ij}h)\log\frac{\sum_{j \in \psi(j)}(\delta_{ij} + q_{ij}h)}{\delta_{\psi(i)\psi(j)} + \tilde{q}_{\psi(i)\psi(j)}h}	\\	\nonumber	
+		&=& \sum_{i}\sum_{\psi(j)} S_{i\psi(j)}
+\end{eqnarray}
+
+We now have 3 cases.
+
+\subsubsection{Case 1: $i \neq j$, $i \not\in \psi(j)$}
+
+In this case $\delta_{ij} = 0$ and $\delta_{\psi(i)\psi(j)} = 0$ and we get:
+
+\begin{eqnarray}
+	S_{i\psi(j)}
+		&\approx& \pi_{i}\sum_{j \in \psi(j)}q_{ij}h\log\frac{\sum_{j \in \psi(j)}q_{ij}h}{\tilde{q_{ij}}h}	\\ \nonumber
+		&=& \pi_{i}\sum_{j \in \psi(j)}q_{ij}h\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{\psi(i)\psi(j)}}
+\end{eqnarray}
+
+Taking the derivative we get:
+\begin{eqnarray}
+	\frac{d}{dh}S_{i\psi(j)}
+		&\approx& \pi_{i}\sum_{j \in \psi(j)}q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{\psi(i)\psi(j)}}
+\end{eqnarray}
+
+Sending $h \downarrow 0$ we get the solution:
+\begin{eqnarray}
+	\lim_{h \downarrow 0}\frac{d}{dh}S_{i\psi(j)}
+		&\approx& \pi_{i}\sum_{j \in \psi(j)}q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{\psi(i)\psi(j)}}
+\end{eqnarray}
+
+
+\subsubsection{Case 2: $i \neq j$, $i \in \psi(j)$}
+\label{sec:case2}
+
+In this case $\sum_{j \in \psi(j)}\delta_{ij} = 1$, $\delta_{\psi(i)\psi(j)} = 1$ and we get:
+
+\begin{eqnarray}
+	S_{i\psi(j)}
+		&\approx& \pi_{i}(1 + h\sum_{j \in \psi(j)}q_{ij})\log\frac{1 + h\sum_{j \in \psi(j)}q_{ij}}{1 + \tilde{q_{\psi(i)\psi(j)}}h}	\\ \nonumber
+	\frac{d}{dh}S_{i\psi(j)}
+		&=& \pi_{i}\left[ \sum_{j \in \psi(j)}q_{ij}\log\frac{1 + h\sum_{j \in \psi(j)}q_{ij}}{1 + \tilde{q_{ij}}h} + \left( \sum_{j \in \psi(j)}q_{ij} - \tilde{q}_{\psi(i)\psi(j)}\frac{1 + h\sum_{j \in \psi(j)}q_{ij}}{1 + \tilde{q}_{\psi(i)\psi(j)}h} \right) \right]	\\ 	\nonumber
+	\lim_{h \downarrow 0} \frac{d}{dh}S_{i\psi(j)}
+		&=& \pi_{i}\left( \sum_{j \in \psi(j)}q_{ij} - \tilde{q}_{\psi(i)\psi(j)} \right)	\\ 	\nonumber
+\end{eqnarray}
+
+\subsubsection{Case 3: $i = j \Rightarrow i \in \psi(j)$}
+
+In this case $\delta_{ij} = 1$ and $\sum_{j \in \psi(j)}\delta_{ij} = 1$, $\delta_{\psi(i)\psi(j)} = 1$ and we get the same as \ref{sec:case2}.
+
+\subsubsection{Case 4: $i \neq j$, $\exists j \in \psi(j): j \in \psi(i)$}
+
+In this case $\delta_{ij} = 0$ and $\sum_{j \in \psi(j)}\delta_{ij} = 1$, $\delta_{\psi(i)\psi(j)} = 1$ and we get the same as \ref{sec:case2}.
+
+\subsubsection{FINAL SOLUTION}
+
+\begin{eqnarray}
+	I(Q, \tilde{Q})
+			&=& \sum_{i}\left[\sum_{\psi(j): i \not\in \psi(j)}\pi_{i}\sum_{j \in \psi(j)}q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{\psi(i)\psi(j)}} + \pi_{i}\left( \sum_{j \in \psi(i)}q_{ij} - \tilde{q}_{\psi(i)\psi(i)} \right) \right]	\\	\nonumber
+			&=& \sum_{\substack{\psi(i),\psi(j) \\ \psi(j) \neq \psi(i)}}\sum_{\substack{i \in \psi(i) \\ j \in \psi(j)}}\pi_i q_{ij}\log\frac{\sum_{j \in \psi(j)}q_{ij}}{\tilde{q}_{\psi(i)\psi(j)}} + \sum_{i}\pi_i\left(\sum_{j \in \psi(i)}q_{ij} - \tilde{q}_{\psi(i)\psi(i)}\right)
+\end{eqnarray}
+
 
 \subsection{Solving $D_1$}
 
