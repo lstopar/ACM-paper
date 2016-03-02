@@ -9,6 +9,12 @@ U.~C. Benz, P.~Hofmann, G.~Willhauck, I.~Lingenfelder, and M.~Heynen.
 \newblock Integration of Geodata and Imagery for Automated Refinement and
   Update of Spatial Databases.
 
+\bibitem{4015421}
+Q.~Cui, M.~Ward, E.~Rundensteiner, and J.~Yang.
+\newblock Measuring data abstraction quality in multiresolution visualizations.
+\newblock {\em IEEE Transactions on Visualization and Computer Graphics},
+  12(5):709--716, Sept 2006.
+
 \bibitem{5746509}
 K.~Deng, P.~G. Mehta, and S.~P. Meyn.
 \newblock Optimal kullback-leibler aggregation via spectral theory of markov
@@ -22,6 +28,20 @@ B.~Fortuna, J.~Rupnik, J.~Brank, C.~Fortuna, V.~Jovanoski, and M.~Karlovcec.
   and unstructured data.
 \newblock In {\em Software Engineering for Machine Learning Workshop, Neural
   Information Processing Systems}, 2014.
+
+\bibitem{Fua:2000:SBM:614278.614457}
+Y.-H. Fua, M.~O. Ward, and E.~A. Rundensteiner.
+\newblock Structure-based brushes: A mechanism for navigating hierarchically
+  organized data and information spaces.
+\newblock {\em IEEE Transactions on Visualization and Computer Graphics},
+  6(2):150--159, Apr. 2000.
+
+\bibitem{729555}
+C.-S. Jeong and A.~Pang.
+\newblock Reconfigurable disc trees for visualizing large hierarchical
+  information space.
+\newblock In {\em Information Visualization, 1998. Proceedings. IEEE Symposium
+  on}, pages 19--25, 149, Oct 1998.
 
 \bibitem{norris1998markov}
 J.~Norris.

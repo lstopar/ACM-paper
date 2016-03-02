@@ -1,3 +1,21 @@
+Large multivariate datasets have become common in many applications, including production lines,
+monitoring systems, bioinformatics and social sciences. As the number of observations increases,
+existing tools become cluttered and unresponsive. This clutter saturates visualization and hinders
+data analysts as large response times make interactive exploration difficult.
+
+Many techniques have been proposed in the literature that address this scalability problem.
+They can generally be classified into two groups: data abstraction and clutter reduction 
+techniques.
+
+Techniques for data abstraction used in visualization include filtering [TODO cite], clustering
+and sampling [TODO cite].
+
+Clutter reduction assigns more space to interesting data and tries to hide less interesting data.
+The most common techniques for clutter reduction include zooming and distortion.
+
+Hierarchical structures are used in many real-world applications, as they are flexible in storing information
+and allow the user to zoom into detail high detail levels, while hiding these details on the upper levels.
+
 \begin{itemize}
 	\item \cite{5746509} present a recursive bi-partitioning algorithm for partitioning discrete-time Markov chains. The 
 	algorithm uses Kullback-Leibler divergence rate to measure the difference between the original Markov
@@ -11,4 +29,20 @@
 	timescales. This is done by spectral clustering.
 	\item \cite{Benz2004239} present a multi-resolution framework for analysis of image data by exploring a hierarchical
 	image object network and representing strongly linked objects, using polygons and fuzzy systems.
+	\item \cite{4015421} Investigate data abstraction quality measures in multiresolution visualization systems. Spcifically, they propose
+	a histogram difference measure and a Nearest neighbor measure to measure the quality of the abstraction.
+	\item \textcolor{red}{[TODO Bertini and Santucci [7] present a quality measure for sampling and apply it to finding the optimal sampling level]}
+	\item \cite{Fua:2000:SBM:614278.614457} Brushing consists of painting sections of the display using a 
+	mouse or stylus to indicate the data elements to be selected. The paper presents a technique called
+	structure-based brushing, which can be used to perform selection in data sets organized via hierarchical clustering
+	and partitioning algorithms. Their brushing mechanism serves to select subsets of the hierarchical structure
+	for further analysis. For the level of detail, they use either: cluster size, level number or the clusters' volume.
+	They can then traverse the hierarchy based on this level.
+	\item \cite{729555} present a technique called
+	reconfigurable disc trees for visualizing large hierarchical data sets. Each node is associated with a disc around which 
+	its children are placed. The node of the tree is located at the apex of a cone and all hte children are arranged around
+	the circular base of hte cone.
+	\item \textcolor{red}{Hierarchical Parallel Coordinates}
+	\item \textcolor{red}{Tree Map}
+	\item \textcolor{red}{Categorical (hierarchical view)} [v brushes reference [8], [12], [14]]
 \end{itemize}
