@@ -1,0 +1,22 @@
+\begin{itemize}
+	\item Preprocessing
+	\item Initial state construction (State Identification)
+	\item Aggregation (State Aggregation)
+	\item Transition probabililties (Modeling transitions)
+\end{itemize}
+
+Be begin this section with an overview of our multi-scale methodology shown in Figure \ref{fig:methodology}.
+The methodology starts by aggregating and resampling the data streams, interpolating wherever needed. This
+first step is critical for further processing as it produces feature vectors, used in later steps of the
+methodology. Our next step includes identifying typical low-level states from the feature vectors
+created in step one. We achieve this by partitioning the feature vectors and associating each state
+with a single partition. While the literature suggest many hierarchical partitioning methods, including
+those that produce a hierarchical partition, their computational complexity is $O(n^2)$ which
+renders them unsuitable for big data scenarios. We therefore propose a flat partition of the data space,
+constructing the hierarchy later in the process.
+
+The next step includes modeling transitions. Our methodology models transitions using a Markovian model
+presented in Section \ref{sec:preliminaries}. The main characteristic of Markov models is that they
+retain no memory of where the process has been in the past. This means that only the current state
+influences where the process will go next. In this work we are only interested in processes that
+can assume a finite set of states, called Markov chains \cite{norris1998markov}.

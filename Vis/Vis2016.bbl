@@ -16,6 +16,19 @@ K.~Deng, P.~G. Mehta, and S.~P. Meyn.
 \newblock {\em IEEE Transactions on Automatic Control}, 56(12):2793--2808, Dec
   2011.
 
+\bibitem{qminer}
+B.~Fortuna, J.~Rupnik, J.~Brank, C.~Fortuna, V.~Jovanoski, and M.~Karlovcec.
+\newblock Qminer: Data analytics platform for processing streams of structured
+  and unstructured data.
+\newblock In {\em Software Engineering for Machine Learning Workshop, Neural
+  Information Processing Systems}, 2014.
+
+\bibitem{norris1998markov}
+J.~Norris.
+\newblock {\em Markov Chains}.
+\newblock Number {\v{s}}t. 2008 in Cambridge Series in Statistical and
+  Probabilistic Mathematics. Cambridge University Press, 1998.
+
 \bibitem{pande-beauchamp-bowman:2010:methods:markov-model-review}
 V.~S. Pande, K.~Beauchamp, and G.~R. Bowman.
 \newblock Everything you wanted to know about {Markov State Models} but were
