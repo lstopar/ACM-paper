@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{Benz2004239}
 U.~C. Benz, P.~Hofmann, G.~Willhauck, I.~Lingenfelder, and M.~Heynen.
@@ -22,6 +22,13 @@ K.~Deng, P.~G. Mehta, and S.~P. Meyn.
 \newblock {\em IEEE Transactions on Automatic Control}, 56(12):2793--2808, Dec
   2011.
 
+\bibitem{Elmqvist:2010:HAI:1749404.1749525}
+N.~Elmqvist and J.-D. Fekete.
+\newblock Hierarchical aggregation for information visualization: Overview,
+  techniques, and design guidelines.
+\newblock {\em IEEE Transactions on Visualization and Computer Graphics},
+  16(3):439--454, May 2010.
+
 \bibitem{qminer}
 B.~Fortuna, J.~Rupnik, J.~Brank, C.~Fortuna, V.~Jovanoski, and M.~Karlovcec.
 \newblock Qminer: Data analytics platform for processing streams of structured
@@ -36,12 +43,25 @@ Y.-H. Fua, M.~O. Ward, and E.~A. Rundensteiner.
 \newblock {\em IEEE Transactions on Visualization and Computer Graphics},
   6(2):150--159, Apr. 2000.
 
+\bibitem{parcoords}
+A.~Inselberg.
+\newblock The plane with parallel coordinates.
+\newblock {\em The Visual Computer}, 1(2):69--91.
+
 \bibitem{729555}
 C.-S. Jeong and A.~Pang.
 \newblock Reconfigurable disc trees for visualizing large hierarchical
   information space.
 \newblock In {\em Information Visualization, 1998. Proceedings. IEEE Symposium
   on}, pages 19--25, 149, Oct 1998.
+
+\bibitem{Johnson:1991:TSA:949607.949654}
+B.~Johnson and B.~Shneiderman.
+\newblock Tree-maps: A space-filling approach to the visualization of
+  hierarchical information structures.
+\newblock In {\em Proceedings of the 2Nd Conference on Visualization '91}, VIS
+  '91, pages 284--291, Los Alamitos, CA, USA, 1991. IEEE Computer Society
+  Press.
 
 \bibitem{norris1998markov}
 J.~Norris.

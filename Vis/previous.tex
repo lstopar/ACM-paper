@@ -21,28 +21,51 @@ and allow the user to zoom into detail high detail levels, while hiding these de
 	algorithm uses Kullback-Leibler divergence rate to measure the difference between the original Markov
 	model and the its approximation. The authors also present a formula for aggregating states in the discrete-time
 	Markov chain.
+	
 	\item \cite{pande-beauchamp-bowman:2010:methods:markov-model-review} present an overview of using Markov chain models in the bio-chemical domain. The paper
 	presents approaches for modeling states (assigning observations to states) as well as building a transition
 	matrix (using counts). The authors mention that to improve transition estimation one can use Bayesian priors.
 	For example a prior that includes the effect of detailed balance can enhance the effectiveness when dealing with
 	small counts. The authors also mention simplifying the transition matrix into fewer states by looking at larger
 	timescales. This is done by spectral clustering.
+	
 	\item \cite{Benz2004239} present a multi-resolution framework for analysis of image data by exploring a hierarchical
 	image object network and representing strongly linked objects, using polygons and fuzzy systems.
+	
 	\item \cite{4015421} Investigate data abstraction quality measures in multiresolution visualization systems. Spcifically, they propose
 	a histogram difference measure and a Nearest neighbor measure to measure the quality of the abstraction.
+	
 	\item \textcolor{red}{[TODO Bertini and Santucci [7] present a quality measure for sampling and apply it to finding the optimal sampling level]}
+	
 	\item \cite{Fua:2000:SBM:614278.614457} Brushing consists of painting sections of the display using a 
 	mouse or stylus to indicate the data elements to be selected. The paper presents a technique called
 	structure-based brushing, which can be used to perform selection in data sets organized via hierarchical clustering
 	and partitioning algorithms. Their brushing mechanism serves to select subsets of the hierarchical structure
 	for further analysis. For the level of detail, they use either: cluster size, level number or the clusters' volume.
 	They can then traverse the hierarchy based on this level.
+	
 	\item \cite{729555} present a technique called
 	reconfigurable disc trees for visualizing large hierarchical data sets. Each node is associated with a disc around which 
 	its children are placed. The node of the tree is located at the apex of a cone and all hte children are arranged around
 	the circular base of hte cone.
+	
 	\item \textcolor{red}{Hierarchical Parallel Coordinates}
-	\item \textcolor{red}{Tree Map}
-	\item \textcolor{red}{Categorical (hierarchical view)} [v brushes reference [8], [12], [14]]
+	
+	\item \cite{Johnson:1991:TSA:949607.949654} present a visualization method for hierarchical structures called TreeMaps.
+	TreeMaps makes 100\% use of the available space by mapping the full hierarchy onto a rectangular region in a space-filling
+	manner, allowing large hierarchies to be displayed entirely, facilitating the presentation of semantic information.
+
+	\item \cite{Elmqvist:2010:HAI:1749404.1749525}
+	present a model for building, visualizing and interacting with multi-scale representations of visual information
+	using hierarchical aggregation. Their work presents a model for transforming visualization techniques into a multiscale
+	structure using hierarchical aggregation.
+	
+	Like their model, we also aggregate information in the data space.
+	
+	\item \textcolor{red}{Venn diagrams}
+	
+	\item \textcolor{red}{Categorical (hierarchical view)} [v brushes reference [12], [14]]
 \end{itemize}
+
+\textcolor{red}{We differ from the related work in that we summarize the information, instead of drawing the whole
+dataset. We also summarize the dynamics of the dataset.}

@@ -1,6 +1,45 @@
 \begin{itemize}
 	\item clustering
+	
+	The clustering step of our multi-level framework is used to identify typical low-level states
+	of the visualized system from the raw observations. It achieves this by partitioning the
+	observations and associating each state with a single partition.
+	
+	The literature suggests many partitioning algorithms, including those that produce a hierarchical 
+	partition. The computational complexity of these algorithms however is $O(n^2)$ which renders 
+	them unsuitable for large datasets. We therefore first create a flat partition of the data space
+	using K-Means, resulting in a Voronoi diagram and enabling us to construct states by assigning
+	observations to the partition with the nearest centroid.
+	
 	\item criteria for aggregation 
+	
+	Once the lowest level states are constructed, the next step is to aggregate them to obtain a
+	multi-resolution view of the data. We choose a bottom-up hierarchical clustering algorithm,
+	where we aggregate two states if they lie close to each other in Euclidean space.
+	
 	\item modeling transition rates
 \end{itemize}
+
+Be begin this section with an overview of our multi-scale methodology shown in Figure \ref{fig:methodology}.
+The methodology starts by aggregating and resampling the data streams, interpolating wherever needed. This
+first step is critical for further processing as it produces feature vectors, used in later steps of the
+methodology. Our next step includes identifying typical low-level states from the feature vectors
+created in step one. We achieve this by partitioning the feature vectors and associating each state
+with a single partition. While the literature suggest many hierarchical partitioning methods, including
+those that produce a hierarchical partition, their computational complexity is $O(n^2)$ which
+renders them unsuitable for big data scenarios. We therefore propose a flat partition of the data space,
+constructing the hierarchy later in the process.
+
+The next step includes modeling transitions. Our methodology models transitions using a Markovian model
+presented in Section \ref{sec:preliminaries}. The main characteristic of Markov models is that they
+retain no memory of where the process has been in the past. This means that only the current state
+influences where the process will go next. In this work we are only interested in processes that
+can assume a finite set of states, called Markov chains \cite{norris1998markov}.
+
+Hierarchical clustering is based on iteratively building a tree structure of aggregate items
+either using a bottom up or top-down approach. Top-down aggregation starts with one aggregate containing
+all the items and recursively splitting them until a specific level of granularity has been achieved or
+all items belong to their own aggregate.
+On the other hand bottom-up aggregation starts by treating each item as its own aggregate and iteratively
+merging them until only one aggregate remains.
 
