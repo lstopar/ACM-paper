@@ -14,7 +14,15 @@
 	\item criteria for aggregation 
 	
 	Once the lowest level states are constructed, the next step is to aggregate them to obtain a
-	multi-resolution view of the data. We choose a bottom-up hierarchical clustering algorithm,
+	multi-resolution view of the data. This process results in a hierarchical tree structure
+	which essentially induces a hierarchical partition on the data space, with partitions
+	on the higher levels of the tree structure containing partitions on the lower levels of the
+	tree structure.
+	
+	 A common approach when performing aggregation is to aggregate
+	items that are similar to each other in some way.
+	
+	We choose a bottom-up hierarchical clustering algorithm,
 	where we aggregate two states if they lie close to each other in Euclidean space.
 	
 	\item modeling transition rates
