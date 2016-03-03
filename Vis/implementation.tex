@@ -1,4 +1,21 @@
 StreamStory is implemented as part of the QMiner \cite{qminer} data analytics platform,
 under the BSD license, with its core functionality written in C++ and exposed as a 
-JavaScript API to the Node.js platform, which acts as glue and exposes the functionality
+JavaScript API to the Node.js platform, acting as glue and exposes the functionality
 via RESTful API.
+
+Having the core functionality implemented in C++ provides great performance, even when
+dealing with large datasets. The most time consuming part of StreamStory is building
+an actual model from the raw data. This process includes clustering the data set,
+modeling transitions, aggregating states, computing state statistics, computing state assistance
+features (attribute highlighting, automatic naming, induction of decision trees, etc.) and
+computing initial state positions with the most time consuming tasks being modeling the state
+transitions and the computation of state assistance, as the system trains logistic regression
+and decision tree models for each state in the hierarchy. These tasks are however independent
+for each state and can be parallelized.
+
+\begin{tabular}{ c | c c c}
+	\label{tab:time-tests}
+	 & 10 & 20 & 40 \\
+	\hline
+	3229541 & 11min & / & /
+\end{tabular}

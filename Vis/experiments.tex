@@ -13,6 +13,42 @@ collected over the course of 20 years between 1920 and 1940 in Nottingham Englan
 	\label{fig:example-weather}
 \end{figure}
 
+The model was generated using the raw rainfall and temperature data, but each feature vector includes
+the rainfall and temperature of the previous month. The states on the right hand side represent the 
+summer states, while the states on the left represent winter states. The yearly timeline flows in the
+counter clockwise direction with the spring states residing on the bottom of the figure and the autumn
+states on the top.
+
+Interestingly, in this dataset, the rainfall and temperature are very highly correlated and the auto naming feature
+choose high rainfall as the most significant feature of the summer states. This correlation can be seen
+from the attribute histogram shown in Figure \ref{fig:histograms-summer}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\columnwidth]{histograms-summer}
+	\caption{\textcolor{red}{TODO caption}}
+	\label{fig:histograms-summer}
+\end{figure}
+
 \subsection{GPS Data}
+
+The second example was created using raw GPS coordinates collected using a smartphone between \textcolor{red}{X} and \textcolor{red}{Y}.
+The data represents the everyday movement of a European computer science researcher. Figure \ref{fig:example-geo}
+shows our qualitative representation of this data on a high level with 8 state.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\columnwidth]{geo-states}
+	\caption{\textcolor{red}{TODO caption}}
+	\label{fig:example-geo}
+\end{figure}
+
+From the figure, we can see that the system was able to identify the most typical locations of this persons
+movements. Most of the time they spend in central EU including two small states on the bottom and right
+representing southern Europe and India where they went for vacation. On the European continent, the system
+also identified Germany and Sweden where the person frequently attends meetings or stays for a short while
+during a connecting flight. The states on the left represent the USA with the largest state representing New
+York city where the person spent the 2014 summer and the smaller states representing San Francisco and Austin,
+Texas.
 
 \subsection{Domain Experts}
