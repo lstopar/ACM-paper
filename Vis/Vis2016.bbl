@@ -22,6 +22,14 @@ K.~Deng, P.~G. Mehta, and S.~P. Meyn.
 \newblock {\em IEEE Transactions on Automatic Control}, 56(12):2793--2808, Dec
   2011.
 
+\bibitem{glm-introduction}
+A.~J. Dobson and A.~G. Barnett.
+\newblock {\em An Introduction to Generalized Linear Models, Third Edition}.
+\newblock Texts in Statistical Science. Chapman \& Hall/CRC Press, Boca Raton,
+  FL, 2008.
+\newblock For more information about this book please refer to the publisher's
+  website (see link) or contact the author.
+
 \bibitem{Elmqvist:2010:HAI:1749404.1749525}
 N.~Elmqvist and J.-D. Fekete.
 \newblock Hierarchical aggregation for information visualization: Overview,
@@ -30,7 +38,9 @@ N.~Elmqvist and J.-D. Fekete.
   16(3):439--454, May 2010.
 
 \bibitem{qminer}
-B.~Fortuna, J.~Rupnik, J.~Brank, C.~Fortuna, V.~Jovanoski, and M.~Karlovcec.
+B.~Fortuna, J.~Rupnik, J.~Brank, C.~Fortuna, V.~Jovanoski, M.~Karlovcec,
+  B.~Kazic, K.~Kenda, G.~Leban, D.~Mladenic, A.~Muhic, B.~Novak, E.~Novak,
+  J.~Novljan, M.~Papler, L.~Rei, B.~Sovdat, and L.~Stopar.
 \newblock Qminer: Data analytics platform for processing streams of structured
   and unstructured data.
 \newblock In {\em Software Engineering for Machine Learning Workshop, Neural

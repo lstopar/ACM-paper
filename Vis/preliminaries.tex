@@ -2,5 +2,63 @@
 
 \begin{itemize}
 \item Model of data: paths in Euclidean page
-\item Markov chains
+	\item Markov chains
+	
+	Markov processes are a special kind of stochastic processes with the characteristic of 
+	having no memory. This means that only the current state of the process can influence
+	where the process goes next \cite{norris1998markov}. In this work we focus on a special kind
+	of Markov processes called Markov chains that can assume only a finite or countable
+	number of states.
+	
+	Markov chains can be used to model many phenomena of interest and have been used in many
+	applications, including [TODO]. What makes them particularly useful is that the memoryless
+	property makes it feasible to predict future developments and compute probabilities and
+	expected values to quantify that behavior.
+	
+	More formally, a Markov chain is a stochastic process $(X_t)_{t \ge 0}$ which can assume
+	only a finite or countable number of states $i \in I$. The starting state
+	is sampled from a probability distribution $\lambda$, called the initial distribution.
+	We define $p_{ij}(t)$ to be the probability of the process being in state $j$ at time $t$
+	when starting from state $i$ at time $0$ and a stochastic matrix $P(t)$, where $\left(P(i)\right)_{ij} = p_{ij}(t)$.
+	Each row of $P(t)$ is thus a probability distribution over the state space $I$. In our
+	work we assume that $P(t)$ is recurrent for every $t$ and that the process is non-explosive.
+	
+	The literature distinguishes between two types of Markov chains: discrete time and continuous time.
+	Discrete time Markov chains are the most basic type of Markov chains, where the process
+	changes states in discrete time steps $n \in \mathbb{N}$ with probabilities $p_{ij} = p_{ij}(1)$
+	and obeys the Markov property presented in Definition \ref{thm:markov-property-discrete}.
+	
+	\begin{defn}
+	\label{thm:markov-property-discrete}
+	Let $(X_n)_{n \ge 0}$ be a discrete time Markov chain with initial distribution $\lambda$.
+	Then conditional on $X_m = i$, $(X_{m + n})_{n \ge 0}$ is also a Markov chain with initial
+	distribution $\delta_i$ and is independent of $X_0, X_1, ..., X_m$.
+	\end{defn}
+	
+	Continuous time Markov chains are a generalization of discrete time Markov chains as they
+	gap between the discrete time steps is filled and the process can change states at any given moment.
+	Continuous time Markov chains are closely related to Poisson processes. Imagine the state
+	space $I$ as a labyrinth of corridors and chambers. The corridor between chambers $i$ and $j$
+	is shut by a single door that opens for an infinitely small amount of time at the jump times of
+	a Poisson process with rate $q_{ij}$. If the person walking through the labyrinth changes
+	chambers each time a door opens, they are performing
+	a continuous time Markov chain.
+	
+	The basic data needed to define a continuous time Markov chain on state space $I$ are
+	given by a transition rate matrix $Q$ satisfying the following conditions:
+	
+	\begin{enumerate}
+		\item $q_{ij} \ge 0$ for all $i \ne j$
+		\item $\sum_{j \in I} q_{ij} = 0$
+		\item $-\infty < q_{ii} \le 0$ for all $i \in I$.
+	\end{enumerate}
+	
+	Each off-diagonal element of $Q$, $q_{ij}$ represents the rate of jumping from state $i$ to state $j$,
+	while the diagonal elements $q_{ii}$ represent the rate of leaving $i$. The stochastic matrix
+	$P(t)$ is represented as $P(t) = e^{tQ}$ and can be computed by solving Kolmogorov's equations:
+	\begin{equation}
+		\frac{d}{dt}P(t) = P(t)Q
+	\end{equation}
+	with initial condition $P(0) = I$.
+
 \end{itemize}
