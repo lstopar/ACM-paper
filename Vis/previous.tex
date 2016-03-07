@@ -44,6 +44,10 @@ Elmqvist et. al. \cite{Elmqvist:2010:HAI:1749404.1749525} present a model for bu
 multi-scale representations of visual information using hierarchical aggregation. Their model allows for augmenting visualization
 techniques into a multi-scale structure using hierarchical aggregation.
 
+In their work, Cui et. al. \cite{4015421} investigate data abstraction quality measures in multi-resolution
+visualization systems. Specifically, they propose a histogram difference measure and a Nearest neighbor
+measure to measure the quality of the abstraction.
+
 \subsection{Visualization in Data Mining}
 
 Visualization is an important tool in data mining as it \textcolor{red}{...}. Data mining is commonly defined
@@ -76,52 +80,20 @@ well as quantifying their behavior by calculating probabilities and expected val
 The first application of Markov chains begins with Andrey Markov himself \cite{markov13} in 1913. Since then
 Markov chains have had many famous applications such as Shannon's application to information theory \cite{Shannon:1948},
 Baum's Hidden Markov Models (HMM) \cite{baum1970} and the application to web search by Sergey Brin and Larry Page \cite{Lawrence981}.
-\\*
-Ever since the first application of Markov chains by Andrey Markov himself . Since then Markov chains
-have been used for Mendels's genetic experiments, diffusion of gas molecules and to model random walk behavior of certain
-particles ]
- Markov chains
-have been widely used and applied in many applications. 
 
-Markov chains have been used in a variety of applications, including biochemistry \cite{Ciocchetta2009145,pande-beauchamp-bowman:2010:methods:markov-model-review}, 
-medicine \cite{TODO} and ... Their extensions have also been used in the fields of decision support in the form of Markov Decision Processes (MDP)
-\cite{DBLP:journals/corr/AlsheikhHNTL15,citeulike:13074388}.
+Other applications include the simulation of protein folding \cite{pande-beauchamp-bowman:2010:methods:markov-model-review},
+analysis of biochemical networks \cite{Ciocchetta2009145},
+genetics \cite{Huelsenbeck2310}, sensor networks \cite{DBLP:journals/corr/AlsheikhHNTL15}, agriculture, queuing theory, etc.
 
-Pande et. al. \cite{pande-beauchamp-bowman:2010:methods:markov-model-review} present an overview of Markov chain
-models in the biochemical domain. The paper presents various challenges and current solutions when using Markov chains
-for simulation of protein folding.
+In their paper, Deng et. al. \cite{5746509} explored the aggregation of Markov chains using an information-theoretic
+approach. Their work focuses on model reduction of complex discrete time Markov chains, using Kullback-Leibler divergence
+rate to measure the difference between the original model and the approximation and provides a recursive bi-partitioning
+algorithm for partitioning discrete time Markov chains. Their work provides a state aggregation solution by averaging
+transition probabilities based on the stationary distribution. In our work we adapt this solution to the continuous time
+setting.
 
-Deng et. al. \cite{5746509} explored the aggregation of Markov chains using an information-theoretic approach.
-Their work focuses on model reduction of complex discrete time Markov chains, using the Kullback-Leibler divergence
-rate as a metric to measure the difference between the original Markov model and its approximation and
-provides a recursive bi-partitioning algorithm for partitioning discrete time Markov chains.
-
-\begin{itemize}
-	
-	
-	\item \cite{pande-beauchamp-bowman:2010:methods:markov-model-review} present an overview of using Markov chain models in the bio-chemical domain. The paper
-	presents approaches for modeling states (assigning observations to states) as well as building a transition
-	matrix (using counts). The authors mention that to improve transition estimation one can use Bayesian priors.
-	For example a prior that includes the effect of detailed balance can enhance the effectiveness when dealing with
-	small counts. The authors also mention simplifying the transition matrix into fewer states by looking at larger
-	timescales. This is done by spectral clustering.
-	
-	\item \cite{4015421} Investigate data abstraction quality measures in multiresolution visualization systems. Spcifically, they propose
-	a histogram difference measure and a Nearest neighbor measure to measure the quality of the abstraction.
-	
-	\item \textcolor{red}{[TODO Bertini and Santucci [7] present a quality measure for sampling and apply it to finding the optimal sampling level]}
-	
-	\item \textcolor{red}{Hierarchical Parallel Coordinates}
-	
-	Like their model, we also aggregate information in the data space.
-	
-	\item \textcolor{red}{Venn diagrams}
-	
-	\item \textcolor{red}{Categorical (hierarchical view)} [v brushes reference [12], [14]]
-\end{itemize}
-
-\textcolor{red}{Hierarchical structures are used in many real-world applications, as they are flexible in storing information
+\lstopar{Hierarchical structures are used in many real-world applications, as they are flexible in storing information
 and allow the user to zoom into detail high detail levels, while hiding these details on the upper levels.}
 
-\textcolor{red}{We differ from the related work in that we summarize the information, instead of drawing the whole
+\lstopar{We differ from the related work in that we summarize the information, instead of drawing the whole
 dataset. We also summarize the dynamics of the dataset.}

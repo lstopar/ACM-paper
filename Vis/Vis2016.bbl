@@ -80,6 +80,12 @@ Y.-H. Fua, M.~O. Ward, and E.~A. Rundensteiner.
 \newblock {\em IEEE Transactions on Visualization and Computer Graphics},
   6(2):150--159, Apr. 2000.
 
+\bibitem{Huelsenbeck2310}
+J.~P. Huelsenbeck, F.~Ronquist, R.~Nielsen, and J.~P. Bollback.
+\newblock Bayesian inference of phylogeny and its impact on evolutionary
+  biology.
+\newblock {\em Science}, 294(5550):2310--2314, 2001.
+
 \bibitem{parcoords}
 A.~Inselberg.
 \newblock The plane with parallel coordinates.
@@ -105,6 +111,11 @@ D.~A. Keim.
 \newblock Information visualization and visual data mining.
 \newblock {\em IEEE Transactions on Visualization and Computer Graphics},
   8(1):1--8, Jan 2002.
+
+\bibitem{DBLP:journals/corr/abs-1111-0352}
+B.~Kulis and M.~I. Jordan.
+\newblock Revisiting k-means: New algorithms via bayesian nonparametrics.
+\newblock {\em CoRR}, abs/1111.0352, 2011.
 
 \bibitem{Lawrence981}
 P.~Lawrence, B.~Sergey, R.~Motwani, and T.~Winograd.
@@ -140,11 +151,5 @@ B.~Shneiderman.
   visualizations.
 \newblock In {\em Visual Languages, 1996. Proceedings., IEEE Symposium on},
   pages 336--343, Sep 1996.
-
-\bibitem{citeulike:13074388}
-D.~J. White.
-\newblock {A Survey of Applications of Markov Decision Processes}.
-\newblock {\em The Journal of the Operational Research Society}, 44(11):1073+,
-  Nov. 1993.
 
 \end{thebibliography}

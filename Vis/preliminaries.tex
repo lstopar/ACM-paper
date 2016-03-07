@@ -16,11 +16,11 @@ Our main modelling tool is the continuous time Markov chain (CTMC). Markov proce
 	number of states.
 
 Markov chains can be used to model many phenomena of interest and have been used in many
-	applications, including [TODO]. What makes them particularly useful is that the memoryless
+	applications. What makes them particularly useful is that the memoryless
 	property makes it feasible to predict future developments and compute probabilities and
 	expected values to quantify that behavior.
 	
-	More formally, a Markov chain is a stochastic process $(X_t)_{t \ge 0}$ which we assume has 
+	More formally, a Markov chain is a stochastic process $(X_t)_{t \ge 0}$ which can assume 
 	only a finite or countable number of states $i \in I$. The starting state
 	is sampled from a probability distribution $\lambda$, called the initial distribution.
 	We define $p_{ij}(t)$ to be the probability of the process being in state $j$ at time $t$
@@ -64,6 +64,7 @@ Markov chains can be used to model many phenomena of interest and have been used
 	while the diagonal elements $q_{ii}$ represent the rate of leaving $i$. The stochastic matrix
 	$P(t)$ is represented as $P(t) = e^{tQ}$ and can be computed by solving Kolmogorov's equations:
 	\begin{equation}
+		\nonumber
 		\frac{d}{dt}P(t) = P(t)Q
 	\end{equation}
 	with initial condition $P(0) = I$.

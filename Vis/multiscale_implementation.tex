@@ -11,6 +11,14 @@
 	using K-Means, resulting in a Voronoi diagram and enabling us to construct states by assigning
 	observations to the partition with the nearest centroid.
 	
+	\lstopar{
+	K-Means objective function \cite{DBLP:journals/corr/abs-1111-0352} \ref{eq:k-means-objective}
+	\begin{equation}
+		\label{eq:k-means-objective}
+		\min\limits_{\{c_i\}_{i \in \mathbb{N}_k}} \sum\limits_{i = i}^{k}\sum\limits_{x_j \in c_i} \|x_j - \mu_i\|
+	\end{equation}
+	}
+	
 	\item criteria for aggregation 
 	
 	Once the lowest level states are constructed, the next step is to aggregate them to obtain a
