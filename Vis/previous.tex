@@ -13,6 +13,58 @@ and sampling [TODO cite].
 Clutter reduction assigns more space to interesting data and tries to hide less interesting data.
 The most common techniques for clutter reduction include zooming and distortion.
 
+This section starts by providing the state-of-the-art in clustering and Markov chain research and
+then continues with an overview of existing visualization techniques.
+
+\subsection{General Visualization Techniques}
+
+Shneiderman \cite{545307} proposes a task-by-data-type taxonomy of information visualizations of multi-dimensional
+data types as well as structured data which provides researchers and developers with a guideline for
+the design and implementation of visualization systems. His work highlights the importance of data
+abstraction operations such as summarization, filtering, zooming and extraction.
+
+Jeong and Pang \cite{729555} present a technique called reconfigurable disc trees for visualizing large 
+hierarchical data sets. The data is presented as a tree which can be laid out in two or three dimensions.
+Their visualization is based on discs around which the children of each node are placed and eliminates
+visual overlaps among subtrees.
+
+Johnson and Shneiderman \cite{Johnson:1991:TSA:949607.949654} present another technique for visualizing hierarchical
+information called TreeMaps. TreeMaps recursively partition the display into rectangular bounding boxes representing the 
+tree structure. The drawing of nodes within their bounding box is dependent on their content and can be interactively
+controlled.
+
+Fua et. al. \cite{Fua:2000:SBM:614278.614457} present a mechanism for navigating hierarchically organized structures
+called Structure-Based brushes. Brushing consists of painting sections of the display using a mouse or stylus, indicating
+data items to be selected. Their technique can be used to perform selection in datasets organized via hierarchical
+clustering and partitioning algorithms and serves to perform subset selection for further analysis. The technique defines
+the level of detail which can be e.g. the cluster size, volume of the level number which can be used to traverse the
+hierarchy.
+
+Elmqvist et. al. \cite{Elmqvist:2010:HAI:1749404.1749525} present a model for building, visualizing and interacting with
+multi-scale representations of visual information using hierarchical aggregation. Their model allows for augmenting visualization
+techniques into a multi-scale structure using hierarchical aggregation.
+
+\subsection{Visualization in Data Mining}
+
+Visualization is an important tool in data mining as it \textcolor{red}{...}. Data mining is commonly defined
+as the extraction of patterns or models from data sets, usually as part of extracting high-level
+knowledge from low-level data. Visualization is an important tool in this area as it gives analysts a
+tool for exploring, understanding data and creating hypothesis.
+
+Visualization techniques used in data mining range from simple techniques for data exploration, such as
+scatter plots, box plots, heatmaps, etc., to visualization of more complex structures such as PCA [TODO cite],
+association rules, decision trees [TODO cite], clusters and dendrograms.
+
+Oliveira and Levkowitz \cite{1207445} provide a survey of visualization tools used for data mining. Their survey focuses
+to visualization of tabular data and provides an overview of tools and techniques for data exploration,
+visualization of the extracted knowledge, discussing the question of how to select an appropriate visualization
+technique.
+
+Keim \cite{981847} provides a classification of information visualization techniques used in data mining, which is based on
+the data type, visualization technique and interaction and distortion technique.
+
+\subsection{Markov Chains}
+
 Hierarchical structures are used in many real-world applications, as they are flexible in storing information
 and allow the user to zoom into detail high detail levels, while hiding these details on the upper levels.
 
@@ -37,28 +89,7 @@ and allow the user to zoom into detail high detail levels, while hiding these de
 	
 	\item \textcolor{red}{[TODO Bertini and Santucci [7] present a quality measure for sampling and apply it to finding the optimal sampling level]}
 	
-	\item \cite{Fua:2000:SBM:614278.614457} Brushing consists of painting sections of the display using a 
-	mouse or stylus to indicate the data elements to be selected. The paper presents a technique called
-	structure-based brushing, which can be used to perform selection in data sets organized via hierarchical clustering
-	and partitioning algorithms. Their brushing mechanism serves to select subsets of the hierarchical structure
-	for further analysis. For the level of detail, they use either: cluster size, level number or the clusters' volume.
-	They can then traverse the hierarchy based on this level.
-	
-	\item \cite{729555} present a technique called
-	reconfigurable disc trees for visualizing large hierarchical data sets. Each node is associated with a disc around which 
-	its children are placed. The node of the tree is located at the apex of a cone and all hte children are arranged around
-	the circular base of hte cone.
-	
 	\item \textcolor{red}{Hierarchical Parallel Coordinates}
-	
-	\item \cite{Johnson:1991:TSA:949607.949654} present a visualization method for hierarchical structures called TreeMaps.
-	TreeMaps makes 100\% use of the available space by mapping the full hierarchy onto a rectangular region in a space-filling
-	manner, allowing large hierarchies to be displayed entirely, facilitating the presentation of semantic information.
-
-	\item \cite{Elmqvist:2010:HAI:1749404.1749525}
-	present a model for building, visualizing and interacting with multi-scale representations of visual information
-	using hierarchical aggregation. Their work presents a model for transforming visualization techniques into a multiscale
-	structure using hierarchical aggregation.
 	
 	Like their model, we also aggregate information in the data space.
 	

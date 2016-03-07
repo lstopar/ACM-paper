@@ -26,6 +26,53 @@
 	where we aggregate two states if they lie close to each other in Euclidean space.
 	
 	\item modeling transition rates
+	
+	We model state transitions using a continuous time Markov chain framework presented in Section
+	\ref{sec:preliminaries}. The transitions are modeled on the lowest level states.
+	
+	We allow users to select a subset of the attributes which we use to model transition rates.
+	Since the jump process from state $i$ to state $j$ can be characterized as a Poisson process,
+	we can model its transition rate $q_{ij}$ as a function of these attributes $q_{ij}(x_i)$.
+	We do this by first discretizing the continuous time parameter into a discrete sequence
+	$(0, \epsilon, 2\epsilon, ...)$ and estimating the transition rates as
+	\begin{equation}
+		q_{ij} = \frac{\epsilon}{\tilde{p}_{ij}}
+	\end{equation}
+	where $\tilde{p}_{ij}$ is the estimated probability of jumping from state $i$ to state $j$
+	in time $\epsilon$.
+	
+	Suppose the process is in state $i$ at time $t$ and define a random variable 
+	$J_i = j \Leftrightarrow X_{t + \epsilon} = j$. $J_i$ then has a multinomial distribution
+	with parameters $(p_{i1}, p_{i1}, ..., p_{in})$ which can be modeled using a nominal
+	logistic regression model \cite{glm-introduction} to estimate $\tilde{p}_{ij}$.
+	
+	The transition rate matrix is then computed on-the-fly from the matrix of logistic regression models.
+	
+	To model the Markov chain on a specific detail level, we adapt a formula proposed in \cite{5746509}
+	to the continuous time framework. We define an aggregated states $\{S_i\}_i$ as non-intersecting
+	subsets of the state space $I$ where $\bigcup_i S_i = I$. The transition rate among aggregated
+	states can then be computed using formula \ref{eq:agg-transitions}.
+	\begin{equation}
+		\label{eq:agg-transitions}
+		q_{S_i S_j} = \frac{\sum\limits_{i \in S_i}\pi_i \sum\limits_{j \in S_j} q_{ij}}{\sum\limits_{i \in S_i}\pi_i}
+	\end{equation}
+	where $\pi = (\pi_1, \pi_2, ..., \pi_n)$ represents the stationary distribution of the process. The
+	above formula can be rewritten in matrix from as:
+	\begin{equation}
+		Q_l(Q) = \left(P\Pi P\right)^{-1}P\Pi Q P
+	\end{equation}
+	where $P$ is a projection matrix defined as
+	\begin{equation}
+		\left(P\right)_{ij} = 
+			\left\{
+				\begin{array}{ll}
+					1 & \mbox{if } j \in S_i \\
+					0 & \mbox{otherwise}.
+				\end{array}
+			\right.
+	\end{equation}
+
+	
 \end{itemize}
 
 Be begin this section with an overview of our multi-scale methodology shown in Figure \ref{fig:methodology}.

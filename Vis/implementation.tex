@@ -3,7 +3,7 @@ under the BSD license, with its core functionality written in C++ and exposed as
 JavaScript API to the Node.js platform, acting as glue and exposes the functionality
 via RESTful API.
 
-Having the core functionality implemented in C++ provides great performance, even when
+Having the core functionality implemented in C++ provides good performance, even when
 dealing with large datasets. The most time consuming part of StreamStory is building
 an actual model from the raw data. This process includes clustering the data set,
 modeling transitions, aggregating states, computing state statistics, computing state assistance
@@ -13,9 +13,10 @@ transitions and the computation of state assistance, as the system trains logist
 and decision tree models for each state in the hierarchy. These tasks are however independent
 for each state and can be parallelized.
 
-\begin{tabular}{ c | c c c}
+\begin{tabular}{ c | c c c c c}
 	\label{tab:time-tests}
-	 & 10 & 20 & 40 \\
+	 & 10 & 20 & 40 & reading CSV & file size \\
 	\hline
-	3229541 & 11min & / & /
+	3229541 & 11min & 13min 32s & 21min 50s & 6:58,7:05,7:10 & 500MB \\
+	285168 & 1:31 & 1:36 & 2:17 & 1:09,1:06,1:08 & 155MB
 \end{tabular}

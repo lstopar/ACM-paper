@@ -30,7 +30,9 @@ N.~Elmqvist and J.-D. Fekete.
   16(3):439--454, May 2010.
 
 \bibitem{qminer}
-B.~Fortuna, J.~Rupnik, J.~Brank, C.~Fortuna, V.~Jovanoski, and M.~Karlovcec.
+B.~Fortuna, J.~Rupnik, J.~Brank, C.~Fortuna, V.~Jovanoski, M.~Karlovcec,
+  B.~Kazic, K.~Kenda, G.~Leban, D.~Mladenic, A.~Muhic, B.~Novak, E.~Novak,
+  J.~Novljan, M.~Papler, L.~Rei, B.~Sovdat, and L.~Stopar.
 \newblock Qminer: Data analytics platform for processing streams of structured
   and unstructured data.
 \newblock In {\em Software Engineering for Machine Learning Workshop, Neural
