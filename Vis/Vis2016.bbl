@@ -15,6 +15,12 @@ Q.~Cui, M.~Ward, E.~Rundensteiner, and J.~Yang.
 \newblock {\em IEEE Transactions on Visualization and Computer Graphics},
   12(5):709--716, Sept 2006.
 
+\bibitem{1207445}
+M.~C.~F. de~Oliveira and H.~Levkowitz.
+\newblock From visual data exploration to visual data mining: a survey.
+\newblock {\em IEEE Transactions on Visualization and Computer Graphics},
+  9(3):378--394, July 2003.
+
 \bibitem{5746509}
 K.~Deng, P.~G. Mehta, and S.~P. Meyn.
 \newblock Optimal kullback-leibler aggregation via spectral theory of markov
@@ -84,5 +90,12 @@ V.~S. Pande, K.~Beauchamp, and G.~R. Bowman.
 \newblock Everything you wanted to know about {Markov State Models} but were
   afraid to ask.
 \newblock {\em Methods}, 52:99--105, 2010.
+
+\bibitem{545307}
+B.~Shneiderman.
+\newblock The eyes have it: a task by data type taxonomy for information
+  visualizations.
+\newblock In {\em Visual Languages, 1996. Proceedings., IEEE Symposium on},
+  pages 336--343, Sep 1996.
 
 \end{thebibliography}
