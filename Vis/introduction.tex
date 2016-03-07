@@ -1,4 +1,4 @@
-Sensory systems typically operate in cycles with a continuously time-varying. These 
+Sensory systems typically operate in cycles with a continuously time-varying component. These 
 systems include, for example, the solar system, manufacturing systems or weather 
 systems. Such systems can be characterized by a set of states, along with associated
 state transitions. States, on a high level, may include a "day" state and a "night"
@@ -15,10 +15,11 @@ aircrafts roll and angular velocity, resulting in perhaps three states: "initiat
 turn", "full turn" and "end turn".
 
 We present a methodology for modeling such systems and demonstrate its implementation
-called StreamStory. StreamStory models such systems as a hierarchical Markovian process
-by automatically learning the typical low-level states, transitions and aggregating 
-them into a hierarchy, obtaining a unique Markovian process on multiple detail levels.
-As such it gives users a unique view into the monitored system.
+called StreamStory. StreamStory is a tool for summarizing multivariate continuously
+time-varying data streams as a hierarchy of Markovian processes by automatically learning
+the typical low-level states, transitions and aggregating them into a hierarchy, obtaining
+a unique Markovian process on multiple detail levels. As such it provides users with a 
+summary of the structure and dynamics of the monitored system.
 
 Furthermore, we divide the inputs streams into two sets: observation and control set.
 Attributes in the observation set are the attributes that tell us the state of the 
