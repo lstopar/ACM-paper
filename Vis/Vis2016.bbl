@@ -15,12 +15,26 @@ Q.~Cui, M.~Ward, E.~Rundensteiner, and J.~Yang.
 \newblock {\em IEEE Transactions on Visualization and Computer Graphics},
   12(5):709--716, Sept 2006.
 
+\bibitem{1207445}
+M.~C.~F. de~Oliveira and H.~Levkowitz.
+\newblock From visual data exploration to visual data mining: a survey.
+\newblock {\em IEEE Transactions on Visualization and Computer Graphics},
+  9(3):378--394, July 2003.
+
 \bibitem{5746509}
 K.~Deng, P.~G. Mehta, and S.~P. Meyn.
 \newblock Optimal kullback-leibler aggregation via spectral theory of markov
   chains.
 \newblock {\em IEEE Transactions on Automatic Control}, 56(12):2793--2808, Dec
   2011.
+
+\bibitem{glm-introduction}
+A.~J. Dobson and A.~G. Barnett.
+\newblock {\em An Introduction to Generalized Linear Models, Third Edition}.
+\newblock Texts in Statistical Science. Chapman \& Hall/CRC Press, Boca Raton,
+  FL, 2008.
+\newblock For more information about this book please refer to the publisher's
+  website (see link) or contact the author.
 
 \bibitem{Elmqvist:2010:HAI:1749404.1749525}
 N.~Elmqvist and J.-D. Fekete.
@@ -65,6 +79,12 @@ B.~Johnson and B.~Shneiderman.
   '91, pages 284--291, Los Alamitos, CA, USA, 1991. IEEE Computer Society
   Press.
 
+\bibitem{981847}
+D.~A. Keim.
+\newblock Information visualization and visual data mining.
+\newblock {\em IEEE Transactions on Visualization and Computer Graphics},
+  8(1):1--8, Jan 2002.
+
 \bibitem{norris1998markov}
 J.~Norris.
 \newblock {\em Markov Chains}.
@@ -76,5 +96,12 @@ V.~S. Pande, K.~Beauchamp, and G.~R. Bowman.
 \newblock Everything you wanted to know about {Markov State Models} but were
   afraid to ask.
 \newblock {\em Methods}, 52:99--105, 2010.
+
+\bibitem{545307}
+B.~Shneiderman.
+\newblock The eyes have it: a task by data type taxonomy for information
+  visualizations.
+\newblock In {\em Visual Languages, 1996. Proceedings., IEEE Symposium on},
+  pages 336--343, Sep 1996.
 
 \end{thebibliography}
