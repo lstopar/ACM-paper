@@ -79,6 +79,12 @@ B.~Johnson and B.~Shneiderman.
   '91, pages 284--291, Los Alamitos, CA, USA, 1991. IEEE Computer Society
   Press.
 
+\bibitem{981847}
+D.~A. Keim.
+\newblock Information visualization and visual data mining.
+\newblock {\em IEEE Transactions on Visualization and Computer Graphics},
+  8(1):1--8, Jan 2002.
+
 \bibitem{norris1998markov}
 J.~Norris.
 \newblock {\em Markov Chains}.
