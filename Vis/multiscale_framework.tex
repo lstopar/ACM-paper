@@ -9,6 +9,7 @@ consists of three main steps: initial state construction, state aggregation and 
 probabilities.
 
 \subsection{Initial State Construction}
+\label{sec:framework-states}
 
 The first step in our methodology is the construction of initial lowest level states. Using the notation
 from Section \ref{sec:preliminaries} we define a partition function 
@@ -21,6 +22,48 @@ with the following properties:
 }
 
 \subsection{Modeling Transition Probabilities}
+
+To capture and visualize the dynamics of the system our methodology represents the data in a qualitative manner
+using states and transitions while we represent the states as described in Section \ref{sec:framework-states},
+to model transitions we use the continuous-time Markov chain (CTMC) framework.
+As mentioned in Section \ref{sec:preliminaries} all the data needed to represent a continuous-time Markov chain
+is stored as transition rates in a transition rate matrix $Q \in \mathbb{R}^{n \times n}$. However, initial user
+feedback showed transition rates are not a very informative way of visualizing state transitions. Therefore
+we choose to visualize transitions in terms of the jump chain $\Pi$.
+We note that an alternative way of representing a Markov chain $(X_t)_{t \ge 0}$ with transition rate matrix $Q$
+is by its jump chain and holding times. The jump chain of a continuous time Markov chain $(X_t)_{t \ge 0}$ is
+a discrete time Markov chain $(Y_n)_{n \ge 0}$ with jump matrix $\Pi$ defined as
+\begin{equation}
+	\nonumber
+	\left(\Pi\right)_{ij} = 
+		\left\{
+			\begin{array}{ll}
+				-\frac{q_{ij}}{q_{ii}} & \mbox{if } i \ne j, q_{ii} \ne 0 \\
+				0 & \mbox{if } i \ne j, q_{ii} = 0
+			\end{array}
+		\right.
+\end{equation}
+\begin{equation}
+	\nonumber
+	\left(\Pi\right)_{ii} = 
+		\left\{
+			\begin{array}{ll}
+				0 & \mbox{if } q_{ii} \ne 0 \\
+				1 & \mbox{if } q_{ii} = 0
+			\end{array}
+		\right.
+\end{equation}
+Theorem \ref{def:jump-chain-holding-times} provides a definition of a Markov chain in terms of its jump chain and holding times.
+
+\begin{defn}
+	\label{def:jump-chain-holding-times}
+	A minimal right-continuous process $(X_t)_{t \ge 0}$ is a continuous time Markov chain with initial
+	distribution $\lambda$ and transition rate matrix $Q$ if its jump chain $(Y_n)_{n \ge 0}$ is a 
+	discrete time Markov chain with initial distribution $\lambda$ and transition matrix $\Pi$ and
+	for each $n \ge 1$, conditional on $Y_0, Y_1, ..., Y_{n-1}$, its holding times $S_1, S_2, ..., S_{n-1}$
+	are independent exponentially distributed random variables of parameters $q_{Y_0}, q_{Y_1}, ..., q_{Y_{n-1}}$
+	where $q_i = -q_{ii}$.
+\end{defn}
 
 \subsection{Aggregation}
 
@@ -38,7 +81,7 @@ $\Phi: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}^{m \times m}$ using formul
 	\label{eq:ctmc-state-aggregation}
 	\Phi(Q) = \tilde{Q} = (P' \Pi P)^{-1} P' \Pi Q P
 \end{equation}
-where $\Pi = diag(\pi)$ and $\pi$ is the stationary distribution of $(X_t)_{t \ge 0}$, while $P$ is a 
+where $\Pi = diag(\pi)$ and $\pi = (\pi_1, \pi_2, ..., \pi_n)$ is the stationary distribution of $(X_t)_{t \ge 0}$, while $P$ is a 
 $|I| \times |J|$ partition matrix with elements
 \begin{equation}
 	\nonumber
