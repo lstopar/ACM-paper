@@ -65,15 +65,18 @@ Theorem \ref{def:jump-chain-holding-times} provides a definition of a Markov cha
 	where $q_i = -q_{ii}$.
 \end{defn}
 
-Transition rates are also used to define the size of each state in the visualization. We say that a measure
-$\lambda$ is invariant if
+Transition rates are also used to define the size of each state in the visualization. We say that a distribution
+$\pi$ is invariant if
 \begin{equation}
 	\nonumber
-	\lambda Q = 0.
+	\pi Q = 0.
 \end{equation}
-If $\lambda$ is also a probability distribution then we call it the stationary distribution of $(X_t)_{t \ge 0}$.
-We refer the reader to \cite{norris1998markov} for proof that all irreducible and recurrent Markov chains have
-a stationary distribution.
+and call it the stationary distribution of $(X_t)_{t \ge 0}$. We refer the reader to \cite{norris1998markov}
+for proof that all irreducible and recurrent Markov chains have a stationary distribution. The elements
+of $\pi$, $\pi_i$ represent the proportion of time that the process spends in state $i$ during its infinite
+life. We use the elements of $\pi$ to represent the state sizes. This way the size of each state is proportional
+to the proportion of time the process spends in each state.
+
 
 \subsection{Aggregation}
 
