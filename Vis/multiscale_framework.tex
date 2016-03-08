@@ -24,7 +24,7 @@ with the following properties:
 \subsection{Modeling Transition Probabilities}
 
 To capture and visualize the dynamics of the system our methodology represents the data in a qualitative manner
-using states and transitions while we represent the states as described in Section \ref{sec:framework-states},
+using states and transitions. While we represent the states as described in Section \ref{sec:framework-states},
 to model transitions we use the continuous-time Markov chain (CTMC) framework.
 As mentioned in Section \ref{sec:preliminaries} all the data needed to represent a continuous-time Markov chain
 is stored as transition rates in a transition rate matrix $Q \in \mathbb{R}^{n \times n}$. However, initial user
@@ -64,6 +64,16 @@ Theorem \ref{def:jump-chain-holding-times} provides a definition of a Markov cha
 	are independent exponentially distributed random variables of parameters $q_{Y_0}, q_{Y_1}, ..., q_{Y_{n-1}}$
 	where $q_i = -q_{ii}$.
 \end{defn}
+
+Transition rates are also used to define the size of each state in the visualization. We say that a measure
+$\lambda$ is invariant if
+\begin{equation}
+	\nonumber
+	\lambda Q = 0.
+\end{equation}
+If $\lambda$ is also a probability distribution then we call it the stationary distribution of $(X_t)_{t \ge 0}$.
+We refer the reader to \cite{norris1998markov} for proof that all irreducible and recurrent Markov chains have
+a stationary distribution.
 
 \subsection{Aggregation}
 
