@@ -22,6 +22,7 @@ with the following properties:
 }
 
 \subsection{Modeling Transition Probabilities}
+\label{sec:framework-transitions}
 
 To capture and visualize the dynamics of the system our methodology represents the data in a qualitative manner
 using states and transitions. While we represent the states as described in Section \ref{sec:framework-states},
@@ -74,11 +75,12 @@ $\pi$ is invariant if
 and call it the stationary distribution of $(X_t)_{t \ge 0}$. We refer the reader to \cite{norris1998markov}
 for proof that all irreducible and recurrent Markov chains have a stationary distribution. The elements
 of $\pi$, $\pi_i$ represent the proportion of time that the process spends in state $i$ during its infinite
-life. We use the elements of $\pi$ to represent the state sizes. This way the size of each state is proportional
+life. We use the elements of $\pi$ to represent the state sizes, so that the size of each state is proportional
 to the proportion of time the process spends in each state.
 
 
 \subsection{Aggregation}
+\label{sec:framework-aggregation}
 
 Once we have computed the lowest level Markov chain $(X_t)_{t \ge 0}$, we need to be able to represent it on multiple scales.
 As stated in Section \ref{sec:preliminaries} we associate each scale $s$ with a specific partition function

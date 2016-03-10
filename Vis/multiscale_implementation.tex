@@ -1,108 +1,65 @@
-\begin{itemize}
-	\item clustering
-	
-	The clustering step of our multi-level framework is used to identify typical low-level states
-	of the visualized system from the raw observations. It achieves this by partitioning the
-	observations and associating each state with a single partition.
-	
-	The literature suggests many partitioning algorithms, including those that produce a hierarchical 
-	partition. The computational complexity of these algorithms however is $O(n^2)$ which renders 
-	them unsuitable for large datasets. We therefore first create a flat partition of the data space
-	using K-Means, resulting in a Voronoi diagram and enabling us to construct states by assigning
-	observations to the partition with the nearest centroid.
-	
-	\lstopar{
-	K-Means objective function \cite{DBLP:journals/corr/abs-1111-0352} \ref{eq:k-means-objective}
-	\begin{equation}
-		\label{eq:k-means-objective}
-		\min\limits_{\{c_i\}_{i \in \mathbb{N}_k}} \sum\limits_{i = i}^{k}\sum\limits_{x_j \in c_i} \|x_j - \mu_i\|
-	\end{equation}
-	}
-	
-	\item criteria for aggregation 
-	
-	Once the lowest level states are constructed, the next step is to aggregate them to obtain a
-	multi-resolution view of the data. This process results in a hierarchical tree structure
-	which essentially induces a hierarchical partition on the data space, with partitions
-	on the higher levels of the tree structure containing partitions on the lower levels of the
-	tree structure.
-	
-	 A common approach when performing aggregation is to aggregate
-	items that are similar to each other in some way.
-	
-	We choose a bottom-up hierarchical clustering algorithm,
-	where we aggregate two states if they lie close to each other in Euclidean space.
-	
-	\item modeling transition rates
-	
-	We model state transitions using a continuous time Markov chain framework presented in Section
-	\ref{sec:preliminaries}. The transitions are modeled on the lowest level states.
-	
-	We allow users to select a subset of the attributes which we use to model transition rates.
-	Since the jump process from state $i$ to state $j$ can be characterized as a Poisson process,
-	we can model its transition rate $q_{ij}$ as a function of these attributes $q_{ij}(x_i)$.
-	We do this by first discretizing the continuous time parameter into a discrete sequence
-	$(0, \epsilon, 2\epsilon, ...)$ and estimating the transition rates as
-	\begin{equation}
-		q_{ij} = \frac{\epsilon}{\tilde{p}_{ij}}
-	\end{equation}
-	where $\tilde{p}_{ij}$ is the estimated probability of jumping from state $i$ to state $j$
-	in time $\epsilon$.
-	
-	Suppose the process is in state $i$ at time $t$ and define a random variable 
-	$J_i = j \Leftrightarrow X_{t + \epsilon} = j$. $J_i$ then has a multinomial distribution
-	with parameters $(p_{i1}, p_{i1}, ..., p_{in})$ which can be modeled using a nominal
-	logistic regression model \cite{glm-introduction} to estimate $\tilde{p}_{ij}$.
-	
-	The transition rate matrix is then computed on-the-fly from the matrix of logistic regression models.
-	
-	To model the Markov chain on a specific detail level, we adapt a formula proposed in \cite{5746509}
-	to the continuous time framework. We define an aggregated states $\{S_i\}_i$ as non-intersecting
-	subsets of the state space $I$ where $\bigcup_i S_i = I$. The transition rate among aggregated
-	states can then be computed using formula \ref{eq:agg-transitions}.
-	\begin{equation}
-		\label{eq:agg-transitions}
-		q_{S_i S_j} = \frac{\sum\limits_{i \in S_i}\pi_i \sum\limits_{j \in S_j} q_{ij}}{\sum\limits_{i \in S_i}\pi_i}
-	\end{equation}
-	where $\pi = (\pi_1, \pi_2, ..., \pi_n)$ represents the stationary distribution of the process. The
-	above formula can be rewritten in matrix from as:
-	\begin{equation}
-		Q_l(Q) = \left(P\Pi P\right)^{-1}P\Pi Q P
-	\end{equation}
-	where $P$ is a projection matrix defined as
-	\begin{equation}
-		\left(P\right)_{ij} = 
-			\left\{
-				\begin{array}{ll}
-					1 & \mbox{if } j \in S_i \\
-					0 & \mbox{otherwise}.
-				\end{array}
-			\right.
-	\end{equation}
+This section presents the implementation of our three step methodology presented in Section \ref{sec:multiscale-framework}.
+We start by describing the methods behind the initial state construction in Subsection \ref{sec:state-construction-impl}. \lstopar{[TODO]}
 
-	
-\end{itemize}
+\subsection{Initial State Construction}
+\label{sec:state-construction-impl}
 
-Be begin this section with an overview of our multi-scale methodology shown in Figure \ref{fig:methodology}.
-The methodology starts by aggregating and resampling the data streams, interpolating wherever needed. This
-first step is critical for further processing as it produces feature vectors, used in later steps of the
-methodology. Our next step includes identifying typical low-level states from the feature vectors
-created in step one. We achieve this by partitioning the feature vectors and associating each state
-with a single partition. While the literature suggest many hierarchical partitioning methods, including
-those that produce a hierarchical partition, their computational complexity is $O(n^2)$ which
-renders them unsuitable for big data scenarios. We therefore propose a flat partition of the data space,
-constructing the hierarchy later in the process.
+As described in section \ref{sec:framework-states} the initial state construction is performed by partitioning
+the data points and associating each partition with a single state. The literature suggests many partitioning
+algorithms, including those that produce a hierarchical partition. The computational complexity of these algorithms
+is, however $O(n^2)$, rendering them unsuitable for large datasets.
 
-The next step includes modeling transitions. Our methodology models transitions using a Markovian model
-presented in Section \ref{sec:preliminaries}. The main characteristic of Markov models is that they
-retain no memory of where the process has been in the past. This means that only the current state
-influences where the process will go next. In this work we are only interested in processes that
-can assume a finite set of states, called Markov chains \cite{norris1998markov}.
+We therefore, in the first step, create a flat partition of the data space and later aggregate these partitions
+to obtain a hierarchical partition.
 
-Hierarchical clustering is based on iteratively building a tree structure of aggregate items
-either using a bottom up or top-down approach. Top-down aggregation starts with one aggregate containing
-all the items and recursively splitting them until a specific level of granularity has been achieved or
-all items belong to their own aggregate.
-On the other hand bottom-up aggregation starts by treating each item as its own aggregate and iteratively
-merging them until only one aggregate remains.
+Following the intuition of Section \ref{sec:framework-states} we consider that two data points are similar if they lie close
+to each other in Euclidean space. \lstopar{Other distance measures are also possible but are out of scope of this paper.}
+We use either K-Means or DP-means \cite{DBLP:journals/corr/abs-1111-0352} to construct the partition, representing each 
+partition as a Voronoi cell around its centroid. When using StreamStory in real time, the current state is thus
+selected by assigning the current observation to the nearest centroid using the following formula:
+\begin{equation}
+	\nonumber
+	i = \argmin_{i \in \mathbb{N}_k} \|x - \mu_i\|.
+\end{equation}
+
+We note that the number of centroids (in case of K-Means) or the cluster radius (in case of DP-means) should
+be chosen based on domain knowledge and the level of detail the user desires. This parameter also effects the 
+initial model construction time as demonstrated in Section \ref{sec:implementation}.
+
+\subsection{Modeling Transition Probabilities}
+\label{sec:transition-probs-impl}
+
+As described in Section \ref{sec:framework-transitions} we model state transitions using the continuous
+time Markov chain framework, first presented in Section \ref{sec:preliminaries}. The transitions are 
+modeled on the lowest level states and are then aggregated using the formula presented in Section \ref{sec:framework-aggregation}.
+
+We allow users to select a subset of attributes which are used to model transition rates. Since the
+jump process from state $i$ to state $j$ can be characterized as a Poisson process, we can model its
+transition rate $q_{ij}$ as a function of these attributes $q_{ij} = q_{ij}(x)$. We do this by first
+discretizing the continuous time parameter into a discrete sequence $(0, \epsilon, 2\epsilon, ...)$,
+estimating the transition rates as
+\begin{equation}
+	q_{ij}(x) = \frac{\epsilon}{\tilde{p}_{ij}(x)}
+\end{equation}
+where $\tilde{p}_{ij}$ is the estimated probability of jumping from state $i$ to state $j$ in time
+$\epsilon$.
+
+Suppose the process is in state $i$ at time $t$ and define a random variable $J_i = j \Leftrightarrow X_{t + \epsilon} = j$.
+$J_i$ then has a multinomial distribution with parameters $(p_{i1}, p_{i1}, ..., p_{in})$ which can be 
+modeled using a nominal logistic regression model \cite{glm-introduction} to estimate $\tilde{p}_{ij}(x)$.
+The transition rate matrix is them constructed on-the-fly from a matrix of logistic regression models.
+
+\subsection{Aggregation}
+\label{sec:state-aggregation-impl}
+
+With a fine partition already available, our methodology merges partitions to obtain a hierarchical partition.
+Following the intuition form Section \ref{sec:framework-states} we consider two partitions similar, if their
+centroids lie close to each other in some metric space. \lstopar{We note that the metric space should be
+the same as used for constructing initial states.} We then employ agglomerative clustering \cite{Murtagh83}
+producing a dendrogram, with a hierarchical partition and an associated scale $s$ which we directly use
+as the scale in our methodology.
+Agglomerative clustering algorithms take two arguments: a metric, used to calculate the similarity between 
+clusters and a linkage criteria which determines the distance between sets of clusters as a function of the
+pairwise distances between observations. We performed experiments using three linkage strategies: single-linkage, 
+complete-linkage and average linkage. Our experiments showed no significant difference between the linkage strategies.
 
