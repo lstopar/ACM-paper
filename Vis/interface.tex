@@ -29,7 +29,7 @@ transitions, where we associate each state with a circle and each transition wit
 central panel. The size of a state is calculated from the associated entry in the stationary distribution
 and is proportional to the fraction of time the system spends in the state. The thickness of each arrow
 is proportional to the associated transition probability. When using the model as a
-monitoring tool, the current state (\lstopar{orange}) and the most likely future states (\lstopar{blue})
+monitoring tool, the current state (green) and the most likely future states (blue)
 are highlighted. The current state is determined by assigning the current data point to its nearest 
 centroid, as presented in Section \ref{sec:multiscale-implementation}, and is updated in real-time as
 the data arrives into the system.
@@ -46,7 +46,7 @@ which visualize the states properties in a \lstopar{tree manner} and \lstopar{ex
 These services are shown when the user clicks on a state and thereby selects it and will be 
 explained in the following subsections.
 
-\subsection{Automatic Labeling}
+\subsection{Automatic State Labeling}
 
 Looking at graphs by itself is not very informative. Although representing the system as states and 
 transitions gives insight into the dynamics of the system, it fails to provide a comprehensive summary 
@@ -56,12 +56,18 @@ states with high temperature in example \ref{sec:experiments-weather}}.
 
 To overcome this issue, an automatic, data-driven, naming service was added. The service labels
 states based on the inner-state attribute distributions by concatenating the most outlying attribute
-with a discrete level with values: lowest, low, high or highest. An example of an automatic label
-is shown in Figure \ref{fig:example-naming}.
+with a discrete level with values: lowest, low, high or highest.
+
+Both the attribute and the level used in the label are computed by comparing the inner-state attribute
+distributions to the global attribute distributions. The attribute selected by the naming process is
+the one with the lowest $p$-value of the inner-cluster $40$-th and $60$-th percentile. The level is
+then determined according to the $p$-value. If the $p$-value is below $0.12$ the attribute is labeled
+as lowest or highest, while is the $p$-value is below $0.25$ it is labeled low or high. If none of the
+attributes achieve a $p$-value of $0.25$ the state is labeled as a mean state. An example of an automatic
+label, along with the associated inner-state and global histogram is shown in Figure \ref{fig:example-naming}.
 
 \begin{figure}[h!]
 	\centering
-	\label{fig:example-naming}
 	\begin{subfigure}{.48\columnwidth}
 	  	\centering
 	  	\includegraphics[width=0.7\columnwidth]{example-state-naming}
@@ -74,9 +80,10 @@ is shown in Figure \ref{fig:example-naming}.
 	  	\caption{\lstopar{TODO}}
 	  	\label{fig:example-naming-histogram}
 	\end{subfigure}
+	\label{fig:example-naming}
 \end{figure}
 
-
+\iffalse
 In order to assist the user in identifying the meaning of states, the system provides automatic default
 state names, based on the distribution of attributes in the state. Each state is given a default name
 by combining its most outstanding attribute with a discrete level: LOWEST, LOW, HIGH or
@@ -88,7 +95,42 @@ of the global distribution. The $40^{th}$ percentile is then computed for the st
 compared against the global distribution. If this percentile lies below the $25^{th}$ or $12^{th}$
 percentile, the state is marked with LOW or LOWEST respectively. The final name is chosen according
 to the attribute which lies in the lowest percentile.
+\fi
 
+\subsection{Decision Trees and Rule Extraction}
+
+An alternate description of a state is generated through the induction of decision trees \cite{Witten:2005:DMP:1205860}. Decision
+trees are classification models often used in domains such as medicine for their explanatory power.
+When a decision tree is induced, a splitting attribute and cut value are chosen recursively by a
+design time criteria. The user can then interpret the tree by traversing the path from the root 
+to one of the leafs.
+
+In our use case, we use decision trees as a tool for explaining states. We induce one tree for each
+state by classifying the observations of the state against the observations of all other states,
+obtaining a quantitative description of the state. We then extract rules from the decision tree,
+providing a short summary of the state in the form of $A_i > t_i \cup A_j \in (t_{j_1}, t_{j_2}]$.
+
+Figure \ref{fig:example-decision-tree-and-rule} show an example decision tree and extracted rules
+from a state in the weather dataset presented in section \ref{sec:experiments-weather}.
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}{.3\columnwidth}
+	  	\centering
+	  	\includegraphics[width=\columnwidth]{example-rule}
+  		\caption{\lstopar{TODO}}
+  		\label{fig:example-rule}
+	\end{subfigure}
+	\begin{subfigure}{.68\columnwidth}
+	  	\centering
+	  	\includegraphics[width=\columnwidth]{example-decision-tree}
+	  	\caption{\lstopar{TODO}}
+	  	\label{fig:example-decision-tree}
+	\end{subfigure}
+	\label{fig:example-decision-tree-and-rule}
+\end{figure}
+
+\iffalse
 \subsection{Visual Assistance}
 
 When a state becomes selected, the user interface presents the user with several visual aids which
@@ -104,34 +146,4 @@ which shows the distribution of the states occurrence over time. An example is s
 \end{figure}
 
 [TODO histograms]
-
-
-
-
-\subsection{Decision Trees and Rule Extraction}
-
-An alternate description of a state is generated through the induction of decision trees. Decision
-trees are classification models often used in domains such as medicine for their explanatory power.
-When a decision tree is induced, a splitting attribute and cut value are chosen recursively by a
-design time criteria. The user can then interpret the tree by traversing the path from the root 
-to one of the leafs.
-
-In our use case, we use decision trees as a tool for explaining states. We induce one tree for each
-state by classifying the observations form the state against the observations of all other states
-thus obtaining a qualitative description of the state. Figure \ref{fig:example-decision-tree} and
-Figure \ref{fig:example-decision-tree-rule} show an example decision tree and extracted rules
-from a state in the weather dataset presented in section \ref{sec:experiments-weather}.
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\columnwidth]{tree-rainfall}
-	\caption{[TODO example decision tree].}
-	\label{fig:example-decision-tree}
-\end{figure}
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=100pt]{rule}
-	\caption{[TODO rule generated from decision tree].}
-	\label{fig:example-decision-tree-rule}
-\end{figure}
+\fi
