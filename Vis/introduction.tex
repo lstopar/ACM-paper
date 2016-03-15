@@ -10,19 +10,19 @@ an opposing motion of the ailerons and the aircraft will go back into state "lev
 
 Such high-level states can be decomposed into lower-level states, giving us a 
 multi-level view of the system and allowing us to observe the system on multiple 
-detail levels. For example, a "banking turn" state can be decomposed by the
+scales. For example, a "banking turn" state can be decomposed by the
 aircrafts roll and angular velocity, resulting in perhaps three states: "initiate
 turn", "full turn" and "end turn".
 
-We present a methodology for modeling such systems and demonstrate its implementation
+We present a methodology for modeling and visualization of such systems and demonstrate its implementation
 called StreamStory. StreamStory is a tool for summarizing multivariate continuously
 time-varying data streams as a hierarchy of Markovian processes by automatically learning
 the typical low-level states, transitions and aggregating them into a hierarchy, obtaining
-a unique Markovian process on multiple detail levels. As such, our methodology aims to enable
-a convenient exploration of large information spaces by providing users with a 
-summary of the structure and dynamics of the monitored system.
+a unique Markovian process on multiple scales. As such, our methodology aims to enable
+convenient exploration of large information spaces by providing users with a 
+summary of the structure and dynamics of their data.
 
-Furthermore, we divide the inputs streams into two sets: observation and control set.
+\lstopar{a to obdrzimo?} Furthermore, we divide the inputs streams into two sets: observation and control set.
 Attributes in the observation set are the attributes that tell us the state of the 
 system and, we assume, cannot directly influence its dynamics. These are parameters
 that users cannot directly manipulate, like aircraft tilt from the previous example,
@@ -58,8 +58,12 @@ data streams. It represents the data streams in a qualitative manner using state
 }
 
 
-The remainder of this paper is structured as follows. In Section \ref{sec:methodology} we present
-our methodology in detail. Section \ref{sec:ui} we present user interaction. Section \ref{sec:experiment}
-we present our experimental results and finally in Section \ref{sec:conclusion} we conclude this
-paper and give some ideas for further work.
+The remainder of this paper is structured as follows. Section \ref{sec:previous} provides and overview
+of visualization tools used for data exploration and the state-of-the-art in Markov chain research.
+Sections \ref{sec:preliminaries} introduces the concepts and notations used throughout the paper.
+In sections \ref{sec:multiscale-framework} and \ref{sec:multiscale-implementation} we present
+our multi-scale methodology and the details of its implementation. We then present some of the 
+features of our user interface in Section \ref{sec:ui} and some implementation details in Section
+\ref{sec:implementation}. We then show experiments conducted on real-world datasets in Section \ref{sec:experiments}
+and \lstopar{provide a discussion with some general thoughts on further work} in Section \ref{sec:discussion}.
 
