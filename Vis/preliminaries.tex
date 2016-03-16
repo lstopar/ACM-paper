@@ -7,13 +7,11 @@ If we do not have enough independent signals, we can always use a time-delay emb
 
 A time-delay embedding is defined as a function:
 $$ f(x(t),d,\tau) = (x(t),x(t+\tau),\ldots,x(t+(d-1)\tau) )$$
-It takes a times series and lifts it to $d$ dimensions by considering samples spaced at $\tau$ intervals. There is considerable amount of work on how to choose $\tau$, but in our case we often (a) have sufficiently many signals (b) almost any value of $\tau$ works. 
+It takes a time series and lifts it to $d$ dimensions by considering samples spaced at $\tau$ intervals. There is considerable amount of work on how to choose $\tau$, but in our case we often (a) have sufficiently many signals (b) almost any value of $\tau$ works. 
 
 From this point on we  assume that the image of $f$ defines a compact subset of Euclidean space. For our input, we assume a PL-reconstruction based on time-adjacent samples. \primoz{(maybe an example here?)}
 
-Our main modelling tool is the continuous time Markov chain (CTMC). Markov processes are a special kind of stochastic processes with the characteristic of  	having no memory. This means that only the current state of the process can influence	where the process goes next \cite{norris1998markov}. In this work we focus on a special kind
-	of Markov processes called Markov chains that can assume only a finite or countable
-	number of states.
+Our main modeling tool is the continuous time Markov chain (CTMC). Markov processes are a special kind of stochastic processes with the characteristic of having no memory. This means that only its current state can influence where it goes next \cite{norris1998markov}. In this work we focus on a special kind of Markov processes called Markov chains that assume only a finite or countable number of states.
 
 Markov chains can be used to model many phenomena of interest and have been used in many
 applications. What makes them particularly useful is that the memoryless
@@ -24,7 +22,8 @@ More formally, a Markov chain is a stochastic process $(X_t)_{t \ge 0}$ which ca
 only a finite or countable number of states $i \in I$. The starting state
 is sampled from a probability distribution $\lambda$, called the initial distribution.
 We define $p_{ij}(t)$ to be the probability of the process being in state $j$ at time $t$
-when starting from state $i$ at time $0$ and a stochastic matrix $P(t)$, where $\left(P(i)\right)_{ij} = p_{ij}(t)$.
+when starting from state $i$ at time $0$ and a family of stochastic matrices $\{P(t)\}_{t \ge 0}$,
+where the $(i,j)$-th element of $P_{ij}(t)$ equals $p_{ij}(t)$.
 Each row of $P(t)$ is thus a probability distribution over the state space $I$. In our
 work we assume that $P(t)$ is recurrent for every $t$ and that the process is non-explosive.
 
@@ -41,16 +40,17 @@ distribution $\delta_i$ and is independent of $X_0, X_1, ..., X_m$.
 \end{defn}
 
 Continuous time Markov chains are a generalization of discrete time Markov chains as they
-fill the gap between the discrete time steps is and can change states at any given moment.
-Continuous time Markov chains are closely related to Poisson processes. Imagine the state
-space $I$ as a labyrinth of corridors and chambers. The corridor between chambers $i$ and $j$
+fill the gap between the discrete time steps and can change states at any given moment.
+Continuous time Markov chains are closely related to Poisson processes. Imagine a labyrinth
+of corridors and chambers and associate each chamber with a single state from the state space
+$I$. The corridor between chambers $i$ and $j$
 is shut by a single door that opens for an infinitely small amount of time at the jump times of
 a Poisson process with rate $q_{ij}$. If the person walking through the labyrinth changes
 chambers each time a door opens, they are performing
 a continuous time Markov chain.
 
 The basic data needed to define a continuous time Markov chain on state space $I$ are
-given by a transition rate matrix $Q$ satisfying the following conditions:
+given by a transition rate matrix $Q$ satisfying three conditions:
 
 \begin{enumerate}
 	\item $q_{ij} \ge 0$ for all $i \ne j$
@@ -81,21 +81,22 @@ of rates $q_{ij}$. However Definition \ref{def:ctmc} is \lstopar{much more commo
 	\end{equation}
 	where $\delta_{ij}$ is the Dirac delta function \cite{norris1998markov}.
 \end{defn}
-\lstopar{In our work, we focus on irreducible and non-explosive chains.} When working with Markov
+When working with Markov
 chains one is often interested in long term properties of the chain. One such property is the
-stationary distribution $\pi$. One can show, that for irreducible and non-explosive Markov chain,
-the stationary distribution always exists and can be calculated as the left eigenvector of $Q$ with
-corresponding eigenvalue $0$:
+stationary distribution $\pi$. One can show, that for irreducible and non-explosive Markov chains,
+the stationary distribution always exists and can be calculated as the left eigenvector of $Q$ 
+corresponding to eigenvalue $0$:
 \begin{equation}
+	\nonumber
 	\pi Q = 0.
 \end{equation}
 \lstopar{In our case} the stationary distribution is interesting, because by the convergence theorem
-\cite{aldous-fill-2014}:
+\cite{aldous-fill-2014}
+each element $\pi_i$ represents the proportion of time the process spends in state $i$:
 \begin{equation}
-	\lim\limits_{t \rightarrow \infty} P(X_t = j) = \pi_j, \forall j \in I
+	\nonumber
+	\lim\limits_{t \rightarrow \infty} P(X_t = j) = \pi_j, \forall j \in I.
 \end{equation}
-each element $\pi_i$ represents the proportion of time the process spends in state $i$ and can be used
-when developing visualization services for such processes.
 
 To go from our PL-input signal to a Markov chain, we consider a spatial discretization of the signal.
 Let $S\subseteq \R^d$, be the support of our input signal. Given a partition of $S$, denoted by  $\cP$, 
