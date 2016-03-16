@@ -81,9 +81,21 @@ of rates $q_{ij}$. However Definition \ref{def:ctmc} is \lstopar{much more commo
 	\end{equation}
 	where $\delta_{ij}$ is the Dirac delta function \cite{norris1998markov}.
 \end{defn}
-\lstopar{In our work, we focus on irreducible and non-explosive chains.}
-
-
+\lstopar{In our work, we focus on irreducible and non-explosive chains.} When working with Markov
+chains one is often interested in long term properties of the chain. One such property is the
+stationary distribution $\pi$. One can show, that for irreducible and non-explosive Markov chain,
+the stationary distribution always exists and can be calculated as the left eigenvector of $Q$ with
+corresponding eigenvalue $0$:
+\begin{equation}
+	\pi Q = 0.
+\end{equation}
+\lstopar{In our case} the stationary distribution is interesting, because by the convergence theorem
+\cite{aldous-fill-2014}:
+\begin{equation}
+	\lim\limits_{t \rightarrow \infty} P(X_t = j) = \pi_j, \forall j \in I
+\end{equation}
+each element $\pi_i$ represents the proportion of time the process spends in state $i$ and can be used
+when developing visualization services for such processes.
 
 To go from our PL-input signal to a Markov chain, we consider a spatial discretization of the signal.
 Let $S\subseteq \R^d$, be the support of our input signal. Given a partition of $S$, denoted by  $\cP$, 

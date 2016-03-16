@@ -1,5 +1,11 @@
 \begin{thebibliography}{10}
 
+\bibitem{aldous-fill-2014}
+D.~Aldous and J.~A. Fill.
+\newblock Reversible markov chains and random walks on graphs, 2002.
+\newblock Unfinished monograph, recompiled 2014, available at
+  \url{http://www.stat.berkeley.edu/$\sim$aldous/RWG/book.html}.
+
 \bibitem{DBLP:journals/corr/AlsheikhHNTL15}
 M.~A. Alsheikh, D.~T. Hoang, D.~Niyato, H.~Tan, and S.~Lin.
 \newblock Markov decision processes with applications in wireless sensor

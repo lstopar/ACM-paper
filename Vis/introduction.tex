@@ -1,7 +1,7 @@
 Sensory systems typically operate in cycles with a continuously time-varying component. These 
 systems include, for example, the solar system, manufacturing systems or weather 
 systems. Such systems can be characterized by a set of states, along with associated
-state transitions. States, on a high level, may include a "day" state and a "night"
+state transitions. States, on a high level, may include a "sunny" state and a "rainy"
 state or maybe states with high and low productivity. For example, when a pilot wishes
 to change an aircrafts heading, they will put the aircraft into state "banking turn"
 by lowering one aileron and raising the other, causing the aircraft to perform a
@@ -9,19 +9,36 @@ circular arc. After some time, the wings of the aircraft will be brought level b
 an opposing motion of the ailerons and the aircraft will go back into state "level".
 
 Such high-level states can be decomposed into lower-level states, giving us a 
-multi-level view of the system and allowing us to observe the system on multiple 
-scales. For example, a "banking turn" state can be decomposed by the
+multi-scale view of the system and allowing us to observe the system on multiple 
+\lstopar{detail levels}. For example, a "banking turn" state can be decomposed by the
 aircrafts roll and angular velocity, resulting in perhaps three states: "initiate
 turn", "full turn" and "end turn".
 
-We present a methodology for modeling and visualization of such systems and demonstrate its implementation
+In this paper we present a methodology for modeling and visualization of such systems and demonstrate its implementation
 called StreamStory. StreamStory is a tool for summarizing multivariate continuously
-time-varying data streams as a hierarchy of Markovian processes by automatically learning
-the typical low-level states, transitions and aggregating them into a hierarchy, obtaining
-a unique Markovian process on multiple scales. As such, our methodology aims to enable
-convenient exploration of large information spaces by providing users with a 
-summary of the structure and dynamics of their data.
+time-varying data streams in a qualitative manner on multiple scales, by representing the system with 
+its most typical states and their associated transitions and aggregating them to obtain
+a hierarchical representation.
 
+To achieve such a representation, we propose a three step methodology. In the first
+step we capture the structure of the data by employing unsupervised machine learning
+techniques to identify the systems' most typical states. The second step captures
+dynamics by modeling transitions between these states using a Markov chain framework.
+The third and final step constructs a hierarchical representation by aggregating
+states and transitions. Each level of the hierarchy is then associated with a unique
+scale or detail level.
+
+We visualize this hierarchical model in a web-based user interface, shown in \lstopar{Figure} \ref{fig:teaser}.
+The user interface is designed to show the model on a single scale and allows users
+to switch scales using the zoom function. To assist users in identifying the
+meaning of states and transitions we developed several automatic assistance services,
+from automatic state labeling, rule extraction and attribute highlighting which
+identify \lstopar{differences in states}, to various histograms that show the states'
+structure.
+
+
+
+\iffalse
 \lstopar{a to obdrzimo? Furthermore, we divide the inputs streams into two sets: observation and control set.
 Attributes in the observation set are the attributes that tell us the state of the 
 system and, we assume, cannot directly influence its dynamics. These are parameters
@@ -29,7 +46,9 @@ that users cannot directly manipulate, like aircraft tilt from the previous exam
 which must be indirectly manipulated through the angles of ailerons. We use observation
 attributes to identify, and aggregate, low-level states, detect outliers (anomalies) 
 and determine the current state of the system.}
+\fi
 
+\iffalse
 In contrast, users can directly manipulate attributes in the control set. These 
 are attributes like angles of ailerons that may directly influence the behavior 
 (observation attributes) and performance of the system. For example, when an operator 
@@ -37,12 +56,15 @@ in a steel factory sets the cooling temperature to a high value, the product wil
 take longer to go from state "hot" to state "cool". As such, we assume, control attributes
 may influence the occurrence, and expected time, of undesired states, associated with
 undesired events.
+\fi
 
+\iffalse
 Our system uses control attributes to model state transitions, allowing us to observe
 the dynamics with respect to the current configuration and gives us insight into the
 expected dynamics with respect to some alternate attribute configuration.
+\fi
 
-The main research contributions presented in this paper can be summarized as follows:
+\lstopar{The main research contributions presented in this paper can be summarized as follows:
 \begin{enumerate}{}
   \item We present a novel methodology for modeling multivariate continuously time-varying data streams
   in a hierarchical manner providing a unique model of the several detail levels.
@@ -51,12 +73,7 @@ The main research contributions presented in this paper can be summarized as fol
   \item We propose a recursive algorithm for partitioning recurrent continuous time Markov chains.
   \item \lstopar{Exploratory Data Analysis Tool}
 \end{enumerate}
-
-\lstopar{
-StreamStory is a multi-scale data analysis tool for multivariate continuously time-varying
-data streams. It represents the data streams in a qualitative manner using states and transitions.
 }
-
 
 The remainder of this paper is structured as follows. Section \ref{sec:previous} provides and overview
 of visualization tools used for data exploration and the state-of-the-art in Markov chain research.
