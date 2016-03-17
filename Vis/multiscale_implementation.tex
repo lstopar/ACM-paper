@@ -67,18 +67,11 @@ Agglomerative clustering works by initially treating each centroid as a singleto
 merging pairs of partitions until only a single partition remains.
 
 The partitions chosen for merging are chosen based on some distance or similarity metric. In each step
-the closes two partition with respect to the chosen metric are merged. The results of an agglomerative clustering
-algorithm is typically visualized as a dendrogram
-We note that the metric used in this step should be the same one used when constructing initial states.
-
-
-
-producing a dendrogram, with a hierarchical partition and an associated scale $s$ which we directly use
-as the scale in our methodology.
-Agglomerative clustering algorithms take two arguments: a metric, used to calculate the similarity between 
-clusters and a linkage criteria which determines the distance between sets of clusters as a function of the
-pairwise distances between observations. We performed experiments using three linkage strategies: single-linkage, 
-complete-linkage and average linkage. Our experiments showed no significant difference between the linkage strategies.
+the closes two partitions with respect to the chosen metric are merged. The results of an agglomerative clustering
+algorithm is typically visualized as a dendrogram. Each merge is associated with a horizontal line, while
+the $y$ coordinate of the horizontal line is the distance between the merged items. Similarly
+we use this distance do define a scale on which a particular partition lives. Figure \ref{fig:dendrogram} shows
+the relationship between a dendrogram and \lstopar{our visualization}.
 
 \begin{figure}[h!]
 	\centering
@@ -86,3 +79,8 @@ complete-linkage and average linkage. Our experiments showed no significant diff
 	\caption{\lstopar{TODO}}
 	\label{fig:dendrogram}
 \end{figure}
+
+Along with a distance metric, agglomerative clustering also uses a design time linkage criteria, which determines
+the distance between sets of clusters as a function of the pairwise distances between elements. The most popular
+linkage strategies in the literature are: single-linkage, complete-linkage and average (or mean) linkage. Our
+experiments show no significant difference between the strategies.
