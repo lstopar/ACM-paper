@@ -1,5 +1,7 @@
 This section presents the implementation of our three step methodology presented in Section \ref{sec:multiscale-framework}.
-We start by describing the methods behind the initial state construction in Subsection \ref{sec:state-construction-impl}. \lstopar{[TODO]}
+We start by describing the methods behind the initial state construction in Section \ref{sec:state-construction-impl}
+and then continue to present implementation details of steps two and three in sections \ref{sec:transition-probs-impl}
+and \ref{sec:state-aggregation-impl} respectively.
 
 \subsection{Initial State Construction}
 \label{sec:state-construction-impl}
@@ -9,14 +11,14 @@ the data points and associating each partition with a single state. The literatu
 algorithms, including those that produce a hierarchical partition. The computational complexity of these algorithms
 is, however $O(n^2)$, rendering them unsuitable for large datasets.
 
-We therefore, in the first step, create a flat partition of the data space and later aggregate these partitions
-to obtain a hierarchical partition.
+To avoid this computational cost, we first create a flat partition of the data space and later aggregate these
+partitions to obtain a hierarchical structure.
 
-Following the intuition of Section \ref{sec:framework-states} we consider that two data points are similar if they lie close
+Following the intuition of Section \ref{sec:framework-states} we consider two data points similar if they lie close
 to each other in Euclidean space. \lstopar{Other distance measures are also possible but are out of scope of this paper.}
 We use either K-Means or DP-means \cite{DBLP:journals/corr/abs-1111-0352} to construct the partition, representing each 
 partition as a Voronoi cell around its centroid. When using StreamStory in real time, the current state is thus
-selected by assigning the current observation to the nearest centroid using the following formula:
+selected by assigning the current sample to the nearest centroid using the following formula:
 \begin{equation}
 	\nonumber
 	i = \argmin_{i \in \mathbb{N}_k} \|x - \mu_i\|.
@@ -31,7 +33,7 @@ initial model construction time as demonstrated in Section \ref{sec:implementati
 
 As described in Section \ref{sec:framework-transitions} we model state transitions using the continuous
 time Markov chain framework, first presented in Section \ref{sec:preliminaries}. The transitions are 
-modeled on the lowest level states and are then aggregated using the formula presented in Section \ref{sec:framework-aggregation}.
+modeled on the finest scale and are then aggregated using the formula presented in Section \ref{sec:framework-aggregation}.
 
 We allow users to select a subset of attributes which are used to model transition rates. Since the
 jump process from state $i$ to state $j$ can be characterized as a Poisson process, we can model its
@@ -47,15 +49,30 @@ $\epsilon$.
 Suppose the process is in state $i$ at time $t$ and define a random variable $J_i = j \Leftrightarrow X_{t + \epsilon} = j$.
 $J_i$ then has a multinomial distribution with parameters $(p_{i1}, p_{i1}, ..., p_{in})$ which can be 
 modeled using a nominal logistic regression model \cite{glm-introduction} to estimate $\tilde{p}_{ij}(x)$.
-The transition rate matrix is them constructed on-the-fly from a matrix of logistic regression models.
+The transition rate matrix is then constructed on-the-fly from a matrix of logistic regression models.
+
+\lstopar{
+We need to explain why modeling transitions using signals is useful and why it is used.
+In previous documents I went on blabbering that by modeling transitions this way, we allow
+the possibility of users observing the dynamics in alternate configurations and simulating
+what would happen if they changed some parameter. (This was more or less BS though)
+}
 
 \subsection{Aggregation}
 \label{sec:state-aggregation-impl}
 
-With a fine partition already available, our methodology merges partitions to obtain a hierarchical partition.
-Following the intuition form Section \ref{sec:framework-states} we consider two partitions similar, if their
-centroids lie close to each other in some metric space. \lstopar{We note that the metric space should be
-the same as used for constructing initial states.} We then employ agglomerative clustering \cite{Murtagh83}
+With a fine partition already available, our methodology merges partitions to obtain a hierarchical structure.
+We employ agglomerative clustering \cite{Murtagh83} producing a hierarchical partition structure.
+Agglomerative clustering works by initially treating each centroid as a singleton partition and then recursively
+merging pairs of partitions until only a single partition remains.
+
+The partitions chosen for merging are chosen based on some distance or similarity metric. In each step
+the closes two partition with respect to the chosen metric are merged. The results of an agglomerative clustering
+algorithm is typically visualized as a dendrogram
+We note that the metric used in this step should be the same one used when constructing initial states.
+
+
+
 producing a dendrogram, with a hierarchical partition and an associated scale $s$ which we directly use
 as the scale in our methodology.
 Agglomerative clustering algorithms take two arguments: a metric, used to calculate the similarity between 
@@ -63,3 +80,9 @@ clusters and a linkage criteria which determines the distance between sets of cl
 pairwise distances between observations. We performed experiments using three linkage strategies: single-linkage, 
 complete-linkage and average linkage. Our experiments showed no significant difference between the linkage strategies.
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\columnwidth]{dendrogram}
+	\caption{\lstopar{TODO}}
+	\label{fig:dendrogram}
+\end{figure}

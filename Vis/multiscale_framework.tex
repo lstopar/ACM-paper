@@ -10,7 +10,6 @@ To capture and summarize the dynamics of the system our methodology represents t
 in a qualitative manner using states and transitions. We begin this section with an overview
 of our multi-scale methodology. The methodology consists of three main steps and is
 shown in Figure \ref{fig:methodology}.
-
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\columnwidth]{methodology}
@@ -105,10 +104,12 @@ the data in several details level - from the finest to the most coerce.
 
 As stated in Section \ref{sec:preliminaries} we associate each scale $s$ with a specific partition
 function $\lstopar{f_s}: \mathbb{R}^d \rightarrow \lstopar{I_s}$. At the finest scale, we use the 
-partition function \lstopar{$f: A \rightarrow B$ [TODO the function]} as defined in Section \ref{sec:framework-states}, inducing state space $I$. We then compute the partition
+partition function \lstopar{$f: A \rightarrow B$ [TODO the function]} defined in Section \ref{sec:framework-states}, which induces
+the state space $I$ of the Markov chain $(X_t)_{t \ge 0}$. We then compute the partition
 function for coarser scales by aggregating elements in $\Ima \lstopar{f}$, inducing state space $I_s$.
-Thus $I_s$ represents a partition of $I$ and is determined by a map $\phi_s: I \rightarrow I_s$. This
-way $f_s$ can be represented as a compositum $f_s = f \circ \phi_s$.
+Thus $I_s$ represents a partition of $I$. Our methodology uses partitions in $I_s$ as states on scale $s$.
+$I_s$ is determined by a map $\phi_s: I \rightarrow I_s$. This
+way $f_s$ can be represented as a compositum \lstopar{$f_s = f \circ \phi_s$}.
 
 We represent the Markov chain $(X_t^{(s)})_{t \ge 0}$ induced by state space $I_s$ with a transition
 rate matrix $Q^{(s)}$. To compute $Q^{(s)}$, we adapt the formula
@@ -130,8 +131,7 @@ $n \times m$ matrix with elements
 			\end{array}
 		\right.
 \end{equation}
-Thus the data needed to represent a Markov chain at a specific scale $s$ is obtained by applying \ref{eq:ctmc-state-aggregation}
-is obtained as $Q^{(s)} = \Phi(Q)$.
+Thus the data needed to represent a Markov chain at a specific scale $s$ is obtained as $Q^{(s)} = \Phi(Q)$.
 If we define $\psi = \phi \circ \phi^{-1}$, then Equation \ref{eq:ctmc-state-aggregation} can be rewritten as
 \begin{equation}
 	\nonumber
