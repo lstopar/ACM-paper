@@ -1,7 +1,7 @@
 StreamStory is implemented as a client-server application, with its front-end implemented in HTML5,
 CSS3 and JavaScript. The page layout is handled by Twitter Bootstrap 3, providing 
 responsiveness and scalability to most modern devices. We use Cytoscape.js
-for visualization of graphs and trees, including the main visualization and D3.js for visualization of charts.
+for visualization of graphs and trees, including the main visualization, and D3.js for visualization of charts.
 The front-end relies on technologies like Ajax and WebSockets for transparent real-time
 updates.
 
@@ -9,34 +9,36 @@ The backend uses a hybrid implementation with its core functionality written in 
 as part of the QMiner data analytics platform \cite{qminer}, under the BSD license.
 This functionality is exposed as a Node.js addon running in Googles V8 JavaScript
 environment. Node.js thus acts as glue and exposes the functionality through RESTful
-web services using the Express framework. User credentials \lstopar{and other information} are stored in a MySQL database.
+web services using the Express framework, also acting as the session manager.
+User credentials \lstopar{and other information} are stored in a MySQL database.
 
 Having the core functionality implemented in C++ provides performance benefits, especially
 when dealing with larger datasets. When using StreamStory, the most time consuming step
-is the model initialization. Indeed, after this initial step, everything works in real-time.
+is model initialization. Indeed, after this initial step, everything works in real-time.
 The initialization includes partitioning the dataset, aggregating states, modeling transitions,
 computation of state statistics, initialization of state assistance services and laying out the generated
-hierarchical graph onto a plane. Our experiments show that the most consuming of these tasks are
+hierarchical graph onto a plane. Our experiments show that the most time-consuming of these tasks are
 the initialization of state assistance services, where a decision tree and a logistic regression
-model need to be trained for each state in the hierarchy. \lstopar{These tasks are however independent
-for each state and can be parallelized.}
+model need to be trained for each state in the hierarchical structure. State initialization tasks
+are however independent and can be parallelized.
 
 To measure the performance of the initialization procedure, we constructed several models on two datasets
-of sizes 155MB (285k instances) and 500MB (\lstopar{3M} instances) respectively. A set of five attributes
+of sizes 155MB (285k samples) and 500MB ($\approx$ \lstopar{3M} samples) respectively. A set of five attributes
 was randomly chosen for each dataset and used in all the experiments. We
 then constructed models with 18, 38 and 78 states respectively and measured the model initialization times,
-shown in Figure \ref{fig:performance}.
+which we show in Figure \ref{fig:performance}.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\columnwidth]{time-measurements}
 	\caption{\lstopar{[TODO]}.}
 	\label{fig:performance}
 \end{figure}
+We can see that although the construction time increases with the number of states, the initialization
+procedure is quite fast for the smaller data set with only the larger model with 78 states taking over 
+a minute to complete. \lstopar{When using the larger dataset ...}
 
 \lstopar{
 \begin{itemize}
-	\item we can see that the initialization depends on the dataset size and the number of states
-	\item the small dataset was constructed quickly
 	\item the larger dataset was constructed in acceptable time
 \end{itemize}
 }
