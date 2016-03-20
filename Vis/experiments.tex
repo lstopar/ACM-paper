@@ -19,18 +19,18 @@ an electric motor and is shown in Figure \ref{fig:example-motor}.
 \end{figure*}
 The simulation starts in the leftmost state of Figure~\ref{fig:simulation-model} with the motor in a stationary state
 and the power switch turned off. Then \lstopar{an invisible user} randomly, sampled from an exponential distribution,
-toggles the switch. Once the switch is on, as the rotation increases, the model starts moving in the counter clockwise
+toggles the "on" switch. Once the switch is on, as the rotation increases, the model starts moving in the counter clockwise
 direction towards the large green state on the right. This state represents the \lstopar{equilibrium} when the temperature
 gained through friction equals the temperature lost to the ambient and the \lstopar{signals} become \lstopar{stationary}.
 Once the power switch is toggled again, the rotation slowly halts due to friction and the process goes from right to
 left in the counter clockwise direction.
 
-\lstopar{bolje opisi}
 To conduct the experiment we generated two dataset: a training set and a test set. Both datasets
-contained $200k$ observations. We built the StreamStory model with 20 lowest-level states on the training set using two attributes:
-angular velocity and temperature. The training dataset was then replayed through the model and the
-models next state predictions were compared to the actual next state counts. The mean average 
-error calculated was $0.05$ or 5\%.
+contained $200k$ observations. We built a StreamStory model with 20 lowest-level states on the training set using two attributes:
+angular velocity and temperature. The training dataset was then replayed through the model and the finest scale states were stored. We then used
+the stored states to calculate the transition probabilities and compared them to the models' jump chain $\Pi$. Since a lot of these probabilities were zero, we decided to use only the probabilities that
+are non-zero either in the jump chain or in the probabilities calculated from the history. We then
+computed the mean absolute error of the non-zero probabilities which resulted in $MAE=0.05$ or $5\%$.
 
 In another experiment we tested the models predictive power. Two StreamStory models were built: (a) one 
 model using the same attributes as in the first experiment, while in the second model (b), we used
