@@ -46,7 +46,7 @@ of jumps (total number of predictions). In this experiment model (a) scored $0.8
 \label{sec:experiments-weather}
 
 The example below shows our model generated on monthly rainfall and temperature data
-collected over the course of 20 years between 1920 and 1940 in Nottingham England.
+collected over the course of 20 years between 1920 and 1940 in Nottingham, England.
 
 \begin{figure}[h!]
 	\centering
@@ -55,13 +55,15 @@ collected over the course of 20 years between 1920 and 1940 in Nottingham Englan
 	\label{fig:example-weather}
 \end{figure}
 
-The model was generated using the raw rainfall and temperature data, but each feature vector includes
-the rainfall and temperature of the previous month. The states on the right hand side represent the 
+The model was generated using the raw rainfall and temperature data, lifted into a four dimensional space.
+\lstopar{Lifting was done as suggested in Section \ref{sec:preliminaries} by appending the previous sample to the current sample, effectively adding two new dimensions}.
+
+The states on the right hand side represent the 
 summer states, while the states on the left represent winter states. The yearly timeline flows in the
 counter clockwise direction with the spring states residing on the bottom of the figure and the autumn
 states on the top.
 
-Interestingly, in this dataset, the rainfall and temperature are very highly correlated and the auto naming feature
+Interestingly, in this dataset, the rainfall and temperature are very correlated and the auto labeling feature
 choose high rainfall as the most significant feature of the summer states. This correlation can be seen
 from the attribute histogram shown in Figure \ref{fig:histograms-summer}.
 
@@ -74,9 +76,9 @@ from the attribute histogram shown in Figure \ref{fig:histograms-summer}.
 
 \subsection{GPS Data}
 
-The second example was created using raw GPS coordinates collected using a smartphone between \textcolor{red}{X} and \textcolor{red}{Y}.
+The second example was created using raw GPS coordinates collected using a smartphone between years \lstopar{X} and \lstopar{Y}.
 The data represents the everyday movement of a European computer science researcher. Figure \ref{fig:example-geo}
-shows our qualitative representation of this data on a high level with 8 state.
+shows our qualitative representation of this data on a high level with 8 states.
 
 \begin{figure}[h!]
 	\centering
@@ -86,8 +88,9 @@ shows our qualitative representation of this data on a high level with 8 state.
 \end{figure}
 
 From the figure, we can see that the system was able to identify the most typical locations of this persons
-movements. Most of the time they spend in central EU including two small states on the bottom and right
-representing southern Europe and India where they went for vacation. On the European continent, the system
+movements.
+
+They spent most of the time in south-central Europe including the central green state and the bottom-most state. The small state on the right represents India, where they went for vacation last year. On the European continent, the system
 also identified Germany and Sweden where the person frequently attends meetings or stays for a short while
 during a connecting flight. The states on the left represent the USA with the largest state representing New
 York city where the person spent the 2014 summer and the smaller states representing San Francisco and Austin,
@@ -95,7 +98,7 @@ Texas.
 
 \subsection{Traffic Data}
 
-Our next example, shown in Figure \ref{fig:example-traffic}, shows a representation of a traffic counter positioned on the highway ring around Ljubljana.
+Our next example, shown in Figure \ref{fig:example-traffic}, shows a representation of a traffic counter positioned on the highway ring around Ljubljana, Slovenia.
 \lstopar{In this example, we lifted the counter into a three dimensional space, by also including the number of
 cars three hours and one day before.}
 \begin{figure}[h!]
@@ -106,7 +109,7 @@ cars three hours and one day before.}
 \end{figure}
 On a high level, our system was able to identify what we believe is the typical daily cycle on the highway ring.
 The state on the left hand side represents a night state, when the traffic traffic is the lowest. This state
-lasts from 10 PM to 5 AM when most people are asleep and not much is happening on the ring. Then, with a high 
+lasts from 10 PM to 5 AM when most people are asleep and not much is happening on the road. Then, with a high 
 probability, the system jumps into the topmost state with an above average traffic count which lasts from 6 AM
 to roughly 9 AM. The next state is the midday state on the right with the highest traffic count lasting from 9 AM
 to 7 PM. This is exactly the time when the traffic is very dense and most congestions occur. The next transition
