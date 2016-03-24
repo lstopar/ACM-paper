@@ -1,13 +1,13 @@
 
-Visualization of large multi-variate time-series is an understudied area. In areas such as production and manufacturing lines, the common practice is to plot multiple signals in either the same window or in parallel windows~\cite{}. This makes interpretation difficult and does not scale particularly well to signals with a large number of variates or high sampling rates. %In the latter case, the appropriate time scale must be chosen a priori to enable a user to monitor the   
+Visualization of large multi-variate time-series is an understudied area. In areas such as production and manufacturing lines, the common practice is to plot multiple signals in either the same window or in parallel windows~\cite{} \lstopar{[TODO ref missing]}. This makes interpretation difficult and does not scale particularly well to signals with a large number of variates or high sampling rates. %In the latter case, the appropriate time scale must be chosen a priori to enable a user to monitor the   
 This clutters the visualization and hinders data analysis. Further, as the number of observations increases,
  large response times make interactive exploration difficult (citation?).
 
 There is a large body of work to address this scalability problem.
 They can generally be classified into two groups: data abstraction and clutter reduction 
-techniques. Techniques for data abstraction include filtering [TODO cite], clustering
-and sampling [TODO cite]. Clutter reduction assigns more space to interesting data and tries to hide less interesting data.
-The most common techniques for clutter reduction include zooming and distortion [TODO cite].
+techniques. Techniques for data abstraction include filtering \lstopar{[TODO cite]}, clustering
+and sampling \cite{553159}. Clutter reduction assigns more space to interesting data and tries to hide less interesting data.
+The most common techniques for clutter reduction include zooming and distortion \cite{559215,1382895} \lstopar{[TODO cite zooming]}.
 
 
 We first overview some previoous work on multidimensional and hierarchical data visualizations. 
@@ -45,8 +45,8 @@ On important distinction between this work and ours is that this methods are not
 
 
 Visualization in data mining or/and exploratory data analysis range from simple techniques for data exploration, such as
-scatter plots, box plots, heatmaps, etc., to visualization of more complex structures such as PCA \lstopar{[TODO cite]},
-association rules, decision trees \lstopar{[TODO cite]}, clusters and dendrograms.
+scatter plots, box plots, heatmaps, etc., to visualization of more complex structures such as \lstopar{dimensionality reduction \cite{Fortuna05visualizationof,Vesanto99som-baseddata}},
+association rules \cite{Hahsler_visualizingassociation}, decision trees \cite{963292,Nguyen2000}, clusters and dendrograms.
 
 Oliveira and Levkowitz \cite{1207445} provide a survey of visualization tools used for data mining. Their survey focuses
 to visualization of tabular data and provides an overview of tools and techniques for data exploration,
