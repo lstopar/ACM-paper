@@ -1,0 +1,102 @@
+Show the demo using dark theme!!!
+
+SHOW THE DATA
+- show file rainfall-england.csv (as raw text)
+- show the file as a graph in MATLAB
+
+CREATE THE MODEL
+- open StreamStory and log in (as test@test.com)
+-- click add model
+-- choose file rainfall-england.csv
+-- select the time attribute (explain that it always has to be present)
+-- select all the other attributes
+-- select Time as the "Time Attribute"
+-- select "Month" as the time unit
+
+-- show that two clustering algorithms are available
+-- select KMeans with 12 states
+
+-- show that two hierarchy builders are available
+-- select "Distance Based"
+
+-- name the model as Weather Example
+-- write "Temperature and rainfall in Nottingham" in the description field
+
+-- click Done
+
+SHOW THE MODEL
+- click on "View" [TODO popravi, da bodo stanja malo bolj skupaj]
+-- a model with 2 states appears ("Rainfall High" and "Rainfall Low")
+--- explain that these are the typical high level states of the system and that the arrows represent transitions
+--- explain that the system automatically named the states based on the distribution of attributes
+--- hover over state "Rainfall high"
+---- a tooltip appears showing that the system is in the state for 6 months
+---- the rule generates says that the temperature is > 9.xx
+
+look at charts:
+-- click on state "Rainfall high"
+-- look at the histograms - the rainfall and temperature are high (show the green labeling on the average values)
+-- look at the parallel coordinates - the rainfall and temperature are high again
+-- look at the timeline
+--- it seems to be periodic
+--- click on "Yearly"
+---- clearly the state appears in the "High temperature season"
+
+zoom in:
+-- zoom in until 4 states appear
+-- click on state Rainfall highest
+--- show the histograms - clearly the temperature in this state is high
+--- show the timeline - click on "Yearly" - the state appears between June and September
+-- Focus on state name and name the state summer
+--- click "Save" - the states' label changes
+
+follow the arrows:
+-- click on state MEAN (upper)
+--- the rainfall and temperature are average - this state appears in October - name it Oct
+
+-- click on state "Rainfall LOW"
+--- temperature and rainfall are on the lower end of the distribution
+--- check out the timeline - the state appears from November to April
+
+-- zoom in until 6 states appear
+-- click on Rainfall low (the one after the upper MEAN)
+--- temperature and rainfall are on the lower end of the distribution (but not quite the lowest) - it usually appears in November (name it Nov)
+
+-- Continue with the arrows
+--- the probabilities are nore uniform now
+--- click on state Rainfall LOWEST
+---- parallel coordinates show low values of temperature and rainfall, so do the histograms and decision tree
+---- the timeline suggests this state appears in the winter
+--- click on state Rainfall (Previous month) LOW
+---- the histograms and parallel coordinates suggest this state is a bit warmer
+---- looking at the timeline, we can see that this state can appear anytime in the winter, but is most typical for April
+---- we can also see that there is an arrow from this state to the coldest one
+--- clearly winter is much more dynamic than summer
+
+-- zoom in to 100%
+--- let us observe the distribution of Temperature accross the states
+--- click options and check temperature (the winter states are now red while the summer states are green)
+---- the transitions in the winter states are all over the place - this confirms the hypothesis, summer is more deterministic than winter
+
+--- uncheck temperature
+--- zoom out until 6 states appear
+--- click on state MEAN
+---- the temperature and rainfall are higher now
+---- the timeline suggests that this is May - name it May
+
+
+
+DRUGI MODEL, KI NI IZ 0
+- view model GEO Example
+- 2 states appear - this is a high level model
+-- clicking on the small state and viewing the coordinates we can see that this is roughly China
+- zoom in until 7 states appear
+-- click on state MEAN and view the coordinates - this is roughly the central EU
+-- click on the states on the left
+--- there we can find New York and San Francisco
+-- click on the state on the right - this is Sweden
+
+-- zoom in to 100%
+--- not we have a low of states around Slovenia and a low of states around New York
+--- it is hard to read, clearly this is not the scale we want
+-- go back to 7 states - this is the scale we want
