@@ -1,3 +1,5 @@
+The system has been used to identify certain patterns in different types of multivariate time-series. In this section, we highlight several examples - the first from synthetically generated data followed by two real world datasets. Finally we describe some other examples of the use of system.
+
 \subsection{Prediction Evaluation}
 
 This first experiment is intended to test the validity of our model. The model was constructed on simulated data of 
@@ -19,7 +21,7 @@ an electric motor and is shown in Figure \ref{fig:example-motor}.
 \end{figure*}
 The simulation starts in the leftmost state of Figure~\ref{fig:simulation-model} with the motor in a stationary state
 and the power switch turned off. Then \lstopar{an invisible user} randomly, sampled from an exponential distribution,
-toggles the "on" switch. Once the switch is on, as the rotation increases, the model starts moving in the counter clockwise
+toggles the ``on" switch. Once the switch is on, as the rotation increases, the model starts moving in the counter clockwise
 direction towards the large green state on the right. This state represents the \lstopar{equilibrium} when the temperature
 gained through friction equals the temperature lost to the ambient and the \lstopar{signals} become \lstopar{stationary}.
 Once the power switch is toggled again, the rotation slowly halts due to friction and the process goes from right to
@@ -113,7 +115,17 @@ lasts from 10 PM to 5 AM when most people are asleep and not much is happening o
 probability, the system jumps into the topmost state with an above average traffic count which lasts from 6 AM
 to roughly 9 AM. The next state is the midday state on the right with the highest traffic count lasting from 9 AM
 to 7 PM. This is exactly the time when the traffic is very dense and most congestions occur. The next transition
-is to the bottommost "evening" state with an average traffic count between 300 and 1000 cars per \lstopar{hour},
+is to the bottommost ``evening" state with an average traffic count between 300 and 1000 cars per \lstopar{hour},
 lasting from 8 PM to approximately 10 PM. 
 
+\primoz{
+\begin{itemize}
+\item Here we also need some examples of where its not useful -  a few different scales and we need references on the data. These can be deliverables. 
+\item Also we should show how much information we lose over different scales.
+\end{itemize}}
+
 \subsection{Domain Experts}
+In the above examples, the discovered states could be interpreted by non-experts. We have also tested the system in more specialized settings. One example the system was tested on measurements from an oil drilling platform\footnote{Unfortunately, at the time of submission, we were not cleared to share the results of the analysis, including an evaluation on useability.}. In this data, natural recurrent behaviour was detected.  The model also detected an ``event,'' where certain equipment failed and drilling needed to be halted.  
+
+%A second example is based on a manufacturing plant. In this case, we cannot 
+
