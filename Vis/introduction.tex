@@ -1,4 +1,4 @@
-The visualization of multi-variate time-series is challenging task. Often, systems are observed through one-dimensional measurements graphed over time. Modern systems often have many different sensors which 
+The visualization of multi-variate time-series is \lstopar{a} challenging task. Often, systems are observed through one-dimensional measurements graphed over time. Modern systems often have many different sensors which 
 typically operate in approximate cycles over time. Typical examples include weather systems (e.g. the seasons), manufacturing systems and power consumption. 
 
 We present a system for analyzing and visualizing multi-variate time series with minimal prior knowledge of the underlying time series. One of the key features of our system is that it allows for a \emph{multi-scale} analysis of the underlying system allowing the user to interactively find suitable scales to interpret the multivariate data in a qualitative representation.  
@@ -15,7 +15,7 @@ scale or detail level.
 
 Overall, this system gives the user a hierarchical view of the dynamics as well as 
 allow for analysis of the system. After the initial model is built, we visualize the model
-in a web-based user interface, (Figure~\ref{fig:teaser}), allowing the 
+in a web-based user interface, (Figure~\ref{fig:teaser}) \lstopar{[TODO teaser not referenced!]}, allowing the 
 user to zoom between scales interactively. To help users identify the
 meaning of states and transitions, the system provides several several automatic assistance services,
 including automatic state labeling, rule extraction, attribute highlighting which
@@ -28,7 +28,7 @@ the model in real-time and issue alerts and messages based on parameters set in 
 Our technical contributions are
 \begin{enumerate}{}
   \item A novel methodology for modeling and visualizing multivariate time-varying data streams. This approach is able to capture multiscale behaviour by building a hierarchical model of the system
-  \item We use Markov chains to visualize the dynamics of a system and propose analgorithm for constructing hierarchies of recurrent continuous time Markov chains, which preserves stationary distributions and has not appeared in the literature. We also design our method to preserve as much of the dynamics as possible throughout the hierarchy.
+  \item We use Markov chains to visualize the dynamics of a system and propose an algorithm for constructing hierarchies of recurrent continuous time Markov chains, which preserves stationary distributions and has not appeared in the literature. We also design our method to preserve as much of the dynamics as possible throughout the hierarchy.
   \item Building on these ideas, we develop an interactive system which incorporates many different features to help analyze and understand complex systems through our visualization tool.
   \item This system also provides functionality to process online streaming data and provide a user with  alert and messages on identified behaviours in the system.  
 \end{enumerate}
