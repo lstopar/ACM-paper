@@ -201,6 +201,12 @@ B.~Shneiderman.
 \newblock In {\em Visual Languages, 1996. Proceedings., IEEE Symposium on},
   pages 336--343, Sep 1996.
 
+\bibitem{1196005}
+C.~Stolte, D.~Tang, and P.~Hanrahan.
+\newblock Multiscale visualization using data cubes.
+\newblock {\em IEEE Transactions on Visualization and Computer Graphics},
+  9(2):176--187, April 2003.
+
 \bibitem{Vesanto99som-baseddata}
 J.~Vesanto.
 \newblock Som-based data visualization methods.
