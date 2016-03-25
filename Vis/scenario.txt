@@ -1,9 +1,11 @@
 Show the demo using dark theme!!!
 
+1)
 SHOW THE DATA
 - show file rainfall-england.csv (as raw text)
 - show the file as a graph in MATLAB
 
+2)
 CREATE THE MODEL
 - open StreamStory and log in (as test@test.com)
 -- click add model
@@ -13,6 +15,7 @@ CREATE THE MODEL
 -- select Time as the "Time Attribute"
 -- select "Month" as the time unit
 
+3)
 -- show that two clustering algorithms are available
 -- select KMeans with 12 states
 
@@ -24,8 +27,9 @@ CREATE THE MODEL
 
 -- click Done
 
+4)
 SHOW THE MODEL
-- click on "View" [TODO popravi, da bodo stanja malo bolj skupaj]
+- click on "View"
 -- a model with 2 states appears ("Rainfall High" and "Rainfall Low")
 --- explain that these are the typical high level states of the system and that the arrows represent transitions
 --- explain that the system automatically named the states based on the distribution of attributes
@@ -33,6 +37,7 @@ SHOW THE MODEL
 ---- a tooltip appears showing that the system is in the state for 6 months
 ---- the rule generates says that the temperature is > 9.xx
 
+5)
 look at charts:
 -- click on state "Rainfall high"
 -- look at the histograms - the rainfall and temperature are high (show the green labeling on the average values)
@@ -42,6 +47,7 @@ look at charts:
 --- click on "Yearly"
 ---- clearly the state appears in the "High temperature season"
 
+6)
 zoom in:
 -- zoom in until 4 states appear
 -- click on state Rainfall highest
@@ -50,6 +56,7 @@ zoom in:
 -- Focus on state name and name the state summer
 --- click "Save" - the states' label changes
 
+7)
 follow the arrows:
 -- click on state MEAN (upper)
 --- the rainfall and temperature are average - this state appears in October - name it Oct
@@ -62,6 +69,7 @@ follow the arrows:
 -- click on Rainfall low (the one after the upper MEAN)
 --- temperature and rainfall are on the lower end of the distribution (but not quite the lowest) - it usually appears in November (name it Nov)
 
+8)
 -- Continue with the arrows
 --- the probabilities are nore uniform now
 --- click on state Rainfall LOWEST
@@ -73,11 +81,13 @@ follow the arrows:
 ---- we can also see that there is an arrow from this state to the coldest one
 --- clearly winter is much more dynamic than summer
 
+9)
 -- zoom in to 100%
 --- let us observe the distribution of Temperature accross the states
 --- click options and check temperature (the winter states are now red while the summer states are green)
 ---- the transitions in the winter states are all over the place - this confirms the hypothesis, summer is more deterministic than winter
 
+10)
 --- uncheck temperature
 --- zoom out until 6 states appear
 --- click on state MEAN
