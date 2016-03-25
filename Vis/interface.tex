@@ -15,60 +15,71 @@ Features
 \end{itemize}
 \fi
 
-After registering, the user is presented with a dashboard, where they can organize their models.
-If they wish to create a new model, they have to upload a CSV file with the dataset they would
-like to visualize. They are then taken through a configuration form, where they select attributes,
-clustering method, aggregation strategy and attributes used to model transitions. When completing
-the form, their new model is constructed. The construction time varies depending on the size of 
-their dataset and configuration. We conducted and experiment to test the performance of our \lstopar{methodology},
+The system supports multiple users with datasets and precomputed models (as well as the ability to store new models in the system). Data is generally uploaded via CSV files.  Configuration consists of choice of desired attributes,  clustering method, aggregation strategy and attributes used to model transitions. The mdoel is then constructed and the user can begin interactive exploration.  The construction time varies depending on the size of 
+their dataset and configuration. We conducted an experiment to test the performance of our \lstopar{methodology},
 presented in section \ref{sec:implementation}.
 
-Once constructed, a StreamStory model is displayed using a three panel user interface, an example of
-which is shown in Figure \ref{fig:teaser} \lstopar{[TODO teaser reference not appearing]}. As mentioned
-in Section \ref{sec:introduction} \lstopar{[TODO reference not showing]}, we summarize the model in a qualitative manner using states and 
-transitions, where we associate each state with a circle and each transition with an arrow on the 
-central panel. The size of a state is calculated from the associated entry in the stationary distribution
-and is proportional to the fraction of time the system spends in the state. The thickness of each arrow
-is proportional to the associated transition probability. When using the model as a
-monitoring tool, the current state (green) and the most likely future states (blue)
-are highlighted. The current state is determined by assigning the sample to its nearest 
+The interface displays the model using a three panel user interface, an example of
+which is shown in Figure \ref{fig:teaser} \lstopar{[TODO teaser reference not appearing]}. The central panel visualizes the model at the current scale as a graph. A state is represented by a circle  whose size represents the time/probability spent in the state, which is computed from the stationary distribution of the Markov chain. The trasnistions are represented by arrows, where again size represents the empirical transition probability. 
+
+The computed model may be used as a monitoring tool, mapping incoming data onto the model in real-time. 
+In this mode, the current state (green) and the most likely future states (blue)
+are highlighted. The current state is determined by assigning a sample to its nearest 
 centroid, as presented in Section \ref{sec:multiscale-implementation}, and is updated in real-time as
 data arrives into the system.
 
-When first opening the user interface, the model is presented on a coerce scale with only a handful
+The model is initially presented on a coarse scale with only a handful
 of states. Users can then explore the model by either traversing the scales using the zoom 
-function, isolate and explore individual states using the "Zoom Into" function, \lstopar{or explore the 
-graph as a tree using the "Show Path" function}.
+function, as well as isolate and explore individual states using the ``Zoom Into'' function, \lstopar{or explore the 
+graph as a tree using the ``Show Path'' function}.
 
-A graph with states and transitions is not very informative by itself. Therefore we offer several 
-visualization services which assist users identifying the meaning of states. These range from automatic
+Visualizing a Markov chain as a graph may not be, in itself,  sufficiently informative. The system offers several 
+visualizations which assist users in identifying the meaning of states. These range from automatic
 state naming, state histograms, attribute highlighting and timeline histograms to decision trees
 which visualize the states' properties in a hierarchical manner and \lstopar{extracted rules}.
-These services are shown when the user clicks on a state and thereby selects it. They will be 
-explained in the following subsections.
+These services are shown when the user clicks on and selects a state. We describe these visualizations below.  
 
-\subsection{Histograms and Attribute Highlighting}
+%and each transition with an arrow on the 
+%central panel. The size of a state is calculated from the associated entry in the stationary distribution
+%and is proportional to the fraction of time the system spends in the state. The thickness of each arrow
+%is proportional to the associated transition probability. 
 
-As the most basic exploratory tool we show the distribution of data inside each state in the form of a histogram.
-When clicking on a state, the histograms of all the attributes are shows in the right-side panel like in
-Figure \ref{fig:teaser} \lstopar{[teaser not showing!]}. Additionally to the standard histogram, we also 
-provide a context, by showing the global distribution of the attribute in the background.
+% The computed 
+% When using the model as a
+% monitoring tool, 
+%After registering, the user is presented with a dashboard, where they can organize their models.
+%If they wish to create a new model, they have to upload a CSV file with the dataset they would
+%like to visualize. 
+%They are then taken through a configuration form, where they select attributes,
+%clustering method, aggregation strategy and attributes used to model transitions. When completing
+%the form, their new model is constructed. 
 
-To assist the users to distinguish between states, we highlight each attribute either green of red.
-The color is chosen based on how typical the attribute is for the state. For example, a bright green
-value suggests that the attribute has a higher value in this state compared to other states, while
+%Once constructed, a StreamStory 
+
+\subsection{Probability Distributions and Attribute Highlighting}
+
+The most basic exploratory tool to help a user is to plot the distribution of data inside each state in the form of a histogram. When clicking on a state, the histograms of all the attributes are shows in the right-side panel like in
+Figure \ref{fig:teaser} \lstopar{[teaser not showing!]}. Context for each distribution by showing the global distribution of that attribute in the background.
+
+%
+%To assist the users to distinguish between states, we highlight each attribute either green of red.
+%The color is chosen based on how typical the attribute is for the state. 
+To help users understand the  values of attributes within a state, the attributes are colored according to their typical values.  For example, a bright green
+value indicates that the attribute typically  has a higher value in this state compared to other states, while
 a bright red color suggests, this value is low compared to other states. An example of attribute 
 highlighting can be seen in Figure \ref{fig:example-naming-histogram}.
 
 The color is calculated in the initialization step by first classifying all the samples assigned to this state 
 against samples assigned to other states using a logistic regression model. \lstopar{The features used in the 
-classification are all the dimensions of the input signal, which correspond to all the attributes.}
+classification are all the dimensions of the input signal, which correspond to all possible attributes.}
 The final color is determined by extracting weights from the models and associating positive weights
-with green color and negative with red.
+with green and negative with red.
 
 The users can also view the distribution of attributes across states, by selecting a specific attribute.
-When doing so, the states are recolored based on the value of the selected attribute - green indicates
+When doing so, the states are recolored based on the value of the selected attribute - again, green indicates
 a high value, while red indicates a low value.
+
+%%here
 
 \subsection{Automatic State Labeling}
 

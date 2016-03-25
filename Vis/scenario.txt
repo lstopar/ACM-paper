@@ -71,7 +71,7 @@ follow the arrows:
 
 8)
 -- Continue with the arrows
---- the probabilities are nore uniform now
+--- the probabilities are more uniform now
 --- click on state Rainfall LOWEST
 ---- parallel coordinates show low values of temperature and rainfall, so do the histograms and decision tree
 ---- the timeline suggests this state appears in the winter
@@ -110,3 +110,5 @@ DRUGI MODEL, KI NI IZ 0
 --- not we have a low of states around Slovenia and a low of states around New York
 --- it is hard to read, clearly this is not the scale we want
 -- go back to 7 states - this is the scale we want
+
+
