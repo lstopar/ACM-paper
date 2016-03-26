@@ -86,8 +86,7 @@ Abstract states are often uninformative. While the transitions between states gi
 of the dataset. Our initial user evaluations showed that first time, non-technical users had difficulty interpreting unlabeled states. % and had difficulty executing even the simplest tasks like finding
 %states with high temperature in example \ref{sec:experiments-weather}}.
 
-To help alleviate this, the system provides an automatic, data-driven, naming service. The service labels
-states based on the inner-state attribute distributions by concatenating the most outlying attribute with respect to other states with a discrete level, ranging from: lowest, low to high and highest. \primoz{this sentence isnt clear}
+To help alleviate this, the system provides an automatic, data-driven, naming service. The service labels states using $<attribute,value>$ pairs based on the inner-state distribution of attributes. The attribute is selected as one of the input signals, while the value is a discrete level with values: lowest, low, mean, high and highest. \primoz{this sentence isnt clear} \lstopar{Better now?}
 
 Both the attribute and the level used in the label are computed by comparing the inner-state attribute
 distributions to the global attribute distributions. The attribute selected by the naming process is
