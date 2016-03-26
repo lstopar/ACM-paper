@@ -61,17 +61,17 @@ what would happen if they changed some parameter. (This was more or less BS thou
 \subsection{Aggregation}
 \label{sec:state-aggregation-impl}
 
-With a fine partition already available, our methodology merges partitions to obtain a hierarchical structure. We employ agglomerative clustering \cite{Murtagh83} producing a hierarchical partition structure. Agglomerative clustering initially treats each partition as a singleton cluster and represents them using a distance matrix $D \in \mathbb{R}^n \times \mathbb{R}^n$ with each element $D_{ij}$ representing the distance between the $i$-th and $j$-th cluster. We note that although the algorithm can be used with any distance metric, we follow the intuition from Section \ref{sec:framework-states} and use Euclidean distance between the state centroids:
+With a fine partition already available, our methodology merges partitions to obtain a hierarchical structure. We employ agglomerative clustering \cite{Murtagh83} producing a hierarchical partition structure. Agglomerative clustering initially treats each partition as a singleton cluster and represents them using a distance matrix $D \in \mathbb{R}^{n \times n}$ with each element $(D)_{ij}$ representing the distance between the $i$-th and $j$-th cluster. We note that although the algorithm can be used with any distance metric, we follow the intuition from Section \ref{sec:framework-states} and use Euclidean distance between the state centroids:
 \begin{equation}
 	\nonumber
-	D_{ij} = d(c_i, c_j) = \|c_i - c_j\|_2.
+	(D)_{ij} = d(c_i, c_j) = \|c_i - c_j\|_2.
 \end{equation}
 The algorithm then recursively merges pairs of clusters until only a single cluster remains, producing a cluster tree or \textit{dendrogram}. The partitions chosen for merging are the ones with the minimal entry in the distance matrix $D$:
 \begin{equation}
 	\nonumber
-	(i_{min},j_{min}) = \argmin\limits_{i \neq j}D_{ij}.
+	(i_{min},j_{min}) = \argmin\limits_{i \neq j}(D)_{ij}.
 \end{equation}
-Once the clusters are merged, the entries in the distance matrix that correspond to the merged clusters are updated. This update is called a linkage criteria \lstopar{[cite???]} and determines the distance between clusters as a function of the pairwise distances between their elements. The most popular linkage criteria in the literature are: single-linkage, complete-linkage and average (or mean) linkage. Our experiments show no significant difference between the three and therefore we choose to use the mean linkage criteria:
+Once the clusters are merged, the entries in the distance matrix that correspond to the merged clusters are updated. This update is called a linkage criteria \lstopar{[cite???]} and determines the distance between clusters as a function of the pairwise distances between their elements. The most popular linkage criteria in the literature are: single-linkage, complete-linkage and average (or mean) linkage. Our initial experiments show no significant difference between the three and therefore we choose to use the mean linkage criteria:
 \begin{equation}
 	\nonumber
 	D_{S_i,S_j} = \frac{1}{\left|S_i\right|\left|S_j\right|}\sum\limits_{i \in S_i}\sum\limits_{j \in S_j} d(c_i,c_j)
