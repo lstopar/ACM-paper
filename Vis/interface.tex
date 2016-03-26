@@ -15,12 +15,12 @@ Features
 \end{itemize}
 \fi
 
-The system supports multiple users with datasets and precomputed models (as well as the ability to store new models in the system). Data is generally uploaded via CSV files.  Configuration consists of choice of desired attributes,  clustering method, aggregation strategy and attributes used to model transitions. The mdoel is then constructed and the user can begin interactive exploration.  The construction time varies depending on the size of 
+The system supports multiple users with datasets and precomputed models (as well as the ability to store new models in the system). Data is generally uploaded via CSV files.  Configuration consists of choice of desired attributes,  clustering method, aggregation strategy and attributes used to model transitions. The model is then constructed and the user can begin interactive exploration. The construction time varies depending on the size of 
 their dataset and configuration. We conducted an experiment to test the performance of our \lstopar{methodology},
 presented in section \ref{sec:implementation}.
 
 The interface displays the model using a three panel user interface, an example of
-which is shown in Figure \ref{fig:teaser} \lstopar{[TODO teaser reference not appearing]}. The central panel visualizes the model at the current scale as a graph. A state is represented by a circle  whose size represents the time/probability spent in the state, which is computed from the stationary distribution of the Markov chain. The trasnistions are represented by arrows, where again size represents the empirical transition probability. 
+which is shown in Figure \ref{fig:teaser} \lstopar{[TODO teaser reference not appearing]}. The central panel visualizes the model at the current scale as a graph. A state is represented by a circle  whose size represents the time/probability spent in the state, which is computed from the stationary distribution of the Markov chain. The transitions are represented by arrows, where again size represents the empirical transition probability. 
 
 The computed model may be used as a monitoring tool, mapping incoming data onto the model in real-time. 
 In this mode, the current state (green) and the most likely future states (blue)
@@ -58,8 +58,7 @@ These services are shown when the user clicks on and selects a state. We describ
 
 \subsection{Probability Distributions and Attribute Highlighting}
 
-The most basic exploratory tool to help a user is to plot the distribution of data inside each state in the form of a histogram. When clicking on a state, the histograms of all the attributes are shows in the right-side panel like in
-Figure \ref{fig:teaser} \lstopar{[teaser not showing!]}. Context for each distribution by showing the global distribution of that attribute in the background.
+The most basic exploratory tool to help a user is to plot the distribution of data inside each state in the form of a histogram. When clicking on a state, the histograms of all the attributes are shown in the right-side panel like in Figure \ref{fig:teaser} \lstopar{[teaser not showing!]}. Context for each distribution is shown as a global distribution of that attribute in the background.
 
 %
 %To assist the users to distinguish between states, we highlight each attribute either green of red.
@@ -94,7 +93,7 @@ Both the attribute and the level used in the label are computed by comparing the
 distributions to the global attribute distributions. The attribute selected by the naming process is
 the one with the lowest $p$-value of the inner-cluster $40$-th and $60$-th percentile. The level is
 then determined according to the $p$-value. If the $p$-value is below $0.12$ the attribute is labeled
-as lowest or highest, while is the $p$-value is below $0.25$ it is labeled low or high. If none of the
+as lowest or highest, while if the $p$-value is below $0.25$ it is labeled low or high. If none of the
 attributes achieve a $p$-value of $0.25$ the state is labeled as a mean state. An example of an automatic
 label, along with the associated inner-state and global histogram is shown in Figure \ref{fig:example-naming}.
 
@@ -103,14 +102,14 @@ label, along with the associated inner-state and global histogram is shown in Fi
 	\begin{subfigure}{.48\columnwidth}
 	  	\centering
 	  	\includegraphics[width=0.7\columnwidth]{example-state-naming}
-  		\caption{\label{fig:example-naming-label}\lstopar{TODO}}
+  		%\caption{\label{fig:example-naming-label}\lstopar{TODO}}
 	\end{subfigure}
 	\begin{subfigure}{.48\columnwidth}
 	  	\centering
 	  	\includegraphics[width=\columnwidth]{example-state-naming-histogram}
-	  	\caption{\label{fig:example-naming-histogram}\lstopar{TODO}}
+	  	%\caption{\label{fig:example-naming-histogram}\lstopar{TODO}}
 	\end{subfigure}
-	\caption{\lstopar{[TODO]}}
+	\caption{Example output of the automatic state naming service shown on the weather dataset presented in Section \ref{sec:experiments-weather}. The system named the bold state on the left hand side as "Rainfall HIGH", matching the inner-state distribution of rainfall shown on the right hand side.}
 	\label{fig:example-naming}
 \end{figure}
 
@@ -149,16 +148,16 @@ from a state in the weather dataset presented in section \ref{sec:experiments-we
 	\begin{subfigure}{.3\columnwidth}
 	  	\centering
 	  	\includegraphics[width=\columnwidth]{example-rule}
-  		\caption{\lstopar{TODO}}
+%  		\caption{\lstopar{TODO}}
   		\label{fig:example-rule}
 	\end{subfigure}
 	\begin{subfigure}{.68\columnwidth}
 	  	\centering
 	  	\includegraphics[width=\columnwidth]{example-decision-tree}
-	  	\caption{\lstopar{TODO}}
+%	  	\caption{\lstopar{TODO}}
 	  	\label{fig:example-decision-tree}
 	\end{subfigure}
-	\caption{\lstopar{[TODO]}}
+	\caption{Example output of a decision tree (right) and a rule (left) describing a state in the weather dataset presented in Section \ref{sec:experiments-weather}. We can see that the system describes the state as having rainfall over $59.1 mm$ and the previous month rainfall over $56.6 mm$.}
 	\label{fig:example-decision-tree-and-rule}
 \end{figure}
 
