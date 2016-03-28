@@ -1,17 +1,7 @@
 \dunja{extend the section title to make a clear distinction form Section5: "Implementation Details"}
-StreamStory is implemented as a client-server application, with its front-end implemented in HTML5,
-CSS3 and JavaScript. The page layout is handled by Twitter Bootstrap 3, providing 
-responsiveness and scalability to most modern devices. We use Cytoscape.js
-for visualization of graphs and trees, including the main visualization, and D3.js for visualization of charts.
-The front-end relies on technologies like Ajax and WebSockets for transparent real-time
-updates.
+StreamStory is implemented as a client-server application with a web-based user interface implemented using the state-of-the-art technologies such as HTML5, CSS3 and JavaScript. The layout is handled by Twitter Bootstrap 3, providing responsiveness and scalability to most modern device sizes, while the controller is implemented using jQuery, providing cross-browser support. We use Cytoscape.js for visualization of graphs and trees, including the main visualization panel, and D3.js for visualization of histograms. The controller relies on technologies like Ajax and WebSockets for transparent interactive updates.
 
-The backend uses a hybrid implementation with its core functionality written in C++
-as part of the QMiner data analytics platform \cite{qminer}, under the BSD license.
-This functionality is exposed as a Node.js addon running in Googles V8 JavaScript
-environment. Node.js thus acts as glue and exposes the functionality through RESTful
-web services using the Express framework, also acting as the session manager.
-User credentials \lstopar{and other information} are stored in a MySQL database.
+The backend uses a hybrid implementation with its core functionality written in C++, as part of the QMiner data analytics platform \cite{qminer}, and is published using the BSD license. This functionality is exposed as a Node.js addon running in Googles V8 JavaScript environment. Node.js thus acts as glue and exposes the core functionality through RESTful web services using the Express framework, also acting as the session manager. User credentials and other information are stored in a MySQL database.
 
 Having the core functionality implemented in C++ provides performance benefits, especially
 when dealing with larger datasets. When using StreamStory, the most time consuming step
@@ -23,11 +13,8 @@ the initialization of state assistance services, where a decision tree and a log
 model need to be trained for each state in the hierarchical structure. State initialization tasks
 are however independent and can be parallelized.
 
-To measure the performance of the initialization procedure, we constructed several models on two datasets
-of sizes 155MB (285k samples) and 500MB ($\approx$ \lstopar{3M} samples) respectively. A set of five attributes
-was randomly chosen for each dataset and used in all the experiments. We
-then constructed models with 18, 38 and 78 states respectively and measured the initialization times,
-which we show in Figure \ref{fig:performance}.
+To measure the performance of the initialization procedure, we constructed several models on two datasets of sizes $155MB$ ($\approx 285k$ samples) and $500MB$ ($\approx \lstopar{3M}$ samples) respectively. A set of five attributes
+was randomly chosen for each dataset and was used in all the experiments. We then constructed models with 18, 38 and 78 states respectively and measured the initialization times, which we show in Figure \ref{fig:performance}.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\columnwidth]{time-measurements}
@@ -36,7 +23,7 @@ which we show in Figure \ref{fig:performance}.
 \end{figure}
 We can see that although the construction time increases with the number of states, the initialization
 procedure is quite fast for the smaller data set with only the larger model with 78 states taking over 
-a minute to complete. \lstopar{When using the larger dataset ...}
+a minute to complete. When using the larger dataset, the dependence between the number of states and the construction time becomes clearer with the model with $18$ states taking less than $5$ minutes to complete while the larger model taking just under $15$ minutes.
 
 \lstopar{
 \begin{itemize}
