@@ -8,6 +8,12 @@ R.~Agaev and P.~Chebotarev.
   Meeting on Matrix Analysis and Applications, Ft. Lauderdale, FL, 14-16
   December 2003.
 
+\bibitem{conf/chi/AhlbergS94b}
+C.~Ahlberg and B.~Shneiderman.
+\newblock Visual information seeking using the filmfinder.
+\newblock In C.~Plaisant, editor, {\em CHI Conference Companion}, pages
+  433--434. ACM, 1994.
+
 \bibitem{aldous-fill-2014}
 D.~Aldous and J.~A. Fill.
 \newblock Reversible markov chains and random walks on graphs, 2002.
@@ -142,6 +148,12 @@ B.~Johnson and B.~Shneiderman.
 \newblock In {\em Proceedings of the 2Nd Conference on Visualization '91}, VIS
   '91, pages 284--291, Los Alamitos, CA, USA, 1991. IEEE Computer Society
   Press.
+
+\bibitem{7192673}
+D.~Jäckle, F.~Fischer, T.~Schreck, and D.~A. Keim.
+\newblock Temporal mds plots for analysis of multivariate data.
+\newblock {\em IEEE Transactions on Visualization and Computer Graphics},
+  22(1):141--150, Jan 2016.
 
 \bibitem{981847}
 D.~A. Keim.
