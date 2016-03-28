@@ -47,6 +47,12 @@ M.~S.~T. Carpendale, D.~J. Cowperthwaite, and F.~D. Fracchia.
 \newblock In {\em Information Visualization '96, Proceedings IEEE Symposium
   on}, pages 46--53, Oct 1996.
 
+\bibitem{EJP374}
+J.-R. Chazottes, C.~Giardina, and F.~Redig.
+\newblock Relative entropy and waiting times for continuous-time markov
+  processes.
+\newblock {\em Electron. J. Probab.}, 11:no. 40, 1049--1068, 2006.
+
 \bibitem{Ciocchetta2009145}
 F.~Ciocchetta, A.~Degasperi, J.~Hillston, and M.~Calder.
 \newblock Some investigations concerning the \{CTMC\} and the \{ODE\} model

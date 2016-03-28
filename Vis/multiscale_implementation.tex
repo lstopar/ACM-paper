@@ -90,30 +90,20 @@ The initial finest-scale states are assigned scale $0$. Let $S$ be coarser-scale
 	s(S) = \frac{1}{\left|A\right|\left|B\right|}\sum\limits_{i \in A}\sum\limits_{j \in B} d(c_i,c_j)
 \end{equation}
 
-For the second aggregation method, we adapt the algorithm proposed in \lstopar{[TODO cite]} to continuous time Markov chains. The method works iteratively, by initially assigning all the states into a single partition, and then iteratively splitting the ``best" partition until there are $n$ partitions.
+For the second aggregation method, we adapt the algorithm proposed in \lstopar{[TODO cite]} to continuous time Markov chains. The method works iteratively, by initially assigning all the states to a single partition, and then iteratively splitting the ``best" partition until each state is in a partition of its own.
 
-The splitting procedure is based on spectral bi-partitioning of Markov chains using the sign-structure of the eigenvector with the second largest corresponding eigenvalue of the symmetrized transition rate matrix $Q_s$. Indeed, as the literature suggests, the transition rate matrix of a continuous time Markov chain $Q$ is exactly the negative Laplacian of the corresponding directed weighted graph \cite{Agaev2005157}.
+The splitting procedure is based on spectral bi-partitioning of Markov chains using the sign-structure of the eigenvector, corresponding to the second largest eigenvalue of the symmetrized transition rate matrix $Q_s$. Indeed, as the literature suggests, the transition rate matrix of a continuous time Markov chain $Q$ is exactly the negative Laplacian of the corresponding directed weighted graph \cite{Agaev2005157}.
 
 $Q$ is however not symmetric and in general does not have real-valued eigenvalues. We therefore first transform $Q$ using the following formula:
 \begin{equation}
 	\nonumber
 	Q_s = \frac{1}{2}(\Pi Q + Q' \Pi)
 \end{equation}
-where we denote $Q_s$ to be the \lstopar{symmetrized version} of $Q$ and $\Pi = diag(\pi)$.
-
-
-The second aggregation method is based on spectral bi-partitioning of Markov chains. The literature suggests many algorithms for bi-partitioning undirected graphs. These papers use the Cheeger inequality \lstopar{[TODO ref]}, one of the main tools for bounding the mixing times for random walks on undirected graphs, on the graph Laplacian \lstopar{[TODO cite]}.
-
-The transition rate matrix of a continuous time Markov chain is exactly the negative Laplacian of a directed weighted graph \cite{Agaev2005157}. The Laplacian is however not symmetric and in general does not have real-valued eigenvalues. Therefore we transform the Laplacian using the following formula:
-\begin{equation}
-	\nonumber
-	Q_s = \frac{1}{2}(\Pi Q + Q' \Pi)
-\end{equation}
-This transformation has the effect of symmetrizing the transition rate matrix and furthermore, matrix $\Pi^{-1}Q_s$ preserves the ergodic properties of the original Markov chain. To obtain a bi-partitioning of the original Markov chain, we then solve the following generalized eigenvalue problem:
+where we denote $Q_s$ to be the \lstopar{symmetrized version} of $Q$ and $\Pi = diag(\pi)$ is a diagonal matrix with the stationary distribution on the diagonal. This ensures that all the eigenvalues (and eigenvectors) are real-valued and furthermore matrix $\pi^{-1}Q_s$ preserves the ergodic properties of $Q$. The final bi-partition function $\phi: I \rightarrow \{0,1\}$ is obtained by solving the following generalized eigenvalue problem:
 \begin{equation}
 	Q_s v = \lambda_2 \Pi v.
 \end{equation}
-The bi-partition function $\phi: I \rightarrow \{0,1\}$ is then constructed based on the sign structure of the generalized eigenvector $v$. More specifically:
+and assigning states based on the sign structure of $v$:
 \begin{equation}
 	\nonumber
 	\phi(i) = 
@@ -125,5 +115,19 @@ The bi-partition function $\phi: I \rightarrow \{0,1\}$ is then constructed base
 		\right.
 \end{equation}
 
-We then adapt the algorithm proposed in \lstopar{[TODO cite]} to the continuous time case. The algorithm starts with an initial partition containing all of the states of the original Markov chain. On the $m$-th iteration it assumes that $m$ partitions are already given and selects the best partition to split, obtaining $m+1$ partitions. We denote $Q^{(i)}$ to be the transition rate matrix of the Markov chain within the $i$-th partition. Using the sign structure of the symmetrized Laplacian $Q_s^{(i)} = \frac{1}{2}(\Pi Q^{(i)} + Q^{(i)'} \Pi)$ we can split partition $i$, obtaining $m+1$ partitions. The partition to split is chosen by minimizing the relative entropy rate bet
+Once a bi-partition function is defined we can present the iterative bi-partitioning algorithm. The algorithm starts with a single partition, containing all the states of the original Markov chain. On the $m$-th iteration, it then assumes that $m$ partitions are already given and select which of the $m$ partitions to split. Let $Q^{(i)}$ be a transition rate matrix of a Markov chain induced on the states in the $i$-th partition. Bi-partitioning $Q^{(i)}$ then provides $m+1$ partitions which induce a Markov chain on $m+1$ states with transition rate Matrix $Q_{m+1}^{(i)}$ defined using formula \ref{eq:ctmc-state-aggregation}. The algorithm now select which of the $m$ partitions to split by minimizing the relative entropy rate between $Q$ and $Q_{m+1}^{(i)}$:
+\begin{equation}
+	i = \argmin\limits_{i \in \mathbb{N}_m} D(Q || Q_{m+1}^{(i)}).
+\end{equation}
+The relative entropy rate $D(Q || Q_{m+1}^{(i)})$ provides a measure of ``distance" between the aggregated Markov chain and the original. When two Markov chains $Q$ and $\tilde{Q}$ are defined on the same state space $I$, the relative entropy rate between the two is defined as \cite{EJP374}:
+\begin{equation}
+	\label{eq:relative-entropy-rate}
+	D(Q || \tilde{Q}) = \sum\limits_{\substack{i,j \in I \\ i \neq j}}\pi_i q_{ij} \log\frac{q_{ij}}{\tilde{q}_{ij}} + \sum\limits_{i \in I}\pi_i(q_{ii} - \tilde{q}_{ii})
+\end{equation}
+
+However, since $Q$ and $Q_{m+1}^{(i)}$ are not defined on the same state space, we cannot use Equation \ref{eq:relative-entropy-rate} directly. Let $\phi_s: I \rightarrow J$ denote the partition function, mapping states of $Q$ into states of $Q_{m+1}^{(i)}$ and let $\psi = \phi \circ \phi^{-1}$. $\psi(i) \subseteq I$ thus represents the set of states which were aggregated into a single state in $\phi(i) \in J$. We now define $q_{i\psi(j)} = \sum_{k \in \psi(j)}q_{ik}$ and $\tilde{q}_{kl} = \left(Q_{m+1}^{(i)}\right)_{kl}$. Using this notation, we can define the relative entropy between $Q$ and $Q_{m+1}^{(i)}$ as:
+\begin{equation}
+	D(Q || Q_{m+1}^{(i)}) = \sum\limits_{\substack{i,j \in I \\ \phi(i) \neq \phi(j)}}\pi_i q_{ij}\log\frac{q_{i\psi(j)}}{\tilde{q}_{\phi(i)\phi(j)}} + \sum\limits_{i \in I}\pi_i \left(q_{i\psi(i)} - \tilde{q}_{\phi(i)\phi(i)}\right).
+\end{equation}
+We refer the reader to \lstopar{Appendix A} for more details.
 
