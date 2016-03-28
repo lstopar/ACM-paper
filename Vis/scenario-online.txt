@@ -1,0 +1,20 @@
+- open the traffic model
+- show that the data is arriving in real time
+-- explain that the data is replayed faster than real-time (1h in 5 secs)
+
+ZOOM INTO 7 states
+- explain that the current state is orange
+-- the future states are blue
+- show how the current state changes
+
+ZOOM INTO 100%
+- lets remove some transitions to make the structure clearer
+-- the leftmost state is the "Night" state
+-- the middle state is the midday state
+-- time moves counter clockwise
+
+ZOOM BACK TO 7 STATES
+- click the rightmost state
+-- show the timeline - it appears on Friday afternoon
+-- show the histograms - there is a lot of traffic
+- Set an undesired event: Friday rush hour
