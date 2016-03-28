@@ -18,7 +18,7 @@ was randomly chosen for each dataset and was used in all the experiments. We the
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\columnwidth]{time-measurements}
-	\caption{A graph of the measurements of the initial model construction time using two datasets, plotted against the number of states used for building the model. \lstopar{slabo napisano}}
+	\caption{A chart showing the dependence of model construction time to the dataset size and the number of states used in the model.}
 	\label{fig:performance}
 \end{figure}
 We can see that although the construction time increases with the number of states, the initialization
@@ -28,6 +28,7 @@ a minute to complete. When using the larger dataset, the dependence between the 
 \lstopar{
 \begin{itemize}
 	\item the larger dataset was constructed in acceptable time
+	\item theoretically the dependence should be $O(n^2)$
 \end{itemize}
 }
 
