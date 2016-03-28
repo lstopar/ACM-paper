@@ -88,4 +88,42 @@ The initial finest-scale states are assigned scale $0$. Let $S$ be coarser-scale
 \begin{equation}
 	\nonumber
 	s(S) = \frac{1}{\left|A\right|\left|B\right|}\sum\limits_{i \in A}\sum\limits_{j \in B} d(c_i,c_j)
-\end{equation} 
+\end{equation}
+
+For the second aggregation method, we adapt the algorithm proposed in \lstopar{[TODO cite]} to continuous time Markov chains. The method works iteratively, by initially assigning all the states into a single partition, and then iteratively splitting the ``best" partition until there are $n$ partitions.
+
+The splitting procedure is based on spectral bi-partitioning of Markov chains using the sign-structure of the eigenvector with the second largest corresponding eigenvalue of the symmetrized transition rate matrix $Q_s$. Indeed, as the literature suggests, the transition rate matrix of a continuous time Markov chain $Q$ is exactly the negative Laplacian of the corresponding directed weighted graph \cite{Agaev2005157}.
+
+$Q$ is however not symmetric and in general does not have real-valued eigenvalues. We therefore first transform $Q$ using the following formula:
+\begin{equation}
+	\nonumber
+	Q_s = \frac{1}{2}(\Pi Q + Q' \Pi)
+\end{equation}
+where we denote $Q_s$ to be the \lstopar{symmetrized version} of $Q$ and $\Pi = diag(\pi)$.
+
+
+The second aggregation method is based on spectral bi-partitioning of Markov chains. The literature suggests many algorithms for bi-partitioning undirected graphs. These papers use the Cheeger inequality \lstopar{[TODO ref]}, one of the main tools for bounding the mixing times for random walks on undirected graphs, on the graph Laplacian \lstopar{[TODO cite]}.
+
+The transition rate matrix of a continuous time Markov chain is exactly the negative Laplacian of a directed weighted graph \cite{Agaev2005157}. The Laplacian is however not symmetric and in general does not have real-valued eigenvalues. Therefore we transform the Laplacian using the following formula:
+\begin{equation}
+	\nonumber
+	Q_s = \frac{1}{2}(\Pi Q + Q' \Pi)
+\end{equation}
+This transformation has the effect of symmetrizing the transition rate matrix and furthermore, matrix $\Pi^{-1}Q_s$ preserves the ergodic properties of the original Markov chain. To obtain a bi-partitioning of the original Markov chain, we then solve the following generalized eigenvalue problem:
+\begin{equation}
+	Q_s v = \lambda_2 \Pi v.
+\end{equation}
+The bi-partition function $\phi: I \rightarrow \{0,1\}$ is then constructed based on the sign structure of the generalized eigenvector $v$. More specifically:
+\begin{equation}
+	\nonumber
+	\phi(i) = 
+		\left\{
+			\begin{array}{ll}
+				1 & \mbox{if } v_i \ge 0 \\
+				0 & \mbox{otherwise}
+			\end{array}
+		\right.
+\end{equation}
+
+We then adapt the algorithm proposed in \lstopar{[TODO cite]} to the continuous time case. The algorithm starts with an initial partition containing all of the states of the original Markov chain. On the $m$-th iteration it assumes that $m$ partitions are already given and selects the best partition to split, obtaining $m+1$ partitions. We denote $Q^{(i)}$ to be the transition rate matrix of the Markov chain within the $i$-th partition. Using the sign structure of the symmetrized Laplacian $Q_s^{(i)} = \frac{1}{2}(\Pi Q^{(i)} + Q^{(i)'} \Pi)$ we can split partition $i$, obtaining $m+1$ partitions. The partition to split is chosen by minimizing the relative entropy rate bet
+
