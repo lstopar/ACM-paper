@@ -120,7 +120,12 @@ the data at different detail levels - from the finest to the coarsest. To build 
 
 Recall from Section \ref{sec:preliminaries}, rather than constructing a single partition of our space, we can construct a hierarchical partition. With this hierarchical partition,  each scale $s$ is associated with a specific partition
 function $\lstopar{f_s}: \mathbb{R}^d \rightarrow \lstopar{I_s}$. At the finest scale, we use the partition function \lstopar{$f: \mathbb{R}^d \rightarrow I$}, defined above, inducing state space $I$ of Markov chain $(X_t)_{t \ge 0}$. 
-We then compute \lstopar{$f_s$} by aggregating elements of $I$ using mapping \lstopar{(projection?, parition?)} $\phi_s: I \rightarrow I_s$ and representing \lstopar{$f_s$} as a composition $\lstopar{f_s} = \lstopar{f} \circ \phi_s$. \textcolor{red}{$\phi_s$ is defined using $P_{\phi_s}$}
+We then compute \lstopar{$f_s$} by aggregating elements of $I$ using mapping \lstopar{(projection?, parition?)} $\phi_s: I \rightarrow I_s$ and representing \lstopar{$f_s$} as a composition $\lstopar{f_s} = \lstopar{f} \circ \phi_s$. \textcolor{red}{$\phi_s$ is defined using $P_{\phi_s}$} 
+\lstopar{
+\begin{itemize}
+	\item now we have defined everything we need to calcualte the new Markov chain $(X_t^{(s)})_{t \ge 0}$: $f$ and $\phi_s$
+\end{itemize}
+}
 
 All that remains is to compute the transition rate matrix of the new Markov chain $(X_t^{(s)})_{t \ge 0}$ induced \lstopar{by} state space $I_s$. To do so, we adapt the formula proposed in \cite{5746509} to continuous time Markov chains. We define function $\Phi_s: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}^{m \times m}$ with $m \le n$ as:
 \begin{equation}
