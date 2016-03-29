@@ -109,7 +109,7 @@ label, along with the associated inner-state and global histogram is shown in Fi
 	  	\includegraphics[width=\columnwidth]{example-state-naming-histogram}
 	  	%\caption{\label{fig:example-naming-histogram}\lstopar{TODO}}
 	\end{subfigure}
-	\caption{Example output of the automatic state naming service shown on the weather dataset presented in Section \ref{sec:experiments-weather}. The system named the bold state on the left hand side as "Rainfall HIGH", matching the inner-state distribution of rainfall shown on the right hand side.}
+	\caption{Example output of the automatic state labeling service shown on the weather dataset presented in Section \ref{sec:experiments-weather}. The system labeled the bold state on the left hand side as "Rainfall HIGHEST", matching the inner-state distribution of rainfall shown on the right hand side.}
 	\label{fig:example-naming}
 \end{figure}
 
@@ -145,13 +145,22 @@ from a state in the weather dataset presented in section \ref{sec:experiments-we
 
 \begin{figure}[h!]
 	\centering
+	\includegraphics[width=\columnwidth]{example-tree-rule}
+	\caption{Example output of a decision tree (left) and a rule (right) describing a state in the weather dataset presented in Section \ref{sec:experiments-weather}. We can see that the system describes the state as having rainfall over $59.1 mm$ and the previous month rainfall over $56.6 mm$.}
+	\label{fig:example-decision-tree-and-rule}
+\end{figure}
+
+\iffalse
+\begin{figure}[h!]
+	\centering
 	\begin{subfigure}{.3\columnwidth}
 	  	\centering
 	  	\includegraphics[width=\columnwidth]{example-rule}
 %  		\caption{\lstopar{TODO}}
   		\label{fig:example-rule}
 	\end{subfigure}
-	\begin{subfigure}{.68\columnwidth}
+%	\begin{subfigure}{.68\columnwidth}
+	\begin{subfigure}{0.9\columnwidth}
 	  	\centering
 	  	\includegraphics[width=\columnwidth]{example-decision-tree}
 %	  	\caption{\lstopar{TODO}}
@@ -160,6 +169,7 @@ from a state in the weather dataset presented in section \ref{sec:experiments-we
 	\caption{Example output of a decision tree (right) and a rule (left) describing a state in the weather dataset presented in Section \ref{sec:experiments-weather}. We can see that the system describes the state as having rainfall over $59.1 mm$ and the previous month rainfall over $56.6 mm$.}
 	\label{fig:example-decision-tree-and-rule}
 \end{figure}
+\fi
 
 \iffalse
 
