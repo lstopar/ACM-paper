@@ -7,7 +7,7 @@
 \fi
 
 The key idea at the heart of our system is to build and visualize an abstraction of the underlying 
-dynamics of the system. Our abstraction is based on Markov chains where we represent the dynamics of the data using states and transitions. A key feature of our system is present this abstraction over \emph{multiple scales}. 
+dynamics of the system. Our abstraction is based on Markov chains where we represent the dynamics of the data using states and transitions. A key feature of our system is \lstopar{to} present this abstraction over \emph{multiple scales}. 
 %
 %To capture and summarize the dynamics of the system our methodology represents the data
 %in a qualitative manner using states and transitions. 
@@ -21,7 +21,7 @@ of our multi-scale methodology. The methodology consists of four main steps as s
 	\label{fig:methodology}
 \end{figure*}
 
-We begin by considering the multivariate time series as a point cloud in high dimensional space, ignoring the time component. The second step identifies the underlying structure of this point cloud, identifying their most typical states. In Figure~\ref{fig:methodology}, we see two noisy periodic signals which are partitioned roughly according to the phase of the system. As described in Section \ref{} xxx, this is done by considering a metric on the data points and partitioning or clustering them. Each cluster/partition is then associated to a state in a Markov model. We refer to these as the low level states. The 
+We begin by considering the multivariate time series as a point cloud in high dimensional space, ignoring the time component. The second step identifies the underlying structure of this point cloud, identifying their most typical states. In Figure~\ref{fig:methodology}, we see two noisy periodic signals which are partitioned roughly according to the phase of the system. As described in Section \lstopar{\ref{} xxx}, this is done by considering a metric on the data points and partitioning or clustering them. Each cluster/partition is then associated to a state in a Markov model. We refer to these as the low level states. The 
  dynamics are modeled through the transition probabilities between the states using continuous time Markov chains (Section \ref{sec:preliminaries}). Finally, we construct a hierarchy of such Markov chains by aggregating the initial states into coarser states. Each level of the hierarchy is associated to a unique scale, yielding a multi-scale model.
 
 %The methodology starts in the top left part of the figure with an initial step that summarizes
@@ -100,7 +100,7 @@ Definition \ref{def:jump-chain-holding-times} provides a definition of a Markov 
 
 To determine the size of each state, we turn to the ergodic properties of $(X_t)_{t \ge 0}$, specifically
 we use the elements of the stationary distribution $\pi = (\pi_1, \pi_2, ..., \pi_n)$ and draw the area of
-state $i$ proportional to $\pi_i$. We note that under the assumption presented in \ref{sec:preliminaries}
+state $i$ proportional to $\pi_i$. We note that under the assumptions presented in Section \ref{sec:preliminaries}
 this distribution always exists.
 
 \subsection{Aggregation}
@@ -108,14 +108,14 @@ this distribution always exists.
 
 By the final step of our methodology, we have already computed a qualitative representation of the
 dataset. The goal of the third step is then to construct a multi-scale representation, representing
-the data in several details level - from the finest to the most coerce.
+the data on several details level - from the finest to the most coerce.
 
 As stated in Section \ref{sec:preliminaries} we associate each scale $s$ with a specific partition
 function $\lstopar{f_s}: \mathbb{R}^d \rightarrow \lstopar{I_s}$. At the finest scale, we use the 
-partition function \lstopar{$f: A \rightarrow B$ [TODO the function]} defined in Section \ref{sec:framework-states}, which induces
+partition function \lstopar{$f: \mathbb{R}^d \rightarrow I$} defined in Section \ref{sec:framework-states}, which induces
 the state space $I$ of the Markov chain $(X_t)_{t \ge 0}$. We then compute the partition
-function for coarser scales by aggregating elements in $\Ima \lstopar{f}$, inducing state space $I_s$.
-Thus $I_s$ represents a partition of $I$. Our methodology uses partitions in $I_s$ as states on scale $s$.
+function for coarser scales by aggregating elements of $I$, inducing state space $I_s$.
+Thus $I_s$ represents a partition of $I$ and is used as the state space on scale $s$.
 $I_s$ is determined by a map $\phi_s: I \rightarrow I_s$. This
 way $f_s$ can be represented as a compositum \lstopar{$f_s = f \circ \phi_s$}.
 
@@ -149,5 +149,5 @@ We note that $\pi^{(s)}$, the stationary distribution of $(X_t^{(s)})_{t \ge 0}$
 the stationary distribution of the original chain $(X_t)_{t \ge 0}$ by the following rule:
 \begin{equation}
 	\nonumber
-	\pi^{(s)} = \pi P
+	\pi^{(s)} = \pi P.
 \end{equation}
