@@ -121,16 +121,10 @@ the data at different detail levels - from the finest to the coarsest. To build 
 Recall from Section \ref{sec:preliminaries}, rather than constructing a single partition of our space, we can construct a hierarchical partition. With this hierarchical partition,  each scale $s$ is associated with a specific partition
 function $\lstopar{f_s}: \mathbb{R}^d \rightarrow \lstopar{I_s}$.
 
-At the finest scale, we use the partition function \lstopar{$f: \mathbb{R}^d \rightarrow I$} defined above, inducing the state space $I$ of the Markov chain $(X_t)_{t \ge 0}$. 
-We then compute \lstopar{$f_s$} by aggregating elements of $I$ using a mapping $\phi_s: I \rightarrow I_s$ and representing \lstopar{$f_s$} as a composition $\lstopar{f_s} = \lstopar{f} \circ \phi_s$.
+At the finest scale, we use the partition function \lstopar{$f: \mathbb{R}^d \rightarrow I$}, defined above, inducing state space $I$ of Markov chain $(X_t)_{t \ge 0}$. 
+We then compute \lstopar{$f_s$} by aggregating elements of $I$ using mapping \lstopar{(projection?, parition?)} $\phi_s: I \rightarrow I_s$ and representing \lstopar{$f_s$} as a composition $\lstopar{f_s} = \lstopar{f} \circ \phi_s$.
 
-
-%We then compute the partition function $f_s: \mathbb{R}^d \rightarrow I_s$ for coarser scales by aggregating elements of $I$, \lstopar{inducing} state space $I_s$. Thus $I_s$ represents a partition of $I$ and can again be used as the state space on scale $s$. $I_s$ is determined by a map $\phi_s: I \rightarrow I_s$. This way $f_s$, can be represented as \lstopar{$f_s = f \circ \phi_s$}.
-
-The details of how compute these maps and partitions is described in Section~\ref{}. Therefore, the problem is given $I$, $I_s$, $f$ and the Markov chain induced by $I$, to compute the Markov chain induced by $I_s$.
-
-The states of this new Markov chain $(X_t^{(s)})_{t \ge 0}$ are induced by $I_s$, what remains is to compute the corresponding  transition rate matrix $Q^{(s)}$. To compute $Q^{(s)}$, we adapt the formula
-proposed in \cite{5746509} to continuous time Markov chains. We define function $\Phi_s: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}^{m \times m}$ with $m \le n$ using formula~\ref{eq:ctmc-state-aggregation}.
+All that remains is to compute the transition rate matrix of the new Markov chain $(X_t^{(s)})_{t \ge 0}$ induced \lstopar{by} state space $I_s$. To do so, we adapt the formula proposed in \cite{5746509} to continuous time Markov chains. We define function $\Phi_s: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}^{m \times m}$ with $m \le n$ as:
 \begin{equation}
 	\label{eq:ctmc-state-aggregation}
 	\Phi_s(Q) = (P_{\phi_s}' \Pi P_{\phi_s})^{-1} P_{\phi_s}' \Pi Q P_{\phi_s}
@@ -147,6 +141,30 @@ $n \times m$ matrix with elements
 			\end{array}
 		\right.
 \end{equation}
+
+%We then compute the partition function $f_s: \mathbb{R}^d \rightarrow I_s$ for coarser scales by aggregating elements of $I$, \lstopar{inducing} state space $I_s$. Thus $I_s$ represents a partition of $I$ and can again be used as the state space on scale $s$. $I_s$ is determined by a map $\phi_s: I \rightarrow I_s$. This way $f_s$, can be represented as \lstopar{$f_s = f \circ \phi_s$}.
+
+%The details of how compute $\lstopar{f}$ and $\phi_s$ are described in Section~\ref{}. Therefore, the problem is given $I$, $I_s$, $f$ and the Markov chain induced by $I$, to compute the Markov chain induced by $I_s$.
+
+%Therefore given $\lstopar{f}$ and $\phi_s$ we have all the information to construct a new Markov chain $(X_t^{(s)})_{t \ge 0}$, induced by state space $I_s$. All that remains is to compute the corresponding transition rate matrix $Q^{(s)}$. To do so, we adapt the formula proposed in \cite{5746509} to continuous time Markov chains. We define function $\Phi_s: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}^{m \times m}$ with $m \le n$ using formula~\ref{eq:ctmc-state-aggregation}.
+
+%The states of this new Markov chain $(X_t^{(s)})_{t \ge 0}$ are induced by $I_s$, what remains is to compute the corresponding  transition rate matrix $Q^{(s)}$. To compute $Q^{(s)}$, we adapt the formula proposed in \cite{5746509} to continuous time Markov chains. We define function $\Phi_s: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}^{m \times m}$ with $m \le n$ using formula~\ref{eq:ctmc-state-aggregation}.
+%\begin{equation}
+%	\label{eq:ctmc-state-aggregation}
+%	\Phi_s(Q) = (P_{\phi_s}' \Pi P_{\phi_s})^{-1} P_{\phi_s}' \Pi Q P_{\phi_s}
+%\end{equation}
+%where $\Pi = diag(\pi)$, $\pi$ is the stationary distribution of $(X_t)_{t \ge 0}$ and $P_{\phi_s}$ is a 
+%$n \times m$ matrix with elements
+%\begin{equation}
+%	\nonumber
+%	\left(P_{\phi_s}\right)_{ij} = 
+%		\left\{
+%			\begin{array}{ll}
+%				1 & \mbox{if } \phi_s(i) = j \\
+%				0 & \mbox{otherwise}.
+%			\end{array}
+%		\right.
+%\end{equation}
 Thus the data needed to represent a Markov chain at a specific scale $s$ is obtained as $Q^{(s)} = \Phi_s(Q)$.
 If we define $\psi_s = \phi_s \circ \phi_s^{-1}$, then Equation \ref{eq:ctmc-state-aggregation} can be rewritten as
 \begin{equation}
