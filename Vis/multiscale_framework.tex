@@ -28,21 +28,22 @@ We begin by considering the multivariate time series as a point cloud in high di
 %the structure of the data by identifying their most typical states. It achieves this by \lstopar{placing}
 %the data in a \lstopar{design time} metric space and partitioning them. It then associates
 %each partition with a single state.
-\lstopar{
-\begin{itemize}
-	\item These states are used as the lowest-level states.
-\end{itemize}
-}
+% \lstopar{
+% \begin{itemize}
+% 	\item These states are used as the lowest-level states.
+% \end{itemize}
+% }
 %In the second step we summarize dynamics by modeling transition probabilities using continuous time Markov chain framework presented in Section \ref{sec:preliminaries}.
 % The third and final step aggregates states and transitions into a hierarchy, associating each
 % level of the hierarchy with a unique scale, thus providing a multi-scale model. These steps 
 % are explained in detail in the following subsections.
 
 
-\subsection{Initial State Construction}
-\label{sec:framework-states}
+% \subsection{Initial State Construction}
+% \label{sec:framework-states}
 
-To construct the initial low level states, we define a partition function $\lstopar{f}: \mathbb{R}^d \rightarrow I$ mapping the $d$-dimensional signal to a finite, discrete set $I$.
+To construct the initial low level states, we define a partition function $\lstopar{f}: \mathbb{R}^d \rightarrow I$ mapping the $d$-dimensional signal to a finite, discrete set $I$. These represent the states which represent tha basic unit of abstraction in our visualization. To complete the construction of the continuous-time Markov chain, we must define the transition rates.
+
 %The first step in our methodology is the construction of initial lowest level states. Using the notation
 %from Section \ref{sec:preliminaries} we define a partition function 
 %from $\lstopar{f}: \mathbb{R}^d \rightarrow I$ mapping the $d$-dimensional signal to lowest level states
@@ -53,18 +54,18 @@ To construct the initial low level states, we define a partition function $\lsto
 % \end{itemize} 
 % }
 
-\subsection{Modeling Transition Probabilities}
-\label{sec:framework-transitions}
+%\subsection{Modeling Transition Probabilities}
+%\label{sec:framework-transitions}
 
-While we represent the states as described in Section \ref{sec:framework-states},
-to model transitions we use the continuous-time Markov chain (CTMC) framework.
-As mentioned in Section \ref{sec:preliminaries} all the data needed to represent a continuous-time Markov chain
+%While we represent the states as described in Section \ref{sec:framework-states},
+Recall that all the data needed to represent a continuous-time Markov chain
 is stored as transition rates in a transition rate matrix $Q \in \mathbb{R}^{n \times n}$, where $n$ represents
-the size of the finite state space $I$. However, initial user
-feedback showed transition rates are not a very informative way of visualizing state transitions. Therefore
+the cardinality of the finite state space $I$ (Section \ref{sec:preliminaries}). However, initial user
+feedback showed that transition rates are not a very informative way of visualizing state transitions. Instead, 
 we choose to visualize transitions in terms of the jump chain $\Pi$.
-We note that an alternative way of representing a Markov chain $(X_t)_{t \ge 0}$ with transition rate matrix $Q$
-is by its jump chain and holding times. The jump chain of a continuous time Markov chain $(X_t)_{t \ge 0}$ is
+This represents an alternative, but equivalent, representation of a Markov chain by its jump chain and holding times. 
+
+The jump chain of a continuous time Markov chain $(X_t)_{t \ge 0}$ is
 a discrete time Markov chain $(Y_n)_{n \ge 0}$ with transition matrix $\Pi$ defined as
 \begin{equation}
 	\nonumber
@@ -86,8 +87,8 @@ a discrete time Markov chain $(Y_n)_{n \ge 0}$ with transition matrix $\Pi$ defi
 			\end{array}
 		\right.
 \end{equation}
-Definition \ref{def:jump-chain-holding-times} provides a definition of a Markov chain in terms of its jump chain and holding times.
 
+The formal definition of a Markov chain in terms of its jump chain and holding times is given belows.
 \begin{defn}
 	\label{def:jump-chain-holding-times}
 	A right-continuous process $(X_t)_{t \ge 0}$ is a continuous time Markov chain with initial
@@ -98,31 +99,35 @@ Definition \ref{def:jump-chain-holding-times} provides a definition of a Markov 
 	where $q_i = -q_{ii}$.
 \end{defn}
 
-To determine the size of each state, we turn to the ergodic properties of $(X_t)_{t \ge 0}$, specifically
+The states and jump matrix define a directed graph which we use to visualize the system. The widths of the arrows represent the corresponding values of the jump matrix. This only encodes the state transitions. To visualize how long the system spends in a state, we use the size of the state.
+To determine the size of each state, we turn to the ergodic properties of $(X_t)_{t \ge 0}$. Specifically
 we use the elements of the stationary distribution $\pi = (\pi_1, \pi_2, ..., \pi_n)$ and draw the area of
 state $i$ proportional to $\pi_i$. We note that under the assumptions presented in Section \ref{sec:preliminaries}
-this distribution always exists.
+this distribution always exists. \primoz{why do we not use the holding times  - a sentence or two here}
 
 \subsection{Aggregation}
 \label{sec:framework-aggregation}
 
-By the final step of our methodology, we have already computed a qualitative representation of the
-dataset. The goal of the third step is then to construct a multi-scale representation, representing
-the data on several details level - from the finest to the most coerce.
+One of the main contributions of this paper is to visualize the system at multiple scales  representing
+the data at different detail levels - from the finest to the coarsest. To build our multi-scale representation we take as input, the continuous time Markov chain, we initially constructed. 
 
-As stated in Section \ref{sec:preliminaries} we associate each scale $s$ with a specific partition
-function $\lstopar{f_s}: \mathbb{R}^d \rightarrow \lstopar{I_s}$. At the finest scale, we use the 
-partition function \lstopar{$f: \mathbb{R}^d \rightarrow I$} defined in Section \ref{sec:framework-states}, which induces
+Recall from Section \ref{sec:preliminaries}, rather than constructing a single partition of our space, we can construct a hierarchical partition. With this hierarchical partition,  each scale $s$ is associated with a specific partition
+function $\lstopar{f_s}: \mathbb{R}^d \rightarrow \lstopar{I_s}$.
+
+At the finest scale, we use the 
+partition function \lstopar{$f: \mathbb{R}^d \rightarrow I$}, which induces
 the state space $I$ of the Markov chain $(X_t)_{t \ge 0}$. We then compute the partition
 function for coarser scales by aggregating elements of $I$, inducing state space $I_s$.
-Thus $I_s$ represents a partition of $I$ and is used as the state space on scale $s$.
+Thus $I_s$ represents a partition of $I$ and can again be used as the state space on scale $s$.
 $I_s$ is determined by a map $\phi_s: I \rightarrow I_s$. This
-way $f_s$ can be represented as a compositum \lstopar{$f_s = f \circ \phi_s$}.
+way $f_s$, can be represented as \lstopar{$f_s = f \circ \phi_s$}.
 
-We represent the Markov chain $(X_t^{(s)})_{t \ge 0}$ induced by state space $I_s$ with a transition
+The details of how compute these maps and partitions is described in Section~\ref{}. Therefore, the problem is given $I$, $I_s$, $f$ and the Markov chain induced by $I$, to compute the Markov chain induced by $I_s$.
+
+The states of this Markov chain $(X_t^{(s)})_{t \ge 0}$ are induced by $I_s$, what remains is to compute the corresponding  transition
 rate matrix $Q^{(s)}$. To compute $Q^{(s)}$, we adapt the formula
 proposed in \cite{5746509} to continuous time Markov chains. We define a partition function
-$\Phi: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}^{m \times m}$ with $m \le n$ using formula \ref{eq:ctmc-state-aggregation}.
+$\Phi: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}^{m \times m}$ with $m \le n$ using formula~\ref{eq:ctmc-state-aggregation}.
 \begin{equation}
 	\label{eq:ctmc-state-aggregation}
 	\Phi(Q) = (P' \Pi P)^{-1} P' \Pi Q P
@@ -145,9 +150,10 @@ If we define $\psi = \phi \circ \phi^{-1}$, then Equation \ref{eq:ctmc-state-agg
 	\nonumber
 	q_{\phi(i)\phi(j)}^{(s)} = \frac{\sum\limits_{i \in \psi(i)}\pi_i \sum\limits_{j \in \psi(j)} q_{ij}}{\sum\limits_{i \in \psi(i)}\pi_i}
 \end{equation}
-We note that $\pi^{(s)}$, the stationary distribution of $(X_t^{(s)})_{t \ge 0}$, can be computed directly from
+$\pi^{(s)}$, the stationary distribution of $(X_t^{(s)})_{t \ge 0}$, can be computed directly from
 the stationary distribution of the original chain $(X_t)_{t \ge 0}$ by the following rule:
 \begin{equation}
 	\nonumber
 	\pi^{(s)} = \pi P.
 \end{equation}
+Intuitively, the stationary distributions are preserved through the scales, although the intermediate dynamics may change. How much, depends on how we construct our hierarchical partition function. 
