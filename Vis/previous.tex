@@ -1,7 +1,7 @@
 
 Visualization of large multi-variate time-series is an understudied area. In areas such as production and manufacturing lines, the common practice is to plot multiple signals in either the same window or in parallel windows~\cite{} \lstopar{[TODO ref missing]}. This makes interpretation difficult and does not scale particularly well to signals with a large number of variates or high sampling rates. %In the latter case, the appropriate time scale must be chosen a priori to enable a user to monitor the   
 This clutters the visualization and hinders data analysis. Further, as the number of observations increases,
- large response times make interactive exploration difficult (citation?).
+ large response times make interactive exploration difficult \lstopar{(citation?)}.
 
 There is a large body of work to address this scalability problem.
 They can generally be classified into two groups: data abstraction and clutter reduction 
@@ -30,7 +30,7 @@ Fua et. al. \cite{Fua:2000:SBM:614278.614457} present a mechanism for navigating
 called Structure-Based brushes. Brushing consists of painting sections of the display using a mouse or stylus, indicating
 data items to be selected. Their technique can be used to perform selection in datasets organized via hierarchical
 clustering and partitioning algorithms and serves to perform subset selection for further analysis. The technique defines
-the level of detail which can be e.g. the cluster size, volume of the level number which can be used to traverse the
+the level of detail which can be e.g. the cluster size, volume or the level number which can be used to traverse the
 hierarchy.
 
 Elmqvist et. al. \cite{Elmqvist:2010:HAI:1749404.1749525} present a model for building, visualizing and interacting with
@@ -41,7 +41,7 @@ In their work, Cui et. al. \cite{4015421} investigate data abstraction quality m
 visualization systems. Specifically, they propose a histogram difference measure and a Nearest neighbor
 measure to measure the quality of the abstraction.
 
-On important distinction between this work and ours is that this methods are not tailored to time-series data.
+\lstopar{One important distinction between this work and ours is that this methods are not tailored to time-series data.}
 
 
 Visualization in data mining or/and exploratory data analysis range from simple techniques for data exploration, such as
@@ -61,7 +61,7 @@ image object network and representing strongly linked objects using polygons and
 
 
 We base our techniques on  Markov chains. Markov chains are a special kind of memoryless stochastic process and typically only consist of a countable number of states. These two properties make them useful for many applications as they allow the computation of predictions as
-well as quantifying their behavior by calculating probabilities and expected values. Markov chains are widely iused for modelling systems dating back to h Andrey Markov himself \cite{markov13} in 1913. Since then
+well as quantifying their behavior by calculating probabilities and expected values. Markov chains are widely used for modelling systems dating back to Andrey Markov himself \cite{markov13} in 1913. Since then
 Markov chains have had many famous applications such as Shannon's application to information theory \cite{Shannon:1948},
 Baum's Hidden Markov Models (HMM) \cite{baum1970} and the application to web search by Sergey Brin and Larry Page \cite{Lawrence981}.
 %
@@ -76,7 +76,7 @@ algorithm for partitioning discrete time Markov chains. Their work provides a st
 transition probabilities based on the stationary distribution. In our work we adapt this solution to the continuous time
 setting.
 
-There has also been a large body on work on approximate Markov chains for Monte Carlo Markov Chain (MCMC) simulation [todo cite]. In this case, however, the emphasis is on reducing the mixing time to ensure fast convergence. In our case, we want to preserve as much of the dynamics as possible. 
+There has also been a large body on work on approximate Markov chains for Monte Carlo Markov Chain (MCMC) simulation \cite{RSSD:RSSD117,HASTINGS01041970,10.2307/2246094,1512059}. In this case, however, the emphasis is on reducing the mixing time to ensure fast convergence. In our case, we want to preserve as much of the dynamics as possible. 
 
 
 \begin{comment}

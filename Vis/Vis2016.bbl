@@ -47,6 +47,12 @@ U.~C. Benz, P.~Hofmann, G.~Willhauck, I.~Lingenfelder, and M.~Heynen.
 \newblock Integration of Geodata and Imagery for Automated Refinement and
   Update of Spatial Databases.
 
+\bibitem{RSSD:RSSD117}
+S.~Brooks.
+\newblock Markov chain monte carlo method and its application.
+\newblock {\em Journal of the Royal Statistical Society: Series D (The
+  Statistician)}, 47(1):69--100, 1998.
+
 \bibitem{559215}
 M.~S.~T. Carpendale, D.~J. Cowperthwaite, and F.~D. Fracchia.
 \newblock Distortion viewing techniques for 3-dimensional data.
@@ -123,10 +129,21 @@ Y.-H. Fua, M.~O. Ward, and E.~A. Rundensteiner.
 \newblock {\em IEEE Transactions on Visualization and Computer Graphics},
   6(2):150--159, Apr. 2000.
 
+\bibitem{10.2307/2246094}
+C.~J. Geyer.
+\newblock Practical markov chain monte carlo.
+\newblock {\em Statistical Science}, 7(4):473--483, 1992.
+
 \bibitem{Hahsler_visualizingassociation}
 M.~Hahsler and S.~Chelluboina.
 \newblock Visualizing association rules: Introduction to the r-extension
   package arulesviz.
+
+\bibitem{HASTINGS01041970}
+W.~K. HASTINGS.
+\newblock Monte carlo sampling methods using markov chains and their
+  applications.
+\newblock {\em Biometrika}, 57(1):97--109, 1970.
 
 \bibitem{Huelsenbeck2310}
 J.~P. Huelsenbeck, F.~Ronquist, R.~Nielsen, and J.~P. Bollback.
@@ -166,6 +183,13 @@ D.~A. Keim and H.~P. Kriegel.
 \newblock Visualization techniques for mining large databases: a comparison.
 \newblock {\em IEEE Transactions on Knowledge and Data Engineering},
   8(6):923--938, Dec 1996.
+
+\bibitem{1512059}
+Z.~Khan, T.~Balch, and F.~Dellaert.
+\newblock Mcmc-based particle filtering for tracking a variable number of
+  interacting targets.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  27(11):1805--1819, Nov 2005.
 
 \bibitem{DBLP:journals/corr/abs-1111-0352}
 B.~Kulis and M.~I. Jordan.
