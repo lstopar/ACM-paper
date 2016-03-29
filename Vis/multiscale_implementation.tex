@@ -104,9 +104,9 @@ The initial states are assigned the scale $0$. For coarser-scale, aggregated sta
 	\nonumber
 	s(S) = \frac{1}{\left|A\right|\left|B\right|}\sum\limits_{i \in A}\sum\limits_{j \in B} d(c_i,c_j)
 \end{equation}
-
-\primoz{A sentence here explaining the intuition here}
-
+\lstopar{
+Intuitively in this case, the scale provides a measure of distance between individual states inside an aggregated, higher level state.
+}
 
 The second aggregation method we propose is an extension of the algorithm proposed in \lstopar{[TODO cite]} to continuous time Markov chains and represents a top-down approach. Beginning with our initial Markov chain, we initially assign all the states into a single state. This represents the coarsest possible scale. We then split this state into two by approximating the \emph{min-cut} problem in the graph representing the Markov chain. 
 
