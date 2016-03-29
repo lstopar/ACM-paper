@@ -1,67 +1,81 @@
-This section presents the implementation of our three step methodology presented in Section \ref{sec:multiscale-framework}.
-We start by describing the methods behind the initial state construction in Section \ref{sec:state-construction-impl}
-and then continue to present implementation details of steps two and three in sections \ref{sec:transition-probs-impl}
-and \ref{sec:state-aggregation-impl} respectively.
+In this section, we present the specific choices we chose to incorporate into our system.  
+%This section presents the implementation of our three step methodology presented in Section \ref{sec:multiscale-framework}.
+%We start by describing the methods behind the initial state construction in Section \ref{sec:state-construction-impl}
+%and then continue to present implementation details of steps two and three in sections \ref{sec:transition-probs-impl}
+%and \ref{sec:state-aggregation-impl} respectively.
+%%
+%
+%\subsection{Initial State Construction}
+%\label{sec:state-construction-impl}
+%
+%As described in section \ref{sec:framework-states} 
+The first step in the pipeline, which is the construction of the partition of the space and the finest scale Markov chain/
+ There are many paritioning/clustering algorithms in the literature, including many that produce a hierarchical partition.% Most depend on a distance matrix between the data points, leading to a computational complexity of $O(n^2)$, rendering 
+ %them unsuitable for large datasets.
+%Many of these algorithms construct a hierarchy which has $n$ levels,  
+We opt to first construct a partition and then construct hierarchy. This is a design choice which decouples the choice partition construction and the choice of aggragation strategy.  For larger datasets, this is also more computationally efficient, since we after the initial partition is constructed, the complexity of constructing a partition is determined by the number of states in this partition rather than the number of data points.  	
+%To avoid , we first create a flat partition of the data space and later aggregate these
+%partitions to obtain a hierarchical structure.
 
-\subsection{Initial State Construction}
-\label{sec:state-construction-impl}
 
-As described in section \ref{sec:framework-states} the initial state construction is performed by partitioning
-the data points and associating each partition with a single state. The literature suggests many partitioning
-algorithms, including those that produce a hierarchical partition. The computational complexity of these algorithms
-is, however $O(n^2)$, rendering them unsuitable for large datasets.
+%Following the intuition of Section \ref{sec:framework-states}
+To consturct the partition, two data points are considered similar if they lie close
+to each other in Euclidean space. Euclidean distance may be replaced by any metric but this would depend on the domain of the data.
 
-To avoid this computational cost, we first create a flat partition of the data space and later aggregate these
-partitions to obtain a hierarchical structure.
-
-Following the intuition of Section \ref{sec:framework-states} we consider two data points similar if they lie close
-to each other in Euclidean space. \lstopar{Other distance measures are also possible but are out of scope of this paper.}
-We use either K-Means or DP-means \cite{DBLP:journals/corr/abs-1111-0352} to construct the partition, representing each 
-partition as a Voronoi cell around its centroid. When using StreamStory in real time, the current state is thus
-selected by assigning the current sample to the nearest centroid using the following formula:
-\begin{equation}
-	\nonumber
-	i = \argmin_{i \in \mathbb{N}_k} \|x - \mu_i\|.
-\end{equation}
-
-We note that the number of centroids (in case of K-Means) or the cluster radius (in case of DP-means) should
+In StreamStory, we implemented $k$-means~\cite{} (insert standard ml textbook) and DP-means \cite{DBLP:journals/corr/abs-1111-0352} to construct the partition. Each  
+partition  represents a  Voronoi cell around its centroid. 
+%
+% \primoz{When using StreamStory processes data in real time, the current state is thus selected by assigning the current sample to the nearest centroid using the following formula:
+% \begin{equation}
+% 	\nonumber
+% 	i = \argmin_{i \in \mathbb{N}_k} \|x - \mu_i\|.
+% \end{equation}
+% This shoudl come later}
+%
+The number of centroids (in case of $k$-means) or the cluster radius (in case of DP-means) should
 be chosen based on domain knowledge and the level of detail users desire. This parameter also effects the 
-initial model construction time as demonstrated in Section \ref{sec:implementation}.
+initial construction time, meaning for large datasets we may want to limit the number of states.
 
-\subsection{Modeling Transition Probabilities}
-\label{sec:transition-probs-impl}
+%\subsection{Modeling Transition Probabilities}
+%\label{sec:transition-probs-impl}
 
-As described in Section \ref{sec:framework-transitions} we model state transitions using the continuous
-time Markov chain framework, first presented in Section \ref{sec:preliminaries}. The transitions are 
-modeled on the finest scale and are then aggregated using the formula presented in Section \ref{sec:framework-aggregation}.
+%As described in Section \ref{sec:framework-transitions} we model state transitions using the continuous
+%time Markov chain framework, first presented in Section \ref{sec:preliminaries}. 
 
-We allow users to select a subset of attributes which are used to model transition rates. Since the
-jump process from state $i$ to state $j$ can be characterized as a Poisson process, we can model its
-transition rate $q_{ij}$ as a function of these attributes $q_{ij} = q_{ij}(x)$. We do this by first
-discretizing the continuous time parameter into a discrete sequence $(0, \epsilon, 2\epsilon, ...)$,
-estimating the transition rates as
+Once the partition is computed, the transitions are computed and aggregated using Equations~\ref{}.
+%
+The system enables users to select a subset of attributes which are used to model the transition rates. Since the
+jump process in a Markov chain from state $i$ to state $j$ can be characterized as a Poisson process, we can model its
+transition rate $q_{ij}$ as a function of these attributes $q_{ij} = q_{ij}(x)$. We do this by discretizing the continuous time parameter into a discrete sequence $(0, \epsilon, 2\epsilon, ...)$ and
+estimate the transition rates as
 \begin{equation}
 	q_{ij}(x) = \frac{\epsilon}{\tilde{p}_{ij}(x)}
 \end{equation}
 where $\tilde{p}_{ij}$ is the estimated probability of jumping from state $i$ to state $j$ in time
 $\epsilon$.
 
-Suppose the process is in state $i$ at time $t$ and define a random variable $J_i = j \Leftrightarrow X_{t + \epsilon} = j$.
-$J_i$ then has a multinomial distribution with parameters $(p_{i1}, p_{i1}, ..., p_{in})$ which can be 
-modeled using a nominal logistic regression model \cite{glm-introduction} to estimate $\tilde{p}_{ij}(x)$.
-The transition rate matrix is then constructed on-the-fly from a matrix of logistic regression models.
+Suppose the process is in state $i$ at time $t$ and define the random variable 
+$$J_i = j \Leftrightarrow X_{t + \epsilon} = j.$$
+$J_i$  has a multinomial distribution with parameters $(p_{i1}, p_{i1}, ..., p_{in})$ which can be 
+modeled using a nominal logistic regression model~\cite{glm-introduction} to estimate $\tilde{p}_{ij}(x)$.
+The transition rate matrix is then constructed from a matrix of logistic regression models -- one for each possible transition. 
 
-\lstopar{
-We need to explain why modeling transitions using signals is useful and why it is used.
-In previous documents I went on blabbering that by modeling transitions this way, we allow
-the possibility of users observing the dynamics in alternate configurations and simulating
-what would happen if they changed some parameter. (This was more or less BS though)
-}
+Modelling and estimating the transitions in this way is computationally efficient and provides a basis for aggregation step described below. As we will show in our examples (Section~\ref{}), these provide an intuitive interpretation of the transitions helping us understand the dynamics. 	
+
+% \lstopar{
+% We need to explain why modeling transitions using signals is useful and why it is used.
+% In previous documents I went on blabbering that by modeling transitions this way, we allow
+% the possibility of users observing the dynamics in alternate configurations and simulating
+% what would happen if they changed some parameter. (This was more or less BS though)
+% }
 
 \subsection{Aggregation}
 \label{sec:state-aggregation-impl}
 
-With a fine partition already available, our methodology merges partitions to obtain a hierarchical structure. We employ agglomerative clustering \cite{Murtagh83} producing a hierarchical partition structure. Agglomerative clustering initially treats each partition as a singleton cluster and represents them using a distance matrix $D \in \mathbb{R}^{n \times n}$ with each element $(D)_{ij}$ representing the distance between the $i$-th and $j$-th cluster. We note that although the algorithm can be used with any distance metric, we follow the intuition from Section \ref{sec:framework-states} and use Euclidean distance between the state centroids:
+With a base level partition computed, we must construct the hierarchy by merging partitions. We present two schemes: one based on agglomerative clustering~\cite{Murtagh83} and another based on minimizing the distortion to the Markov chain. 
+
+Agglomerative clustering represents each partition by its centroid. It computes a distance matrix $D \in \mathbb{R}^{n \times n}$ with each element $(D)_{ij}$ representing the distance between $c_i$ and $c_j$ (the $i$-th and $j$-th centroids respectively). This can be used with any metric, however in our examples we restrict oursleves to Euclidean distance.
+%we follow the intuition from Section \ref{sec:framework-states} and use Euclidean distance between the state centroids:
 \begin{equation}
 	\nonumber
 	(D)_{ij} = d(c_i, c_j) = \|c_i - c_j\|_2.
@@ -71,35 +85,42 @@ The algorithm then recursively merges pairs of clusters until only a single clus
 	\nonumber
 	(i_{min},j_{min}) = \argmin\limits_{i \neq j}(D)_{ij}.
 \end{equation}
-Once the clusters are merged, the entries in the distance matrix that correspond to the merged clusters are updated. This update is called a linkage criteria \lstopar{[cite???]} and determines the distance between clusters as a function of the pairwise distances between their elements. The most popular linkage criteria in the literature are: single-linkage, complete-linkage and average (or mean) linkage. Our initial experiments show no significant difference between the three and therefore we choose to use the mean linkage criteria:
+Once the clusters are merged, the entries in the distance matrix that correspond to the merged clusters are updated. This update is called a linkage criteria \lstopar{[cite???]} \primoz{Hartigan?}. This  determines the distance between clusters as a function of the pairwise distances between their elements. The most popular linkage criteria in the literature are: single-linkage, complete-linkage and average (or mean) linkage. Note that here the elements of clusters are centroids rather than the data points. 
+Our initial experiments show no significant difference between the three and therefore we chose to use the mean linkage criteria:
 \begin{equation}
 	\nonumber
 	D_{S_i,S_j} = \frac{1}{\left|S_i\right|\left|S_j\right|}\sum\limits_{i \in S_i}\sum\limits_{j \in S_j} d(c_i,c_j)
 \end{equation}
-
-The distance between the merged clusters $D_{i_{min} j_{min}}$ is used as the $y$ coordinate of the resulting dendrogram, or in our case as the scale where the merged \lstopar{state/cluster} first appears. Figure \ref{fig:dendrogram} shows the relationship between a dendrogram and \lstopar{our visualization}.
+The distance between the merged clusters $D_{i_{min} j_{min}}$ is used as the height of the resulting dendrogram, or in our case, as the scale where the merged \lstopar{state/cluster} first appears. Therefore, each merge generates a new Markov chain. Figure~\ref{fig:dendrogram} shows this relationship between the dendrogram and \lstopar{our visualization}.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\columnwidth]{dendrogram}
 	\caption{The relationship between a dendrogram and \lstopar{scale}. The $y$-coordinate in a dendrogram represents the scale where the corresponding state appears in our \lstopar{visualization}.}
 	\label{fig:dendrogram}
 \end{figure}
-The initial finest-scale states are assigned scale $0$. Let $S$ be coarser-scale, aggregated state, aggregating states $A$ and $B$. The scale of $S$ is then defined as:
+
+The initial states are assigned the scale $0$. For coarser-scale, aggregated states, we compute the scael as follows. Let $S$ consist of aggrageting states $A$ and $B$.  The scale of $S$ is then defined as:
 \begin{equation}
 	\nonumber
 	s(S) = \frac{1}{\left|A\right|\left|B\right|}\sum\limits_{i \in A}\sum\limits_{j \in B} d(c_i,c_j)
 \end{equation}
+\primoz{A sentence here explaining the intuition here}
 
-For the second aggregation method, we adapt the algorithm proposed in \lstopar{[TODO cite]} to continuous time Markov chains. The method works iteratively, by initially assigning all the states to a single partition, and then iteratively splitting the ``best" partition until each state is in a partition of its own.
 
-The splitting procedure is based on spectral bi-partitioning of Markov chains using the sign-structure of the eigenvector, corresponding to the second largest eigenvalue of the symmetrized transition rate matrix $Q_s$. Indeed, as the literature suggests, the transition rate matrix of a continuous time Markov chain $Q$ is exactly the negative Laplacian of the corresponding directed weighted graph \cite{Agaev2005157}.
+The second aggregation method we propose is an extension of the algorithm proposed in \lstopar{[TODO cite]} to continuous time Markov chains and represents a top-down approach. Beginning with our initial Markov chain, we initially assign all the states into a single state. This represents the coarsest possible scale. We then split this state into two by approximating the \emph{min-cut} problem in the graph representing the Markov chain. 
 
-$Q$ is however not symmetric and in general does not have real-valued eigenvalues. We therefore first transform $Q$ using the following formula:
+The method then works iteratively, splitting the ``best" partition until we have the initial Markov chain.
+%
+The splitting procedure is based on spectral bi-partitioning of Markov chains using the sign-structure of the eigenvector, corresponding to the second largest eigenvalue of the \emph{symmetrized transition rate matrix} $Q_s$. Indeed,  the transition rate matrix of a continuous time Markov chain $Q$ is exactly the negative Laplacian of the corresponding directed weighted graph~\cite{Agaev2005157}.
+
+$Q$ in general will not be symmetric and so may have complex eigenvalues. We therefore first symmetrize $Q$ by computing
 \begin{equation}
 	\nonumber
 	Q_s = \frac{1}{2}(\Pi Q + Q' \Pi)
 \end{equation}
-where we denote $Q_s$ to be the \lstopar{symmetrized version} of $Q$ and $\Pi = diag(\pi)$ is a diagonal matrix with the stationary distribution on the diagonal. This ensures that all the eigenvalues (and eigenvectors) are real-valued and furthermore matrix $\pi^{-1}Q_s$ preserves the ergodic properties of $Q$. The final bi-partition function $\phi: I \rightarrow \{0,1\}$ is obtained by solving the following generalized eigenvalue problem:
+where $Q_s$ is \emph{symmetrized version} of $Q$ and $\Pi = diag(\pi)$ is a diagonal matrix with the stationary distribution on the diagonal. This ensures that all the eigenvalues (and eigenvectors) are real-valued and furthermore matrix $\pi^{-1}Q_s$ preserves the ergodic properties of $Q$. 
+
+The bi-partition function $\phi: I \rightarrow \{0,1\}$ is obtained by solving the following generalized eigenvalue problem:
 \begin{equation}
 	Q_s v = \lambda_2 \Pi v.
 \end{equation}
@@ -115,7 +136,9 @@ and assigning states based on the sign structure of $v$:
 		\right.
 \end{equation}
 
-Once a bi-partition function is defined we can present the iterative bi-partitioning algorithm. The algorithm starts with a single partition, containing all the states of the original Markov chain. On the $m$-th iteration, it then assumes that $m$ partitions are already given and select which of the $m$ partitions to split. Let $Q^{(i)}$ be a transition rate matrix of a Markov chain induced on the states in the $i$-th partition. Bi-partitioning $Q^{(i)}$ then provides $m+1$ partitions which induce a Markov chain on $m+1$ states with transition rate Matrix $Q_{m+1}^{(i)}$ defined using formula \ref{eq:ctmc-state-aggregation}. The algorithm now select which of the $m$ partitions to split by minimizing the relative entropy rate between $Q$ and $Q_{m+1}^{(i)}$:
+ The iterative algorithm begins by assigning  all the states of the original Markov chain to a single state. On the $m$-th iteration, it assumes that $m$ splits have already occured and selects which of the $m$ partitions to further split. 
+
+ Let $Q^{(i)}$ be a transition rate matrix of the Markov chain induced on the states in the $i$-th partition. Bi-partitioning $Q^{(i)}$ then provides $m+1$ partitions which induce a Markov chain on $m+1$ states with a transition rate matrix $Q_{m+1}^{(i)}$ computed using Equation~\ref{eq:ctmc-state-aggregation}. The algorithm selects which of the $m$ partitions to split by minimizing the relative entropy rate between $Q$ and $Q_{m+1}^{(i)}$:
 \begin{equation}
 	i = \argmin\limits_{i \in \mathbb{N}_m} D(Q || Q_{m+1}^{(i)}).
 \end{equation}
@@ -124,10 +147,10 @@ The relative entropy rate $D(Q || Q_{m+1}^{(i)})$ provides a measure of ``distan
 	\label{eq:relative-entropy-rate}
 	D(Q || \tilde{Q}) = \sum\limits_{\substack{i,j \in I \\ i \neq j}}\pi_i q_{ij} \log\frac{q_{ij}}{\tilde{q}_{ij}} + \sum\limits_{i \in I}\pi_i(q_{ii} - \tilde{q}_{ii})
 \end{equation}
-
-However, since $Q$ and $Q_{m+1}^{(i)}$ are not defined on the same state space, we cannot use Equation \ref{eq:relative-entropy-rate} directly. Let $\phi_s: I \rightarrow J$ denote the partition function, mapping states of $Q$ into states of $Q_{m+1}^{(i)}$ and let $\psi = \phi \circ \phi^{-1}$. $\psi(i) \subseteq I$ thus represents the set of states which were aggregated into a single state in $\phi(i) \in J$. We now define $q_{i\psi(j)} = \sum_{k \in \psi(j)}q_{ik}$ and $\tilde{q}_{kl} = \left(Q_{m+1}^{(i)}\right)_{kl}$. Using this notation, we can define the relative entropy between $Q$ and $Q_{m+1}^{(i)}$ as:
+Since $Q$ and $Q_{m+1}^{(i)}$ are not defined on the same state space, we cannot use Equation~\ref{eq:relative-entropy-rate} directly. Let $\phi_s: I \rightarrow J$ denote the partition function, mapping states of $Q$ into states of $Q_{m+1}^{(i)}$ and let $\psi = \phi \circ \phi^{-1}$. Therefore, $\psi(i) \subseteq I$  represents the set of states which were aggregated into a single state in $\phi(i) \in J$. We now define $q_{i\psi(j)} = \sum_{k \in \psi(j)}q_{ik}$ and $\tilde{q}_{kl} = \left(Q_{m+1}^{(i)}\right)_{kl}$. Using this notation, we can define the relative entropy between $Q$ and $Q_{m+1}^{(i)}$ as:
 \begin{equation}
 	D(Q || Q_{m+1}^{(i)}) = \sum\limits_{\substack{i,j \in I \\ \phi(i) \neq \phi(j)}}\pi_i q_{ij}\log\frac{q_{i\psi(j)}}{\tilde{q}_{\phi(i)\phi(j)}} + \sum\limits_{i \in I}\pi_i \left(q_{i\psi(i)} - \tilde{q}_{\phi(i)\phi(i)}\right).
 \end{equation}
-We refer the reader to \lstopar{Appendix A} for more details.
+
+%We refer the reader to \lstopar{Appendix A} for more details.
 
