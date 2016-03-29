@@ -139,6 +139,11 @@ M.~Hahsler and S.~Chelluboina.
 \newblock Visualizing association rules: Introduction to the r-extension
   package arulesviz.
 
+\bibitem{Hartigan:1975:CA:540298}
+J.~A. Hartigan.
+\newblock {\em Clustering Algorithms}.
+\newblock John Wiley \& Sons, Inc., New York, NY, USA, 99th edition, 1975.
+
 \bibitem{HASTINGS01041970}
 W.~K. HASTINGS.
 \newblock Monte carlo sampling methods using markov chains and their
@@ -200,6 +205,11 @@ B.~Kulis and M.~I. Jordan.
 P.~Lawrence, B.~Sergey, R.~Motwani, and T.~Winograd.
 \newblock The pagerank citation ranking: Bringing order to the web.
 \newblock Technical report, Stanford University, 1998.
+
+\bibitem{Maimon:2005:DMK:1088958}
+O.~Maimon and L.~Rokach.
+\newblock {\em Data Mining and Knowledge Discovery Handbook}.
+\newblock Springer-Verlag New York, Inc., Secaucus, NJ, USA, 2005.
 
 \bibitem{markov13}
 A.~A. Markov.

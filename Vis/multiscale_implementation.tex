@@ -9,11 +9,11 @@ In this section, we present the specific choices we chose to incorporate into ou
 %\label{sec:state-construction-impl}
 %
 %As described in section \ref{sec:framework-states} 
-The first step in the pipeline, which is the construction of the partition of the space and the finest scale Markov chain/
- There are many paritioning/clustering algorithms in the literature, including many that produce a hierarchical partition.% Most depend on a distance matrix between the data points, leading to a computational complexity of $O(n^2)$, rendering 
+The first step in the pipeline, which is the construction of the partition of the space and the finest scale Markov chain.
+There are many partitioning/clustering algorithms in the literature, including many that produce a hierarchical partition.% Most depend on a distance matrix between the data points, leading to a computational complexity of $O(n^2)$, rendering 
  %them unsuitable for large datasets.
 %Many of these algorithms construct a hierarchy which has $n$ levels,  
-We opt to first construct a partition and then construct hierarchy. This is a design choice which decouples the choice partition construction and the choice of aggragation strategy.  For larger datasets, this is also more computationally efficient, since we after the initial partition is constructed, the complexity of constructing a partition is determined by the number of states in this partition rather than the number of data points.  	
+We opt to first construct a partition and then construct hierarchy. This is a design choice which decouples the choice of partition construction and the choice of aggregation strategy.  For larger datasets, this is also more computationally efficient, since after the initial partition is constructed, the complexity of constructing a partition is determined by the number of states in this partition rather than the number of data points.  	
 %To avoid , we first create a flat partition of the data space and later aggregate these
 %partitions to obtain a hierarchical structure.
 
@@ -22,7 +22,7 @@ We opt to first construct a partition and then construct hierarchy. This is a de
 To consturct the partition, two data points are considered similar if they lie close
 to each other in Euclidean space. Euclidean distance may be replaced by any metric but this would depend on the domain of the data.
 
-In StreamStory, we implemented $k$-means~\cite{} (insert standard ml textbook) and DP-means \cite{DBLP:journals/corr/abs-1111-0352} to construct the partition. Each  
+In StreamStory, we implemented $k$-means~\cite{Maimon:2005:DMK:1088958} and DP-means \cite{DBLP:journals/corr/abs-1111-0352} to construct the partition. Each  
 partition  represents a  Voronoi cell around its centroid. 
 %
 % \primoz{When using StreamStory processes data in real time, the current state is thus selected by assigning the current sample to the nearest centroid using the following formula:
@@ -42,7 +42,7 @@ initial construction time, meaning for large datasets we may want to limit the n
 %As described in Section \ref{sec:framework-transitions} we model state transitions using the continuous
 %time Markov chain framework, first presented in Section \ref{sec:preliminaries}. 
 
-Once the partition is computed, the transitions are computed and aggregated using Equations~\ref{}.
+Once the partition is computed, the transitions are computed and aggregated using \lstopar{Equations~\ref{}}.
 %
 The system enables users to select a subset of attributes which are used to model the transition rates. Since the
 jump process in a Markov chain from state $i$ to state $j$ can be characterized as a Poisson process, we can model its
@@ -51,16 +51,16 @@ estimate the transition rates as
 \begin{equation}
 	q_{ij}(x) = \frac{\epsilon}{\tilde{p}_{ij}(x)}
 \end{equation}
-where $\tilde{p}_{ij}$ is the estimated probability of jumping from state $i$ to state $j$ in time
+where $\tilde{p}_{ij}(x)$ is the estimated probability of jumping from state $i$ to state $j$ in time
 $\epsilon$.
 
 Suppose the process is in state $i$ at time $t$ and define the random variable 
 $$J_i = j \Leftrightarrow X_{t + \epsilon} = j.$$
-$J_i$  has a multinomial distribution with parameters $(p_{i1}, p_{i1}, ..., p_{in})$ which can be 
+$J_i$  has a multinomial distribution with parameters $(p_{i1}, p_{i2}, ..., p_{in})$ which can be 
 modeled using a nominal logistic regression model~\cite{glm-introduction} to estimate $\tilde{p}_{ij}(x)$.
 The transition rate matrix is then constructed from a matrix of logistic regression models -- one for each possible transition. 
 
-Modelling and estimating the transitions in this way is computationally efficient and provides a basis for aggregation step described below. As we will show in our examples (Section~\ref{}), these provide an intuitive interpretation of the transitions helping us understand the dynamics. 	
+Modelling and estimating the transitions in this way is computationally efficient and provides a basis for aggregation step described below. As we will show in our examples (Section~\ref{sec:experiments}), these provide an intuitive interpretation of the transitions helping us understand the dynamics. 	
 
 % \lstopar{
 % We need to explain why modeling transitions using signals is useful and why it is used.
@@ -78,20 +78,20 @@ Agglomerative clustering represents each partition by its centroid. It computes 
 %we follow the intuition from Section \ref{sec:framework-states} and use Euclidean distance between the state centroids:
 \begin{equation}
 	\nonumber
-	(D)_{ij} = d(c_i, c_j) = \|c_i - c_j\|_2.
+	(D)_{ij} = d(c_i, c_j) = \|c_i - c_j\|_2
 \end{equation}
-The algorithm then recursively merges pairs of clusters until only a single cluster remains, producing a cluster tree or \textit{dendrogram}. The partitions chosen for merging are the ones with the minimal entry in the distance matrix $D$:
+The algorithm then recursively merges pairs of clusters until only a single cluster remains, producing a cluster tree or \emph{dendrogram}. The partitions chosen for merging are the ones with the minimal entry in the distance matrix $D$:
 \begin{equation}
 	\nonumber
 	(i_{min},j_{min}) = \argmin\limits_{i \neq j}(D)_{ij}.
 \end{equation}
-Once the clusters are merged, the entries in the distance matrix that correspond to the merged clusters are updated. This update is called a linkage criteria \lstopar{[cite???]} \primoz{Hartigan?}. This  determines the distance between clusters as a function of the pairwise distances between their elements. The most popular linkage criteria in the literature are: single-linkage, complete-linkage and average (or mean) linkage. Note that here the elements of clusters are centroids rather than the data points. 
-Our initial experiments show no significant difference between the three and therefore we chose to use the mean linkage criteria:
+Once the clusters are merged, the entries in the distance matrix that correspond to the merged clusters are updated. This update is called a linkage criterion \cite{Hartigan:1975:CA:540298}. It determines the distance between clusters as a function of the pairwise distances between their elements. The most popular linkage criteria in the literature are: single-linkage, complete-linkage and average (or mean) linkage. Note that here the elements of clusters are centroids rather than the data points. 
+Our initial experiments show no significant difference between the three and therefore we chose to use the mean linkage criterion:
 \begin{equation}
 	\nonumber
 	D_{S_i,S_j} = \frac{1}{\left|S_i\right|\left|S_j\right|}\sum\limits_{i \in S_i}\sum\limits_{j \in S_j} d(c_i,c_j)
 \end{equation}
-The distance between the merged clusters $D_{i_{min} j_{min}}$ is used as the height of the resulting dendrogram, or in our case, as the scale where the merged \lstopar{state/cluster} first appears. Therefore, each merge generates a new Markov chain. Figure~\ref{fig:dendrogram} shows this relationship between the dendrogram and \lstopar{our visualization}.
+The distance between the merged clusters $D_{i_{min} j_{min}}$ is used as the height of the resulting dendrogram, or in our case, as the scale where the merged state/cluster first appears. Therefore, each merge generates a new Markov chain. Figure~\ref{fig:dendrogram} shows this relationship between the dendrogram and \lstopar{our visualization}.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\columnwidth]{dendrogram}
@@ -99,11 +99,12 @@ The distance between the merged clusters $D_{i_{min} j_{min}}$ is used as the he
 	\label{fig:dendrogram}
 \end{figure}
 
-The initial states are assigned the scale $0$. For coarser-scale, aggregated states, we compute the scael as follows. Let $S$ consist of aggrageting states $A$ and $B$.  The scale of $S$ is then defined as:
+The initial states are assigned the scale $0$. For coarser-scale, aggregated states, we compute the scale as follows. Let $S$ be a state constructed by aggregating states $A$ and $B$.  The scale of $S$ is then defined as:
 \begin{equation}
 	\nonumber
 	s(S) = \frac{1}{\left|A\right|\left|B\right|}\sum\limits_{i \in A}\sum\limits_{j \in B} d(c_i,c_j)
 \end{equation}
+
 \primoz{A sentence here explaining the intuition here}
 
 

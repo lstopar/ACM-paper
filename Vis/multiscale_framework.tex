@@ -123,11 +123,11 @@ function $\lstopar{f_s}: \mathbb{R}^d \rightarrow \lstopar{I_s}$. At the finest 
 We then compute \lstopar{$f_s$} by aggregating elements of $I$ using mapping \lstopar{(projection?, parition?)} $\phi_s: I \rightarrow I_s$ and representing \lstopar{$f_s$} as a composition $\lstopar{f_s} = \lstopar{f} \circ \phi_s$. \textcolor{red}{$\phi_s$ is defined using $P_{\phi_s}$} 
 \lstopar{
 \begin{itemize}
-	\item now we have defined everything we need to calcualte the new Markov chain $(X_t^{(s)})_{t \ge 0}$: $f$ and $\phi_s$
+	\item now we have defined everything we need to calcualte the new Markov chain $(X_t^s)_{t \ge 0}$: $f$ and $\phi_s$
 \end{itemize}
 }
 
-All that remains is to compute the transition rate matrix of the new Markov chain $(X_t^{(s)})_{t \ge 0}$ induced \lstopar{by} state space $I_s$. To do so, we adapt the formula proposed in \cite{5746509} to continuous time Markov chains. We define function $\Phi_s: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}^{m \times m}$ with $m \le n$ as:
+All that remains is to compute the transition rate matrix of the new Markov chain $(X_t^{s})_{t \ge 0}$ induced \lstopar{by} state space $I_s$. To do so, we adapt the formula proposed in \cite{5746509} to continuous time Markov chains. We define function $\Phi_s: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}^{m \times m}$ with $m \le n$ as:
 \begin{equation}
 	\label{eq:ctmc-state-aggregation}
 	\Phi_s(Q) = (P_{\phi_s}' \Pi P_{\phi_s})^{-1} P_{\phi_s}' \Pi Q P_{\phi_s}
@@ -171,10 +171,10 @@ $n \times m$ matrix with elements
 Thus the data needed to represent a Markov chain at a specific scale $s$ is obtained as $Q^{(s)} = \Phi_s(Q)$.
 If we define $\psi_s = \phi_s \circ \phi_s^{-1}$, then Equation \ref{eq:ctmc-state-aggregation} can be rewritten as
 \begin{equation}
-	\nonumber
+	\label{eq:ctmc-aggregation-alternative}
 	q_{\phi_s(i)\phi_s(j)}^{(s)} = \frac{\sum_{k \in \psi_s(i)}\pi_k \sum_{l \in \psi_s(j)} q_{kl}}{\sum_{k \in \psi_s(i)}\pi_k}
 \end{equation}
-$\pi^{(s)}$, the stationary distribution of $(X_t^{(s)})_{t \ge 0}$, can be computed directly from
+$\pi^{(s)}$, the stationary distribution of $(X_t^{s})_{t \ge 0}$, can be computed directly from
 the stationary distribution of the original chain $(X_t)_{t \ge 0}$ by the following rule:
 \begin{equation}
 	\nonumber
