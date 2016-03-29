@@ -3,14 +3,14 @@ typically operate in approximate cycles over time. Typical examples include weat
 
 We present a system for analyzing and visualizing multi-variate time series with minimal prior knowledge of the underlying time series. One of the key features of our system is that it allows for a \emph{multi-scale} analysis of the underlying system allowing the user to interactively find suitable scales to interpret the multivariate data in a qualitative representation.  
 
-Intuitively, the system help users detect states of behaviors which map to conceptual concepts of the system. For example, in the case of weather, a ``summer'' state may include higher average temperatures or less than average rainfall, while a ``winter" state would have more rainfall. 
+Intuitively, the system helps users detect states of behaviors which map to conceptual concepts of the system. For example, in the case of weather, a ``summer'' state may include higher average temperatures or less than average rainfall, while a ``winter" state would have more rainfall. 
 
-This representation is built using a three step methodology. In the first
+This representation is built using a \lstopar{three step methodology. In the first
 step, we capture the structure of the data by employing unsupervised machine learning
 techniques to identify the systems' most typical states. The second step captures
 dynamics by modeling transitions between these states using a Markov chain framework.
 The third and final step constructs a hierarchical representation by aggregating
-states and transitions. Each level of the hierarchy is then associated with a unique
+states and transitions}. Each level of the hierarchy is then associated with a unique
 scale or detail level.
 
 Overall, this system gives the user a hierarchical view of the dynamics as well as 
