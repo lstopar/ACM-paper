@@ -6,42 +6,52 @@
 \end{itemize}
 \fi
 
-To capture and summarize the dynamics of the system our methodology represents the data
-in a qualitative manner using states and transitions. We begin this section with an overview
-of our multi-scale methodology. The methodology consists of three main steps as shown in Figure \ref{fig:methodology}.
-\begin{figure}[h!]
+The key idea at the heart of our system is to build and visualize an abstraction of the underlying 
+dynamics of the system. Our abstraction is based on Markov chains where we represent the dynamics of the data using states and transitions. A key feature of our system is present this abstraction over \emph{multiple scales}. 
+%
+%To capture and summarize the dynamics of the system our methodology represents the data
+%in a qualitative manner using states and transitions. 
+%
+We begin by presenting an overview
+of our multi-scale methodology. The methodology consists of four main steps as shown in Figure \ref{fig:methodology}.
+\begin{figure*}[h!]
 	\centering
-	\includegraphics[width=\columnwidth]{methodology}
+	\includegraphics[width=\textwidth]{overall1-crop}
 	\caption{Overview of the proposed three-step methodology.}
 	\label{fig:methodology}
-\end{figure}
-The methodology starts in the top left part of the figure with an initial step that summarizes
-the structure of the data by identifying their most typical states. It achieves this by \lstopar{placing}
-the data in a \lstopar{design time} metric space and partitioning them. It then associates
-each partition with a single state.
+\end{figure*}
+
+We begin by considering the multivariate time series as a point cloud in high dimensional space, ignoring the time component. The second step identifies the underlying structure of this point cloud, identifying their most typical states. In Figure~\ref{fig:methodology}, we see two noisy periodic signals which are partitioned roughly according to the phase of the system. As described in Section \ref{} xxx, this is done by considering a metric on the data points and partitioning or clustering them. Each cluster/partition is then associated to a state in a Markov model. We refer to these as the low level states. The 
+ dynamics are modeled through the transition probabilities between the states using continuous time Markov chains (Section \ref{sec:preliminaries}). Finally, we construct a hierarchy of such Markov chains by aggregating the initial states into coarser states. Each level of the hierarchy is associated to a unique scale, yielding a multi-scale model.
+
+%The methodology starts in the top left part of the figure with an initial step that summarizes
+%the structure of the data by identifying their most typical states. It achieves this by \lstopar{placing}
+%the data in a \lstopar{design time} metric space and partitioning them. It then associates
+%each partition with a single state.
 \lstopar{
 \begin{itemize}
 	\item These states are used as the lowest-level states.
 \end{itemize}
 }
-In the second step we summarize dynamics by modeling transition probabilities using continuous time Markov chain framework presented in Section \ref{sec:preliminaries}.
-The third and final step aggregates states and transitions into a hierarchy, associating each
-level of the hierarchy with a unique scale, thus providing a multi-scale model. These steps 
-are explained in detail in the following subsections.
+%In the second step we summarize dynamics by modeling transition probabilities using continuous time Markov chain framework presented in Section \ref{sec:preliminaries}.
+% The third and final step aggregates states and transitions into a hierarchy, associating each
+% level of the hierarchy with a unique scale, thus providing a multi-scale model. These steps 
+% are explained in detail in the following subsections.
 
 
 \subsection{Initial State Construction}
 \label{sec:framework-states}
 
-The first step in our methodology is the construction of initial lowest level states. Using the notation
-from Section \ref{sec:preliminaries} we define a partition function 
-from $\lstopar{f}: \mathbb{R}^d \rightarrow I$ mapping the $d$-dimensional signal to lowest level states
-\lstopar{
-with the following properties:
-\begin{itemize}
-	\item similar points in $\mathbb{R}^d$ should be mapped to the same or neighboring partitions.
-\end{itemize} 
-}
+To construct the initial low level states, we define a partition function $\lstopar{f}: \mathbb{R}^d \rightarrow I$ mapping the $d$-dimensional signal to a finite, discrete set $I$.
+%The first step in our methodology is the construction of initial lowest level states. Using the notation
+%from Section \ref{sec:preliminaries} we define a partition function 
+%from $\lstopar{f}: \mathbb{R}^d \rightarrow I$ mapping the $d$-dimensional signal to lowest level states
+% \lstopar{
+% with the following properties:
+% \begin{itemize}
+% 	\item similar points in $\mathbb{R}^d$ should be mapped to the same or neighboring partitions.
+% \end{itemize} 
+% }
 
 \subsection{Modeling Transition Probabilities}
 \label{sec:framework-transitions}
