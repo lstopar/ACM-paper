@@ -24,6 +24,32 @@ their dataset and configuration. %We conducted an experiment to test the perform
 The interface displays the model using a three panel user interface, an example of
 which is shown in Figure \ref{fig:teaser}. Note that for the paper, we used a white background, whereas the default theme in the live system is with a dark background. The central panel visualizes the model at the current scale as a graph. A state is represented by a circle  whose size represents the time/probability spent in the state, which is computed from the stationary distribution of the Markov chain. The transitions are represented by arrows, where again size represents the empirical transition probability. 
 
+% \iffalse
+% Features  
+% \begin{itemize}
+% 	\item Qualitative representation - states and transitions
+% 	\item State identification services:
+% 	\begin{itemize}
+% 		\item State details and attribute highlighting - histograms + attribute colors
+% 		\item \lstopar{Timeline + parallel coordinates \cite{parcoords} - when do states occur in time}
+% 		\item \lstopar{Coloring states based on attributes}
+% 		\item Decision trees + rule extraction - Explanation of states
+% 		\item Automatic name generation
+% 		\item Zooming into a state + showing paths from a state
+% 	\end{itemize}
+% \end{itemize}
+% \fi
+
+% \dunja{This needs a one sentence intro on the overall user interface.}
+% \lstopar{This section presents some of the key features of our three-panel web-based user interface.}
+% The system supports multiple users with datasets and precomputed models (as well as the ability to store new models in the system). Data is generally uploaded via CSV files.  Configuration consists of choice of desired attributes,  clustering method, aggregation strategy and attributes used to model transitions. The model is then constructed and the user can begin interactive exploration. The construction time varies depending on the size of 
+% their dataset and configuration. We conducted an experiment to test the performance of our \lstopar{methodology},
+% presented in section \ref{sec:implementation}.
+
+% The interface displays the model using a three panel user interface, an example of
+% which is shown in Figure \ref{fig:teaser}. The central panel visualizes the model at the current scale as a graph. A state is represented by a circle  whose size represents the time/probability spent in the state, which is computed from the stationary distribution of the Markov chain. The transitions are represented by arrows, where again size represents the empirical transition probability. 
+% >>>>>>> 63d0bf3dc78f345a11678b38161d979d0e825dc3
+
 The computed model may be used as a monitoring tool, mapping incoming data onto the model in real-time. 
 In this mode, the current state (green) and the most likely future states (blue)
 are highlighted. The current state is determined by assigning a sample to its nearest 
