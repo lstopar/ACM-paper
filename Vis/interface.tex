@@ -150,8 +150,9 @@ from a state in the weather dataset presented in section \ref{sec:experiments-we
 	\label{fig:example-decision-tree-and-rule}
 \end{figure}
 
-\subsection{Real-Time Data}
-\primoz{to do}
+\subsection{Streaming Data}
+The system is also able to visualize streaming data based on a precomputed model. Given a training set, the multiscale model is built. The system can then process the streaming data. For each new point, it determines its current state using on a nearest neighbor search to the centroids of the states. This is done at all scales, allowing the user to visualize the current state and possible next states at different levels interactively. The system allows for alarms to be set to detect when the system enters a particular state or when the probability of entering a paraticular state exceeds some threshold. The probabilities are computed based on the Markov model at the scale at which the alarm is set 
+(see Supplementary Video).
 
 \iffalse
 \begin{figure}[h!]
