@@ -104,23 +104,32 @@ Each element $\pi_i$ represents the proportion of time the process spends in sta
 	\lim\limits_{t \rightarrow \infty} P(X_t = j) = \pi_j, \forall j \in I.
 \end{equation}
 
-To go from our PL-input signal to a Markov chain, we consider a spatial discretization of the signal.
-Let $S\subseteq \R^d$, be the support of our input signal. Given a partition of $S$, denoted by  $\cP$, 
-we can construct a Markov chain. Construct a  state in a Markov chain $\cM_i \in \cM$ for each  partition cell $\cP_i$. Let this mapping be denoted by $f:\cP \rightarrow \cM$. We can endow our data with a canonical measure induced from the volume measure on $\R^{d+1}$ \primoz{here we have to be a bit careful about time}. This induces a measure on the partitions $\mu$, which by the  pushforward $f(\mu)$, induces a measure on the states. This represents the empirical stationary distribution on our Markov chain. To define the transition probabilities, we note that it can be defined in terms of the adjacent partition elements. 
-\primoz{the above paragraph should be synchronized with framework and maps....}
+To go from our piecewise-linear (PL) input signal to a Markov chain, we consider a spatial discretization of the signal.
+We define a \emph{partition function} $g:\R^d\rightarrow I$, where $I$ is a finite, discrete set. This set then represent the states of Markov chain. If we assume our system is measurable on $\R^d$, then $g$ induces a measure on the set $I$, i.e., let $x(t)\in \R^d$ be the state of the system at time $t$. This induces a corresponding  state $a(t) = g(x(t)) \in I$. This function also defines transition probabililties between the different states. Let $a,b\in I$, then the joint distribution is
+    $$\mathbb{P}(a(t_1),b(t_2)) = \mathbb{P}(x(t_1)\in g^{-1}(a), y(t_2) \in g^{-1}(b)), 	 \quad t_1\leq t_2$$
+ In general, this is not Markovian for continuous processes\footnote{This is not Markovian, even for Brownian motion if dimension$>1$ }. The Markovian assumption we make in this step represents the fundamental information loss in our approach\footnote{We can construct arbitrarily good approximations, however the processes do not converge in the limit.}
+Formally, this allows us to define a second map from a measure in $\R^d$ to a Markov chain. However, to avoid overcomplicating the notation, we use $g$ for both. 
 
-This completely defines a continuous time Markov chain. Here, we would like to note that this step represents the fundamental information loss in our approach. % DISCUSSION: The transition from continuous process to discrete space (without memory) inherently loses information in any dimension larger than 1.  
-%
-The Markov chain we obtain is highly dependent on the choice of partition. In principle, the initial discretization step  results in a  Markov chain with many states corresponding to a fine partition of the space. Our main contribution is to consider the Markov chains over multiple scales. %This corresponds to a \emph{hierarchical partition of space}. From above, we have that any partition induces a Markov chain. 
+ A map between partitions $\phi: I_1 \rightarrow I_2$, is well-defined if it maps each cell of $I_1$ to precisely one cell of $I_2$. That is, for all $x\in\R^d$, $\phi circ g_1(x) =  g_2(x)$. If this relationship holds, it follows that this induces a measurable map between $I_1$ and $I_2$. We use this map to construct a map between states of the Markov chains, which we denote $\Phi$.  We note that in our setting, $\Phi$ can be used to define a map between partitions, since there is a one-to-one correspondence between the partition cells and the states of the Markov chain.  
+\primoz{Last sentence, I am not 100 percent sure about. }
+% Let $S\subseteq \R^d$, be the support of our input signal. 
 
-If we are given a sequence of increasingly coarse paritions there is a well defined surjective map 
-$\cP(i)\rightarrow\cP(j)$ from finer to coarser. Each such map also induces a well-defined map between Markov chains. \primoz{Can we prove that these are the same as what we do?}
+% Given a partition of $S$, denoted by  $\cP$, 
+% we can construct a Markov chain. Construct a  state in a Markov chain $\cM_i \in \cM$ for each  partition cell $\cP_i$. Let this mapping be denoted by $f:\cP \rightarrow \cM$. We can endow our data with a canonical measure induced from the volume measure on $\R^{d+1}$ \primoz{here we have to be a bit careful about time}. This induces a measure on the partitions $\mu$, which by the  pushforward $f(\mu)$, induces a measure on the states. This represents the empirical stationary distribution on our Markov chain. To define the transition probabilities, we note that it can be defined in terms of the adjacent partition elements. 
+% \primoz{the above paragraph should be synchronized with framework and maps....}
 
-In practice, we are not given a hierarchical partition of space, but rather using our initial Markov chain, we define a map between Markov chains by merging states. Note that any such sequence does correspond to a hierarchical partition. \primoz{Maybe add a two line proof here}.  In the following section, we describe how we compute the smaller Markov chain given an initial Markov chain and a map. We also describe how we choose which states to merge, but the intuition is to merge states so that as little of the underlying dynamics is lost. 
+% This completely defines a continuous time Markov chain. Here, we would like to note that this step represents the fundamental information loss in our approach. % DISCUSSION: The transition from continuous process to discrete space (without memory) inherently loses information in any dimension larger than 1.  
+% %
+% The Markov chain we obtain is highly dependent on the choice of partition. In principle, the initial discretization step  results in a  Markov chain with many states corresponding to a fine partition of the space. Our main contribution is to consider the Markov chains over multiple scales. %This corresponds to a \emph{hierarchical partition of space}. From above, we have that any partition induces a Markov chain. 
 
-In Section~\ref{sec:multiscale-implementation}, we decribe how we constructed the underlying partition and our initial Markov chain.  
+% If we are given a sequence of increasingly coarse paritions there is a well defined surjective map 
+% $\cP(i)\rightarrow\cP(j)$ from finer to coarser. Each such map also induces a well-defined map between Markov chains. \primoz{Can we prove that these are the same as what we do?}
 
-\primoz{This last part still needs work}
+% In practice, we are not given a hierarchical partition of space, but rather using our initial Markov chain, we define a map between Markov chains by merging states. Note that any such sequence does correspond to a hierarchical partition. \primoz{Maybe add a two line proof here}.  In the following section, we describe how we compute the smaller Markov chain given an initial Markov chain and a map. We also describe how we choose which states to merge, but the intuition is to merge states so that as little of the underlying dynamics is lost. 
+
+% In Section~\ref{sec:multiscale-implementation}, we decribe how we constructed the underlying partition and our initial Markov chain.  
+
+% \primoz{This last part still needs work}
 
 % hierarchical partitions of space
 

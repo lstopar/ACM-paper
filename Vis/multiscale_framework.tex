@@ -7,13 +7,13 @@
 \fi
 
 The key idea at the heart of our system is to build and visualize an abstraction of the underlying 
-dynamics of the system. Our abstraction is based on Markov chains where we represent the dynamics of the data using states and transitions. A key feature of our system is \lstopar{to} present this abstraction over \emph{multiple scales}. 
+dynamics of the system. Our abstraction is based on Markov chains where we represent the dynamics of the data using states and transitions. A key feature of our system is to present this abstraction over \emph{multiple scales}. 
 %
 %To capture and summarize the dynamics of the system our methodology represents the data
 %in a qualitative manner using states and transitions. 
 %
 We begin by presenting an overview
-of our multi-scale methodology. The methodology consists of four main steps as shown in Figure \ref{fig:methodology}.
+of our multi-scale methodology. The methodology consists of four main steps as shown in Figure~\ref{fig:methodology}.
 \begin{figure*}[]
 	\centering
 	\includegraphics[width=\textwidth]{methodology-V2-fixed}
@@ -21,8 +21,9 @@ of our multi-scale methodology. The methodology consists of four main steps as s
 	\label{fig:methodology}
 \end{figure*}
 
-We begin by considering the multivariate time series as a point cloud in high dimensional space, ignoring the time component. The second step identifies the underlying structure of this point cloud, identifying their most typical states. In Figure~\ref{fig:methodology}, we see two noisy periodic signals which are partitioned roughly according to the phase of the system. As described in Section \lstopar{\ref{} xxx}, this is done by considering a metric on the data points and partitioning or clustering them. Each cluster/partition is then associated to a state in a Markov model. We refer to these as the low level states. The 
- dynamics are modeled through the transition probabilities between the states using continuous time Markov chains (Section \ref{sec:preliminaries}). Finally, we construct a hierarchy of such Markov chains by aggregating the initial states into coarser states. Each level of the hierarchy is associated to a unique scale, yielding a multi-scale model.
+We begin by considering the multivariate time series as a point cloud in high dimensional space (Fig.~\ref{fig:methodology}(a)), ignoring the time component. The second step identifies the underlying structure of this point cloud, identifying the most typical states (Fig.~\ref{fig:methodology}(b)). This is done by considering a metric on the data points and clustering them (Section~\ref{sec:multiscale-implementation}). In Figure~\ref{fig:methodology}, we see two noisy periodic signals which are partitioned roughly according to the phase of the system. 
+Each cluster is then associated to a state in a Markov model ((Fig.~\ref{fig:methodology}(c))). We refer to these as the \emph{initial states}. 
+The dynamics are modeled through the transition probabilities between the states using continuous time Markov chains (Section \ref{sec:preliminaries}). Finally, we construct a hierarchy of such Markov chains by aggregating the initial states into coarser states ((Fig.~\ref{fig:methodology}(d))). Each level of the hierarchy is associated to a unique scale, yielding a multi-scale model.
 
 %The methodology starts in the top left part of the figure with an initial step that summarizes
 %the structure of the data by identifying their most typical states. It achieves this by \lstopar{placing}
@@ -42,7 +43,7 @@ We begin by considering the multivariate time series as a point cloud in high di
 % \subsection{Initial State Construction}
 % \label{sec:framework-states}
 
-To construct the initial low level states, we define a partition function $\lstopar{f}: \mathbb{R}^d \rightarrow I$ mapping the $d$-dimensional signal to a finite, discrete set $I$. These represent the states which represent the basic unit of abstraction in our visualization. To complete the construction of the continuous-time Markov chain, we must define the transition rates.
+% To construct the initial states, we define a partition function $\lstopar{f}: \mathbb{R}^d \rightarrow I$ mapping the $d$-dimensional signal to a finite, discrete set $I$. These represent the states which represent the basic unit of abstraction in our visualization. To complete the construction of the continuous-time Markov chain, we must define the transition rates.
 
 %The first step in our methodology is the construction of initial lowest level states. Using the notation
 %from Section \ref{sec:preliminaries} we define a partition function 
@@ -60,8 +61,9 @@ To construct the initial low level states, we define a partition function $\lsto
 %While we represent the states as described in Section \ref{sec:framework-states},
 Recall that all the data needed to represent a continuous-time Markov chain
 is stored as transition rates in a transition rate matrix $Q \in \mathbb{R}^{n \times n}$, where $n$ represents
-the cardinality of the finite state space $I$ (Section \ref{sec:preliminaries}). However, initial user
-feedback showed that transition rates are not a very informative way of visualizing state transitions. Instead, 
+the cardinality of the finite state space $I$. The state space is determined by the given parition function $g$.
+
+Initial user feedback showed that transition rates are not a very informative way of visualizing state transitions. Instead, 
 we choose to visualize transitions in terms of the jump chain $\Pi$.
 This represents an alternative, but equivalent, representation of a Markov chain by its jump chain and holding times. 
 
@@ -116,18 +118,22 @@ We provide an additional visualization, using a \emph{tooltip} to show the holdi
 \label{sec:framework-aggregation}
 
 One of the main contributions of this paper is to visualize the system at multiple scales  representing
-the data at different detail levels - from the finest to the coarsest. To build our multi-scale representation we take as input, the continuous time Markov chain, we initially constructed. 
+the data at different detail levels - from the finest to the coarsest. To build our multi-scale representation we take as input, the continuous time Markov chain we initially constructed. 
 
-Recall from Section \ref{sec:preliminaries}, rather than constructing a single partition of our space, we can construct a hierarchical partition. With this hierarchical partition,  each scale $s$ is associated with a specific partition
-function $\lstopar{f_s}: \mathbb{R}^d \rightarrow \lstopar{I_s}$. At the finest scale, we use the partition function \lstopar{$f: \mathbb{R}^d \rightarrow I$}, defined above, inducing state space $I$ of Markov chain $(X_t)_{t \ge 0}$. 
-We then compute \lstopar{$f_s$} by aggregating elements of $I$ using mapping \lstopar{(projection?, parition?)} $\phi_s: I \rightarrow I_s$ and representing \lstopar{$f_s$} as a composition $\lstopar{f_s} = \lstopar{f} \circ \phi_s$. \textcolor{red}{$\phi_s$ is defined using $P_{\phi_s}$} 
-\lstopar{
-\begin{itemize}
-	\item now we have defined everything we need to calcualte the new Markov chain $(X_t^s)_{t \ge 0}$: $f$ and $\phi_s$ and $(X_t)_{t \ge 0}$
-\end{itemize}
-}
+%Recall from Section \ref{sec:preliminaries}, rather than constructing a single partition of our space, we can construct a hierarchical partition. With this hierarchical partition,  each scale $s$ is associated with a specific partition
+%function $\lstopar{f_s}: \mathbb{R}^d \rightarrow \lstopar{I_s}$. At the finest scale, we use the partition function \lstopar{$f: \mathbb{R}^d \rightarrow I$}, defined above, inducing state space $I$ of Markov chain $(X_t)_{t \ge 0}$. 
+%We then compute \lstopar{$f_s$} by aggregating elements of $I$ using mapping \lstopar{(projection?, parition?)} $\phi_s: I \rightarrow I_s$ and representing \lstopar{$f_s$} as a composition $\lstopar{f_s} = \lstopar{f} \circ \phi_s$. \textcolor{red}{$\phi_s$ is defined using $P_{\phi_s}$} 
+%\lstopar{
+%\begin{itemize}
+%	\item now we have defined everything we need to calcualte the new Markov chain $(X_t^s)_{t \ge 0}$: $f$ and $\phi_s$ and $(X_t)_{t \ge 0}$
+%\end{itemize}
+%}
 
-All that remains is to compute the transition rate matrix of the new Markov chain $(X_t^{s})_{t \ge 0}$ induced \lstopar{by} state space $I_s$. To do so, we adapt the formula proposed in \cite{5746509} to continuous time Markov chains. We define function $\Phi_s: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}^{m \times m}$ with $m \le n$ as:
+We begin with the Markov chain $(X_t)_{t \ge 0}$, generated by an initial partition function $g$. We then aggregate states until only one state remains -- this represents the coarsest possible representation of our system. The aggregation can be defined on the partitions of the space or directly on the states. We describe two strategies for computing the aggregation in Section~\ref{sec:state-aggregation-impl}. We assume we are given $\phi_s: I\rightarrow I_s$, where $I$ is the initial state space and $I_s$ is a coarser partition, which we refer to as scale $s$. 
+%
+The cardinality of $I_s$ gives us the state space of our new Markov chain, $(X_t^{s})_{t \ge 0}$. Since a Markov chain is completely specified by a transition rate matrix, the map between Markov chains is a linear map between matrices: 
+$$\Phi_s: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}^{m \times m} \quad \mbox{where} \quad m = |I| \leq n =|I_s|$$
+To compute this, we adapt the formula proposed in \cite{5746509} to continuous time Markov chains. The function $\Phi_s$ can be expressed as:
 \begin{equation}
 	\label{eq:ctmc-state-aggregation}
 	\Phi_s(Q) = (P_{\phi_s}' \Pi P_{\phi_s})^{-1} P_{\phi_s}' \Pi Q P_{\phi_s}
@@ -180,6 +186,6 @@ the stationary distribution of the original chain $(X_t)_{t \ge 0}$ by the follo
 	\nonumber
 	\pi^{(s)} = \pi P_{\phi_s}.
 \end{equation}
-Intuitively, the stationary distributions are preserved through the scales, although the intermediate dynamics may change. How much, depends on how we construct our hierarchical partition function. 
+Intuitively, the stationary distributions are preserved through the scales, although the intermediate dynamics may change. The amount of change depends on how we construct our hierarchy. This approach is much faster to compute than computing the distribution at each scale individually.
 
-\primoz{why not just recompute - we need a sentence here} \lstopar{ - it's slower, you need an iterative procedure to compute the stationary distribution}
+%\primoz{why not just recompute - we need a sentence here} \lstopar{ - it's slower, you need an iterative procedure to compute the stationary distribution}
