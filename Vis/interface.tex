@@ -16,12 +16,13 @@ Features
 \fi
 
 \dunja{This needs a one sentence intro on the overall user interface.}
+\lstopar{This section presents some of the key features of our three-panel web-based user interface.}
 The system supports multiple users with datasets and precomputed models (as well as the ability to store new models in the system). Data is generally uploaded via CSV files.  Configuration consists of choice of desired attributes,  clustering method, aggregation strategy and attributes used to model transitions. The model is then constructed and the user can begin interactive exploration. The construction time varies depending on the size of 
 their dataset and configuration. We conducted an experiment to test the performance of our \lstopar{methodology},
 presented in section \ref{sec:implementation}.
 
 The interface displays the model using a three panel user interface, an example of
-which is shown in Figure \ref{fig:teaser} \lstopar{[TODO teaser reference not appearing]}. The central panel visualizes the model at the current scale as a graph. A state is represented by a circle  whose size represents the time/probability spent in the state, which is computed from the stationary distribution of the Markov chain. The transitions are represented by arrows, where again size represents the empirical transition probability. 
+which is shown in Figure \ref{fig:teaser}. The central panel visualizes the model at the current scale as a graph. A state is represented by a circle  whose size represents the time/probability spent in the state, which is computed from the stationary distribution of the Markov chain. The transitions are represented by arrows, where again size represents the empirical transition probability. 
 
 The computed model may be used as a monitoring tool, mapping incoming data onto the model in real-time. 
 In this mode, the current state (green) and the most likely future states (blue)
