@@ -60,7 +60,7 @@ $J_i$  has a multinomial distribution with parameters $(p_{i1}, p_{i2}, ..., p_{
 modeled using a nominal logistic regression model~\cite{glm-introduction} to estimate $\tilde{p}_{ij}(x)$.
 The transition rate matrix is then constructed from a matrix of logistic regression models -- one for each possible transition. 
 
-Modelling and estimating the transitions in this way is computationally efficient and provides a basis for aggregation step described below. As we will show in our examples (Section~\ref{sec:experiments}), these provide an intuitive interpretation of the transitions helping us understand the dynamics. 	
+Modeling and estimating the transitions in this way is computationally efficient and provides a basis for aggregation step described below. As we will show in our examples (Section~\ref{sec:experiments}), these provide an intuitive interpretation of the transitions helping us understand the dynamics. 	
 
 % \lstopar{
 % We need to explain why modeling transitions using signals is useful and why it is used.
@@ -68,6 +68,7 @@ Modelling and estimating the transitions in this way is computationally efficien
 % the possibility of users observing the dynamics in alternate configurations and simulating
 % what would happen if they changed some parameter. (This was more or less BS though)
 % }
+Finally, to visualize the Markov chain, we use multi-dimensional scaling (MDS) \cite{} on the graph, where larger transition probabilities correspond to higher similarities. We then use a repulsive scheme to ensure that the states do not overlap in the final visualization. 
 
 \subsection{Aggregation}
 \label{sec:state-aggregation-impl}
@@ -154,4 +155,5 @@ Since $Q$ and $Q_{m+1}^{(i)}$ are not defined on the same state space, we cannot
 \end{equation}
 
 %We refer the reader to \lstopar{Appendix A} for more details.
-
+\paragraph{Computing the multiscale layout:}
+To visualize the different scales, we use the MDS coordinates computed at the initial level. When states are aggregated, the position of the new state is computed as the \primoz{weighted?} average of the states' positions. This is again followed by a repulsive scheme to ensure that the states do not overlap.

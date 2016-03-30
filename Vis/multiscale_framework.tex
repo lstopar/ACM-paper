@@ -102,15 +102,15 @@ The formal definition of a Markov chain in terms of its jump chain and holding t
 The states and jump matrix define a directed graph which we use to visualize the system. The widths of the arrows represent the corresponding values of the jump matrix. This only encodes the state transitions. To visualize how long the system spends in a state, we use the size of the state.
 To determine the size of each state, we turn to the ergodic properties of $(X_t)_{t \ge 0}$. Specifically
 we use the elements of the stationary distribution $\pi = (\pi_1, \pi_2, ..., \pi_n)$ and draw the area of
-state $i$ proportional to $\pi_i$. We note that under the assumptions presented in Section \ref{sec:preliminaries}
-this distribution always exists. \primoz{why do we not use the holding times  - a sentence or two here} \lstopar{we don't use them, we only use the jump chain. It would be possible to use the holding times as to calcualte the state radius.}
+state $i$ proportional to $\pi_i$. %We note that under the assumptions presented in Section \ref{sec:preliminaries}
+%this distribution always exists. 
+We provide an additional visualization, using a \emph{tooltip} to show the holding time or how long the system stays in a state upon arrival.
+% , computed as
+% \begin{equation}
+% 	\nonumber E(T_i) = \frac{1}{q_i}
+% \end{equation}
+% where $T_i$ is the $i$-th states' holding time.
 
-\lstopar{Actually we do use in a tooltip to show how long the systems stays in a state upon arrival.
-\begin{equation}
-	\nonumber E(T_i) = \frac{1}{q_i}
-\end{equation}
-where $T_i$ is the $i$-th states' holding time.
-}
 
 \subsection{Aggregation}
 \label{sec:framework-aggregation}

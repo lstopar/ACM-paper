@@ -1,15 +1,16 @@
 \label{sec:preliminaries}
-Our framework is aimed at visualizing multivariate time-series. Here we introduce the tools required in our framework. We assume as input we are given samples of $d$ signals, which we interpret as one multi-dimensional signal:
+Our framework is aimed at visualizing multivariate time-series. Here, we introduce the tools required in our framework. We assume as input we are given samples of $d$ signals, which we interpret as one multi-dimensional signal:
 $$f: x(t)\mapsto \R^d$$
-For simplicity, we assume that the signals are continuous and real-valued as well as uniformly sampled. This means that all signals are sampled simultaneously and at constant intervals. These assumptions can be relaxed in practice, with a preprocessing resampling step.  Each sample then consists of a vector of samples from all input signals at time $t$. If our system is intrinsically $d$-dimnesional, then by Whitney's embedding theorem, if we have $2d+1$ independent signals, we should be able to reconstruct the system.
+For simplicity, we assume that the signals are continuous and real-valued as well as uniformly sampled. This means that all signals are sampled simultaneously and at constant intervals. These assumptions can be relaxed in practice, with a preprocessing resampling step.  Each sample then consists of a vector of samples from all input signals at time $t$. 
+From this point on we  assume that the image of $f$ defines a compact subset of Euclidean space. For our input, we assume a PL-reconstruction based on time-adjacent samples. 
+% MOVE TO DISCUSSION: If our system is intrinsically $d$-dimnesional, then by Whitney's embedding theorem\cite{}, if we have $2d+1$ independent signals, we should be able to reconstruct the system.
 
-If we do not have enough independent signals, we can always use a time-delay embedding to raise the dimension of our signal using Takens embedding theorem \cite{} and extensions \cite{}.  
+% MOVE TO EXPERIMENT SECTION: If we do not have enough independent signals, we can always use a time-delay embedding to raise the dimension of our signal using Takens embedding theorem \cite{} and extensions \cite{}.  
 
-A time-delay embedding is defined as a function:
-$$ f(x(t),d,\tau) = (x(t),x(t+\tau),\ldots,x(t+(d-1)\tau) )$$
-It takes a time series and lifts it to $d$ dimensions by considering samples spaced at $\tau$ intervals. There is considerable amount of work on how to choose $\tau$, but in our case we often (a) have sufficiently many signals (b) almost any value of $\tau$ works. 
+% A time-delay embedding is defined as a function:
+% $$ f(x(t),d,\tau) = (x(t),x(t+\tau),\ldots,x(t+(d-1)\tau) )$$
+% It takes a time series and lifts it to $d$ dimensions by considering samples spaced at $\tau$ intervals. There is considerable amount of work on how to choose $\tau$, but in our case we often (a) have sufficiently many signals (b) almost any value of $\tau$ works. 
 
-From this point on we  assume that the image of $f$ defines a compact subset of Euclidean space. For our input, we assume a PL-reconstruction based on time-adjacent samples. \primoz{(maybe an example here?)}
 
 Our main modeling tool is the continuous time Markov chain (CTMC). Markov processes are a special kind of stochastic processes with the characteristic of having no memory. This means that only its current state can influence where it goes next \cite{norris1998markov}. In this work we focus on a special kind of Markov processes called Markov chains that assume only a finite or countable number of states.
 
@@ -18,22 +19,23 @@ applications. What makes them particularly useful is that the memoryless
 property makes it feasible to predict future developments and compute probabilities and
 expected values to quantify that behavior.
 
-More formally, a Markov chain is a stochastic process $(X_t)_{t \ge 0}$ which can assume 
+Formally, a Markov chain is a stochastic process $(X_t)_{t \ge 0}$ which can assume 
 only a finite or countable number of states $i \in I$. The starting state
 is sampled from a probability distribution $\lambda$, called the initial distribution.
 We define $p_{ij}(t)$ to be the probability of the process being in state $j$ at time $t$
 when starting from state $i$ at time $0$ and a family of stochastic matrices $\{P(t)\}_{t \ge 0}$,
 where the $(i,j)$-th element of $P_{ij}(t)$ equals $p_{ij}(t)$.
 Each row of $P(t)$ is thus a probability distribution over the state space $I$. In our
-work we assume that $P(t)$ is recurrent for every $t$ and that the process is non-explosive.
+work we assume that $P(t)$ is finite and recurrent for every $t$. %M, and that the process is non-explosive.
 
-\lstopar{
-\begin{itemize}
-	\item The state space is finite!
-\end{itemize}
-}
+\primoz{I think finite implies non-explosive}
+% \lstopar{
+% \begin{itemize}
+% 	\item The state space is finite!
+% \end{itemize}
+%}
 
-The literature distinguishes between two types of Markov chains: discrete time and continuous time.
+The two most common types of Markov chains are discrete time and continuous time.
 Discrete time Markov chains are the most basic type of Markov chains, where the process
 changes states in discrete time steps $n \in \mathbb{N}$ with probabilities $p_{ij} = p_{ij}(1)$
 and obeys the Markov property presented in Definition \ref{thm:markov-property-discrete}.
@@ -47,17 +49,17 @@ distribution $\delta_i$ and is independent of $X_0, X_1, ..., X_m$.
 
 Continuous time Markov chains are a generalization of discrete time Markov chains as they
 fill the gap between the discrete time steps and can change states at any given moment.
-Continuous time Markov chains are closely related to Poisson processes. Imagine a labyrinth
+Continuous time Markov chains are closely related to Poisson processes. %Imagine a labyrinth
 of corridors and chambers and associate each chamber with a single state from the state space
 $I$. The corridor between chambers $i$ and $j$
 is shut by a single door that opens for an infinitely small amount of time at the jump times of
 a Poisson process with rate $q_{ij}$. If the person walking through the labyrinth changes
 chambers each time a door opens, they are performing
 a continuous time Markov chain.
+\primoz{the above paragraph should be rewritten or removed}
 
 The basic data needed to define a continuous time Markov chain on state space $I$ are
 given by a transition rate matrix $Q$ satisfying three conditions:
-
 \begin{enumerate}
 	\item $q_{ij} \ge 0$ for all $i \ne j$
 	\item $\sum_{j \in I} q_{ij} = 0$
@@ -73,9 +75,8 @@ $P(t)$ is represented as $P(t) = e^{tQ}$ and can be computed by solving Kolmogor
 \end{equation}
 with initial condition $P(0) = I$.
 
-Markov chains can be defined in terms of \lstopar{$n^2$} independent Poisson processes
-of rates $q_{ij}$. However Definition \ref{def:ctmc} is \lstopar{much more common in the literature}.
-
+Markov chains can be defined in terms of $n^2$ independent Poisson processes
+of rates $q_{ij}$. However the definition below is much more common:%Definition~\ref{def:ctmc} is \lstopar{much more common in the literature}.
 \begin{defn}
 	\label{def:ctmc}
 	Let $(X_t)_{t \ge 0}$ be a right-continuous process assuming values in $I$ and let $Q$
@@ -90,15 +91,14 @@ of rates $q_{ij}$. However Definition \ref{def:ctmc} is \lstopar{much more commo
 When working with Markov
 chains one is often interested in long term properties of the chain. One such property is the
 stationary distribution $\pi$. One can show, that for irreducible and non-explosive Markov chains,
-the stationary distribution always exists \cite{norris1998markov} and can be calculated as the left eigenvector of $Q$ 
-corresponding to eigenvalue $0$:
+the stationary distribution always exists~\cite{norris1998markov} and can be computed as the left eigenvector of $Q$ 
+corresponding to the eigenvalue $0$:
 \begin{equation}
 	\nonumber
 	\pi Q = 0.
 \end{equation}
-\lstopar{In our case} the stationary distribution is interesting, because by the convergence theorem
-\cite{aldous-fill-2014}
-each element $\pi_i$ represents the proportion of time the process spends in state $i$:
+In our case, the stationary distribution is interesting because by the convergence theorem~\cite{aldous-fill-2014}.
+Each element $\pi_i$ represents the proportion of time the process spends in state $i$:
 \begin{equation}
 	\nonumber
 	\lim\limits_{t \rightarrow \infty} P(X_t = j) = \pi_j, \forall j \in I.
@@ -106,11 +106,12 @@ each element $\pi_i$ represents the proportion of time the process spends in sta
 
 To go from our PL-input signal to a Markov chain, we consider a spatial discretization of the signal.
 Let $S\subseteq \R^d$, be the support of our input signal. Given a partition of $S$, denoted by  $\cP$, 
-we can construct a Markov chain. Construct a  state in a Markov chain $\cM_i \in \cM$ for each  partition cell $\cP_i$. Let this mapping be denoted by $f:\cP \rightarrow \cM$. We can endow our data with a canonical measure induced from the volume measure on $\R^{d+1}$ \primoz{here we have to be a bit careful about time}. This induces a measure on the partitions $\mu$, which by the  pushforward $f(\mu)$, induces a measure on the states. This represents the empirical stationary distribution on our Markov chain. To define the transition probabilities, we note that it can be defined in terms of the adjacent partition elements. \primoz{there are a few details to put in here} 
+we can construct a Markov chain. Construct a  state in a Markov chain $\cM_i \in \cM$ for each  partition cell $\cP_i$. Let this mapping be denoted by $f:\cP \rightarrow \cM$. We can endow our data with a canonical measure induced from the volume measure on $\R^{d+1}$ \primoz{here we have to be a bit careful about time}. This induces a measure on the partitions $\mu$, which by the  pushforward $f(\mu)$, induces a measure on the states. This represents the empirical stationary distribution on our Markov chain. To define the transition probabilities, we note that it can be defined in terms of the adjacent partition elements. 
+\primoz{the above paragraph should be synchronized with framework and maps....}
 
-This completely defines a continuous time Markov chain. Here, we would like to note that this step represents the fundamental information loss in our approach. The transition from continuous process to discrete space (without memory) inherently loses information in any dimension larger than 1 (see Appendix).  
-
-The Markov chain we obtain is highly dependent on the choice of partition. In principle, the initial discretization step  results in a relatively large Markov chain corresponding to a fine partition of the space. Our main contribution is to consider the Markov chains over multiple scales. This corresponds to a \emph{hierarchical partition of space}. From above, we have that any partition induces a Markov chain. 
+This completely defines a continuous time Markov chain. Here, we would like to note that this step represents the fundamental information loss in our approach. % DISCUSSION: The transition from continuous process to discrete space (without memory) inherently loses information in any dimension larger than 1.  
+%
+The Markov chain we obtain is highly dependent on the choice of partition. In principle, the initial discretization step  results in a  Markov chain with many states corresponding to a fine partition of the space. Our main contribution is to consider the Markov chains over multiple scales. %This corresponds to a \emph{hierarchical partition of space}. From above, we have that any partition induces a Markov chain. 
 
 If we are given a sequence of increasingly coarse paritions there is a well defined surjective map 
 $\cP(i)\rightarrow\cP(j)$ from finer to coarser. Each such map also induces a well-defined map between Markov chains. \primoz{Can we prove that these are the same as what we do?}
@@ -119,6 +120,7 @@ In practice, we are not given a hierarchical partition of space, but rather usin
 
 In Section~\ref{sec:multiscale-implementation}, we decribe how we constructed the underlying partition and our initial Markov chain.  
 
+\primoz{This last part still needs work}
 
 % hierarchical partitions of space
 
