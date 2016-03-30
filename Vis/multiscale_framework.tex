@@ -1,29 +1,30 @@
-\iffalse
-\begin{itemize}
-	\item Initial state construction (State Identification)
-	\item Aggregation (State Aggregation)
-	\item Transition probabililties (Modeling transitions)
-\end{itemize}
-\fi
+% \iffalse
+% \begin{itemize}
+% 	\item Initial state construction (State Identification)
+% 	\item Aggregation (State Aggregation)
+% 	\item Transition probabililties (Modeling transitions)
+% \end{itemize}
+% \fi
 
-The key idea at the heart of our system is to build and visualize an abstraction of the underlying 
+The key idea underlying StreamStory is to build and visualize an abstraction of the underlying 
 dynamics of the system. Our abstraction is based on Markov chains where we represent the dynamics of the data using states and transitions. A key feature of our system is to present this abstraction over \emph{multiple scales}. 
 %
 %To capture and summarize the dynamics of the system our methodology represents the data
 %in a qualitative manner using states and transitions. 
 %
-We begin by presenting an overview
-of our multi-scale methodology. The methodology consists of four main steps as shown in Figure~\ref{fig:methodology}.
+%We begin by presenting an overview
+%of our multi-scale methodology. 
+The four main steps are shown in Figure~\ref{fig:methodology}.
 \begin{figure*}[]
 	\centering
 	\includegraphics[width=\textwidth]{methodology-V2-fixed}
 	\caption{Overview of the proposed three-step methodology.}
 	\label{fig:methodology}
 \end{figure*}
-
-We begin by considering the multivariate time series as a point cloud in high dimensional space (Fig.~\ref{fig:methodology}(a)), ignoring the time component. The second step identifies the underlying structure of this point cloud, identifying the most typical states (Fig.~\ref{fig:methodology}(b)). This is done by considering a metric on the data points and clustering them (Section~\ref{sec:multiscale-implementation}). In Figure~\ref{fig:methodology}, we see two noisy periodic signals which are partitioned roughly according to the phase of the system. 
-Each cluster is then associated to a state in a Markov model ((Fig.~\ref{fig:methodology}(c))). We refer to these as the \emph{initial states}. 
-The dynamics are modeled through the transition probabilities between the states using continuous time Markov chains (Section \ref{sec:preliminaries}). Finally, we construct a hierarchy of such Markov chains by aggregating the initial states into coarser states ((Fig.~\ref{fig:methodology}(d))). Each level of the hierarchy is associated to a unique scale, yielding a multi-scale model.
+%
+We begin by considering the multivariate time series as a point cloud in high dimensional space (Fig.~\ref{fig:methodology}(a)), ignoring the time component. The next step identifies the underlying structure of this point cloud, finding the most typical states (Fig.~\ref{fig:methodology}(b)). This is done by considering a metric on the data points and clustering them (Section~\ref{sec:multiscale-implementation}). In Figure~\ref{fig:methodology}, we see two noisy periodic signals which are partitioned roughly according to the phase of the system. 
+Each cluster is then associated to a state in a Markov model (Fig.~\ref{fig:methodology}(c)). We refer to these as the \emph{initial states}. 
+The dynamics are then modeled through the transition probabilities between the states using continuous time Markov chains. Finally, we construct a hierarchy of such Markov chains by aggregating the initial states into coarser states (Fig.~\ref{fig:methodology}(d)). Each level of the hierarchy is associated to a unique scale, yielding a multi-scale model.
 
 %The methodology starts in the top left part of the figure with an initial step that summarizes
 %the structure of the data by identifying their most typical states. It achieves this by \lstopar{placing}
@@ -61,10 +62,10 @@ The dynamics are modeled through the transition probabilities between the states
 %While we represent the states as described in Section \ref{sec:framework-states},
 Recall that all the data needed to represent a continuous-time Markov chain
 is stored as transition rates in a transition rate matrix $Q \in \mathbb{R}^{n \times n}$, where $n$ represents
-the cardinality of the finite state space $I$. The state space is determined by the given parition function $g$.
+the cardinality of the finite state space $I$. The initial state space is determined by the given partition function $g$.
 
-Initial user feedback showed that transition rates are not a very informative way of visualizing state transitions. Instead, 
-we choose to visualize transitions in terms of the jump chain $\Pi$.
+Early user feedback showed that transition rates are not very informative for visualizing state transitions. Instead, 
+we chose to visualize transitions in terms of the jump chain $\Pi$.
 This represents an alternative, but equivalent, representation of a Markov chain by its jump chain and holding times. 
 
 The jump chain of a continuous time Markov chain $(X_t)_{t \ge 0}$ is
@@ -117,7 +118,7 @@ We provide an additional visualization, using a \emph{tooltip} to show the holdi
 \subsection{Aggregation}
 \label{sec:framework-aggregation}
 
-One of the main contributions of this paper is to visualize the system at multiple scales  representing
+To visualize the system at multiple scales  representing
 the data at different detail levels - from the finest to the coarsest. To build our multi-scale representation we take as input, the continuous time Markov chain we initially constructed. 
 
 %Recall from Section \ref{sec:preliminaries}, rather than constructing a single partition of our space, we can construct a hierarchical partition. With this hierarchical partition,  each scale $s$ is associated with a specific partition
@@ -129,11 +130,11 @@ the data at different detail levels - from the finest to the coarsest. To build 
 %\end{itemize}
 %}
 
-We begin with the Markov chain $(X_t)_{t \ge 0}$, generated by an initial partition function $g$. We then aggregate states until only one state remains -- this represents the coarsest possible representation of our system. The aggregation can be defined on the partitions of the space or directly on the states. We describe two strategies for computing the aggregation in Section~\ref{sec:state-aggregation-impl}. We assume we are given $\phi_s: I\rightarrow I_s$, where $I$ is the initial state space and $I_s$ is a coarser partition, which we refer to as scale $s$. 
-%
+We begin with the Markov chain $(X_t)_{t \ge 0}$, generated by the initial partition function $g$. We then aggregate states until only one state remains -- this represents the coarsest possible representation of our system. The aggregation can be defined on the partitions of the space or directly on the states. We describe two strategies for computing the aggregation in Section~\ref{sec:state-aggregation-impl}. We assume we are given $\phi_s: I\rightarrow I_s$, where $I$ is the initial state space and $I_s$ is a coarser partition, which we refer to as scale $s$. 
+
 The cardinality of $I_s$ gives us the state space of our new Markov chain, $(X_t^{s})_{t \ge 0}$. Since a Markov chain is completely specified by a transition rate matrix, the map between Markov chains is a linear map between matrices: 
 $$\Phi_s: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}^{m \times m} \quad \mbox{where} \quad m = |I| \leq n =|I_s|$$
-To compute this, we adapt the formula proposed in \cite{5746509} to continuous time Markov chains. The function $\Phi_s$ can be expressed as:
+To compute this matrix , we adapt the formula proposed in \cite{5746509} to continuous time Markov chains. The function $\Phi_s$ can be expressed as:
 \begin{equation}
 	\label{eq:ctmc-state-aggregation}
 	\Phi_s(Q) = (P_{\phi_s}' \Pi P_{\phi_s})^{-1} P_{\phi_s}' \Pi Q P_{\phi_s}
@@ -150,13 +151,13 @@ $n \times m$ matrix with elements
 			\end{array}
 		\right.
 \end{equation}
-
+%
 %We then compute the partition function $f_s: \mathbb{R}^d \rightarrow I_s$ for coarser scales by aggregating elements of $I$, \lstopar{inducing} state space $I_s$. Thus $I_s$ represents a partition of $I$ and can again be used as the state space on scale $s$. $I_s$ is determined by a map $\phi_s: I \rightarrow I_s$. This way $f_s$, can be represented as \lstopar{$f_s = f \circ \phi_s$}.
-
+%
 %The details of how compute $\lstopar{f}$ and $\phi_s$ are described in Section~\ref{}. Therefore, the problem is given $I$, $I_s$, $f$ and the Markov chain induced by $I$, to compute the Markov chain induced by $I_s$.
-
+%
 %Therefore given $\lstopar{f}$ and $\phi_s$ we have all the information to construct a new Markov chain $(X_t^{(s)})_{t \ge 0}$, induced by state space $I_s$. All that remains is to compute the corresponding transition rate matrix $Q^{(s)}$. To do so, we adapt the formula proposed in \cite{5746509} to continuous time Markov chains. We define function $\Phi_s: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}^{m \times m}$ with $m \le n$ using formula~\ref{eq:ctmc-state-aggregation}.
-
+%
 %The states of this new Markov chain $(X_t^{(s)})_{t \ge 0}$ are induced by $I_s$, what remains is to compute the corresponding  transition rate matrix $Q^{(s)}$. To compute $Q^{(s)}$, we adapt the formula proposed in \cite{5746509} to continuous time Markov chains. We define function $\Phi_s: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}^{m \times m}$ with $m \le n$ using formula~\ref{eq:ctmc-state-aggregation}.
 %\begin{equation}
 %	\label{eq:ctmc-state-aggregation}

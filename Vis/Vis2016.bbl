@@ -26,26 +26,11 @@ M.~A. Alsheikh, D.~T. Hoang, D.~Niyato, H.~Tan, and S.~Lin.
   networks: {A} survey.
 \newblock {\em CoRR}, abs/1501.00644, 2015.
 
-\bibitem{963292}
-T.~Barlow and P.~Neville.
-\newblock Case study: visualization for decision tree analysis in data mining.
-\newblock In {\em Information Visualization, 2001. INFOVIS 2001. IEEE Symposium
-  on}, pages 149--152, 2001.
-
 \bibitem{baum1970}
 L.~E. Baum, T.~Petrie, G.~Soules, and N.~Weiss.
 \newblock A maximization technique occurring in the statistical analysis of
   probabilistic functions of markov chains.
 \newblock {\em Ann. Math. Statist.}, 41(1):164--171, 02 1970.
-
-\bibitem{Benz2004239}
-U.~C. Benz, P.~Hofmann, G.~Willhauck, I.~Lingenfelder, and M.~Heynen.
-\newblock Multi-resolution, object-oriented fuzzy analysis of remote sensing
-  data for gis-ready information.
-\newblock {\em \{ISPRS\} Journal of Photogrammetry and Remote Sensing},
-  58(3–4):239 -- 258, 2004.
-\newblock Integration of Geodata and Imagery for Automated Refinement and
-  Update of Spatial Databases.
 
 \bibitem{RSSD:RSSD117}
 S.~Brooks.
@@ -80,12 +65,6 @@ E.-C. CORPORATION.
   Handbook}.
 \newblock Pergamon Press, 3rev ed edition, 1972.
 
-\bibitem{4015421}
-Q.~Cui, M.~Ward, E.~Rundensteiner, and J.~Yang.
-\newblock Measuring data abstraction quality in multiresolution visualizations.
-\newblock {\em IEEE Transactions on Visualization and Computer Graphics},
-  12(5):709--716, Sept 2006.
-
 \bibitem{1207445}
 M.~C.~F. de~Oliveira and H.~Levkowitz.
 \newblock From visual data exploration to visual data mining: a survey.
@@ -114,11 +93,6 @@ N.~Elmqvist and J.-D. Fekete.
 \newblock {\em IEEE Transactions on Visualization and Computer Graphics},
   16(3):439--454, May 2010.
 
-\bibitem{Fortuna05visualizationof}
-B.~Fortuna, M.~Grobelnik, and D.~Mladenić.
-\newblock Visualization of text document corpus.
-\newblock {\em Informatica}, pages 497--502, 2005.
-
 \bibitem{qminer}
 B.~Fortuna, J.~Rupnik, J.~Brank, C.~Fortuna, V.~Jovanoski, M.~Karlovcec,
   B.~Kazic, K.~Kenda, G.~Leban, D.~Mladenic, A.~Muhic, B.~Novak, E.~Novak,
@@ -134,16 +108,6 @@ Y.-H. Fua, M.~O. Ward, and E.~A. Rundensteiner.
   organized data and information spaces.
 \newblock {\em IEEE Transactions on Visualization and Computer Graphics},
   6(2):150--159, Apr. 2000.
-
-\bibitem{10.2307/2246094}
-C.~J. Geyer.
-\newblock Practical markov chain monte carlo.
-\newblock {\em Statistical Science}, 7(4):473--483, 1992.
-
-\bibitem{Hahsler_visualizingassociation}
-M.~Hahsler and S.~Chelluboina.
-\newblock Visualizing association rules: Introduction to the r-extension
-  package arulesviz.
 
 \bibitem{Hartigan:1975:CA:540298}
 J.~A. Hartigan.
@@ -169,20 +133,6 @@ C.-S. Jeong and A.~Pang.
 \newblock In {\em Information Visualization, 1998. Proceedings. IEEE Symposium
   on}, pages 19--25, 149, Oct 1998.
 
-\bibitem{Johnson:1991:TSA:949607.949654}
-B.~Johnson and B.~Shneiderman.
-\newblock Tree-maps: A space-filling approach to the visualization of
-  hierarchical information structures.
-\newblock In {\em Proceedings of the 2Nd Conference on Visualization '91}, VIS
-  '91, pages 284--291, Los Alamitos, CA, USA, 1991. IEEE Computer Society
-  Press.
-
-\bibitem{7192673}
-D.~Jäckle, F.~Fischer, T.~Schreck, and D.~A. Keim.
-\newblock Temporal mds plots for analysis of multivariate data.
-\newblock {\em IEEE Transactions on Visualization and Computer Graphics},
-  22(1):141--150, Jan 2016.
-
 \bibitem{981847}
 D.~A. Keim.
 \newblock Information visualization and visual data mining.
@@ -194,13 +144,6 @@ D.~A. Keim and H.~P. Kriegel.
 \newblock Visualization techniques for mining large databases: a comparison.
 \newblock {\em IEEE Transactions on Knowledge and Data Engineering},
   8(6):923--938, Dec 1996.
-
-\bibitem{1512059}
-Z.~Khan, T.~Balch, and F.~Dellaert.
-\newblock Mcmc-based particle filtering for tracking a variable number of
-  interacting targets.
-\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
-  27(11):1805--1819, Nov 2005.
 
 \bibitem{DBLP:journals/corr/abs-1111-0352}
 B.~Kulis and M.~I. Jordan.
@@ -228,14 +171,6 @@ F.~Murtagh.
 \newblock A survey of recent advances in hierarchical clustering algorithms.
 \newblock {\em Computer Journal}, 26(4):354--359, 1983.
 
-\bibitem{Nguyen2000}
-T.~D. Nguyen, T.~B. Ho, and H.~Shimodaira.
-\newblock {\em Knowledge Discovery and Data Mining. Current Issues and New
-  Applications: 4th Pacific-Asia Conference, PAKDD 2000 Kyoto, Japan, April
-  18--20, 2000 Proceedings}, chapter Interactive Visualization in Mining Large
-  Decision Trees, pages 345--348.
-\newblock Springer Berlin Heidelberg, Berlin, Heidelberg, 2000.
-
 \bibitem{norris1998markov}
 J.~Norris.
 \newblock {\em Markov Chains}.
@@ -255,14 +190,6 @@ W.~Peng, M.~O. Ward, and E.~A. Rundensteiner.
 \newblock In {\em Information Visualization, 2004. INFOVIS 2004. IEEE Symposium
   on}, pages 89--96, 2004.
 
-\bibitem{Poco:2011:FEM:2421953.2422017}
-J.~Poco, R.~Etemadpour, F.~V. Paulovich, T.~V. Long, P.~Rosenthal, M.~C.~F.
-  Oliveira, L.~Linsen, and R.~Minghim.
-\newblock A framework for exploring multidimensional data with 3d projections.
-\newblock In {\em Proceedings of the 13th Eurographics / IEEE - VGTC Conference
-  on Visualization}, EuroVis'11, pages 1111--1120, Chichester, UK, 2011. The
-  Eurographs Association \&\#38; John Wiley \&\#38; Sons, Ltd.
-
 \bibitem{Shannon:1948}
 C.~E. Shannon.
 \newblock {A} {M}athematical {T}heory of {C}ommunication.
@@ -280,11 +207,6 @@ C.~Stolte, D.~Tang, and P.~Hanrahan.
 \newblock Multiscale visualization using data cubes.
 \newblock {\em IEEE Transactions on Visualization and Computer Graphics},
   9(2):176--187, April 2003.
-
-\bibitem{Vesanto99som-baseddata}
-J.~Vesanto.
-\newblock Som-based data visualization methods.
-\newblock {\em Intelligent Data Analysis}, 3:111--126, 1999.
 
 \bibitem{Witten:2005:DMP:1205860}
 I.~H. Witten and E.~Frank.

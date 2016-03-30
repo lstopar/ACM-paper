@@ -1,14 +1,14 @@
-The visualization of multi-variate time-series is a challenging task. Often, systems are observed through one-dimensional measurements graphed over time. Modern systems often have many different sensors which 
+The visualization of multivariate time series is a challenging task. Often, systems are observed through one-dimensional measurements graphed over time. Modern systems often have many different sensors which 
 typically operate in approximate cycles over time. Typical examples include weather systems (e.g. the seasons), manufacturing systems and power consumption. 
+%
+In this paper, we  present the StreamStory system for analyzing and visualizing multi-variate time series with minimal prior knowledge of the underlying time series. One of the key features of our system is that it allows for  \emph{multi-scale analysis} of the underlying system allowing the user to interactively find suitable scales to interpret the multivariate data in a qualitative representation.  
 
-In this paper, we  present the StreamStory system for analyzing and visualizing multi-variate time series with minimal prior knowledge of the underlying time series. One of the key features of our system is that it allows for a \emph{multi-scale analysis} of the underlying system allowing the user to interactively find suitable scales to interpret the multivariate data in a qualitative representation.  
-
-Intuitively, the system helps users detect behaviors which map to conceptual states of the system. For example, in the case of weather, a ``summer'' state may include higher average temperatures, while a ``winter" state would have lower temperatures. s
-
+Intuitively, the system helps users detect behaviors which map to conceptual states of the system. For example, in the case of weather, a ``summer'' state may include higher average temperatures, while a ``winter" state would have lower temperatures. 
+%
 This representation is built using the following pipeline. First, we capture the structure of the data by employing unsupervised machine learning
 techniques to identify the systems' most typical states. Next, we capture the
 dynamics by modeling transitions between these states using a Markov chain framework.
-Finally we construct a hierarchical representation by aggregating both
+Finally, we construct a hierarchical representation by aggregating both
 states and transitions. Each level of the hierarchy is then associated with a unique
 scale or detail level.
 
@@ -20,24 +20,23 @@ meaning of states and transitions, the system provides several automatic assista
 including automatic state labeling, rule extraction, attribute highlighting which
 identify \emph{differences in states}, as well as several tools to help visualize an individual states'
 structure. 
-
-The system also provides additional services based on the Markov chain model. It can map online streaming data onto 
+%
+The system provides additional helper  services based on the Markov chain model. It can map online streaming data onto 
 the model in real-time and issue alerts and messages based on parameters set in the interface. %This can be useful in several scenarios we describe in the paper.
 %
-The technical contributions of the paper are
+The main technical contributions of the paper are
 \begin{enumerate}{}
-  \item A novel methodology for modeling and visualizing multivariate time-varying data streams. This approach is able to capture multiscale behaviour by building a hierarchical model of the system.
-  \item We use Markov chains to visualize the dynamics of a system and propose an algorithm for constructing hierarchies of recurrent continuous time Markov chains, which preserves stationary distributions and has not appeared in the literature. We also design our method to preserve as much of the dynamics as possible throughout the hierarchy.
-  \item Building on these ideas, we develop an interactive system which incorporates many different features to help analyze and understand complex systems through our visualization tool.
-  \item This system also provides functionality to process online streaming data and provide a user with  alert and messages on identified behaviours in the system.  
+  \item A novel methodology for modeling and visualizing multivariate time-varying data streams. This approach is able to capture multiscale behaviour by building a hierarchical model of the system. We use Markov chains to visualize the dynamics of a system and propose an algorithm for constructing hierarchies of recurrent continuous time Markov chains, which preserves stationary distributions and has not appeared in the literature. %We also design our method to preserve as much of the dynamics as possible throughout the hierarchy.
+  \item Building on these ideas, we develop and implement an interactive system which incorporates many different features to help analyze and understand complex systems through our visualization tool (\url{http://streamstory.ijs.si}).
+  \item The system provides functionality to process and visualize online streaming data and provide a user with  alerts and messages on identified behaviours in the system.  
 \end{enumerate}
 
-The paper is structured as follows. Section \ref{sec:previous} provides and overview
-of visualization tools used for data exploration and the state-of-the-art in using Markov chains for modelling dynamic systems.
-Section \ref{sec:preliminaries} introduces the concepts and notations used throughout the paper and 
-in sections \ref{sec:multiscale-framework} and \ref{sec:multiscale-implementation}, we present
-our multi-scale methodology and the details of its implementation. We then present some of the 
-features of our user interface in Section \ref{sec:ui}. We then show experiments conducted on real-world datasets in Section \ref{sec:experiments} and conclude with a discussion and further work in Section \ref{sec:discussion}.
+% The paper is structured as follows. Section \ref{sec:previous} provides and overview
+% of visualization tools used for data exploration and the state-of-the-art in using Markov chains for modelling dynamic systems.
+% Section \ref{sec:preliminaries} introduces the concepts and notations used throughout the paper and 
+% in sections \ref{sec:multiscale-framework} and \ref{sec:multiscale-implementation}, we present
+% our multi-scale methodology and the details of its implementation. We then present some of the 
+% features of our user interface in Section \ref{sec:ui}. We then show experiments conducted on real-world datasets in Section \ref{sec:experiments} and conclude with a discussion and further work in Section \ref{sec:discussion}.
 
 \begin{comment}
 These 

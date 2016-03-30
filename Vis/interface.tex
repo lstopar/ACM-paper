@@ -1,27 +1,28 @@
 
-\iffalse
-Features  
-\begin{itemize}
-	\item Qualitative representation - states and transitions
-	\item State identification services:
-	\begin{itemize}
-		\item State details and attribute highlighting - histograms + attribute colors
-		\item \lstopar{Timeline + parallel coordinates \cite{parcoords} - when do states occur in time}
-		\item \lstopar{Coloring states based on attributes}
-		\item Decision trees + rule extraction - Explanation of states
-		\item Automatic name generation
-		\item Zooming into a state + showing paths from a state
-	\end{itemize}
-\end{itemize}
-\fi
+% \iffalse
+% Features  
+% \begin{itemize}
+% 	\item Qualitative representation - states and transitions
+% 	\item State identification services:
+% 	\begin{itemize}
+% 		\item State details and attribute highlighting - histograms + attribute colors
+% 		\item \lstopar{Timeline + parallel coordinates \cite{parcoords} - when do states occur in time}
+% 		\item \lstopar{Coloring states based on attributes}
+% 		\item Decision trees + rule extraction - Explanation of states
+% 		\item Automatic name generation
+% 		\item Zooming into a state + showing paths from a state
+% 	\end{itemize}
+% \end{itemize}
+% \fi
 
-\dunja{This needs a one sentence intro on the overall user interface.}
-The system supports multiple users with datasets and precomputed models (as well as the ability to store new models in the system). Data is generally uploaded via CSV files.  Configuration consists of choice of desired attributes,  clustering method, aggregation strategy and attributes used to model transitions. The model is then constructed and the user can begin interactive exploration. The construction time varies depending on the size of 
-their dataset and configuration. We conducted an experiment to test the performance of our \lstopar{methodology},
-presented in section \ref{sec:implementation}.
+% \dunja{This needs a one sentence intro on the overall user interface.}
+The user interface supports multiple views and features to help with exploratory analysis of data. For an overview of available functionality, see the supplementary video. A live system with the examples in this paper is publicly available for testing at \url{http://streamstory.ijs.si} - see supplementary material for details. 
+The system supports multiple users with datasets and precomputed models (as well as the ability to store new models in the system). Data may be uploaded via CSV files.  Configuration consists of choice of desired attributes,  clustering method, aggregation strategy and attributes used to model transitions. The model is then constructed and the user can begin interactive exploration. The construction time varies depending on the size of 
+their dataset and configuration. %We conducted an experiment to test the performance of our \lstopar{methodology},
+%presented in section \ref{sec:implementation}.
 
 The interface displays the model using a three panel user interface, an example of
-which is shown in Figure \ref{fig:teaser} \lstopar{[TODO teaser reference not appearing]}. The central panel visualizes the model at the current scale as a graph. A state is represented by a circle  whose size represents the time/probability spent in the state, which is computed from the stationary distribution of the Markov chain. The transitions are represented by arrows, where again size represents the empirical transition probability. 
+which is shown in Figure \ref{fig:teaser}. Note that for the paper, we used a white background, whereas the default theme in the live system is with a dark background. The central panel visualizes the model at the current scale as a graph. A state is represented by a circle  whose size represents the time/probability spent in the state, which is computed from the stationary distribution of the Markov chain. The transitions are represented by arrows, where again size represents the empirical transition probability. 
 
 The computed model may be used as a monitoring tool, mapping incoming data onto the model in real-time. 
 In this mode, the current state (green) and the most likely future states (blue)
@@ -38,7 +39,7 @@ Visualizing a Markov chain as a graph may not be, in itself,  sufficiently infor
 visualizations which assist users in identifying the meaning of states. These range from automatic
 state naming, state histograms, attribute highlighting and timeline histograms to decision trees
 which visualize the states' properties in a hierarchical manner and \lstopar{extracted rules}.
-These services are shown when the user clicks on and selects a state. We describe these visualizations below.  For an overview of this functionality, see the supplementary material. The examples and the live system are available for testing at \url{http://streamstory.ijs.si} - see supplementary material for details. 
+These services are shown when the user clicks on and selects a state. We describe these visualizations below.  
 
 %and each transition with an arrow on the 
 %central panel. The size of a state is calculated from the associated entry in the stationary distribution
@@ -59,7 +60,7 @@ These services are shown when the user clicks on and selects a state. We describ
 
 \subsection{Probability Distributions and Attribute Highlighting}
 
-The most basic exploratory tool to help a user is to plot the distribution of data inside each state in the form of a histogram. When clicking on a state, the histograms of all the attributes are shown in the right-side panel like in Figure \ref{fig:teaser} \lstopar{[teaser not showing!]}. Context for each distribution is shown as a global distribution of that attribute in the background.
+The most basic exploratory tool to help a user is to plot the distribution of data inside each state in the form of a histogram. When clicking on a state, the histograms of all the attributes are shown in the right-side panel like in Figure \ref{fig:teaser}. Context for each distribution is shown as a global distribution of that attribute in the background.
 
 %
 %To assist the users to distinguish between states, we highlight each attribute either green of red.
@@ -70,8 +71,8 @@ a bright red color suggests, this value is low compared to other states. An exam
 highlighting can be seen in Figure \ref{fig:example-naming-histogram}.
 
 The color is calculated in the initialization step by first classifying all the samples assigned to this state 
-against samples assigned to other states using a logistic regression model. \lstopar{The features used in the 
-classification are all the dimensions of the input signal, which correspond to all possible attributes.}
+against samples assigned to other states using a logistic regression model. All possible features are  used in the 
+classification.% are all the dimensions of the input signal, which correspond to all possible attributes.
 The final color is determined by extracting weights from the models and associating positive weights
 with green and negative with red.
 
@@ -87,7 +88,7 @@ Abstract states are often uninformative. While the transitions between states gi
 of the dataset. Our initial user evaluations showed that first time, non-technical users had difficulty interpreting unlabeled states. % and had difficulty executing even the simplest tasks like finding
 %states with high temperature in example \ref{sec:experiments-weather}}.
 
-To help alleviate this, the system provides an automatic, data-driven, naming service. The service labels states using $<attribute,value>$ pairs based on the inner-state distribution of attributes. The attribute is selected as one of the input signals, while the value is a discrete level with values: lowest, low, mean, high and highest. \primoz{this sentence isnt clear} \lstopar{Better now?}
+To help alleviate this, the system provides an automatic, data-driven, naming service. The service labels states using $<attribute,value>$ pairs based on the inner-state distribution of attributes. The attribute is selected as one of the input signals, while the displayed value is a descriptive level with values: lowest, low, mean, high and highest.
 
 Both the attribute and the level used in the label are computed by comparing the inner-state attribute
 distributions to the global attribute distributions. The attribute selected by the naming process is

@@ -1,4 +1,4 @@
-In this section, we present the specific choices we chose to incorporate into our system.  
+Here we present the specific choices we chose to incorporate into our system.  
 %This section presents the implementation of our three step methodology presented in Section \ref{sec:multiscale-framework}.
 %We start by describing the methods behind the initial state construction in Section \ref{sec:state-construction-impl}
 %and then continue to present implementation details of steps two and three in sections \ref{sec:transition-probs-impl}
@@ -9,7 +9,7 @@ In this section, we present the specific choices we chose to incorporate into ou
 %\label{sec:state-construction-impl}
 %
 %As described in section \ref{sec:framework-states} 
-The first step in the pipeline, which is the construction of the partition of the space and the finest scale Markov chain.
+The first step in the pipeline, which is the construction of the partition of the space and the initial (finest scale) Markov chain.
 There are many partitioning/clustering algorithms in the literature, including many that produce a hierarchical partition.% Most depend on a distance matrix between the data points, leading to a computational complexity of $O(n^2)$, rendering 
  %them unsuitable for large datasets.
 %Many of these algorithms construct a hierarchy which has $n$ levels,  
@@ -19,9 +19,9 @@ We opt to first construct a partition and then construct hierarchy. This is a de
 
 
 %Following the intuition of Section \ref{sec:framework-states}
-To consturct the partition, two data points are considered similar if they lie close
-to each other in Euclidean space. Euclidean distance may be replaced by any metric but this would depend on the domain of the data.
-
+To construct the partition, two data points are considered similar if they lie close
+to each other. We use Euclidean distance but any metric amy be used.
+%
 In StreamStory, we implemented $k$-means~\cite{Maimon:2005:DMK:1088958} and DP-means \cite{DBLP:journals/corr/abs-1111-0352} to construct the partition. Each  
 partition  represents a  Voronoi cell around its centroid. 
 %
@@ -42,7 +42,7 @@ initial construction time, meaning for large datasets we may want to limit the n
 %As described in Section \ref{sec:framework-transitions} we model state transitions using the continuous
 %time Markov chain framework, first presented in Section \ref{sec:preliminaries}. 
 
-Once the partition is computed, the transitions are computed and aggregated using \lstopar{Equations~\ref{}}.
+Once the partition is computed, the new transition probabilities are computed using Equation~\ref{eq:ctmc-state-aggregation}.
 %
 The system enables users to select a subset of attributes which are used to model the transition rates. Since the
 jump process in a Markov chain from state $i$ to state $j$ can be characterized as a Poisson process, we can model its
@@ -53,7 +53,7 @@ estimate the transition rates as
 \end{equation}
 where $\tilde{p}_{ij}(x)$ is the estimated probability of jumping from state $i$ to state $j$ in time
 $\epsilon$.
-
+%
 Suppose the process is in state $i$ at time $t$ and define the random variable 
 $$J_i = j \Leftrightarrow X_{t + \epsilon} = j.$$
 $J_i$  has a multinomial distribution with parameters $(p_{i1}, p_{i2}, ..., p_{in})$ which can be 
@@ -68,12 +68,12 @@ Modeling and estimating the transitions in this way is computationally efficient
 % the possibility of users observing the dynamics in alternate configurations and simulating
 % what would happen if they changed some parameter. (This was more or less BS though)
 % }
-Finally, to visualize the Markov chain, we use multi-dimensional scaling (MDS) \cite{} on the graph, where larger transition probabilities correspond to higher similarities. We then use a repulsive scheme to ensure that the states do not overlap in the final visualization. 
+Finally, to visualize the Markov chain, we use multi-dimensional scaling (MDS) \cite{} on the graph, where larger transition probabilities correspond to higher similarities. We then use an iterative repulsive scheme to ensure that the states do not overlap in the final visualization. 
 
 \subsection{Aggregation}
 \label{sec:state-aggregation-impl}
 
-With a base level partition computed, we must construct the hierarchy by merging partitions. We present two schemes: one based on agglomerative clustering~\cite{Murtagh83} and another based on minimizing the distortion to the Markov chain. 
+With the initial partition computed, we must construct the hierarchy by merging partitions. We previously assumed a merging function, i.e. $\phi$, was given. Here, we present two schemes for conmputing $\phi$: one based on agglomerative clustering~\cite{Murtagh83} and another based on the properties of the Markov chain. 
 
 Agglomerative clustering represents each partition by its centroid. It computes a distance matrix $D \in \mathbb{R}^{n \times n}$ with each element $(D)_{ij}$ representing the distance between $c_i$ and $c_j$ (the $i$-th and $j$-th centroids respectively). This can be used with any metric, however in our examples we restrict oursleves to Euclidean distance.
 %we follow the intuition from Section \ref{sec:framework-states} and use Euclidean distance between the state centroids:
@@ -86,36 +86,35 @@ The algorithm then recursively merges pairs of clusters until only a single clus
 	\nonumber
 	(i_{min},j_{min}) = \argmin\limits_{i \neq j}(D)_{ij}.
 \end{equation}
-Once the clusters are merged, the entries in the distance matrix that correspond to the merged clusters are updated. This update is called a linkage criterion \cite{Hartigan:1975:CA:540298}. It determines the distance between clusters as a function of the pairwise distances between their elements. The most popular linkage criteria in the literature are: single-linkage, complete-linkage and average (or mean) linkage. Note that here the elements of clusters are centroids rather than the data points. 
+Once the clusters are merged, the entries in the distance matrix that correspond to the merged clusters are updated. This update is called the linkage criterion \cite{Hartigan:1975:CA:540298}. It determines the distance between clusters as a function of the pairwise distances between their elements. The most popular linkage criteria in the literature are: single-linkage, complete-linkage and average (or mean) linkage. Note that here the elements of clusters are centroids rather than the data points. 
 Our initial experiments show no significant difference between the three and therefore we chose to use the mean linkage criterion:
 \begin{equation}
 	\nonumber
 	D_{S_i,S_j} = \frac{1}{\left|S_i\right|\left|S_j\right|}\sum\limits_{i \in S_i}\sum\limits_{j \in S_j} d(c_i,c_j)
 \end{equation}
-The distance between the merged clusters $D_{i_{min} j_{min}}$ is used as the height of the resulting dendrogram, or in our case, as the scale where the merged state/cluster first appears. Therefore, each merge generates a new Markov chain. Figure~\ref{fig:dendrogram} shows this relationship between the dendrogram and \lstopar{our visualization}.
+The distance between the merged clusters $D_{i_{min} j_{min}}$ is used as the height of the resulting dendrogram, or in our case, as the scale where the merged state/cluster first appears. Therefore, each merge generates a new Markov chain (see Figure~\ref{fig:dendrogram}).% shows this relationship between the dendrogram and \lstopar{our visualization}.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\columnwidth]{dendrogram}
 	\caption{The relationship between a dendrogram and \lstopar{scale}. The $y$-coordinate in a dendrogram represents the scale where the corresponding state appears in our \lstopar{visualization}.}
 	\label{fig:dendrogram}
 \end{figure}
-
-The initial states are assigned the scale $0$. For coarser-scale, aggregated states, we compute the scale as follows. Let $S$ be a state constructed by aggregating states $A$ and $B$.  The scale of $S$ is then defined as:
+%
+To assign a scale value, the initial states are assigned the scale $0$. For coarser-scale, aggregated states, we compute the scale as follows. Let $S$ be a state constructed by aggregating states $A$ and $B$.  The scale of $S$ is then defined as:
 \begin{equation}
 	\nonumber
 	s(S) = \frac{1}{\left|A\right|\left|B\right|}\sum\limits_{i \in A}\sum\limits_{j \in B} d(c_i,c_j)
 \end{equation}
-\lstopar{
 Intuitively in this case, the scale provides a measure of distance between individual states inside an aggregated, higher level state.
-}
+
 
 The second aggregation method we propose is an extension of the algorithm proposed in \lstopar{[TODO cite]} to continuous time Markov chains and represents a top-down approach. Beginning with our initial Markov chain, we initially assign all the states into a single state. This represents the coarsest possible scale. We then split this state into two by approximating the \emph{min-cut} problem in the graph representing the Markov chain. 
 
 The method then works iteratively, splitting the ``best" partition until we have the initial Markov chain.
 %
 The splitting procedure is based on spectral bi-partitioning of Markov chains using the sign-structure of the eigenvector, corresponding to the second largest eigenvalue of the \emph{symmetrized transition rate matrix} $Q_s$. Indeed,  the transition rate matrix of a continuous time Markov chain $Q$ is exactly the negative Laplacian of the corresponding directed weighted graph~\cite{Agaev2005157}.
-
-$Q$ in general will not be symmetric and so may have complex eigenvalues. We therefore first symmetrize $Q$ by computing
+%
+$Q$ in general will not be symmetric and so may have complex eigenvalues. We therefore first symmetrize $Q$,
 \begin{equation}
 	\nonumber
 	Q_s = \frac{1}{2}(\Pi Q + Q' \Pi)
@@ -153,7 +152,7 @@ Since $Q$ and $Q_{m+1}^{(i)}$ are not defined on the same state space, we cannot
 \begin{equation}
 	D(Q || Q_{m+1}^{(i)}) = \sum\limits_{\substack{i,j \in I \\ \phi(i) \neq \phi(j)}}\pi_i q_{ij}\log\frac{q_{i\psi(j)}}{\tilde{q}_{\phi(i)\phi(j)}} + \sum\limits_{i \in I}\pi_i \left(q_{i\psi(i)} - \tilde{q}_{\phi(i)\phi(i)}\right).
 \end{equation}
-
+%
 %We refer the reader to \lstopar{Appendix A} for more details.
 \noindent \paragraph{\bf Computing the multiscale layout:}
 To visualize the different scales, we use the MDS coordinates computed at the initial level. When states are aggregated, the position of the new state is computed as the weighted average of the states' positions. As with the initial layout, this is followed by a repulsive scheme to ensure that the states do not overlap.

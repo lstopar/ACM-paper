@@ -26,9 +26,8 @@ We define $p_{ij}(t)$ to be the probability of the process being in state $j$ at
 when starting from state $i$ at time $0$ and a family of stochastic matrices $\{P(t)\}_{t \ge 0}$,
 where the $(i,j)$-th element of $P_{ij}(t)$ equals $p_{ij}(t)$.
 Each row of $P(t)$ is thus a probability distribution over the state space $I$. In our
-work we assume that $P(t)$ is finite and recurrent for every $t$. %M, and that the process is non-explosive.
+work we assume that $P(t)$ is finite, recurrent, and non-explosive for every $t$. %M, and that the process is non-explosive.
 
-\primoz{I think finite implies non-explosive}
 % \lstopar{
 % \begin{itemize}
 % 	\item The state space is finite!
@@ -49,15 +48,17 @@ distribution $\delta_i$ and is independent of $X_0, X_1, ..., X_m$.
 
 Continuous time Markov chains are a generalization of discrete time Markov chains as they
 fill the gap between the discrete time steps and can change states at any given moment.
-Continuous time Markov chains are closely related to Poisson processes. %Imagine a labyrinth
-of corridors and chambers and associate each chamber with a single state from the state space
-$I$. The corridor between chambers $i$ and $j$
-is shut by a single door that opens for an infinitely small amount of time at the jump times of
-a Poisson process with rate $q_{ij}$. If the person walking through the labyrinth changes
-chambers each time a door opens, they are performing
-a continuous time Markov chain.
-\primoz{the above paragraph should be rewritten or removed}
-
+Continuous time Markov chains are closely related to Poisson processes. State transition can be seen as an arrival  Poisson arrival process which depends on the current state. 
+%
+ %Imagine a labyrinth
+%of corridors and chambers and associate each chamber with a single state from the state space
+%$I$. The corridor between chambers $i$ and $j$
+%is shut by a single door that opens for an infinitely small amount of time at the jump times of
+%a Poisson process with rate $q_{ij}$. If the person walking through the labyrinth changes
+%chambers each time a door opens, they are performing
+%a continuous time Markov chain.
+%\primoz{the above paragraph should be rewritten or removed}
+%
 The basic data needed to define a continuous time Markov chain on state space $I$ are
 given by a transition rate matrix $Q$ satisfying three conditions:
 \begin{enumerate}
@@ -74,7 +75,7 @@ $P(t)$ is represented as $P(t) = e^{tQ}$ and can be computed by solving Kolmogor
 	\frac{d}{dt}P(t) = P(t)Q
 \end{equation}
 with initial condition $P(0) = I$.
-
+%
 Markov chains can be defined in terms of $n^2$ independent Poisson processes
 of rates $q_{ij}$. However the definition below is much more common:%Definition~\ref{def:ctmc} is \lstopar{much more common in the literature}.
 \begin{defn}
@@ -89,8 +90,8 @@ of rates $q_{ij}$. However the definition below is much more common:%Definition~
 	where $\delta_{ij}$ is the Dirac delta function \cite{norris1998markov}.
 \end{defn}
 When working with Markov
-chains one is often interested in long term properties of the chain. One such property is the
-stationary distribution $\pi$. One can show, that for irreducible and non-explosive Markov chains,
+chains one is often interested in its long term properties. One such property is the
+stationary distribution, $\pi$. One can show, that for irreducible and non-explosive Markov chains,
 the stationary distribution always exists~\cite{norris1998markov} and can be computed as the left eigenvector of $Q$ 
 corresponding to the eigenvalue $0$:
 \begin{equation}
@@ -106,12 +107,12 @@ Each element $\pi_i$ represents the proportion of time the process spends in sta
 
 To go from our piecewise-linear (PL) input signal to a Markov chain, we consider a spatial discretization of the signal.
 We define a \emph{partition function} $g:\R^d\rightarrow I$, where $I$ is a finite, discrete set. This set then represent the states of Markov chain. If we assume our system is measurable on $\R^d$, then $g$ induces a measure on the set $I$, i.e., let $x(t)\in \R^d$ be the state of the system at time $t$. This induces a corresponding  state $a(t) = g(x(t)) \in I$. This function also defines transition probabililties between the different states. Let $a,b\in I$, then the joint distribution is
-    $$\mathbb{P}(a(t_1),b(t_2)) = \mathbb{P}(x(t_1)\in g^{-1}(a), y(t_2) \in g^{-1}(b)), 	 \quad t_1\leq t_2$$
+    $$\mathbb{P}(a(t_1),b(t_2)) = \mathbb{P}\left(x(t_1)\in g^{-1}(a), y(t_2) \in g^{-1}(b)\right), 	 \quad t_1\leq t_2$$
  In general, this is not Markovian for continuous processes\footnote{This is not Markovian, even for Brownian motion if dimension$>1$ }. The Markovian assumption we make in this step represents the fundamental information loss in our approach\footnote{We can construct arbitrarily good approximations, however the processes do not converge in the limit.}
 Formally, this allows us to define a second map from a measure in $\R^d$ to a Markov chain. However, to avoid overcomplicating the notation, we use $g$ for both. 
 
  A map between partitions $\phi: I_1 \rightarrow I_2$, is well-defined if it maps each cell of $I_1$ to precisely one cell of $I_2$. That is, for all $x\in\R^d$, $\phi circ g_1(x) =  g_2(x)$. If this relationship holds, it follows that this induces a measurable map between $I_1$ and $I_2$. We use this map to construct a map between states of the Markov chains, which we denote $\Phi$.  We note that in our setting, $\Phi$ can be used to define a map between partitions, since there is a one-to-one correspondence between the partition cells and the states of the Markov chain.  
-\primoz{Last sentence, I am not 100 percent sure about. }
+%\primoz{Last sentence, I am not 100 percent sure about. }
 % Let $S\subseteq \R^d$, be the support of our input signal. 
 
 % Given a partition of $S$, denoted by  $\cP$, 
