@@ -1,0 +1,19 @@
+1)
+- pokazi dashboard z traffic modelom
+- odpri model
+
+2)
+- pokazi, da spodaj letijo noter tocke
+- pojdi gor na vizualizacijo
+- scrollaj do 7 stanj
+- pokazi trenutno stanje (oranzno) in prihodnja stanja (modra)
+- pokazi, da se je trenutno stanje zamenjalo
+
+3)
+- pokazi majhno stanje na desni
+-- najprej, da se pojavi v petek, nato popoldne
+- oznaci stanje kot "Friday rush hour"
+- pokazi, da je mozno nastaviti verjetnost
+
+4)
+- pocakaj na message
