@@ -1,0 +1,9 @@
+ACM keywords:
+- Time series analysis
+- Random walks and Markov chains
+- Exploratory data analysis
+- Markov processes
+- Discretization
+- Summarization
+- Multiscale systems
+- Visual analytics
