@@ -1,394 +1,400 @@
-%%% ====================================================================
-%%%  BibTeX-file{
-%%%     author          = "Gerry Murray",
-%%%     version         = "1.2",
-%%%     date            = "2 April 2012",
-%%%     filename        = "acmsmall-sample-bibfile.bib",
-%%%     address         = "ACM, NY",
-%%%     email           = "murray at hq.acm.org",
-%%%     codetable       = "ISO/ASCII",
-%%%     keywords        = "ACM Reference Format, bibliography, citation, references",
-%%%     supported       = "yes",
-%%%     docstring       = "This BibTeX database file contains 'bibdata' entries
-%%%                        that 'match' the examples provided in the Specifications Document
-%%%                        AND, also, 'legacy'-type bibs. It should assist authors in 
-%%%                        choosing the 'correct' at-bibtype and necessary bib-fields
-%%%                        so as to obtain the appropriate ACM Reference Format output. 
-%%%			   It also contains many 'Standard Abbreviations'. "
-%%%  }
-%%% ====================================================================
+%% This BibTeX bibliography file was created using BibDesk.
+%% http://bibdesk.sourceforge.net/
 
-% Journals
+%% Created for Primoz Skraba at 2016-03-31 16:58:55 -0400 
 
-% First the Full Name is given, then the abbreviation used in the AMS Math
-% Reviews, with an indication if it could not be found there.
-% Note the 2nd overwrites the 1st, so swap them if you want the full name.
 
- %{AMS}
- @String{AMSTrans = "American Mathematical Society Translations" }
- @String{AMSTrans = "Amer. Math. Soc. Transl." }
- @String{BullAMS = "Bulletin of the American Mathematical Society" }
- @String{BullAMS = "Bull. Amer. Math. Soc." }
- @String{ProcAMS = "Proceedings of the American Mathematical Society" }
- @String{ProcAMS = "Proc. Amer. Math. Soc." }
- @String{TransAMS = "Transactions of the American Mathematical Society" }
- @String{TransAMS = "Trans. Amer. Math. Soc." }
+%% Saved with string encoding Unicode (UTF-8) 
 
- %ACM
- @String{CACM = "Communications of the {ACM}" }
- @String{CACM = "Commun. {ACM}" }
- @String{CompServ = "Comput. Surveys" }
- @String{JACM = "J. ACM" }
- @String{ACMMathSoft = "{ACM} Transactions on Mathematical Software" }
- @String{ACMMathSoft = "{ACM} Trans. Math. Software" }
- @String{SIGNUM = "{ACM} {SIGNUM} Newsletter" }
- @String{SIGNUM = "{ACM} {SIGNUM} Newslett." }
 
- @String{AmerSocio = "American Journal of Sociology" }
- @String{AmerStatAssoc = "Journal of the American Statistical Association" }
- @String{AmerStatAssoc = "J. Amer. Statist. Assoc." }
- @String{ApplMathComp = "Applied Mathematics and Computation" }
- @String{ApplMathComp = "Appl. Math. Comput." }
- @String{AmerMathMonthly = "American Mathematical Monthly" }
- @String{AmerMathMonthly = "Amer. Math. Monthly" }
- @String{BIT = "{BIT}" }
- @String{BritStatPsych = "British Journal of Mathematical and Statistical
-          Psychology" }
- @String{BritStatPsych = "Brit. J. Math. Statist. Psych." }
- @String{CanMathBull = "Canadian Mathematical Bulletin" }
- @String{CanMathBull = "Canad. Math. Bull." }
- @String{CompApplMath = "Journal of Computational and Applied Mathematics" }
- @String{CompApplMath = "J. Comput. Appl. Math." }
- @String{CompPhys = "Journal of Computational Physics" }
- @String{CompPhys = "J. Comput. Phys." }
- @String{CompStruct = "Computers and Structures" }
- @String{CompStruct = "Comput. \& Structures" }
- @String{CompJour = "The Computer Journal" }
- @String{CompJour = "Comput. J." }
- @String{CompSysSci = "Journal of Computer and System Sciences" }
- @String{CompSysSci = "J. Comput. System Sci." }
- @String{Computing = "Computing" }
- @String{ContempMath = "Contemporary Mathematics" }
- @String{ContempMath = "Contemp. Math." }
- @String{Crelle = "Crelle's Journal" }
- @String{GiornaleMath = "Giornale di Mathematiche" }
- @String{GiornaleMath = "Giorn. Mat." } % didn't find in AMS MR., ibid.
+@string{academic = {Academic Press}}
 
- %IEEE
- @String{Computer = "{IEEE} Computer" }
- @String{IEEETransComp = "{IEEE} Transactions on Computers" }
- @String{IEEETransComp = "{IEEE} Trans. Comput." }
- @String{IEEETransAC = "{IEEE} Transactions on Automatic Control" }
- @String{IEEETransAC = "{IEEE} Trans. Automat. Control" }
- @String{IEEESpec = "{IEEE} Spectrum" } % didn't find in AMS MR
- @String{ProcIEEE = "Proceedings of the {IEEE}" }
- @String{ProcIEEE = "Proc. {IEEE}" } % didn't find in AMS MR
- @String{IEEETransAeroElec = "{IEEE} Transactions on Aerospace and Electronic
-     Systems" }
- @String{IEEETransAeroElec = "{IEEE} Trans. Aerospace Electron. Systems" }
+@string{acmmathsoft = {{ACM} Trans. Math. Software}}
 
- @String{IMANumerAna = "{IMA} Journal of Numerical Analysis" }
- @String{IMANumerAna = "{IMA} J. Numer. Anal." }
- @String{InfProcLet = "Information Processing Letters" }
- @String{InfProcLet = "Inform. Process. Lett." }
- @String{InstMathApp = "Journal of the Institute of Mathematics and
-     its Applications" }
- @String{InstMathApp = "J. Inst. Math. Appl." }
- @String{IntControl = "International Journal of Control" }
- @String{IntControl = "Internat. J. Control" }
- @String{IntNumerEng = "International Journal for Numerical Methods in
-     Engineering" }
- @String{IntNumerEng = "Internat. J. Numer. Methods Engrg." }
- @String{IntSuper = "International Journal of Supercomputing Applications" }
- @String{IntSuper = "Internat. J. Supercomputing Applic." } % didn't find
-%% in AMS MR
- @String{Kibernetika = "Kibernetika" }
- @String{JResNatBurStand = "Journal of Research of the National Bureau
-     of Standards" }
- @String{JResNatBurStand = "J. Res. Nat. Bur. Standards" }
- @String{LinAlgApp = "Linear Algebra and its Applications" }
- @String{LinAlgApp = "Linear Algebra Appl." }
- @String{MathAnaAppl = "Journal of Mathematical Analysis and Applications" }
- @String{MathAnaAppl = "J. Math. Anal. Appl." }
- @String{MathAnnalen = "Mathematische Annalen" }
- @String{MathAnnalen = "Math. Ann." }
- @String{MathPhys = "Journal of Mathematical Physics" }
- @String{MathPhys = "J. Math. Phys." }
- @String{MathComp = "Mathematics of Computation" }
- @String{MathComp = "Math. Comp." }
- @String{MathScand = "Mathematica Scandinavica" }
- @String{MathScand = "Math. Scand." }
- @String{TablesAidsComp = "Mathematical Tables and Other Aids to Computation" }
- @String{TablesAidsComp = "Math. Tables Aids Comput." }
- @String{NumerMath = "Numerische Mathematik" }
- @String{NumerMath = "Numer. Math." }
- @String{PacificMath = "Pacific Journal of Mathematics" }
- @String{PacificMath = "Pacific J. Math." }
- @String{ParDistComp = "Journal of Parallel and Distributed Computing" }
- @String{ParDistComp = "J. Parallel and Distrib. Comput." } % didn't find
-%% in AMS MR
- @String{ParComputing = "Parallel Computing" }
- @String{ParComputing = "Parallel Comput." }
- @String{PhilMag = "Philosophical Magazine" }
- @String{PhilMag = "Philos. Mag." }
- @String{ProcNAS = "Proceedings of the National Academy of Sciences
-                    of the USA" }
- @String{ProcNAS = "Proc. Nat. Acad. Sci. U. S. A." }
- @String{Psychometrika = "Psychometrika" }
- @String{QuartMath = "Quarterly Journal of Mathematics, Oxford, Series (2)" }
- @String{QuartMath = "Quart. J. Math. Oxford Ser. (2)" }
- @String{QuartApplMath = "Quarterly of Applied Mathematics" }
- @String{QuartApplMath = "Quart. Appl. Math." }
- @String{RevueInstStat = "Review of the International Statisical Institute" }
- @String{RevueInstStat = "Rev. Inst. Internat. Statist." }
+@string{acmpress = {{ACM} Press}}
 
- %SIAM
- @String{JSIAM = "Journal of the Society for Industrial and Applied
-     Mathematics" }
- @String{JSIAM = "J. Soc. Indust. Appl. Math." }
- @String{JSIAMB = "Journal of the Society for Industrial and Applied
-     Mathematics, Series B, Numerical Analysis" }
- @String{JSIAMB = "J. Soc. Indust. Appl. Math. Ser. B Numer. Anal." }
- @String{SIAMAlgMeth = "{SIAM} Journal on Algebraic and Discrete Methods" }
- @String{SIAMAlgMeth = "{SIAM} J. Algebraic Discrete Methods" }
- @String{SIAMAppMath = "{SIAM} Journal on Applied Mathematics" }
- @String{SIAMAppMath = "{SIAM} J. Appl. Math." }
- @String{SIAMComp = "{SIAM} Journal on Computing" }
- @String{SIAMComp = "{SIAM} J. Comput." }
- @String{SIAMMatrix = "{SIAM} Journal on Matrix Analysis and Applications" }
- @String{SIAMMatrix = "{SIAM} J. Matrix Anal. Appl." }
- @String{SIAMNumAnal = "{SIAM} Journal on Numerical Analysis" }
- @String{SIAMNumAnal = "{SIAM} J. Numer. Anal." }
- @String{SIAMReview = "{SIAM} Review" }
- @String{SIAMReview = "{SIAM} Rev." }
- @String{SIAMSciStat = "{SIAM} Journal on Scientific and Statistical
-     Computing" }
- @String{SIAMSciStat = "{SIAM} J. Sci. Statist. Comput." }
+@string{adamhilger = {Adam Hilger}}
 
- @String{SoftPracExp = "Software Practice and Experience" }
- @String{SoftPracExp = "Software Prac. Experience" } % didn't find in AMS MR
- @String{StatScience = "Statistical Science" }
- @String{StatScience = "Statist. Sci." }
- @String{Techno = "Technometrics" }
- @String{USSRCompMathPhys = "{USSR} Computational Mathematics and Mathematical
-     Physics" }
- @String{USSRCompMathPhys = "{U. S. S. R.} Comput. Math. and Math. Phys." }
- @String{VLSICompSys = "Journal of {VLSI} and Computer Systems" }
- @String{VLSICompSys = "J. {VLSI} Comput. Syst." }
- @String{ZAngewMathMech = "Zeitschrift fur Angewandte Mathematik und
-     Mechanik" }
- @String{ZAngewMathMech = "Z. Angew. Math. Mech." }
- @String{ZAngewMathPhys = "Zeitschrift fur Angewandte Mathematik und Physik" }
- @String{ZAngewMathPhys = "Z. Angew. Math. Phys." }
+@string{addisonwesley = {Addison-Wesley}}
 
-% Publishers % ================================================= |
+@string{allynbacon = {Allyn and Bacon}}
 
- @String{Academic = "Academic Press" }
- @String{ACMPress = "{ACM} Press" }
- @String{AdamHilger = "Adam Hilger" }
- @String{AddisonWesley = "Addison-Wesley" }
- @String{AllynBacon = "Allyn and Bacon" }
- @String{AMS = "American Mathematical Society" }
- @String{Birkhauser = "Birkha{\"u}ser" }
- @String{CambridgePress = "Cambridge University Press" }
- @String{Chelsea = "Chelsea" }
- @String{ClaredonPress = "Claredon Press" }
- @String{DoverPub = "Dover Publications" }
- @String{Eyolles = "Eyolles" }
- @String{HoltRinehartWinston = "Holt, Rinehart and Winston" }
- @String{Interscience = "Interscience" }
- @String{JohnsHopkinsPress = "The Johns Hopkins University Press" }
- @String{JohnWileySons = "John Wiley and Sons" }
- @String{Macmillan = "Macmillan" }
- @String{MathWorks = "The Math Works Inc." }
- @String{McGrawHill = "McGraw-Hill" }
- @String{NatBurStd = "National Bureau of Standards" }
- @String{NorthHolland = "North-Holland" }
- @String{OxfordPress = "Oxford University Press" }  %address Oxford or London?
- @String{PergamonPress = "Pergamon Press" }
- @String{PlenumPress = "Plenum Press" }
- @String{PrenticeHall = "Prentice-Hall" }
- @String{SIAMPub = "{SIAM} Publications" }
- @String{Springer = "Springer-Verlag" }
- @String{TexasPress = "University of Texas Press" }
- @String{VanNostrand = "Van Nostrand" }
- @String{WHFreeman = "W. H. Freeman and Co." }
+@string{amermathmonthly = {Amer. Math. Monthly}}
 
-%Entries
+@string{amersocio = {American Journal of Sociology}}
+
+@string{amerstatassoc = {J. Amer. Statist. Assoc.}}
+
+@string{ams = {American Mathematical Society}}
+
+@string{amstrans = {Amer. Math. Soc. Transl.}}
+
+@string{applmathcomp = {Appl. Math. Comput.}}
+
+@string{birkhauser = {Birkha{\"u}ser}}
+
+@string{bit = {{BIT}}}
+
+@string{britstatpsych = {Brit. J. Math. Statist. Psych.}}
+
+@string{bullams = {Bull. Amer. Math. Soc.}}
+
+@string{cacm = {Commun. {ACM}}}
+
+@string{cambridgepress = {Cambridge University Press}}
+
+@string{canmathbull = {Canad. Math. Bull.}}
+
+@string{chelsea = {Chelsea}}
+
+@string{claredonpress = {Claredon Press}}
+
+@string{compapplmath = {J. Comput. Appl. Math.}}
+
+@string{compjour = {Comput. J.}}
+
+@string{compphys = {J. Comput. Phys.}}
+
+@string{compserv = {Comput. Surveys}}
+
+@string{compstruct = {Comput. \& Structures}}
+
+@string{compsyssci = {J. Comput. System Sci.}}
+
+@string{computer = {{IEEE} Computer}}
+
+@string{computing = {Computing}}
+
+@string{contempmath = {Contemp. Math.}}
+
+@string{crelle = {Crelle's Journal}}
+
+@string{doverpub = {Dover Publications}}
+
+@string{eyolles = {Eyolles}}
+
+@string{giornalemath = {Giorn. Mat.}}
+
+@string{holtrinehartwinston = {Holt, Rinehart and Winston}}
+
+@string{ieeespec = {{IEEE} Spectrum}}
+
+@string{ieeetransac = {{IEEE} Trans. Automat. Control}}
+
+@string{ieeetransaeroelec = {{IEEE} Trans. Aerospace Electron. Systems}}
+
+@string{ieeetranscomp = {{IEEE} Trans. Comput.}}
+
+@string{imanumerana = {{IMA} J. Numer. Anal.}}
+
+@string{infproclet = {Inform. Process. Lett.}}
+
+@string{instmathapp = {J. Inst. Math. Appl.}}
+
+@string{intcontrol = {Internat. J. Control}}
+
+@string{interscience = {Interscience}}
+
+@string{intnumereng = {Internat. J. Numer. Methods Engrg.}}
+
+@string{intsuper = {Internat. J. Supercomputing Applic.}}
+
+@string{jacm = {J. ACM}}
+
+@string{johnshopkinspress = {The Johns Hopkins University Press}}
+
+@string{johnwileysons = {John Wiley and Sons}}
+
+@string{jresnatburstand = {J. Res. Nat. Bur. Standards}}
+
+@string{jsiam = {J. Soc. Indust. Appl. Math.}}
+
+@string{jsiamb = {J. Soc. Indust. Appl. Math. Ser. B Numer. Anal.}}
+
+@string{kibernetika = {Kibernetika}}
+
+@string{linalgapp = {Linear Algebra Appl.}}
+
+@string{macmillan = {Macmillan}}
+
+@string{mathanaappl = {J. Math. Anal. Appl.}}
+
+@string{mathannalen = {Math. Ann.}}
+
+@string{mathcomp = {Math. Comp.}}
+
+@string{mathphys = {J. Math. Phys.}}
+
+@string{mathscand = {Math. Scand.}}
+
+@string{mathworks = {The Math Works Inc.}}
+
+@string{mcgrawhill = {McGraw-Hill}}
+
+@string{natburstd = {National Bureau of Standards}}
+
+@string{northholland = {North-Holland}}
+
+@string{numermath = {Numer. Math.}}
+
+@string{oxfordpress = {Oxford University Press}}
+
+@string{pacificmath = {Pacific J. Math.}}
+
+@string{parcomputing = {Parallel Comput.}}
+
+@string{pardistcomp = {J. Parallel and Distrib. Comput.}}
+
+@string{pergamonpress = {Pergamon Press}}
+
+@string{philmag = {Philos. Mag.}}
+
+@string{plenumpress = {Plenum Press}}
+
+@string{prenticehall = {Prentice-Hall}}
+
+@string{procams = {Proc. Amer. Math. Soc.}}
+
+@string{procieee = {Proc. {IEEE}}}
+
+@string{procnas = {Proc. Nat. Acad. Sci. U. S. A.}}
+
+@string{psychometrika = {Psychometrika}}
+
+@string{quartapplmath = {Quart. Appl. Math.}}
+
+@string{quartmath = {Quart. J. Math. Oxford Ser. (2)}}
+
+@string{revueinststat = {Rev. Inst. Internat. Statist.}}
+
+@string{siamalgmeth = {{SIAM} J. Algebraic Discrete Methods}}
+
+@string{siamappmath = {{SIAM} J. Appl. Math.}}
+
+@string{siamcomp = {{SIAM} J. Comput.}}
+
+@string{siammatrix = {{SIAM} J. Matrix Anal. Appl.}}
+
+@string{siamnumanal = {{SIAM} J. Numer. Anal.}}
+
+@string{siampub = {{SIAM} Publications}}
+
+@string{siamreview = {{SIAM} Rev.}}
+
+@string{siamscistat = {{SIAM} J. Sci. Statist. Comput.}}
+
+@string{signum = {{ACM} {SIGNUM} Newslett.}}
+
+@string{softpracexp = {Software Prac. Experience}}
+
+@string{springer = {Springer-Verlag}}
+
+@string{statscience = {Statist. Sci.}}
+
+@string{tablesaidscomp = {Math. Tables Aids Comput.}}
+
+@string{techno = {Technometrics}}
+
+@string{texaspress = {University of Texas Press}}
+
+@string{transams = {Trans. Amer. Math. Soc.}}
+
+@string{ussrcompmathphys = {{U. S. S. R.} Comput. Math. and Math. Phys.}}
+
+@string{vannostrand = {Van Nostrand}}
+
+@string{vlsicompsys = {J. {VLSI} Comput. Syst.}}
+
+@string{whfreeman = {W. H. Freeman and Co.}}
+
+@string{zangewmathmech = {Z. Angew. Math. Mech.}}
+
+@string{zangewmathphys = {Z. Angew. Math. Phys.}}
+
+
+@article{sauer1991embedology,
+	Author = {Sauer, Tim and Yorke, James A and Casdagli, Martin},
+	Date-Added = {2016-03-31 20:57:53 +0000},
+	Date-Modified = {2016-03-31 20:57:53 +0000},
+	Journal = {Journal of statistical Physics},
+	Number = {3-4},
+	Pages = {579--616},
+	Publisher = {Springer},
+	Title = {Embedology},
+	Volume = {65},
+	Year = {1991}}
+
+@electronic{tsdl,
+	Author = {R.J. Hyndman},
+	Date-Added = {2016-03-31 20:54:01 +0000},
+	Date-Modified = {2016-03-31 20:54:57 +0000},
+	Title = {Time Series Data Library},
+	Urldate = {https://datamarket.com/data/list/?q=provider:tsdl}}
 
 @inproceedings{Babcock:2002:MID:543613.543615,
- author = {Babcock, Brian and Babu, Shivnath and Datar, Mayur and Motwani, Rajeev and Widom, Jennifer},
- title = {Models and Issues in Data Stream Systems},
- booktitle = {Proceedings of the Twenty-first ACM SIGMOD-SIGACT-SIGART Symposium on Principles of Database Systems},
- series = {PODS '02},
- year = {2002},
- isbn = {1-58113-507-6},
- location = {Madison, Wisconsin},
- pages = {1--16},
- numpages = {16},
- url = {http://doi.acm.org/10.1145/543613.543615},
- doi = {10.1145/543613.543615},
- acmid = {543615},
- publisher = {ACM},
- address = {New York, NY, USA},
-} 
+	Acmid = {543615},
+	Address = {New York, NY, USA},
+	Author = {Babcock, Brian and Babu, Shivnath and Datar, Mayur and Motwani, Rajeev and Widom, Jennifer},
+	Booktitle = {Proceedings of the Twenty-first ACM SIGMOD-SIGACT-SIGART Symposium on Principles of Database Systems},
+	Doi = {10.1145/543613.543615},
+	Isbn = {1-58113-507-6},
+	Location = {Madison, Wisconsin},
+	Numpages = {16},
+	Pages = {1--16},
+	Publisher = {ACM},
+	Series = {PODS '02},
+	Title = {Models and Issues in Data Stream Systems},
+	Url = {http://doi.acm.org/10.1145/543613.543615},
+	Year = {2002},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/543613.543615},
+	Bdsk-Url-2 = {http://dx.doi.org/10.1145/543613.543615}}
 
 @article{Jain:1999:DCR:331499.331504,
- author = {Jain, A. K. and Murty, M. N. and Flynn, P. J.},
- title = {Data Clustering: A Review},
- journal = {ACM Comput. Surv.},
- issue_date = {Sept. 1999},
- volume = {31},
- number = {3},
- month = sep,
- year = {1999},
- issn = {0360-0300},
- pages = {264--323},
- numpages = {60},
- url = {http://doi.acm.org/10.1145/331499.331504},
- doi = {10.1145/331499.331504},
- acmid = {331504},
- publisher = {ACM},
- address = {New York, NY, USA},
- keywords = {cluster analysis, clustering applications, exploratory data analysis, incremental clustering, similarity indices, unsupervised learning},
-} 
+	Acmid = {331504},
+	Address = {New York, NY, USA},
+	Author = {Jain, A. K. and Murty, M. N. and Flynn, P. J.},
+	Doi = {10.1145/331499.331504},
+	Issn = {0360-0300},
+	Issue_Date = {Sept. 1999},
+	Journal = {ACM Comput. Surv.},
+	Keywords = {cluster analysis, clustering applications, exploratory data analysis, incremental clustering, similarity indices, unsupervised learning},
+	Month = sep,
+	Number = {3},
+	Numpages = {60},
+	Pages = {264--323},
+	Publisher = {ACM},
+	Title = {Data Clustering: A Review},
+	Url = {http://doi.acm.org/10.1145/331499.331504},
+	Volume = {31},
+	Year = {1999},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/331499.331504},
+	Bdsk-Url-2 = {http://dx.doi.org/10.1145/331499.331504}}
 
-@ARTICLE{1427769, 
-author={Rui Xu and Wunsch, D., II}, 
-journal={Neural Networks, IEEE Transactions on}, 
-title={Survey of clustering algorithms}, 
-year={2005}, 
-volume={16}, 
-number={3}, 
-pages={645-678}, 
-keywords={data analysis;pattern classification;pattern clustering;benchmark data sets;bioinformatics;cluster analysis;data analysis;traveling salesman problem;Application software;Bioinformatics;Clustering algorithms;Computer science;Data analysis;Humans;Machine learning;Machine learning algorithms;Statistics;Traveling salesman problems;Adaptive resonance theory (ART);cluster validation;clustering;clustering algorithm;neural networks;proximity;self-organizing feature map (SOFM);Algorithms;Computer Simulation;Models, Statistical;Neural Networks (Computer);Numerical Analysis, Computer-Assisted;Pattern Recognition, Automated;Signal Processing, Computer-Assisted;Stochastic Processes}, 
-doi={10.1109/TNN.2005.845141}, 
-ISSN={1045-9227}, 
-month={May},
-}
+@article{1427769,
+	Author = {Rui Xu and Wunsch, D., II},
+	Doi = {10.1109/TNN.2005.845141},
+	Issn = {1045-9227},
+	Journal = {Neural Networks, IEEE Transactions on},
+	Keywords = {data analysis;pattern classification;pattern clustering;benchmark data sets;bioinformatics;cluster analysis;data analysis;traveling salesman problem;Application software;Bioinformatics;Clustering algorithms;Computer science;Data analysis;Humans;Machine learning;Machine learning algorithms;Statistics;Traveling salesman problems;Adaptive resonance theory (ART);cluster validation;clustering;clustering algorithm;neural networks;proximity;self-organizing feature map (SOFM);Algorithms;Computer Simulation;Models, Statistical;Neural Networks (Computer);Numerical Analysis, Computer-Assisted;Pattern Recognition, Automated;Signal Processing, Computer-Assisted;Stochastic Processes},
+	Month = {May},
+	Number = {3},
+	Pages = {645-678},
+	Title = {Survey of clustering algorithms},
+	Volume = {16},
+	Year = {2005},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/TNN.2005.845141}}
 
 @incollection{kmeans,
-year={2012},
-isbn={978-3-642-35288-1},
-booktitle={Neural Networks: Tricks of the Trade},
-volume={7700},
-series={Lecture Notes in Computer Science},
-editor={Montavon, Grégoire and Orr, GenevièveB. and Müller, Klaus-Robert},
-doi={10.1007/978-3-642-35289-8_30},
-title={Learning Feature Representations with K-Means},
-url={http://dx.doi.org/10.1007/978-3-642-35289-8_30},
-publisher={Springer Berlin Heidelberg},
-author={Coates, Adam and Ng, AndrewY.},
-pages={561-580},
-language={English},
-}
+	Author = {Coates, Adam and Ng, AndrewY.},
+	Booktitle = {Neural Networks: Tricks of the Trade},
+	Doi = {10.1007/978-3-642-35289-8_30},
+	Editor = {Montavon, Gr{\'e}goire and Orr, Genevi{\`e}veB. and M{\"u}ller, Klaus-Robert},
+	Isbn = {978-3-642-35288-1},
+	Language = {English},
+	Pages = {561-580},
+	Publisher = {Springer Berlin Heidelberg},
+	Series = {Lecture Notes in Computer Science},
+	Title = {Learning Feature Representations with K-Means},
+	Url = {http://dx.doi.org/10.1007/978-3-642-35289-8_30},
+	Volume = {7700},
+	Year = {2012},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1007/978-3-642-35289-8_30}}
 
 @article{DBLP:journals/corr/abs-1111-0352,
-  author    = {Brian Kulis and
-               Michael I. Jordan},
-  title     = {Revisiting k-means: New Algorithms via Bayesian Nonparametrics},
-  journal   = {CoRR},
-  volume    = {abs/1111.0352},
-  year      = {2011},
-  url       = {http://arxiv.org/abs/1111.0352},
-  timestamp = {Mon, 05 Dec 2011 18:04:16 +0100},
-  biburl    = {http://dblp.uni-trier.de/rec/bib/journals/corr/abs-1111-0352},
-  bibsource = {dblp computer science bibliography, http://dblp.org}
-}
+	Author = {Brian Kulis and Michael I. Jordan},
+	Bibsource = {dblp computer science bibliography, http://dblp.org},
+	Biburl = {http://dblp.uni-trier.de/rec/bib/journals/corr/abs-1111-0352},
+	Journal = {CoRR},
+	Timestamp = {Mon, 05 Dec 2011 18:04:16 +0100},
+	Title = {Revisiting k-means: New Algorithms via Bayesian Nonparametrics},
+	Url = {http://arxiv.org/abs/1111.0352},
+	Volume = {abs/1111.0352},
+	Year = {2011},
+	Bdsk-Url-1 = {http://arxiv.org/abs/1111.0352}}
 
 @article{DBLP:journals/corr/abs-1105-0121,
-  author    = {Fionn Murtagh and
-               Pedro Contreras},
-  title     = {Methods of Hierarchical Clustering},
-  journal   = {CoRR},
-  volume    = {abs/1105.0121},
-  year      = {2011},
-  url       = {http://arxiv.org/abs/1105.0121},
-  timestamp = {Wed, 10 Oct 2012 21:28:43 +0200},
-  biburl    = {http://dblp.uni-trier.de/rec/bib/journals/corr/abs-1105-0121},
-  bibsource = {dblp computer science bibliography, http://dblp.org}
-}
+	Author = {Fionn Murtagh and Pedro Contreras},
+	Bibsource = {dblp computer science bibliography, http://dblp.org},
+	Biburl = {http://dblp.uni-trier.de/rec/bib/journals/corr/abs-1105-0121},
+	Journal = {CoRR},
+	Timestamp = {Wed, 10 Oct 2012 21:28:43 +0200},
+	Title = {Methods of Hierarchical Clustering},
+	Url = {http://arxiv.org/abs/1105.0121},
+	Volume = {abs/1105.0121},
+	Year = {2011},
+	Bdsk-Url-1 = {http://arxiv.org/abs/1105.0121}}
 
 @book{Maimon:2005:DMK:1088958,
- author = {Maimon, Oded and Rokach, Lior},
- title = {Data Mining and Knowledge Discovery Handbook},
- year = {2005},
- isbn = {0387244352, 9780387244358},
- publisher = {Springer-Verlag New York, Inc.},
- address = {Secaucus, NJ, USA},
-} 
+	Address = {Secaucus, NJ, USA},
+	Author = {Maimon, Oded and Rokach, Lior},
+	Isbn = {0387244352, 9780387244358},
+	Publisher = {Springer-Verlag New York, Inc.},
+	Title = {Data Mining and Knowledge Discovery Handbook},
+	Year = {2005}}
 
 @book{norris1998markov,
-  title={Markov Chains},
-  author={Norris, J.R.},
-  isbn={9781107393479},
-  series={Cambridge Series in Statistical and Probabilistic Mathematics},
-  url={https://books.google.co.uk/books?id=xbmtAQAAQBAJ},
-  year={1998},
-  publisher={Cambridge University Press}
-}
+	Author = {Norris, J.R.},
+	Isbn = {9781107393479},
+	Publisher = {Cambridge University Press},
+	Series = {Cambridge Series in Statistical and Probabilistic Mathematics},
+	Title = {Markov Chains},
+	Url = {https://books.google.co.uk/books?id=xbmtAQAAQBAJ},
+	Year = {1998},
+	Bdsk-Url-1 = {https://books.google.co.uk/books?id=xbmtAQAAQBAJ}}
 
-@ARTICLE{2014arXiv1404.0667C,
-   author = {{Crosskey}, M. and {Maggioni}, M.},
-    title = "{ATLAS: A geometric approach to learning high-dimensional stochastic systems near manifolds}",
-  journal = {ArXiv e-prints},
-archivePrefix = "arXiv",
-   eprint = {1404.0667},
- primaryClass = "math.DS",
- keywords = {Mathematics - Dynamical Systems, Mathematics - Probability},
-     year = 2014,
-    month = apr,
-   adsurl = {http://adsabs.harvard.edu/abs/2014arXiv1404.0667C},
-  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
-}
+@article{2014arXiv1404.0667C,
+	Adsnote = {Provided by the SAO/NASA Astrophysics Data System},
+	Adsurl = {http://adsabs.harvard.edu/abs/2014arXiv1404.0667C},
+	Archiveprefix = {arXiv},
+	Author = {{Crosskey}, M. and {Maggioni}, M.},
+	Eprint = {1404.0667},
+	Journal = {ArXiv e-prints},
+	Keywords = {Mathematics - Dynamical Systems, Mathematics - Probability},
+	Month = apr,
+	Primaryclass = {math.DS},
+	Title = {{ATLAS: A geometric approach to learning high-dimensional stochastic systems near manifolds}},
+	Year = 2014}
 
 @article{pande-beauchamp-bowman:2010:methods:markov-model-review,
-    author = {Pande, Vijay S. and Beauchamp, Kyle and Bowman, Gregory R.},
-    citeulike-article-id = {9520312},
-    journal = {Methods},
-    keywords = {free\_energy, markov},
-    pages = {99--105},
-    posted-at = {2011-07-19 10:48:48},
-    priority = {2},
-    title = {Everything you wanted to know about {Markov State Models} but were afraid to ask},
-    volume = {52},
-    year = {2010}
-}
+	Author = {Pande, Vijay S. and Beauchamp, Kyle and Bowman, Gregory R.},
+	Citeulike-Article-Id = {9520312},
+	Journal = {Methods},
+	Keywords = {free\_energy, markov},
+	Pages = {99--105},
+	Posted-At = {2011-07-19 10:48:48},
+	Priority = {2},
+	Title = {Everything you wanted to know about {Markov State Models} but were afraid to ask},
+	Volume = {52},
+	Year = {2010}}
 
-@INPROCEEDINGS{6558109, 
-author={Nagpal, A. and Jatain, A. and Gaur, D.}, 
-booktitle={Information Communication Technologies (ICT), 2013 IEEE Conference on}, 
-title={Review based on data clustering algorithms}, 
-year={2013}, 
-pages={298-303}, 
-keywords={data handling;pattern clustering;statistical analysis;comparative statistical analysis;data clustering algorithms;data set cluster;optimal solution;similarity metric;statistical application;Algorithm design and analysis;Clustering algorithms;Clustering methods;Communications technology;Conferences;Couplings;Partitioning algorithms;Data Clustering;Special;Statistical analysis;hierarchical clustering;temporal}, 
-doi={10.1109/CICT.2013.6558109}, 
-month={April},}
+@inproceedings{6558109,
+	Author = {Nagpal, A. and Jatain, A. and Gaur, D.},
+	Booktitle = {Information Communication Technologies (ICT), 2013 IEEE Conference on},
+	Doi = {10.1109/CICT.2013.6558109},
+	Keywords = {data handling;pattern clustering;statistical analysis;comparative statistical analysis;data clustering algorithms;data set cluster;optimal solution;similarity metric;statistical application;Algorithm design and analysis;Clustering algorithms;Clustering methods;Communications technology;Conferences;Couplings;Partitioning algorithms;Data Clustering;Special;Statistical analysis;hierarchical clustering;temporal},
+	Month = {April},
+	Pages = {298-303},
+	Title = {Review based on data clustering algorithms},
+	Year = {2013},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/CICT.2013.6558109}}
 
 @article{Sibson01011973,
-author = {Sibson, R.}, 
-title = {SLINK: An optimally efficient algorithm for the single-link cluster method},
-volume = {16}, 
-number = {1}, 
-pages = {30-34}, 
-year = {1973}, 
-doi = {10.1093/comjnl/16.1.30}, 
-abstract ={The SLINK algorithm carries out single-link (nearest-neighbour) cluster analysis on an arbitrary dissimilarity coefficient and provides a representation of the resultant dendrogram which can readily be converted into the usual tree-diagram. The algorithm achieves the theoretical order-of-magnitude bounds for both compactness of storage and speed of operation, and makes the application of the single-link method feasible for a number of OTU's well into the range 103 to 104. The algorithm is easily programmable in a variety of languages including FORTRAN.}, 
-URL = {http://comjnl.oxfordjournals.org/content/16/1/30.abstract}, 
-eprint = {http://comjnl.oxfordjournals.org/content/16/1/30.full.pdf+html}, 
-journal = {The Computer Journal} 
-}
+	Abstract = {The SLINK algorithm carries out single-link (nearest-neighbour) cluster analysis on an arbitrary dissimilarity coefficient and provides a representation of the resultant dendrogram which can readily be converted into the usual tree-diagram. The algorithm achieves the theoretical order-of-magnitude bounds for both compactness of storage and speed of operation, and makes the application of the single-link method feasible for a number of OTU's well into the range 103 to 104. The algorithm is easily programmable in a variety of languages including FORTRAN.},
+	Author = {Sibson, R.},
+	Doi = {10.1093/comjnl/16.1.30},
+	Eprint = {http://comjnl.oxfordjournals.org/content/16/1/30.full.pdf+html},
+	Journal = {The Computer Journal},
+	Number = {1},
+	Pages = {30-34},
+	Title = {SLINK: An optimally efficient algorithm for the single-link cluster method},
+	Url = {http://comjnl.oxfordjournals.org/content/16/1/30.abstract},
+	Volume = {16},
+	Year = {1973},
+	Bdsk-Url-1 = {http://comjnl.oxfordjournals.org/content/16/1/30.abstract},
+	Bdsk-Url-2 = {http://dx.doi.org/10.1093/comjnl/16.1.30}}
 
 @book{glm-introduction,
-           title = {An Introduction to Generalized Linear Models, Third Edition},
-          author = {Annette J. Dobson and Adrian G. Barnett},
-         address = {Boca Raton, FL},
-       publisher = {Chapman \& Hall/CRC Press},
-            year = {2008},
-          series = {Texts in Statistical Science},
-            note = {For more information about this book please refer to the publisher's website (see link) or contact the author.},
-             url = {http://eprints.qut.edu.au/15448/},
-        abstract = {- Introduces GLMs in a way that enables readers to understand the unifying structure that underpins them. 
+	Abstract = {- Introduces GLMs in a way that enables readers to understand the unifying structure that underpins them. 
 
 - Discusses common concepts and principles of advanced GLMs, including nominal and ordinal regression, survival analysis, and longitudinal analysis. 
 
@@ -408,340 +414,289 @@ Like its predecessor, this edition presents the theoretical background of genera
 
 
 
-Using popular statistical software programs, this concise and accessible text illustrates practical approaches to estimation, model fitting, and model comparisons. It includes examples and exercises with complete data sets for nearly all the models covered.}
-}
+Using popular statistical software programs, this concise and accessible text illustrates practical approaches to estimation, model fitting, and model comparisons. It includes examples and exercises with complete data sets for nearly all the models covered.},
+	Address = {Boca Raton, FL},
+	Author = {Annette J. Dobson and Adrian G. Barnett},
+	Note = {For more information about this book please refer to the publisher's website (see link) or contact the author.},
+	Publisher = {Chapman \& Hall/CRC Press},
+	Series = {Texts in Statistical Science},
+	Title = {An Introduction to Generalized Linear Models, Third Edition},
+	Url = {http://eprints.qut.edu.au/15448/},
+	Year = {2008},
+	Bdsk-Url-1 = {http://eprints.qut.edu.au/15448/}}
 
-@INPROCEEDINGS{5160607, 
-author={Deng, Kun and Yu Sun and Mehta, P.G. and Meyn, S.P.}, 
-booktitle={American Control Conference, 2009. ACC '09.}, 
-title={An information-theoretic framework to aggregate a Markov chain}, 
-year={2009}, 
-pages={731-736}, 
-keywords={Markov processes;eigenvalues and eigenfunctions;optimisation;reduced order systems;Kullback-Leibler divergence rate;Markov chain;bi-partition problem;eigenvalue problem;information-theoretic framework;model reduction;optimization problem;recursive algorithm;reduced order Markov model;Aggregates;Clustering algorithms;Convergence;Eigenvalues and eigenfunctions;Information theory;Large-scale systems;Partitioning algorithms;Reduced order systems;State-space methods;Sun}, 
-doi={10.1109/ACC.2009.5160607}, 
-ISSN={0743-1619}, 
-month={June},}
+@inproceedings{5160607,
+	Author = {Deng, Kun and Yu Sun and Mehta, P.G. and Meyn, S.P.},
+	Booktitle = {American Control Conference, 2009. ACC '09.},
+	Doi = {10.1109/ACC.2009.5160607},
+	Issn = {0743-1619},
+	Keywords = {Markov processes;eigenvalues and eigenfunctions;optimisation;reduced order systems;Kullback-Leibler divergence rate;Markov chain;bi-partition problem;eigenvalue problem;information-theoretic framework;model reduction;optimization problem;recursive algorithm;reduced order Markov model;Aggregates;Clustering algorithms;Convergence;Eigenvalues and eigenfunctions;Information theory;Large-scale systems;Partitioning algorithms;Reduced order systems;State-space methods;Sun},
+	Month = {June},
+	Pages = {731-736},
+	Title = {An information-theoretic framework to aggregate a Markov chain},
+	Year = {2009},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/ACC.2009.5160607}}
 
 @article{Agaev2005157,
+	Author = {Rafig Agaev and Pavel Chebotarev},
+	Doi = {http://dx.doi.org/10.1016/j.laa.2004.09.003},
+	Issn = {0024-3795},
+	Journal = {Linear Algebra and its Applications},
+	Keywords = {Stochastic matrix},
+	Note = {Special Issue devoted to papers presented at the International Meeting on Matrix Analysis and Applications, Ft. Lauderdale, FL, 14-16 December 2003},
+	Pages = {157 - 168},
+	Title = {On the spectra of nonsymmetric Laplacian matrices},
+	Url = {http://www.sciencedirect.com/science/article/pii/S0024379504004094},
+	Volume = {399},
+	Year = {2005},
+	Bdsk-Url-1 = {http://www.sciencedirect.com/science/article/pii/S0024379504004094},
+	Bdsk-Url-2 = {http://dx.doi.org/10.1016/j.laa.2004.09.003}}
 
-title = "On the spectra of nonsymmetric Laplacian matrices ",
-
-journal = "Linear Algebra and its Applications ",
-
-volume = "399",
-
-number = "",
-
-pages = "157 - 168",
-
-year = "2005",
-
-note = "Special Issue devoted to papers presented at the International Meeting on Matrix Analysis and Applications, Ft. Lauderdale, FL, 14-16 December 2003 ",
-
-issn = "0024-3795",
-
-doi = "http://dx.doi.org/10.1016/j.laa.2004.09.003",
-
-url = "http://www.sciencedirect.com/science/article/pii/S0024379504004094",
-
-author = "Rafig Agaev and Pavel Chebotarev",
-
-keywords = "Laplacian matrix",
-
-keywords = "Laplacian spectrum of graph",
-
-keywords = "Weighted directed graph",
-
-keywords = "Forest dimension of digraph",
-
-keywords = "Stochastic matrix "
-
-}
-
-% RELATED WORK
-@ARTICLE{5746509, 
-author={K. Deng and P. G. Mehta and S. P. Meyn}, 
-journal={IEEE Transactions on Automatic Control}, 
-title={Optimal Kullback-Leibler Aggregation via Spectral Theory of Markov Chains}, 
-year={2011}, 
-volume={56}, 
-number={12}, 
-pages={2793-2808}, 
-keywords={Markov processes;eigenvalues and eigenfunctions;Kullback-Leibler divergence rate;Markov Chains;Markov spectral theory;eigenvalue problem;optimal Kullback-Leibler aggregation;spectral theory;Eigenvalues and eigenfunctions;Markov processes;Mutual information;Optimization;Probability distribution;Reduced order systems;Kullback–Leibler (K–L) divergence rate;Markov chain;model reduction;spectral theory}, 
-doi={10.1109/TAC.2011.2141350}, 
-ISSN={0018-9286}, 
-month={Dec},}
+@article{5746509,
+	Author = {K. Deng and P. G. Mehta and S. P. Meyn},
+	Doi = {10.1109/TAC.2011.2141350},
+	Issn = {0018-9286},
+	Journal = {IEEE Transactions on Automatic Control},
+	Keywords = {Markov processes;eigenvalues and eigenfunctions;Kullback-Leibler divergence rate;Markov Chains;Markov spectral theory;eigenvalue problem;optimal Kullback-Leibler aggregation;spectral theory;Eigenvalues and eigenfunctions;Markov processes;Mutual information;Optimization;Probability distribution;Reduced order systems;Kullback--Leibler (K--L) divergence rate;Markov chain;model reduction;spectral theory},
+	Month = {Dec},
+	Number = {12},
+	Pages = {2793-2808},
+	Title = {Optimal Kullback-Leibler Aggregation via Spectral Theory of Markov Chains},
+	Volume = {56},
+	Year = {2011},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/TAC.2011.2141350}}
 
 @article{pande-beauchamp-bowman:2010:methods:markov-model-review,
-    author = {Pande, Vijay S. and Beauchamp, Kyle and Bowman, Gregory R.},
-    citeulike-article-id = {9520312},
-    journal = {Methods},
-    keywords = {free\_energy, markov},
-    pages = {99--105},
-    posted-at = {2011-07-19 10:48:48},
-    priority = {2},
-    title = {Everything you wanted to know about {Markov State Models} but were afraid to ask},
-    volume = {52},
-    year = {2010}
-}
+	Author = {Pande, Vijay S. and Beauchamp, Kyle and Bowman, Gregory R.},
+	Citeulike-Article-Id = {9520312},
+	Journal = {Methods},
+	Keywords = {free\_energy, markov},
+	Pages = {99--105},
+	Posted-At = {2011-07-19 10:48:48},
+	Priority = {2},
+	Title = {Everything you wanted to know about {Markov State Models} but were afraid to ask},
+	Volume = {52},
+	Year = {2010}}
 
 @article{Benz2004239,
+	Author = {Ursula C. Benz and Peter Hofmann and Gregor Willhauck and Iris Lingenfelder and Markus Heynen},
+	Doi = {http://dx.doi.org/10.1016/j.isprsjprs.2003.10.002},
+	Issn = {0924-2716},
+	Journal = {\{ISPRS\} Journal of Photogrammetry and Remote Sensing},
+	Keywords = {GIS},
+	Note = {Integration of Geodata and Imagery for Automated Refinement and Update of Spatial Databases},
+	Number = {3--4},
+	Pages = {239 - 258},
+	Title = {Multi-resolution, object-oriented fuzzy analysis of remote sensing data for GIS-ready information},
+	Url = {http://www.sciencedirect.com/science/article/pii/S0924271603000601},
+	Volume = {58},
+	Year = {2004},
+	Bdsk-Url-1 = {http://www.sciencedirect.com/science/article/pii/S0924271603000601},
+	Bdsk-Url-2 = {http://dx.doi.org/10.1016/j.isprsjprs.2003.10.002}}
 
-title = "Multi-resolution, object-oriented fuzzy analysis of remote sensing data for GIS-ready information ",
-
-journal = "\{ISPRS\} Journal of Photogrammetry and Remote Sensing ",
-
-volume = "58",
-
-number = "3–4",
-
-pages = "239 - 258",
-
-year = "2004",
-
-note = "Integration of Geodata and Imagery for Automated Refinement and Update of Spatial Databases ",
-
-issn = "0924-2716",
-
-doi = "http://dx.doi.org/10.1016/j.isprsjprs.2003.10.002",
-
-url = "http://www.sciencedirect.com/science/article/pii/S0924271603000601",
-
-author = "Ursula C. Benz and Peter Hofmann and Gregor Willhauck and Iris Lingenfelder and Markus Heynen",
-
-keywords = "object-oriented image analysis",
-
-keywords = "remote sensing",
-
-keywords = "multi-resolution segmentation",
-
-keywords = "fuzzy classification",
-
-keywords = "GIS "
-
-}
-
-@ARTICLE{4015421, 
-author={Q. Cui and M. Ward and E. Rundensteiner and J. Yang}, 
-journal={IEEE Transactions on Visualization and Computer Graphics}, 
-title={Measuring Data Abstraction Quality in Multiresolution Visualizations}, 
-year={2006}, 
-volume={12}, 
-number={5}, 
-pages={709-716}, 
-keywords={data analysis;data structures;data visualisation;pattern clustering;sampling methods;very large databases;XmdvTool;data abstraction quality measures;data clustering;histogram difference measure;multivariate data analysis;nearest neighbor measure;public-domain multiresolution visualization system;Bioinformatics;Coordinate measuring machines;Data analysis;Data visualization;Delay;Density measurement;Displays;Histograms;Nearest neighbor searches;Sampling methods;Clustering;Metrics;Multiresolution Visualization Authors 1:;Sampling}, 
-doi={10.1109/TVCG.2006.161}, 
-ISSN={1077-2626}, 
-month={Sept},}
+@article{4015421,
+	Author = {Q. Cui and M. Ward and E. Rundensteiner and J. Yang},
+	Doi = {10.1109/TVCG.2006.161},
+	Issn = {1077-2626},
+	Journal = {IEEE Transactions on Visualization and Computer Graphics},
+	Keywords = {data analysis;data structures;data visualisation;pattern clustering;sampling methods;very large databases;XmdvTool;data abstraction quality measures;data clustering;histogram difference measure;multivariate data analysis;nearest neighbor measure;public-domain multiresolution visualization system;Bioinformatics;Coordinate measuring machines;Data analysis;Data visualization;Delay;Density measurement;Displays;Histograms;Nearest neighbor searches;Sampling methods;Clustering;Metrics;Multiresolution Visualization Authors 1:;Sampling},
+	Month = {Sept},
+	Number = {5},
+	Pages = {709-716},
+	Title = {Measuring Data Abstraction Quality in Multiresolution Visualizations},
+	Volume = {12},
+	Year = {2006},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/TVCG.2006.161}}
 
 @inproceedings{qminer,
-  title={QMiner: Data Analytics Platform for Processing Streams of Structured and Unstructured Data},
-  author={Fortuna, B and Rupnik, J and Brank, J and Fortuna, C and Jovanoski, V and Karlovcec, M and Kazic, B and Kenda, K and Leban, G and Mladenic, D and Muhic, A and Novak, B and Novak, E and Novljan, J and Papler, M and Rei, L and Sovdat, B and Stopar, L},
-  booktitle={Software Engineering for Machine Learning Workshop, Neural Information Processing Systems},
-  year={2014}
-}
+	Author = {Fortuna, B and Rupnik, J and Brank, J and Fortuna, C and Jovanoski, V and Karlovcec, M and Kazic, B and Kenda, K and Leban, G and Mladenic, D and Muhic, A and Novak, B and Novak, E and Novljan, J and Papler, M and Rei, L and Sovdat, B and Stopar, L},
+	Booktitle = {Software Engineering for Machine Learning Workshop, Neural Information Processing Systems},
+	Title = {QMiner: Data Analytics Platform for Processing Streams of Structured and Unstructured Data},
+	Year = {2014}}
 
-% Brushing
 @article{Fua:2000:SBM:614278.614457,
- author = {Fua, Ying-Huey and Ward, Matthew O. and Rundensteiner, Elke A.},
- title = {Structure-Based Brushes: A Mechanism for Navigating Hierarchically Organized Data and Information Spaces},
- journal = {IEEE Transactions on Visualization and Computer Graphics},
- issue_date = {April 2000},
- volume = {6},
- number = {2},
- month = apr,
- year = {2000},
- issn = {1077-2626},
- pages = {150--159},
- numpages = {10},
- url = {http://dx.doi.org/10.1109/2945.856996},
- doi = {10.1109/2945.856996},
- acmid = {614457},
- publisher = {IEEE Educational Activities Department},
- address = {Piscataway, NJ, USA},
- keywords = {Brushing, hierarchical representation, interactive selection, exploratory data analysis.},
-} 
+	Acmid = {614457},
+	Address = {Piscataway, NJ, USA},
+	Author = {Fua, Ying-Huey and Ward, Matthew O. and Rundensteiner, Elke A.},
+	Doi = {10.1109/2945.856996},
+	Issn = {1077-2626},
+	Issue_Date = {April 2000},
+	Journal = {IEEE Transactions on Visualization and Computer Graphics},
+	Keywords = {Brushing, hierarchical representation, interactive selection, exploratory data analysis.},
+	Month = apr,
+	Number = {2},
+	Numpages = {10},
+	Pages = {150--159},
+	Publisher = {IEEE Educational Activities Department},
+	Title = {Structure-Based Brushes: A Mechanism for Navigating Hierarchically Organized Data and Information Spaces},
+	Url = {http://dx.doi.org/10.1109/2945.856996},
+	Volume = {6},
+	Year = {2000},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/2945.856996}}
 
-% disc trees
-@INPROCEEDINGS{729555, 
-author={Chang-Sung Jeong and A. Pang}, 
-booktitle={Information Visualization, 1998. Proceedings. IEEE Symposium on}, 
-title={Reconfigurable disc trees for visualizing large hierarchical information space}, 
-year={1998}, 
-pages={19-25, 149}, 
-keywords={data visualisation;tree data structures;trees (mathematics);user interfaces;2D layouts;3D depth;3D layouts;RDT;Reconfigurable Disc Tree;VISIT;Visual Information System for reconfigurable dIsc tree;animation;browsing;children;compact disc tree;cone trees;displayed nodes;foreground objects;large hierarchical information space visualization;large hierarchies;occluded region;plane disc tree;reconfigurable disc trees;tree reconfiguration;tree shading;tree transformation;user interface features;user navigation capabilities;user perception;viewing transformation;visual overlapping;visualization system;visualization technique;Animation;Computer science;Information systems;Lapping;Maintenance engineering;Shape;Space technology;Tree graphs;User interfaces;Visualization}, 
-doi={10.1109/INFVIS.1998.729555}, 
-month={Oct},}
+@inproceedings{729555,
+	Author = {Chang-Sung Jeong and A. Pang},
+	Booktitle = {Information Visualization, 1998. Proceedings. IEEE Symposium on},
+	Doi = {10.1109/INFVIS.1998.729555},
+	Keywords = {data visualisation;tree data structures;trees (mathematics);user interfaces;2D layouts;3D depth;3D layouts;RDT;Reconfigurable Disc Tree;VISIT;Visual Information System for reconfigurable dIsc tree;animation;browsing;children;compact disc tree;cone trees;displayed nodes;foreground objects;large hierarchical information space visualization;large hierarchies;occluded region;plane disc tree;reconfigurable disc trees;tree reconfiguration;tree shading;tree transformation;user interface features;user navigation capabilities;user perception;viewing transformation;visual overlapping;visualization system;visualization technique;Animation;Computer science;Information systems;Lapping;Maintenance engineering;Shape;Space technology;Tree graphs;User interfaces;Visualization},
+	Month = {Oct},
+	Pages = {19-25, 149},
+	Title = {Reconfigurable disc trees for visualizing large hierarchical information space},
+	Year = {1998},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/INFVIS.1998.729555}}
 
-% tree maps
 @inproceedings{Johnson:1991:TSA:949607.949654,
- author = {Johnson, Brian and Shneiderman, Ben},
- title = {Tree-Maps: A Space-filling Approach to the Visualization of Hierarchical Information Structures},
- booktitle = {Proceedings of the 2Nd Conference on Visualization '91},
- series = {VIS '91},
- year = {1991},
- isbn = {0-8186-2245-8},
- location = {San Diego, California},
- pages = {284--291},
- numpages = {8},
- url = {http://dl.acm.org/citation.cfm?id=949607.949654},
- acmid = {949654},
- publisher = {IEEE Computer Society Press},
- address = {Los Alamitos, CA, USA},
-}
+	Acmid = {949654},
+	Address = {Los Alamitos, CA, USA},
+	Author = {Johnson, Brian and Shneiderman, Ben},
+	Booktitle = {Proceedings of the 2Nd Conference on Visualization '91},
+	Isbn = {0-8186-2245-8},
+	Location = {San Diego, California},
+	Numpages = {8},
+	Pages = {284--291},
+	Publisher = {IEEE Computer Society Press},
+	Series = {VIS '91},
+	Title = {Tree-Maps: A Space-filling Approach to the Visualization of Hierarchical Information Structures},
+	Url = {http://dl.acm.org/citation.cfm?id=949607.949654},
+	Year = {1991},
+	Bdsk-Url-1 = {http://dl.acm.org/citation.cfm?id=949607.949654}}
 
-% parallel coordinates
-@Article{parcoords,
-author="Inselberg, Alfred",
-title="The plane with parallel coordinates",
-journal="The Visual Computer",
-volume="1",
-number="2",
-pages="69--91",
-abstract="By means ofParallel Coordinates planar ``graphs'' of multivariate relations are obtained. Certain properties of the relationship correspond tothe geometrical properties of its graph. On the plane a point {\textleftarrow}{\textrightarrow} line duality with several interesting properties is induced. A new duality betweenbounded and unbounded convex sets and hstars (a generalization of hyperbolas) and between Convex Unions and Intersections is found. This motivates some efficient Convexity algorithms and other results inComputational Geometry. There is also a suprising ``cusp'' {\textleftarrow}{\textrightarrow} ``inflection point'' duality. The narrative ends with a preview of the corresponding results inR                                  N                .",
-issn="1432-2315",
-doi="10.1007/BF01898350",
-url="http://dx.doi.org/10.1007/BF01898350"
-}
+@article{parcoords,
+	Abstract = {By means ofParallel Coordinates planar ``graphs'' of multivariate relations are obtained. Certain properties of the relationship correspond tothe geometrical properties of its graph. On the plane a point {\textleftarrow}{\textrightarrow} line duality with several interesting properties is induced. A new duality betweenbounded and unbounded convex sets and hstars (a generalization of hyperbolas) and between Convex Unions and Intersections is found. This motivates some efficient Convexity algorithms and other results inComputational Geometry. There is also a suprising ``cusp'' {\textleftarrow}{\textrightarrow} ``inflection point'' duality. The narrative ends with a preview of the corresponding results inR                                  N                .},
+	Author = {Inselberg, Alfred},
+	Doi = {10.1007/BF01898350},
+	Issn = {1432-2315},
+	Journal = {The Visual Computer},
+	Number = {2},
+	Pages = {69--91},
+	Title = {The plane with parallel coordinates},
+	Url = {http://dx.doi.org/10.1007/BF01898350},
+	Volume = {1},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1007/BF01898350}}
 
 @article{Elmqvist:2010:HAI:1749404.1749525,
- author = {Elmqvist, Niklas and Fekete, Jean-Daniel},
- title = {Hierarchical Aggregation for Information Visualization: Overview, Techniques, and Design Guidelines},
- journal = {IEEE Transactions on Visualization and Computer Graphics},
- issue_date = {May 2010},
- volume = {16},
- number = {3},
- month = may,
- year = {2010},
- issn = {1077-2626},
- pages = {439--454},
- numpages = {16},
- url = {http://dx.doi.org/10.1109/TVCG.2009.84},
- doi = {10.1109/TVCG.2009.84},
- acmid = {1749525},
- publisher = {IEEE Educational Activities Department},
- address = {Piscataway, NJ, USA},
- keywords = {Aggregation, Aggregation, clustering, clutter reduction, massive data sets, visual exploration, visual analytics., clustering, clutter reduction, massive data sets, visual analytics., visual exploration},
-} 
+	Acmid = {1749525},
+	Address = {Piscataway, NJ, USA},
+	Author = {Elmqvist, Niklas and Fekete, Jean-Daniel},
+	Doi = {10.1109/TVCG.2009.84},
+	Issn = {1077-2626},
+	Issue_Date = {May 2010},
+	Journal = {IEEE Transactions on Visualization and Computer Graphics},
+	Keywords = {Aggregation, Aggregation, clustering, clutter reduction, massive data sets, visual exploration, visual analytics., clustering, clutter reduction, massive data sets, visual analytics., visual exploration},
+	Month = may,
+	Number = {3},
+	Numpages = {16},
+	Pages = {439--454},
+	Publisher = {IEEE Educational Activities Department},
+	Title = {Hierarchical Aggregation for Information Visualization: Overview, Techniques, and Design Guidelines},
+	Url = {http://dx.doi.org/10.1109/TVCG.2009.84},
+	Volume = {16},
+	Year = {2010},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/TVCG.2009.84}}
 
-% Markov chains
-% original paper
 @article{markov13,
-  added-at = {2011-05-09T23:10:52.000+0200},
-  author = {Markov, A. A.},
-  biburl = {http://www.bibsonomy.org/bibtex/231b6ea6c0a490637c6c31706ae6d223c/josephausterwei},
-  interhash = {0467c4adc4fadb22fea268d81c9bccd6},
-  intrahash = {31b6ea6c0a490637c6c31706ae6d223c},
-  journal = {Izvestiya Akademii Nauk},
-  keywords = {imported},
-  number = 3,
-  pages = {153-162},
-  timestamp = {2011-05-10T10:42:42.000+0200},
-  title = {Primer statisticheskogo issledovaniya nad tekstom
-  ``Evgeniya Onegina'', illyustriruyuschij svyaz ispytanij v cep},
-  volume = {Ser. 6},
-  year = 1913
-}
+	Added-At = {2011-05-09T23:10:52.000+0200},
+	Author = {Markov, A. A.},
+	Biburl = {http://www.bibsonomy.org/bibtex/231b6ea6c0a490637c6c31706ae6d223c/josephausterwei},
+	Interhash = {0467c4adc4fadb22fea268d81c9bccd6},
+	Intrahash = {31b6ea6c0a490637c6c31706ae6d223c},
+	Journal = {Izvestiya Akademii Nauk},
+	Keywords = {imported},
+	Number = 3,
+	Pages = {153-162},
+	Timestamp = {2011-05-10T10:42:42.000+0200},
+	Title = {Primer statisticheskogo issledovaniya nad tekstom ``Evgeniya Onegina'', illyustriruyuschij svyaz ispytanij v cep},
+	Volume = {Ser. 6},
+	Year = 1913}
 
 @misc{aldous-fill-2014,
-    AUTHOR = {Aldous, David and Fill, James Allen},
-     TITLE = {Reversible Markov Chains and Random Walks on Graphs},
-      YEAR = {2002},
-      NOTE = {Unfinished monograph, recompiled 2014, available 
-      at \url{http://www.stat.berkeley.edu/$\sim$aldous/RWG/book.html}}
-      }
+	Author = {Aldous, David and Fill, James Allen},
+	Note = {Unfinished monograph, recompiled 2014, available at \url{http://www.stat.berkeley.edu/$\sim$aldous/RWG/book.html}},
+	Title = {Reversible Markov Chains and Random Walks on Graphs},
+	Year = {2002}}
 
 @article{Shannon:1948,
-  added-at = {2015-08-08T11:55:03.000+0200},
-  author = {Shannon, Claude E.},
-  biburl = {http://www.bibsonomy.org/bibtex/2cffc93e45b2239371a1ff918f84d8252/privtec},
-  interhash = {754130207906fcec16a53d330eeff348},
-  intrahash = {cffc93e45b2239371a1ff918f84d8252},
-  journal = {The Bell System Technical Journal},
-  keywords = {imported},
-  number = 3,
-  owner = {jonny},
-  pages = {379--423},
-  timestamp = {2015-08-08T11:55:03.000+0200},
-  title = {{A} {M}athematical {T}heory of {C}ommunication},
-  volume = 27,
-  year = 1948
-}
+	Added-At = {2015-08-08T11:55:03.000+0200},
+	Author = {Shannon, Claude E.},
+	Biburl = {http://www.bibsonomy.org/bibtex/2cffc93e45b2239371a1ff918f84d8252/privtec},
+	Interhash = {754130207906fcec16a53d330eeff348},
+	Intrahash = {cffc93e45b2239371a1ff918f84d8252},
+	Journal = {The Bell System Technical Journal},
+	Keywords = {imported},
+	Number = 3,
+	Owner = {jonny},
+	Pages = {379--423},
+	Timestamp = {2015-08-08T11:55:03.000+0200},
+	Title = {{A} {M}athematical {T}heory of {C}ommunication},
+	Volume = 27,
+	Year = 1948}
 
 @article{baum1970,
-author = "Baum, Leonard E. and Petrie, Ted and Soules, George and Weiss, Norman",
-doi = "10.1214/aoms/1177697196",
-fjournal = "The Annals of Mathematical Statistics",
-journal = "Ann. Math. Statist.",
-month = "02",
-number = "1",
-pages = "164--171",
-publisher = "The Institute of Mathematical Statistics",
-title = "A Maximization Technique Occurring in the Statistical Analysis of Probabilistic Functions of Markov Chains",
-url = "http://dx.doi.org/10.1214/aoms/1177697196",
-volume = "41",
-year = "1970"
-}
+	Author = {Baum, Leonard E. and Petrie, Ted and Soules, George and Weiss, Norman},
+	Doi = {10.1214/aoms/1177697196},
+	Fjournal = {The Annals of Mathematical Statistics},
+	Journal = {Ann. Math. Statist.},
+	Month = {02},
+	Number = {1},
+	Pages = {164--171},
+	Publisher = {The Institute of Mathematical Statistics},
+	Title = {A Maximization Technique Occurring in the Statistical Analysis of Probabilistic Functions of Markov Chains},
+	Url = {http://dx.doi.org/10.1214/aoms/1177697196},
+	Volume = {41},
+	Year = {1970},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1214/aoms/1177697196}}
 
 @techreport{Lawrence981,
-author ={Lawrence, Page and Sergey, Brin and Motwani, Rajeev and Winograd, Terry},
-title ={The PageRank Citation Ranking: Bringing Order to the Web},
-institution = {Stanford University},
-type = {Technical Report},
-year  ={1998}
-}
+	Author = {Lawrence, Page and Sergey, Brin and Motwani, Rajeev and Winograd, Terry},
+	Institution = {Stanford University},
+	Title = {The PageRank Citation Ranking: Bringing Order to the Web},
+	Type = {Technical Report},
+	Year = {1998}}
 
-@article {Huelsenbeck2310,
-	author = {Huelsenbeck, John P. and Ronquist, Fredrik and Nielsen, Rasmus and Bollback, Jonathan P.},
-	title = {Bayesian Inference of Phylogeny and Its Impact on Evolutionary Biology},
-	volume = {294},
-	number = {5550},
-	pages = {2310--2314},
-	year = {2001},
-	doi = {10.1126/science.1065889},
-	publisher = {American Association for the Advancement of Science},
-	abstract = {As a discipline, phylogenetics is becoming transformed by a flood of molecular data. These data allow broad questions to be asked about the history of life, but also present difficult statistical and computational problems. Bayesian inference of phylogeny brings a new perspective to a number of outstanding issues in evolutionary biology, including the analysis of large phylogenetic trees and complex evolutionary models and the detection of the footprint of natural selection in DNA sequences.},
-	issn = {0036-8075},
-	URL = {http://science.sciencemag.org/content/294/5550/2310},
-	eprint = {http://science.sciencemag.org/content/294/5550/2310.full.pdf},
-	journal = {Science}
-}
+@article{Huelsenbeck2310,
+	Abstract = {As a discipline, phylogenetics is becoming transformed by a flood of molecular data. These data allow broad questions to be asked about the history of life, but also present difficult statistical and computational problems. Bayesian inference of phylogeny brings a new perspective to a number of outstanding issues in evolutionary biology, including the analysis of large phylogenetic trees and complex evolutionary models and the detection of the footprint of natural selection in DNA sequences.},
+	Author = {Huelsenbeck, John P. and Ronquist, Fredrik and Nielsen, Rasmus and Bollback, Jonathan P.},
+	Doi = {10.1126/science.1065889},
+	Eprint = {http://science.sciencemag.org/content/294/5550/2310.full.pdf},
+	Issn = {0036-8075},
+	Journal = {Science},
+	Number = {5550},
+	Pages = {2310--2314},
+	Publisher = {American Association for the Advancement of Science},
+	Title = {Bayesian Inference of Phylogeny and Its Impact on Evolutionary Biology},
+	Url = {http://science.sciencemag.org/content/294/5550/2310},
+	Volume = {294},
+	Year = {2001},
+	Bdsk-Url-1 = {http://science.sciencemag.org/content/294/5550/2310},
+	Bdsk-Url-2 = {http://dx.doi.org/10.1126/science.1065889}}
 
 @book{norris1998markov,
-  title={Markov Chains},
-  author={Norris, J.R.},
-  number={{\v{s}}t. 2008},
-  isbn={9780521633963},
-  series={Cambridge Series in Statistical and Probabilistic Mathematics},
-  url={https://books.google.si/books?id=qM65VRmOJZAC},
-  year={1998},
-  publisher={Cambridge University Press}
-}
+	Author = {Norris, J.R.},
+	Isbn = {9780521633963},
+	Number = {{\v{s}}t. 2008},
+	Publisher = {Cambridge University Press},
+	Series = {Cambridge Series in Statistical and Probabilistic Mathematics},
+	Title = {Markov Chains},
+	Url = {https://books.google.si/books?id=qM65VRmOJZAC},
+	Year = {1998},
+	Bdsk-Url-1 = {https://books.google.si/books?id=qM65VRmOJZAC}}
 
-@ARTICLE{5746509, 
-author={K. Deng and P. G. Mehta and S. P. Meyn}, 
-journal={IEEE Transactions on Automatic Control}, 
-title={Optimal Kullback-Leibler Aggregation via Spectral Theory of Markov Chains}, 
-year={2011}, 
-volume={56}, 
-number={12}, 
-pages={2793-2808}, 
-keywords={Markov processes;eigenvalues and eigenfunctions;Kullback-Leibler divergence rate;Markov Chains;Markov spectral theory;eigenvalue problem;optimal Kullback-Leibler aggregation;spectral theory;Eigenvalues and eigenfunctions;Markov processes;Mutual information;Optimization;Probability distribution;Reduced order systems;Kullback–Leibler (K–L) divergence rate;Markov chain;model reduction;spectral theory}, 
-doi={10.1109/TAC.2011.2141350}, 
-ISSN={0018-9286}, 
-month={Dec},}
+@article{5746509,
+	Author = {K. Deng and P. G. Mehta and S. P. Meyn},
+	Doi = {10.1109/TAC.2011.2141350},
+	Issn = {0018-9286},
+	Journal = {IEEE Transactions on Automatic Control},
+	Keywords = {Markov processes;eigenvalues and eigenfunctions;Kullback-Leibler divergence rate;Markov Chains;Markov spectral theory;eigenvalue problem;optimal Kullback-Leibler aggregation;spectral theory;Eigenvalues and eigenfunctions;Markov processes;Mutual information;Optimization;Probability distribution;Reduced order systems;Kullback--Leibler (K--L) divergence rate;Markov chain;model reduction;spectral theory},
+	Month = {Dec},
+	Number = {12},
+	Pages = {2793-2808},
+	Title = {Optimal Kullback-Leibler Aggregation via Spectral Theory of Markov Chains},
+	Volume = {56},
+	Year = {2011},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/TAC.2011.2141350}}
 
-% Generalized linear models
 @book{glm-introduction,
-           title = {An Introduction to Generalized Linear Models, Third Edition},
-          author = {Annette J. Dobson and Adrian G. Barnett},
-         address = {Boca Raton, FL},
-       publisher = {Chapman \& Hall/CRC Press},
-            year = {2008},
-          series = {Texts in Statistical Science},
-            note = {For more information about this book please refer to the publisher's website (see link) or contact the author.},
-             url = {http://eprints.qut.edu.au/15448/},
-        abstract = {- Introduces GLMs in a way that enables readers to understand the unifying structure that underpins them. 
+	Abstract = {- Introduces GLMs in a way that enables readers to understand the unifying structure that underpins them. 
 
 - Discusses common concepts and principles of advanced GLMs, including nominal and ordinal regression, survival analysis, and longitudinal analysis. 
 
@@ -761,478 +716,420 @@ Like its predecessor, this edition presents the theoretical background of genera
 
 
 
-Using popular statistical software programs, this concise and accessible text illustrates practical approaches to estimation, model fitting, and model comparisons. It includes examples and exercises with complete data sets for nearly all the models covered.}
-}
+Using popular statistical software programs, this concise and accessible text illustrates practical approaches to estimation, model fitting, and model comparisons. It includes examples and exercises with complete data sets for nearly all the models covered.},
+	Address = {Boca Raton, FL},
+	Author = {Annette J. Dobson and Adrian G. Barnett},
+	Note = {For more information about this book please refer to the publisher's website (see link) or contact the author.},
+	Publisher = {Chapman \& Hall/CRC Press},
+	Series = {Texts in Statistical Science},
+	Title = {An Introduction to Generalized Linear Models, Third Edition},
+	Url = {http://eprints.qut.edu.au/15448/},
+	Year = {2008},
+	Bdsk-Url-1 = {http://eprints.qut.edu.au/15448/}}
 
+@inproceedings{545307,
+	Author = {B. Shneiderman},
+	Booktitle = {Visual Languages, 1996. Proceedings., IEEE Symposium on},
+	Doi = {10.1109/VL.1996.545307},
+	Issn = {1049-2615},
+	Keywords = {data visualisation;graphical user interfaces;visual programming;advanced graphical user interface design;data type taxonomy;information visualizations;multi dimensional data;network data;visual information seeking;Art;Data mining;Data visualization;Displays;Eyes;Information filtering;Information filters;Multimedia databases;Taxonomy;Visual databases},
+	Month = {Sep},
+	Pages = {336-343},
+	Title = {The eyes have it: a task by data type taxonomy for information visualizations},
+	Year = {1996},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/VL.1996.545307}}
 
-@INPROCEEDINGS{545307, 
-author={B. Shneiderman}, 
-booktitle={Visual Languages, 1996. Proceedings., IEEE Symposium on}, 
-title={The eyes have it: a task by data type taxonomy for information visualizations}, 
-year={1996}, 
-pages={336-343}, 
-keywords={data visualisation;graphical user interfaces;visual programming;advanced graphical user interface design;data type taxonomy;information visualizations;multi dimensional data;network data;visual information seeking;Art;Data mining;Data visualization;Displays;Eyes;Information filtering;Information filters;Multimedia databases;Taxonomy;Visual databases}, 
-doi={10.1109/VL.1996.545307}, 
-ISSN={1049-2615}, 
-month={Sep},}
+@article{1207445,
+	Author = {M. C. Ferreira de Oliveira and H. Levkowitz},
+	Doi = {10.1109/TVCG.2003.1207445},
+	Issn = {1077-2626},
+	Journal = {IEEE Transactions on Visualization and Computer Graphics},
+	Keywords = {data mining;interactive systems;reviews;graphical mapping;interaction techniques;table data;user comprehension;user interaction;visual data exploration;visual data mining;Cognitive science;Data mining;Data visualization;Delta modulation;Displays;Feedback;Graphical models;Helium;Terminology;Visual databases},
+	Month = {July},
+	Number = {3},
+	Pages = {378-394},
+	Title = {From visual data exploration to visual data mining: a survey},
+	Volume = {9},
+	Year = {2003},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/TVCG.2003.1207445}}
 
-@ARTICLE{1207445, 
-author={M. C. Ferreira de Oliveira and H. Levkowitz}, 
-journal={IEEE Transactions on Visualization and Computer Graphics}, 
-title={From visual data exploration to visual data mining: a survey}, 
-year={2003}, 
-volume={9}, 
-number={3}, 
-pages={378-394}, 
-keywords={data mining;interactive systems;reviews;graphical mapping;interaction techniques;table data;user comprehension;user interaction;visual data exploration;visual data mining;Cognitive science;Data mining;Data visualization;Delta modulation;Displays;Feedback;Graphical models;Helium;Terminology;Visual databases}, 
-doi={10.1109/TVCG.2003.1207445}, 
-ISSN={1077-2626}, 
-month={July},}
-
-@ARTICLE{981847, 
-author={D. A. Keim}, 
-journal={IEEE Transactions on Visualization and Computer Graphics}, 
-title={Information visualization and visual data mining}, 
-year={2002}, 
-volume={8}, 
-number={1}, 
-pages={1-8}, 
-keywords={data mining;data visualisation;data type;distortion technique;information visualization;interaction technique;visual data exploration;visual data mining;Data mining;Data visualization;Floods;Hardware;Helium;History;Humans;Machine learning;Statistics;Visual databases}, 
-doi={10.1109/2945.981847}, 
-ISSN={1077-2626}, 
-month={Jan},}
+@article{981847,
+	Author = {D. A. Keim},
+	Doi = {10.1109/2945.981847},
+	Issn = {1077-2626},
+	Journal = {IEEE Transactions on Visualization and Computer Graphics},
+	Keywords = {data mining;data visualisation;data type;distortion technique;information visualization;interaction technique;visual data exploration;visual data mining;Data mining;Data visualization;Floods;Hardware;Helium;History;Humans;Machine learning;Statistics;Visual databases},
+	Month = {Jan},
+	Number = {1},
+	Pages = {1-8},
+	Title = {Information visualization and visual data mining},
+	Volume = {8},
+	Year = {2002},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/2945.981847}}
 
 @article{Ciocchetta2009145,
+	Author = {Federica Ciocchetta and Andrea Degasperi and Jane Hillston and Muffy Calder},
+	Doi = {http://dx.doi.org/10.1016/j.entcs.2009.02.010},
+	Issn = {1571-0661},
+	Journal = {Electronic Notes in Theoretical Computer Science},
+	Keywords = {Markov chains},
+	Note = {Proceedings of the Second Workshop From Biology to Concurrency and Back (FBTC 2008)},
+	Number = {1},
+	Pages = {145 - 163},
+	Title = {Some Investigations Concerning the \{CTMC\} and the \{ODE\} Model Derived From Bio-PEPA},
+	Url = {http://www.sciencedirect.com/science/article/pii/S1571066109000152},
+	Volume = {229},
+	Year = {2009},
+	Bdsk-Url-1 = {http://www.sciencedirect.com/science/article/pii/S1571066109000152},
+	Bdsk-Url-2 = {http://dx.doi.org/10.1016/j.entcs.2009.02.010}}
 
-title = "Some Investigations Concerning the \{CTMC\} and the \{ODE\} Model Derived From Bio-PEPA ",
-
-journal = "Electronic Notes in Theoretical Computer Science ",
-
-volume = "229",
-
-number = "1",
-
-pages = "145 - 163",
-
-year = "2009",
-
-note = "Proceedings of the Second Workshop From Biology to Concurrency and Back (FBTC 2008) ",
-
-issn = "1571-0661",
-
-doi = "http://dx.doi.org/10.1016/j.entcs.2009.02.010",
-
-url = "http://www.sciencedirect.com/science/article/pii/S1571066109000152",
-
-author = "Federica Ciocchetta and Andrea Degasperi and Jane Hillston and Muffy Calder",
-
-keywords = "Systems Biology",
-
-keywords = "process algebras",
-
-keywords = "analysis",
-
-keywords = "ordinary differential equations",
-
-keywords = "Markov chains "
-
-}
-
-%MDP
 @article{DBLP:journals/corr/AlsheikhHNTL15,
-  author    = {Mohammad Abu Alsheikh and
-               Dinh Thai Hoang and
-               Dusit Niyato and
-               Hwee{-}Pink Tan and
-               Shaowei Lin},
-  title     = {Markov Decision Processes with Applications in Wireless Sensor Networks:
-               {A} Survey},
-  journal   = {CoRR},
-  volume    = {abs/1501.00644},
-  year      = {2015},
-  url       = {http://arxiv.org/abs/1501.00644},
-  timestamp = {Mon, 02 Feb 2015 14:12:25 +0100},
-  biburl    = {http://dblp.uni-trier.de/rec/bib/journals/corr/AlsheikhHNTL15},
-  bibsource = {dblp computer science bibliography, http://dblp.org}
-}
+	Author = {Mohammad Abu Alsheikh and Dinh Thai Hoang and Dusit Niyato and Hwee{-}Pink Tan and Shaowei Lin},
+	Bibsource = {dblp computer science bibliography, http://dblp.org},
+	Biburl = {http://dblp.uni-trier.de/rec/bib/journals/corr/AlsheikhHNTL15},
+	Journal = {CoRR},
+	Timestamp = {Mon, 02 Feb 2015 14:12:25 +0100},
+	Title = {Markov Decision Processes with Applications in Wireless Sensor Networks: {A} Survey},
+	Url = {http://arxiv.org/abs/1501.00644},
+	Volume = {abs/1501.00644},
+	Year = {2015},
+	Bdsk-Url-1 = {http://arxiv.org/abs/1501.00644}}
 
 @article{citeulike:13074388,
-    author = {White, D. J.},
-    citeulike-article-id = {13074388},
-    citeulike-linkout-0 = {http://dx.doi.org/10.2307/2583870},
-    citeulike-linkout-1 = {http://www.jstor.org/stable/10.2307/2583870},
-    doi = {10.2307/2583870},
-    issn = {01605682},
-    journal = {The Journal of the Operational Research Society},
-    keywords = {mdp, survey},
-    month = nov,
-    number = {11},
-    pages = {1073+},
-    posted-at = {2014-02-27 20:44:54},
-    priority = {2},
-    title = {{A Survey of Applications of Markov Decision Processes}},
-    url = {http://dx.doi.org/10.2307/2583870},
-    volume = {44},
-    year = {1993}
-}
+	Author = {White, D. J.},
+	Citeulike-Article-Id = {13074388},
+	Citeulike-Linkout-0 = {http://dx.doi.org/10.2307/2583870},
+	Citeulike-Linkout-1 = {http://www.jstor.org/stable/10.2307/2583870},
+	Doi = {10.2307/2583870},
+	Issn = {01605682},
+	Journal = {The Journal of the Operational Research Society},
+	Keywords = {mdp, survey},
+	Month = nov,
+	Number = {11},
+	Pages = {1073+},
+	Posted-At = {2014-02-27 20:44:54},
+	Priority = {2},
+	Title = {{A Survey of Applications of Markov Decision Processes}},
+	Url = {http://dx.doi.org/10.2307/2583870},
+	Volume = {44},
+	Year = {1993},
+	Bdsk-Url-1 = {http://dx.doi.org/10.2307/2583870}}
 
-% K-Means
 @article{DBLP:journals/corr/abs-1111-0352,
-  author    = {Brian Kulis and
-               Michael I. Jordan},
-  title     = {Revisiting k-means: New Algorithms via Bayesian Nonparametrics},
-  journal   = {CoRR},
-  volume    = {abs/1111.0352},
-  year      = {2011},
-  url       = {http://arxiv.org/abs/1111.0352},
-  timestamp = {Mon, 05 Dec 2011 18:04:16 +0100},
-  biburl    = {http://dblp.uni-trier.de/rec/bib/journals/corr/abs-1111-0352},
-  bibsource = {dblp computer science bibliography, http://dblp.org}
-}
+	Author = {Brian Kulis and Michael I. Jordan},
+	Bibsource = {dblp computer science bibliography, http://dblp.org},
+	Biburl = {http://dblp.uni-trier.de/rec/bib/journals/corr/abs-1111-0352},
+	Journal = {CoRR},
+	Timestamp = {Mon, 05 Dec 2011 18:04:16 +0100},
+	Title = {Revisiting k-means: New Algorithms via Bayesian Nonparametrics},
+	Url = {http://arxiv.org/abs/1111.0352},
+	Volume = {abs/1111.0352},
+	Year = {2011},
+	Bdsk-Url-1 = {http://arxiv.org/abs/1111.0352}}
 
-% Data Mining
 @book{Witten:2005:DMP:1205860,
- author = {Witten, Ian H. and Frank, Eibe},
- title = {Data Mining: Practical Machine Learning Tools and Techniques, Second Edition (Morgan Kaufmann Series in Data Management Systems)},
- year = {2005},
- isbn = {0120884070},
- publisher = {Morgan Kaufmann Publishers Inc.},
- address = {San Francisco, CA, USA},
-} 
+	Address = {San Francisco, CA, USA},
+	Author = {Witten, Ian H. and Frank, Eibe},
+	Isbn = {0120884070},
+	Publisher = {Morgan Kaufmann Publishers Inc.},
+	Title = {Data Mining: Practical Machine Learning Tools and Techniques, Second Edition (Morgan Kaufmann Series in Data Management Systems)},
+	Year = {2005}}
 
-% hierarchical clustering
 @article{Murtagh83,
-  added-at = {2007-02-27T16:22:09.000+0100},
-  author = {Murtagh, F.},
-  biburl = {http://www.bibsonomy.org/bibtex/29b0496265bbb2d49de948bbb3549d759/pierpaolo.pk81},
-  description = {WSD},
-  interhash = {147ce70ca6ef0249f615ec327566281b},
-  intrahash = {9b0496265bbb2d49de948bbb3549d759},
-  journal = {Computer Journal},
-  keywords = {imported},
-  number = 4,
-  pages = {354-359},
-  timestamp = {2007-02-27T16:22:13.000+0100},
-  title = {A survey of recent advances in hierarchical clustering algorithms},
-  volume = 26,
-  year = 1983
-}
+	Added-At = {2007-02-27T16:22:09.000+0100},
+	Author = {Murtagh, F.},
+	Biburl = {http://www.bibsonomy.org/bibtex/29b0496265bbb2d49de948bbb3549d759/pierpaolo.pk81},
+	Description = {WSD},
+	Interhash = {147ce70ca6ef0249f615ec327566281b},
+	Intrahash = {9b0496265bbb2d49de948bbb3549d759},
+	Journal = {Computer Journal},
+	Keywords = {imported},
+	Number = 4,
+	Pages = {354-359},
+	Timestamp = {2007-02-27T16:22:13.000+0100},
+	Title = {A survey of recent advances in hierarchical clustering algorithms},
+	Volume = 26,
+	Year = 1983}
 
 @book{Hartigan:1975:CA:540298,
- author = {Hartigan, John A.},
- title = {Clustering Algorithms},
- year = {1975},
- isbn = {047135645X},
- edition = {99th},
- publisher = {John Wiley \& Sons, Inc.},
- address = {New York, NY, USA},
-} 
+	Address = {New York, NY, USA},
+	Author = {Hartigan, John A.},
+	Edition = {99th},
+	Isbn = {047135645X},
+	Publisher = {John Wiley \& Sons, Inc.},
+	Title = {Clustering Algorithms},
+	Year = {1975}}
 
-% clutter reduction
-@INPROCEEDINGS{559215, 
-author={M. S. T. Carpendale and D. J. Cowperthwaite and F. D. Fracchia}, 
-booktitle={Information Visualization '96, Proceedings IEEE Symposium on}, 
-title={Distortion viewing techniques for 3-dimensional data}, 
-year={1996}, 
-pages={46-53}, 
-keywords={computer displays;data visualisation;graphical user interfaces;technical presentation;three-dimensional displays;3D information presentation;3D interaction;context views;detail;distortion viewing techniques;focus;information visualization;internal access;internal data regions;line of sight;screen layout;smooth integration;symmetric distortion function;user interface design;user interface metaphors;Computer vision;Data visualization;Humans;Psychology;Solid modeling;Tail;Three dimensional displays;Two dimensional displays}, 
-doi={10.1109/INFVIS.1996.559215}, 
-month={Oct},}
+@inproceedings{559215,
+	Author = {M. S. T. Carpendale and D. J. Cowperthwaite and F. D. Fracchia},
+	Booktitle = {Information Visualization '96, Proceedings IEEE Symposium on},
+	Doi = {10.1109/INFVIS.1996.559215},
+	Keywords = {computer displays;data visualisation;graphical user interfaces;technical presentation;three-dimensional displays;3D information presentation;3D interaction;context views;detail;distortion viewing techniques;focus;information visualization;internal access;internal data regions;line of sight;screen layout;smooth integration;symmetric distortion function;user interface design;user interface metaphors;Computer vision;Data visualization;Humans;Psychology;Solid modeling;Tail;Three dimensional displays;Two dimensional displays},
+	Month = {Oct},
+	Pages = {46-53},
+	Title = {Distortion viewing techniques for 3-dimensional data},
+	Year = {1996},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/INFVIS.1996.559215}}
 
-@INPROCEEDINGS{1382895, 
-author={Wei Peng and M. O. Ward and E. A. Rundensteiner}, 
-booktitle={Information Visualization, 2004. INFOVIS 2004. IEEE Symposium on}, 
-title={Clutter Reduction in Multi-Dimensional Data Visualization Using Dimension Reordering}, 
-year={2004}, 
-pages={89-96}, 
-keywords={clutter;computer displays;data visualisation;pattern recognition;user interfaces;very large databases;dimension reorder;display technique;information visualization;multidimensional data visualization;pattern identification;visual clutter reduction;visual structure;Chromium;Computer science;Data visualization;Displays;Gain measurement;Multidimensional systems;Pattern recognition;Polarization;Scattering;User interfaces;Multidimensional visualization;dimension order;visual clutter;visual structure}, 
-doi={10.1109/INFVIS.2004.15}, 
-ISSN={1522-404X}, 
-month={},}
+@inproceedings{1382895,
+	Author = {Wei Peng and M. O. Ward and E. A. Rundensteiner},
+	Booktitle = {Information Visualization, 2004. INFOVIS 2004. IEEE Symposium on},
+	Doi = {10.1109/INFVIS.2004.15},
+	Issn = {1522-404X},
+	Keywords = {clutter;computer displays;data visualisation;pattern recognition;user interfaces;very large databases;dimension reorder;display technique;information visualization;multidimensional data visualization;pattern identification;visual clutter reduction;visual structure;Chromium;Computer science;Data visualization;Displays;Gain measurement;Multidimensional systems;Pattern recognition;Polarization;Scattering;User interfaces;Multidimensional visualization;dimension order;visual clutter;visual structure},
+	Pages = {89-96},
+	Title = {Clutter Reduction in Multi-Dimensional Data Visualization Using Dimension Reordering},
+	Year = {2004},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/INFVIS.2004.15}}
 
-@ARTICLE{553159, 
-author={D. A. Keim and H. P. Kriegel}, 
-journal={IEEE Transactions on Knowledge and Data Engineering}, 
-title={Visualization techniques for mining large databases: a comparison}, 
-year={1996}, 
-volume={8}, 
-number={6}, 
-pages={923-938}, 
-keywords={data analysis;data visualisation;deductive databases;knowledge acquisition;program testing;very large databases;CPU time;data items representation;data properties perception;data value-pixel mapping;exploratory data analysis;large databases;multidimensional data;multidimensional multivariate data;parallel coordinate technique;perceptual abilities;predefined data characteristics;secondary storage accesses;stick-figure technique;test data set generation;testing environment;visual data mining techniques;visualization techniques;Benchmark testing;Central Processing Unit;Computer Society;Data analysis;Data mining;Data visualization;Database systems;Multidimensional systems;System testing;Visual databases}, 
-doi={10.1109/69.553159}, 
-ISSN={1041-4347}, 
-month={Dec},}
+@article{553159,
+	Author = {D. A. Keim and H. P. Kriegel},
+	Doi = {10.1109/69.553159},
+	Issn = {1041-4347},
+	Journal = {IEEE Transactions on Knowledge and Data Engineering},
+	Keywords = {data analysis;data visualisation;deductive databases;knowledge acquisition;program testing;very large databases;CPU time;data items representation;data properties perception;data value-pixel mapping;exploratory data analysis;large databases;multidimensional data;multidimensional multivariate data;parallel coordinate technique;perceptual abilities;predefined data characteristics;secondary storage accesses;stick-figure technique;test data set generation;testing environment;visual data mining techniques;visualization techniques;Benchmark testing;Central Processing Unit;Computer Society;Data analysis;Data mining;Data visualization;Database systems;Multidimensional systems;System testing;Visual databases},
+	Month = {Dec},
+	Number = {6},
+	Pages = {923-938},
+	Title = {Visualization techniques for mining large databases: a comparison},
+	Volume = {8},
+	Year = {1996},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/69.553159}}
 
-% decision tree visualization
-@INPROCEEDINGS{963292, 
-author={T. Barlow and P. Neville}, 
-booktitle={Information Visualization, 2001. INFOVIS 2001. IEEE Symposium on}, 
-title={Case study: visualization for decision tree analysis in data mining}, 
-year={2001}, 
-pages={149-152}, 
-keywords={Computer aided software engineering;Data analysis;Data mining;Data visualization;Decision trees;Industrial relations;Predictive models;Read only memory;Synthetic aperture sonar;Topology}, 
-doi={10.1109/INFVIS.2001.963292}, 
-ISSN={1522-404X}, 
-month={},}
+@inproceedings{963292,
+	Author = {T. Barlow and P. Neville},
+	Booktitle = {Information Visualization, 2001. INFOVIS 2001. IEEE Symposium on},
+	Doi = {10.1109/INFVIS.2001.963292},
+	Issn = {1522-404X},
+	Keywords = {Computer aided software engineering;Data analysis;Data mining;Data visualization;Decision trees;Industrial relations;Predictive models;Read only memory;Synthetic aperture sonar;Topology},
+	Pages = {149-152},
+	Title = {Case study: visualization for decision tree analysis in data mining},
+	Year = {2001},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/INFVIS.2001.963292}}
 
-@Inbook{Nguyen2000,
-author="Nguyen, Trong Dung
-and Ho, Tu Bao
-and Shimodaira, Hiroshi",
-editor="Terano, Takao
-and Liu, Huan
-and Chen, Arbee L. P.",
-chapter="Interactive Visualization in Mining Large Decision Trees",
-title="Knowledge Discovery and Data Mining. Current Issues and New Applications: 4th Pacific-Asia Conference, PAKDD 2000 Kyoto, Japan, April 18--20, 2000 Proceedings",
-year="2000",
-publisher="Springer Berlin Heidelberg",
-address="Berlin, Heidelberg",
-pages="345--348",
-isbn="978-3-540-45571-4",
-doi="10.1007/3-540-45571-X_40",
-url="http://dx.doi.org/10.1007/3-540-45571-X_40"
-}
+@inbook{Nguyen2000,
+	Address = {Berlin, Heidelberg},
+	Author = {Nguyen, Trong Dung and Ho, Tu Bao and Shimodaira, Hiroshi},
+	Chapter = {Interactive Visualization in Mining Large Decision Trees},
+	Doi = {10.1007/3-540-45571-X_40},
+	Editor = {Terano, Takao and Liu, Huan and Chen, Arbee L. P.},
+	Isbn = {978-3-540-45571-4},
+	Pages = {345--348},
+	Publisher = {Springer Berlin Heidelberg},
+	Title = {Knowledge Discovery and Data Mining. Current Issues and New Applications: 4th Pacific-Asia Conference, PAKDD 2000 Kyoto, Japan, April 18--20, 2000 Proceedings},
+	Url = {http://dx.doi.org/10.1007/3-540-45571-X_40},
+	Year = {2000},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1007/3-540-45571-X_40}}
 
-% dimensionality reduction
-@ARTICLE{Fortuna05visualizationof,
-    author = {Blaž Fortuna and Marko Grobelnik and Dunja Mladenić},
-    title = {Visualization of text document corpus},
-    journal = {Informatica},
-    year = {2005},
-    pages = {497--502}
-}
+@article{Fortuna05visualizationof,
+	Author = {Bla{\v z} Fortuna and Marko Grobelnik and Dunja Mladeni{\'c}},
+	Journal = {Informatica},
+	Pages = {497--502},
+	Title = {Visualization of text document corpus},
+	Year = {2005}}
 
-@ARTICLE{Vesanto99som-baseddata,
-    author = {Juha Vesanto},
-    title = {SOM-Based Data Visualization Methods},
-    journal = {Intelligent Data Analysis},
-    year = {1999},
-    volume = {3},
-    pages = {111--126}
-}
+@article{Vesanto99som-baseddata,
+	Author = {Juha Vesanto},
+	Journal = {Intelligent Data Analysis},
+	Pages = {111--126},
+	Title = {SOM-Based Data Visualization Methods},
+	Volume = {3},
+	Year = {1999}}
 
-@ARTICLE{7192673, 
-author={D. Jäckle and F. Fischer and T. Schreck and D. A. Keim}, 
-journal={IEEE Transactions on Visualization and Computer Graphics}, 
-title={Temporal MDS Plots for Analysis of Multivariate Data}, 
-year={2016}, 
-volume={22}, 
-number={1}, 
-pages={141-150}, 
-keywords={data analysis;data visualisation;time series;PCA;TMDS;computer networks;dimensionality reduction methods;financial markets;healthcare;multidimensional similarity;multivariate data analysis;multivariate data visualization;multivariate patterns;multivariate time series data;network security;plot alignment;sliding window approach;social networks;temporal MDS plots;temporal multidimensional scaling;temporal one-dimensional MDS plots;Communication networks;Correlation;Data visualization;Indexes;Layout;Security;Visualization;Data Reduction;Multidimensional Scaling;Multivariate Data;Time Series}, 
-doi={10.1109/TVCG.2015.2467553}, 
-ISSN={1077-2626}, 
-month={Jan},}
+@article{7192673,
+	Author = {D. J{\"a}ckle and F. Fischer and T. Schreck and D. A. Keim},
+	Doi = {10.1109/TVCG.2015.2467553},
+	Issn = {1077-2626},
+	Journal = {IEEE Transactions on Visualization and Computer Graphics},
+	Keywords = {data analysis;data visualisation;time series;PCA;TMDS;computer networks;dimensionality reduction methods;financial markets;healthcare;multidimensional similarity;multivariate data analysis;multivariate data visualization;multivariate patterns;multivariate time series data;network security;plot alignment;sliding window approach;social networks;temporal MDS plots;temporal multidimensional scaling;temporal one-dimensional MDS plots;Communication networks;Correlation;Data visualization;Indexes;Layout;Security;Visualization;Data Reduction;Multidimensional Scaling;Multivariate Data;Time Series},
+	Month = {Jan},
+	Number = {1},
+	Pages = {141-150},
+	Title = {Temporal MDS Plots for Analysis of Multivariate Data},
+	Volume = {22},
+	Year = {2016},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/TVCG.2015.2467553}}
 
 @inproceedings{Poco:2011:FEM:2421953.2422017,
- author = {Poco, J. and Etemadpour, R. and Paulovich, F. V. and Long, T. V. and Rosenthal, P. and Oliveira, M. C. F. and Linsen, L. and Minghim, R.},
- title = {A Framework for Exploring Multidimensional Data with 3D Projections},
- booktitle = {Proceedings of the 13th Eurographics / IEEE - VGTC Conference on Visualization},
- series = {EuroVis'11},
- year = {2011},
- location = {Bergen, Norway},
- pages = {1111--1120},
- numpages = {10},
- url = {http://dx.doi.org/10.1111/j.1467-8659.2011.01960.x},
- doi = {10.1111/j.1467-8659.2011.01960.x},
- acmid = {2422017},
- publisher = {The Eurographs Association \&\#38; John Wiley \&\#38; Sons, Ltd.},
- address = {Chichester, UK},
-} 
+	Acmid = {2422017},
+	Address = {Chichester, UK},
+	Author = {Poco, J. and Etemadpour, R. and Paulovich, F. V. and Long, T. V. and Rosenthal, P. and Oliveira, M. C. F. and Linsen, L. and Minghim, R.},
+	Booktitle = {Proceedings of the 13th Eurographics / IEEE - VGTC Conference on Visualization},
+	Doi = {10.1111/j.1467-8659.2011.01960.x},
+	Location = {Bergen, Norway},
+	Numpages = {10},
+	Pages = {1111--1120},
+	Publisher = {The Eurographs Association \&\#38; John Wiley \&\#38; Sons, Ltd.},
+	Series = {EuroVis'11},
+	Title = {A Framework for Exploring Multidimensional Data with 3D Projections},
+	Url = {http://dx.doi.org/10.1111/j.1467-8659.2011.01960.x},
+	Year = {2011},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1111/j.1467-8659.2011.01960.x}}
 
-% association rules
-@MISC{Hahsler_visualizingassociation,
-    author = {Michael Hahsler and Sudheer Chelluboina},
-    title = {Visualizing Association Rules: Introduction to the R-extension Package arulesViz},
-    year = {}
-}
+@misc{Hahsler_visualizingassociation,
+	Author = {Michael Hahsler and Sudheer Chelluboina},
+	Title = {Visualizing Association Rules: Introduction to the R-extension Package arulesViz}}
 
-% data cubes (zooming)
-@ARTICLE{1196005, 
-author={C. Stolte and D. Tang and P. Hanrahan}, 
-journal={IEEE Transactions on Visualization and Computer Graphics}, 
-title={Multiscale visualization using data cubes}, 
-year={2003}, 
-volume={9}, 
-number={2}, 
-pages={176-187}, 
-keywords={data structures;data visualisation;visual databases;data cubes;database visualization;graphic formalism;multiscale visualization;relational databases;visual abstraction;zoom graph;Data analysis;Data visualization;Filtering;Filters;Graphics;Polarization;Relational databases;Switches;Visual databases}, 
-doi={10.1109/TVCG.2003.1196005}, 
-ISSN={1077-2626}, 
-month={April},}
+@article{1196005,
+	Author = {C. Stolte and D. Tang and P. Hanrahan},
+	Doi = {10.1109/TVCG.2003.1196005},
+	Issn = {1077-2626},
+	Journal = {IEEE Transactions on Visualization and Computer Graphics},
+	Keywords = {data structures;data visualisation;visual databases;data cubes;database visualization;graphic formalism;multiscale visualization;relational databases;visual abstraction;zoom graph;Data analysis;Data visualization;Filtering;Filters;Graphics;Polarization;Relational databases;Switches;Visual databases},
+	Month = {April},
+	Number = {2},
+	Pages = {176-187},
+	Title = {Multiscale visualization using data cubes},
+	Volume = {9},
+	Year = {2003},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/TVCG.2003.1196005}}
 
-% filtering
 @inproceedings{conf/chi/AhlbergS94b,
-  added-at = {2006-02-10T00:00:00.000+0100},
-  author = {Ahlberg, Christopher and Shneiderman, Ben},
-  biburl = {http://www.bibsonomy.org/bibtex/27175c411e892bfa646dd80f10c300801/dblp},
-  booktitle = {CHI Conference Companion},
-  crossref = {conf/chi/1994c},
-  date = {2006-02-10},
-  description = {dblp},
-  editor = {Plaisant, Catherine},
-  ee = {http://doi.acm.org/10.1145/259963.260431},
-  interhash = {6978f11e3c81d7f408b5fdc4682074c6},
-  intrahash = {7175c411e892bfa646dd80f10c300801},
-  isbn = {0-89791-651-4},
-  keywords = {dblp},
-  pages = {433-434},
-  publisher = {ACM},
-  timestamp = {2006-02-10T00:00:00.000+0100},
-  title = {Visual information seeking using the FilmFinder.},
-  url = {http://dblp.uni-trier.de/db/conf/chi/chi1994c.html#AhlbergS94b},
-  year = 1994
-}
+	Added-At = {2006-02-10T00:00:00.000+0100},
+	Author = {Ahlberg, Christopher and Shneiderman, Ben},
+	Biburl = {http://www.bibsonomy.org/bibtex/27175c411e892bfa646dd80f10c300801/dblp},
+	Booktitle = {CHI Conference Companion},
+	Crossref = {conf/chi/1994c},
+	Date = {2006-02-10},
+	Description = {dblp},
+	Editor = {Plaisant, Catherine},
+	Ee = {http://doi.acm.org/10.1145/259963.260431},
+	Interhash = {6978f11e3c81d7f408b5fdc4682074c6},
+	Intrahash = {7175c411e892bfa646dd80f10c300801},
+	Isbn = {0-89791-651-4},
+	Keywords = {dblp},
+	Pages = {433-434},
+	Publisher = {ACM},
+	Timestamp = {2006-02-10T00:00:00.000+0100},
+	Title = {Visual information seeking using the FilmFinder.},
+	Url = {http://dblp.uni-trier.de/db/conf/chi/chi1994c.html#AhlbergS94b},
+	Year = 1994,
+	Bdsk-Url-1 = {http://dblp.uni-trier.de/db/conf/chi/chi1994c.html#AhlbergS94b}}
 
-@INPROCEEDINGS{809866, 
-author={Ying-Huey Fua and M. O. Ward and E. A. Rundensteiner}, 
-booktitle={Visualization '99. Proceedings}, 
-title={Hierarchical parallel coordinates for exploration of large datasets}, 
-year={1999}, 
-pages={43-508}, 
-keywords={data visualisation;information retrieval;very large databases;XmdvTool system;anomaly searching;cluster aggregation information;display technique;focus region;hierarchical clustering;hierarchical parallel coordinates;information filtering tools;information navigation tools;interactive visualization;large dataset exploration;level of detail;multi-resolution view;multivariate data sets;multivariate visualization techniques;pattern searching;scalability;Computer science;Data visualization;Displays;Electrical capacitance tomography;Filtering;Filters;Large-scale systems;Navigation;Stacking;Visual databases}, 
-doi={10.1109/VISUAL.1999.809866}, 
-ISSN={1070-2385}, 
-month={Oct},}
-
+@inproceedings{809866,
+	Author = {Ying-Huey Fua and M. O. Ward and E. A. Rundensteiner},
+	Booktitle = {Visualization '99. Proceedings},
+	Doi = {10.1109/VISUAL.1999.809866},
+	Issn = {1070-2385},
+	Keywords = {data visualisation;information retrieval;very large databases;XmdvTool system;anomaly searching;cluster aggregation information;display technique;focus region;hierarchical clustering;hierarchical parallel coordinates;information filtering tools;information navigation tools;interactive visualization;large dataset exploration;level of detail;multi-resolution view;multivariate data sets;multivariate visualization techniques;pattern searching;scalability;Computer science;Data visualization;Displays;Electrical capacitance tomography;Filtering;Filters;Large-scale systems;Navigation;Stacking;Visual databases},
+	Month = {Oct},
+	Pages = {43-508},
+	Title = {Hierarchical parallel coordinates for exploration of large datasets},
+	Year = {1999},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/VISUAL.1999.809866}}
 
 @article{Agaev2005157,
+	Author = {Rafig Agaev and Pavel Chebotarev},
+	Doi = {http://dx.doi.org/10.1016/j.laa.2004.09.003},
+	Issn = {0024-3795},
+	Journal = {Linear Algebra and its Applications},
+	Keywords = {Stochastic matrix},
+	Note = {Special Issue devoted to papers presented at the International Meeting on Matrix Analysis and Applications, Ft. Lauderdale, FL, 14-16 December 2003},
+	Pages = {157 - 168},
+	Title = {On the spectra of nonsymmetric Laplacian matrices},
+	Url = {http://www.sciencedirect.com/science/article/pii/S0024379504004094},
+	Volume = {399},
+	Year = {2005},
+	Bdsk-Url-1 = {http://www.sciencedirect.com/science/article/pii/S0024379504004094},
+	Bdsk-Url-2 = {http://dx.doi.org/10.1016/j.laa.2004.09.003}}
 
-title = "On the spectra of nonsymmetric Laplacian matrices ",
-
-journal = "Linear Algebra and its Applications ",
-
-volume = "399",
-
-number = "",
-
-pages = "157 - 168",
-
-year = "2005",
-
-note = "Special Issue devoted to papers presented at the International Meeting on Matrix Analysis and Applications, Ft. Lauderdale, FL, 14-16 December 2003 ",
-
-issn = "0024-3795",
-
-doi = "http://dx.doi.org/10.1016/j.laa.2004.09.003",
-
-url = "http://www.sciencedirect.com/science/article/pii/S0024379504004094",
-
-author = "Rafig Agaev and Pavel Chebotarev",
-
-keywords = "Laplacian matrix",
-
-keywords = "Laplacian spectrum of graph",
-
-keywords = "Weighted directed graph",
-
-keywords = "Forest dimension of digraph",
-
-keywords = "Stochastic matrix "
-
-}
-
-% relative entropy rate
 @article{EJP374,
-	author = {Jean-René Chazottes and Cristian Giardina and Frank Redig},
-	title = {Relative entropy and waiting times for continuous-time Markov processes},
-	journal = {Electron. J. Probab.},
-	fjournal = {Electronic Journal of Probability},
-	volume = {11},
-	year = {2006},
-	keywords = {continuous-time Markov chain, law of large numbers, central limittheorem, large deviations, entropy production, time-reversed process},
-	abstract = {For discrete-time stochastic processes, there is a close connection between return (resp. waiting) times and entropy (resp. relative entropy). Such a connection cannot be straightforwardly extended to the continuous-time setting. Contrarily to the discrete-time case one needs a reference measure on path space and so the natural object is relative entropy rather than entropy. In this paper we elaborate on this in the case of continuous-time Markov processes with finite state space. A reference  measure of special interest is the one associated to the time-reversed process. In that case relative entropy is interpreted as the entropy production rate. The main results of this paper are: almost-sure convergence to relative entropy of the logarithm of waiting-times ratios suitably normalized, and their fluctuation properties (central limit theorem and large deviation principle).},
-	pages = {no. 40, 1049-1068},
-	issn = {1083-6489},
-	doi = {10.1214/EJP.v11-374},    
-        url = {http://ejp.ejpecp.org/article/view/374}}
+	Abstract = {For discrete-time stochastic processes, there is a close connection between return (resp. waiting) times and entropy (resp. relative entropy). Such a connection cannot be straightforwardly extended to the continuous-time setting. Contrarily to the discrete-time case one needs a reference measure on path space and so the natural object is relative entropy rather than entropy. In this paper we elaborate on this in the case of continuous-time Markov processes with finite state space. A reference  measure of special interest is the one associated to the time-reversed process. In that case relative entropy is interpreted as the entropy production rate. The main results of this paper are: almost-sure convergence to relative entropy of the logarithm of waiting-times ratios suitably normalized, and their fluctuation properties (central limit theorem and large deviation principle).},
+	Author = {Jean-Ren{\'e} Chazottes and Cristian Giardina and Frank Redig},
+	Doi = {10.1214/EJP.v11-374},
+	Fjournal = {Electronic Journal of Probability},
+	Issn = {1083-6489},
+	Journal = {Electron. J. Probab.},
+	Keywords = {continuous-time Markov chain, law of large numbers, central limittheorem, large deviations, entropy production, time-reversed process},
+	Pages = {no. 40, 1049-1068},
+	Title = {Relative entropy and waiting times for continuous-time Markov processes},
+	Url = {http://ejp.ejpecp.org/article/view/374},
+	Volume = {11},
+	Year = {2006},
+	Bdsk-Url-1 = {http://ejp.ejpecp.org/article/view/374},
+	Bdsk-Url-2 = {http://dx.doi.org/10.1214/EJP.v11-374}}
 
-% MCMC
-@ARTICLE{1512059, 
-author={Zia Khan and T. Balch and F. Dellaert}, 
-journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
-title={MCMC-based particle filtering for tracking a variable number of interacting targets}, 
-year={2005}, 
-volume={27}, 
-number={11}, 
-pages={1805-1819}, 
-keywords={Markov processes;Monte Carlo methods;filtering theory;sampling methods;target tracking;Markov chain Monte Carlo sampling step;Markov random field motion;interacting targets;multitarget filter;particle filtering;Animals;Computer vision;Filtering;Insects;Markov random fields;Monte Carlo methods;Particle filters;Particle tracking;Sampling methods;Target tracking;Index Terms- Particle filters;Markov chain Monte Carlo.;Markov random fields;multitarget tracking;Algorithms;Animals;Artificial Intelligence;Computer Simulation;Humans;Image Enhancement;Image Interpretation, Computer-Assisted;Information Storage and Retrieval;Markov Chains;Models, Biological;Models, Statistical;Monte Carlo Method;Motion;Movement;Pattern Recognition, Automated;Subtraction Technique;Video Recording}, 
-doi={10.1109/TPAMI.2005.223}, 
-ISSN={0162-8828}, 
-month={Nov},}
+@article{1512059,
+	Author = {Zia Khan and T. Balch and F. Dellaert},
+	Doi = {10.1109/TPAMI.2005.223},
+	Issn = {0162-8828},
+	Journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+	Keywords = {Markov processes;Monte Carlo methods;filtering theory;sampling methods;target tracking;Markov chain Monte Carlo sampling step;Markov random field motion;interacting targets;multitarget filter;particle filtering;Animals;Computer vision;Filtering;Insects;Markov random fields;Monte Carlo methods;Particle filters;Particle tracking;Sampling methods;Target tracking;Index Terms- Particle filters;Markov chain Monte Carlo.;Markov random fields;multitarget tracking;Algorithms;Animals;Artificial Intelligence;Computer Simulation;Humans;Image Enhancement;Image Interpretation, Computer-Assisted;Information Storage and Retrieval;Markov Chains;Models, Biological;Models, Statistical;Monte Carlo Method;Motion;Movement;Pattern Recognition, Automated;Subtraction Technique;Video Recording},
+	Month = {Nov},
+	Number = {11},
+	Pages = {1805-1819},
+	Title = {MCMC-based particle filtering for tracking a variable number of interacting targets},
+	Volume = {27},
+	Year = {2005},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/TPAMI.2005.223}}
 
-@article {RSSD:RSSD117,
-author = {Brooks, Stephen},
-title = {Markov chain Monte Carlo method and its application},
-journal = {Journal of the Royal Statistical Society: Series D (The Statistician)},
-volume = {47},
-number = {1},
-publisher = {Blackwell Publishers Ltd},
-issn = {1467-9884},
-url = {http://dx.doi.org/10.1111/1467-9884.00117},
-doi = {10.1111/1467-9884.00117},
-pages = {69--100},
-keywords = {Bayesian statistics, Gibbs sampler, Metropolis–Hastings updating, Simulation, Software},
-year = {1998},
-}
+@article{RSSD:RSSD117,
+	Author = {Brooks, Stephen},
+	Doi = {10.1111/1467-9884.00117},
+	Issn = {1467-9884},
+	Journal = {Journal of the Royal Statistical Society: Series D (The Statistician)},
+	Keywords = {Bayesian statistics, Gibbs sampler, Metropolis--Hastings updating, Simulation, Software},
+	Number = {1},
+	Pages = {69--100},
+	Publisher = {Blackwell Publishers Ltd},
+	Title = {Markov chain Monte Carlo method and its application},
+	Url = {http://dx.doi.org/10.1111/1467-9884.00117},
+	Volume = {47},
+	Year = {1998},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1111/1467-9884.00117}}
 
 @article{10.2307/2246094,
- ISSN = {08834237},
- URL = {http://www.jstor.org/stable/2246094},
- author = {Charles J. Geyer},
- journal = {Statistical Science},
- number = {4},
- pages = {473-483},
- publisher = {Institute of Mathematical Statistics},
- title = {Practical Markov Chain Monte Carlo},
- volume = {7},
- year = {1992}
-}
+	Author = {Charles J. Geyer},
+	Issn = {08834237},
+	Journal = {Statistical Science},
+	Number = {4},
+	Pages = {473-483},
+	Publisher = {Institute of Mathematical Statistics},
+	Title = {Practical Markov Chain Monte Carlo},
+	Url = {http://www.jstor.org/stable/2246094},
+	Volume = {7},
+	Year = {1992},
+	Bdsk-Url-1 = {http://www.jstor.org/stable/2246094}}
 
 @article{HASTINGS01041970,
-author = {HASTINGS, W. K.}, 
-title = {Monte Carlo sampling methods using Markov chains and their applications},
-volume = {57}, 
-number = {1}, 
-pages = {97-109}, 
-year = {1970}, 
-doi = {10.1093/biomet/57.1.97}, 
-abstract ={SUMMARY A generalization of the sampling method introduced by Metropolis et al. (1953) is presented along with an exposition of the relevant theory, techniques of application and methods and difficulties of assessing the error in Monte Carlo estimates. Examples of the methods, including the generation of random orthogonal matrices and potential applications of the methods to numerical problems arising in statistics, are discussed.}, 
-URL = {http://biomet.oxfordjournals.org/content/57/1/97.abstract}, 
-eprint = {http://biomet.oxfordjournals.org/content/57/1/97.full.pdf+html}, 
-journal = {Biometrika} 
-}
+	Abstract = {SUMMARY A generalization of the sampling method introduced by Metropolis et al. (1953) is presented along with an exposition of the relevant theory, techniques of application and methods and difficulties of assessing the error in Monte Carlo estimates. Examples of the methods, including the generation of random orthogonal matrices and potential applications of the methods to numerical problems arising in statistics, are discussed.},
+	Author = {HASTINGS, W. K.},
+	Doi = {10.1093/biomet/57.1.97},
+	Eprint = {http://biomet.oxfordjournals.org/content/57/1/97.full.pdf+html},
+	Journal = {Biometrika},
+	Number = {1},
+	Pages = {97-109},
+	Title = {Monte Carlo sampling methods using Markov chains and their applications},
+	Url = {http://biomet.oxfordjournals.org/content/57/1/97.abstract},
+	Volume = {57},
+	Year = {1970},
+	Bdsk-Url-1 = {http://biomet.oxfordjournals.org/content/57/1/97.abstract},
+	Bdsk-Url-2 = {http://dx.doi.org/10.1093/biomet/57.1.97}}
 
-% electro motor
 @book{book:1107411,
-   title =     {DC Motors, Speed Controls, Servo Systems. An Engineering Handbook},
-   author =    {ELECTRO-CRAFT CORPORATION},
-   publisher = {Pergamon Press},
-   isbn =      {978-0-08-021714-7},
-   year =      {1972},
-   series =    {},
-   edition =   {3Rev Ed},
-   volume =    {}
-}
+	Author = {ELECTRO-CRAFT CORPORATION},
+	Edition = {3Rev Ed},
+	Isbn = {978-0-08-021714-7},
+	Publisher = {Pergamon Press},
+	Title = {DC Motors, Speed Controls, Servo Systems. An Engineering Handbook},
+	Year = {1972}}
 
-% MDS
 @book{cox2000multidimensional,
-  added-at = {2010-06-29T03:07:15.000+0200},
-  asin = {1584880945},
-  author = {Cox, Trevor F. and Cox, M.A.A.},
-  biburl = {http://www.bibsonomy.org/bibtex/29a4eb97dc9592c07e19b9c4d8828a91a/ahmedjawwad4u},
-  description = {Amazon.com: Multidimensional Scaling, Second Edition…},
-  dewey = {519.535},
-  ean = {9781584880943},
-  edition = 2,
-  interhash = {792a9c8d93f9d4ce27c1eb58d7b61304},
-  intrahash = {9a4eb97dc9592c07e19b9c4d8828a91a},
-  isbn = {1584880945},
-  keywords = {embeddings},
-  publisher = {Chapman and Hall/CRC},
-  timestamp = {2010-06-29T03:07:15.000+0200},
-  title = {Multidimensional Scaling, Second Edition},
-  url = {http://www.amazon.com/Multidimensional-Scaling-Second-Trevor-Cox/dp/1584880945},
-  year = 2000
-}
-
+	Added-At = {2010-06-29T03:07:15.000+0200},
+	Asin = {1584880945},
+	Author = {Cox, Trevor F. and Cox, M.A.A.},
+	Biburl = {http://www.bibsonomy.org/bibtex/29a4eb97dc9592c07e19b9c4d8828a91a/ahmedjawwad4u},
+	Description = {Amazon.com: Multidimensional Scaling, Second Edition{\ldots}},
+	Dewey = {519.535},
+	Ean = {9781584880943},
+	Edition = 2,
+	Interhash = {792a9c8d93f9d4ce27c1eb58d7b61304},
+	Intrahash = {9a4eb97dc9592c07e19b9c4d8828a91a},
+	Isbn = {1584880945},
+	Keywords = {embeddings},
+	Publisher = {Chapman and Hall/CRC},
+	Timestamp = {2010-06-29T03:07:15.000+0200},
+	Title = {Multidimensional Scaling, Second Edition},
+	Url = {http://www.amazon.com/Multidimensional-Scaling-Second-Trevor-Cox/dp/1584880945},
+	Year = 2000,
+	Bdsk-Url-1 = {http://www.amazon.com/Multidimensional-Scaling-Second-Trevor-Cox/dp/1584880945}}
