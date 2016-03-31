@@ -8,7 +8,7 @@ The system is used primarily to identify certain patterns in different types of 
 \subsection{Weather Data}
 \label{sec:experiments-weather}
 This is dataset represents monthly rainfall and temperature data
-collected over the course of 20 years between 1920 and 1940 in Nottingham, \primoz{England\cite{tsdl}}. 
+collected over the course of 20 years between 1920 and 1940 in Nottingham, England\cite{tsdl}. 
 The resulting model can be seen in Figure~\ref{fig:example-weather}. 
 
 \begin{figure}[h!]
@@ -19,7 +19,7 @@ The resulting model can be seen in Figure~\ref{fig:example-weather}.
 \end{figure}
 
 The model was generated using the raw rainfall and temperature data. This two dimensional dataset was first  lifted into a four dimensional space. This was done using the values of the current month and previous month as the four coordinates.
-By appending the previous sample to the current sample, effectively adding two new dimensions. This is a basic version of a time-delay \primoz{embedding~\cite{sauer1991embedology}} to obtain a better embedding of the data into Euclidean space.
+By appending the previous sample to the current sample, effectively adding two new dimensions. This is a basic version of a time-delay embedding~\cite{sauer1991embedology} to obtain a better embedding of the data into Euclidean space.
 
 First, we see the yearly cycle represented as a cycle in the graph of the Markov chain. 
 The states on the right hand side represent the 
