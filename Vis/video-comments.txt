@@ -1,17 +1,19 @@
-0:25 - for 20 years
+2a -	0:25 - for 20 years
 
-2:25 - pri histogramih, ko kazem zelene barve na povprecnih vrednostih, bi bilo treba nekaj reci (npr. tukaj so prikazane povprecne vrednosti atributov)
+aa - 2:25 - pri histogramih, ko kazem zelene barve na povprecnih vrednostih, bi bilo treba nekaj reci (npr. tukaj so prikazane povprecne vrednosti atributov)
 
--- The values below the attribute name represent the average value of the attribute in this state. Above we see histograms representing the distributions of attributes within the state. In the background for context, we also show the global distribution for each attribute
+-- The values below the attribute name represent the average value of the attribute in this state. Above we see histograms representing the distributions of attributes within the state. In the background for context, we also show the global distribution for each attribute (to lahko noter das vies )
 
-5:26 - "this corresponds to winter with HIGHER rainfall" je treba spremeniti v "this corresponds to winter with LOWER rainfall"
+14a,b 3:43 -  oct in winter posebi
 
-5:39 - zaokrozim cez transition, ki vodi nazaj v prejsnji state (tukaj je malo nerodno odrezati, ker izgubim continuous motion)
+18a 5:26 - "this corresponds to winter with HIGHER rainfall" je treba spremeniti v "this corresponds to winter with LOWER rainfall"
+
+transition539, 5:39 - zaokrozim cez transition, ki vodi nazaj v prejsnji state (tukaj je malo nerodno odrezati, ker izgubim continuous motion)
 
 lahko se rece nekaj v smislu:
 - here we observe the first season cycle (karkoli ze to pomeni) - mogoce nekaj bolj smiselnega
 
-6:18 - zgodba se konca - tukaj bi lahko rekel nekaj v smislu "We look at the last state and find that it corresponds to May"
+may - 6:18 - zgodba se konca - tukaj bi lahko rekel nekaj v smislu "We look at the last state and find that it corresponds to May"
 
 7:00 - every 15 mins -> every hour
 
