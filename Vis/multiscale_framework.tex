@@ -18,7 +18,7 @@ The four main steps are shown in Figure~\ref{fig:methodology}.
 \begin{figure*}[]
 	\centering
 	\includegraphics[width=\textwidth]{methodology-V3}
-	\caption{Overview of the proposed pipeline. (a) We first represent the multivariate time series as a point cloud, where each point in time, the values of the multiple time series are used as coordinates. Ignoring   }
+	\caption{Overview of the proposed pipeline. (a) We first represent the multivariate time series as a point cloud, where each point in time, the values of the multiple time series are used as coordinates. To illustrate, we show two noisy approximately periodic signals. (b) We extract the typical states of the system, partitioning the space. Here clustering partitions the space into intervals which correspond to the sections of the phase of the signal. (c) This partition is then translated into a Markov chain model, with each state representing a partition cell. (d) The Markov chain model is simplified by aggregating states, giving a multiscale view of the system.   }
 	\label{fig:methodology}
 \end{figure*}
 %
