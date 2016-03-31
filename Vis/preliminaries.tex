@@ -17,7 +17,7 @@ Our main modeling tool is the continuous time Markov chain (CTMC). Markov proces
 Markov chains can be used to model many phenomena of interest and have been used in many
 applications. What makes them particularly useful is that the memoryless
 property makes it feasible to predict future developments and compute probabilities and
-expected values to quantify that behavior.
+expected values to quantify that behavior.	\lstopar{prepisano}
 
 Formally, a Markov chain is a stochastic process $(X_t)_{t \ge 0}$ which can assume 
 only a finite or countable number of states $i \in I$. The starting state
@@ -48,7 +48,7 @@ distribution $\delta_i$ and is independent of $X_0, X_1, ..., X_m$.
 
 Continuous time Markov chains are a generalization of discrete time Markov chains as they
 fill the gap between the discrete time steps and can change states at any given moment.
-Continuous time Markov chains are closely related to Poisson processes. State transition can be seen as an arrival  Poisson arrival process which depends on the current state. 
+Continuous time Markov chains are closely related to Poisson processes. State transition can be seen as a Poisson arrival process which depends on the current state. 
 %
  %Imagine a labyrinth
 %of corridors and chambers and associate each chamber with a single state from the state space
@@ -76,7 +76,7 @@ $P(t)$ is represented as $P(t) = e^{tQ}$ and can be computed by solving Kolmogor
 \end{equation}
 with initial condition $P(0) = I$.
 %
-Markov chains can be defined in terms of $n^2$ independent Poisson processes
+Markov chains can be defined in terms of $n(n-1)$ independent Poisson processes
 of rates $q_{ij}$. However the definition below is much more common:%Definition~\ref{def:ctmc} is \lstopar{much more common in the literature}.
 \begin{defn}
 	\label{def:ctmc}
@@ -98,20 +98,20 @@ corresponding to the eigenvalue $0$:
 	\nonumber
 	\pi Q = 0.
 \end{equation}
-In our case, the stationary distribution is interesting because by the convergence theorem~\cite{aldous-fill-2014}.
-Each element $\pi_i$ represents the proportion of time the process spends in state $i$:
+In our case, the stationary distribution is interesting because by the convergence theorem~\cite{aldous-fill-2014}
+each element $\pi_i$ represents the proportion of time the process spends in state $i$:
 \begin{equation}
 	\nonumber
 	\lim\limits_{t \rightarrow \infty} P(X_t = j) = \pi_j, \forall j \in I.
 \end{equation}
 
 To go from our piecewise-linear (PL) input signal to a Markov chain, we consider a spatial discretization of the signal.
-We define a \emph{partition function} $g:\R^d\rightarrow I$, where $I$ is a finite, discrete set. This set then represent the states of Markov chain. If we assume our system is measurable on $\R^d$, then $g$ induces a measure on the set $I$, i.e., let $x(t)\in \R^d$ be the state of the system at time $t$. This induces a corresponding  state $a(t) = g(x(t)) \in I$. This function also defines transition probabililties between the different states. Let $a,b\in I$, then the joint distribution is
+We define a \emph{partition function} $g:\R^d\rightarrow I$, where $I$ is a finite, discrete set. This set then represents the states of Markov chain. If we assume our system is measurable on $\R^d$, then $g$ induces a measure on the set $I$, i.e., let $x(t)\in \R^d$ be the state of the system at time $t$. This induces a corresponding  state $a(t) = g(x(t)) \in I$. This function also defines transition probabililties between the different states. Let $a,b\in I$, then the joint distribution is
     $$\mathbb{P}(a(t_1),b(t_2)) = \mathbb{P}\left(x(t_1)\in g^{-1}(a), y(t_2) \in g^{-1}(b)\right), 	 \quad t_1\leq t_2$$
- In general, this is not Markovian for continuous processes\footnote{This is not Markovian, even for Brownian motion if dimension$>1$ }. The Markovian assumption we make in this step represents the fundamental information loss in our approach\footnote{We can construct arbitrarily good approximations, however the processes do not converge in the limit.}
+ In general, this is not Markovian for continuous processes\footnote{This is not Markovian, even for Brownian motion if dimension$>1$ }. The Markovian assumption we make in this step represents the fundamental information loss in our approach\footnote{We can construct arbitrarily good approximations, however the processes do not converge in the limit.}.
 Formally, this allows us to define a second map from a measure in $\R^d$ to a Markov chain. However, to avoid overcomplicating the notation, we use $g$ for both. 
 
- A map between partitions $\phi: I_1 \rightarrow I_2$, is well-defined if it maps each cell of $I_1$ to precisely one cell of $I_2$. That is, for all $x\in\R^d$, $\phi circ g_1(x) =  g_2(x)$. If this relationship holds, it follows that this induces a measurable map between $I_1$ and $I_2$. We use this map to construct a map between states of the Markov chains, which we denote $\Phi$.  We note that in our setting, $\Phi$ can be used to define a map between partitions, since there is a one-to-one correspondence between the partition cells and the states of the Markov chain.  
+ A map between partitions $\phi: I_1 \rightarrow I_2$, is well-defined if it maps each cell of $I_1$ to precisely one cell of $I_2$. That is, for all $x\in\R^d$, ${\phi\circ g_1(x) =  g_2(x)}$. If this relationship holds, it follows that this induces a measurable map between $I_1$ and $I_2$. We use this map to construct a map between states of the Markov chains, which we denote $\Phi$.  We note that in our setting, $\Phi$ can be used to define a map between partitions, since there is a one-to-one correspondence between the partition cells and the states of the Markov chain.  
 %\primoz{Last sentence, I am not 100 percent sure about. }
 % Let $S\subseteq \R^d$, be the support of our input signal. 
 

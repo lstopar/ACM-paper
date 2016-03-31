@@ -91,7 +91,7 @@ a discrete time Markov chain $(Y_n)_{n \ge 0}$ with transition matrix $\Pi$ defi
 		\right.
 \end{equation}
 
-The formal definition of a Markov chain in terms of its jump chain and holding times is given belows.
+The formal definition of a Markov chain in terms of its jump chain and holding times is given below.
 \begin{defn}
 	\label{def:jump-chain-holding-times}
 	A right-continuous process $(X_t)_{t \ge 0}$ is a continuous time Markov chain with initial
@@ -118,7 +118,7 @@ We provide an additional visualization, using a \emph{tooltip} to show the holdi
 \subsection{Aggregation}
 \label{sec:framework-aggregation}
 
-To visualize the system at multiple scales  representing
+We visualize the system at multiple scales  representing
 the data at different detail levels - from the finest to the coarsest. To build our multi-scale representation we take as input, the continuous time Markov chain we initially constructed. 
 
 %Recall from Section \ref{sec:preliminaries}, rather than constructing a single partition of our space, we can construct a hierarchical partition. With this hierarchical partition,  each scale $s$ is associated with a specific partition
@@ -176,7 +176,7 @@ $n \times m$ matrix with elements
 %		\right.
 %\end{equation}
 Thus the data needed to represent a Markov chain at a specific scale $s$ is obtained as $Q^{(s)} = \Phi_s(Q)$.
-If we define $\psi_s = \phi_s \circ \phi_s^{-1}$, then Equation \ref{eq:ctmc-state-aggregation} can be rewritten as
+If we define $\psi_s = \phi_s \circ \phi_s^{-1}$\lstopar{(you mean $\psi_s = \phi_s^{-1} \circ \phi_s$?)}, then Equation \ref{eq:ctmc-state-aggregation} can be rewritten as
 \begin{equation}
 	\label{eq:ctmc-aggregation-alternative}
 	q_{\phi_s(i)\phi_s(j)}^{(s)} = \frac{\sum_{k \in \psi_s(i)}\pi_k \sum_{l \in \psi_s(j)} q_{kl}}{\sum_{k \in \psi_s(i)}\pi_k}

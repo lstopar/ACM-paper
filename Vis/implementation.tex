@@ -1,7 +1,7 @@
 %\dunja{extend the section title to make a clear distinction form Section5: ``''Implementation Details"}
 StreamStory is implemented as a client-server application with a web-based user interface. %implemented %using the state-of-the-art technologies such as HTML5, CSS3 and JavaScript. 
-The layout is handled by Twitter Bootstrap 3,%, providing responsiveness and scalability to most modern device sizes,
- while the controller is implemented using jQuery, providing cross-browser support. We use Cytoscape.js for visualization of graphs and trees, including the main visualization panel, and D3.js for visualization of histograms. %The controller relies on technologies like Ajax and WebSockets for transparent interactive updates.
+The layout is handled by Twitter Bootstrap 3, %, providing responsiveness and scalability to most modern device sizes,
+while the controller is implemented using jQuery, providing cross-browser support. We use Cytoscape.js for visualization of graphs and trees, including the main visualization panel, and D3.js for visualization of histograms. %The controller relies on technologies like Ajax and WebSockets for transparent interactive updates.
 %
 The backend uses a hybrid implementation with its core functionality written in C++, as part of the QMiner data analytics platform \cite{qminer}. This functionality is exposed as a Node.js addon running in Googles V8 JavaScript environment. 
 %Node.js thus acts as glue and exposes the core functionality through RESTful web services using the Express framework, also acting as the session manager. User credentials and other information are stored in a MySQL database.
@@ -21,7 +21,7 @@ was randomly chosen for each dataset and was used in all the experiments. We the
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\columnwidth]{time-measurements}
-	\caption{A chart showing the dependence of model construction time to the dataset size and the number of states used in the model. From the cahrt we can see }
+	\caption{A chart showing the dependence of model construction time to the dataset size and the number of states used in the model. \lstopar{From the chart we can see a clear dependence between the construction time and the number of states for \textcolor{red}{large} datasets}.}
 	\label{fig:performance}
 \end{figure}
 We can see that although the construction time increases with the number of states, the initialization

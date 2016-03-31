@@ -58,13 +58,12 @@ data arrives into the system.
 
 The model is initially presented on a coarse scale with only a handful
 of states. Users can then explore the model by either traversing the scales using the zoom 
-function, as well as isolate and explore individual states using the ``Zoom Into'' function, \lstopar{or explore the 
-graph as a tree using the ``Show Path'' function}.
+function, as well as isolate and explore individual states using the ``Zoom Into'' function. %, \lstopar{or explore the graph as a tree using the ``Show Path'' function}.
 
 Visualizing a Markov chain as a graph may not be, in itself,  sufficiently informative. The system offers several 
 visualizations which assist users in identifying the meaning of states. These range from automatic
-state naming, state histograms, attribute highlighting and timeline histograms to decision trees
-which visualize the states' properties in a hierarchical manner and \lstopar{extracted rules}.
+state labeling, state histograms, attribute highlighting and timeline histograms to decision trees
+which visualize the states' properties in a hierarchical manner and \lstopar{human readable rules, summarizing the trees}.
 These services are shown when the user clicks on and selects a state. We describe these visualizations below.  
 
 %and each transition with an arrow on the 
@@ -94,11 +93,11 @@ The most basic exploratory tool to help a user is to plot the distribution of da
 To help users understand the  values of attributes within a state, the attributes are colored according to their typical values.  For example, a bright green
 value indicates that the attribute typically  has a higher value in this state compared to other states, while
 a bright red color suggests, this value is low compared to other states. An example of attribute 
-highlighting can be seen in Figure \ref{fig:example-naming-histogram}.
+highlighting can be seen in Figure \ref{fig:example-naming}.
 
-The color is calculated in the initialization step by first classifying all the samples assigned to this state 
+The color is calculated in the initialization step by first classifying all the samples assigned to the state 
 against samples assigned to other states using a logistic regression model. All possible features are  used in the 
-classification.% are all the dimensions of the input signal, which correspond to all possible attributes.
+classification. % are all the dimensions of the input signal, which correspond to all possible attributes. 
 The final color is determined by extracting weights from the models and associating positive weights
 with green and negative with red.
 
@@ -114,7 +113,7 @@ Abstract states are often uninformative. While the transitions between states gi
 of the dataset. Our initial user evaluations showed that first time, non-technical users had difficulty interpreting unlabeled states. % and had difficulty executing even the simplest tasks like finding
 %states with high temperature in example \ref{sec:experiments-weather}}.
 
-To help alleviate this, the system provides an automatic, data-driven, naming service. The service labels states using $<attribute,value>$ pairs based on the inner-state distribution of attributes. The attribute is selected as one of the input signals, while the displayed value is a descriptive level with values: lowest, low, mean, high and highest.
+To help alleviate this, the system provides an automatic, data-driven, labeling service. The service labels states using ${<attribute,value>}$ pairs based on the inner-state distribution of attributes. The attribute is selected as one of the input signals, while the displayed value is a descriptive level with values: lowest, low, mean, high and highest.
 
 Both the attribute and the level used in the label are computed by comparing the inner-state attribute
 distributions to the global attribute distributions. The attribute selected by the naming process is
@@ -167,18 +166,25 @@ state by classifying the observations of the state against the observations of a
 obtaining a quantitative description of the state. We then extract rules from the decision tree,
 providing a short summary of the state in the form of $A_i > t_i \cup A_j \in (t_{j_1}, t_{j_2}]$.
 
-Figure \ref{fig:example-decision-tree-and-rule} show an example decision tree and extracted rules
+Figure \ref{fig:example-decision-tree-and-rule} shows an example decision tree and extracted rule
 from a state in the weather dataset presented in section \ref{sec:experiments-weather}.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\columnwidth]{example-tree-rule}
-	\caption{Example output of a decision tree (left) and a rule (right) describing a state in the weather dataset presented in Section \ref{sec:experiments-weather}. We can see that the system describes the state as having rainfall over $59.1 mm$ and the previous month rainfall over $56.6 mm$.}
+	\caption{Example output of a decision tree (left) and a rule (right) describing the summer state in the weather dataset presented in Section \ref{sec:experiments-weather}. We can see that the system describes the state as having rainfall over $59.1 mm$ and the previous month rainfall over $56.6 mm$ \lstopar{due to the high correlation between temperature and rainfall in the dataset}.}
 	\label{fig:example-decision-tree-and-rule}
 \end{figure}
 
 \subsection{Streaming Data}
-The system is also able to visualize streaming data based on a precomputed model. Given a training set, the multiscale model is built. The system can then process the streaming data. For each new point, it determines its current state using on a nearest neighbor search to the centroids of the states. This is done at all scales, allowing the user to visualize the current state and possible next states at different levels interactively. The system allows for alarms to be set to detect when the system enters a particular state or when the probability of entering a paraticular state exceeds some threshold. The probabilities are computed based on the Markov model at the scale at which the alarm is set 
+
+The system is also able to visualize streaming data based on a precomputed model. 
+\lstopar{
+By assigning each new data point to its nearest centroid on the finest scale and traversing the scales it allows
+}
+%Given a training set, the multiscale model is built. The system can then process the streaming data.
+%For each new point, it determines its current state using on a nearest neighbor search to the centroids of the states. This is done at all scales, allowing
+the user to visualize the current state and possible next states at different levels interactively. The system allows for alarms to be set to detect when the system enters a particular state or when the probability of entering a paraticular state exceeds some threshold. The probabilities are computed based on the Markov model at the scale at which the alarm is set 
 (see Supplementary Video).
 
 \iffalse

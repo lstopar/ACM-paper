@@ -1,9 +1,11 @@
-The system is used primarily identify certain patterns in different types of multivariate time-series. In this section, we highlight several examples - the first from synthetically generated data followed by two real world datasets. Finally we describe some other examples of the use of system.  These datasets can be found on the StreamStory system (\url{http://streamstory.ijs.si}). 
+The system is used primarily to identify certain patterns in different types of multivariate time-series. In this section, we highlight several examples - the first from synthetically generated data followed by two real world datasets. Finally we describe some other examples of the use of the system.  These datasets can be found on the StreamStory website (\url{http://streamstory.ijs.si}). 
 
 \subsection{Prediction Evaluation}
 
-This first experiment is intended to test the validity of our model. The model was constructed on simulated data of 
-an electric motor and is shown in Figure \ref{fig:example-motor}. 
+This first experiment is intended to test the validity of our model. The model was constructed on simulated data of an electric motor and is shown in Figure \ref{fig:example-motor}. 
+\lstopar{
+We simulated the heating patterns of a direct current permanent magnet electric motor \cite{book:1107411} using its typical characteristic curve.
+} 
 \begin{figure*}[]
   	\centering
   	\begin{subfigure}[b]{.48\textwidth}
@@ -27,10 +29,8 @@ gained through friction equals the temperature lost to the ambient and the \lsto
 Once the power switch is toggled again, the rotation slowly halts due to friction and the process goes from right to
 left in the counter clockwise direction.
 
-To conduct the experiment we generated two dataset: a training set and a test set. Both datasets
-contained $200k$ observations. We built a StreamStory model with 20 lowest-level states on the training set using two attributes:
-angular velocity and temperature. The training dataset was then replayed through the model and the finest scale states were stored. We then used
-the stored states to calculate the transition probabilities and compared them to the models' jump chain $\Pi$. Since a lot of these probabilities were zero, we decided to use only the probabilities that
+To conduct the experiment we generated two dataset: a training set and a test set both containing $200k$ observations. We built a model with 20 finest scale states on the training set using two attributes: angular velocity and temperature. The training dataset was then replayed and the finest scale states stored. We then used
+the stored states to calculate the transition probabilities and compared them to the models' jump chain $\Pi$. Since a lot of these probabilities were zero, we only used the probabilities that
 are non-zero either in the jump chain or in the probabilities calculated from the history. We then
 computed the mean absolute error of the non-zero probabilities which resulted in $MAE=0.05$ or $5\%$.
 
@@ -43,9 +43,9 @@ the prediction accuracy as the ratio between the number of correct predictions a
 of jumps (total number of predictions). In this experiment model (a) scored $0.845$ while model
 (b) scored $0.904$.
 
-\lstopar{
-The experiment was conducted by simulating the characteristic curve (linear characteristics) of a typical direct current permanent magnet electric motor \cite{book:1107411}.
-}
+%\lstopar{
+%The experiment was conducted by simulating the characteristic curve (linear characteristics) of a typical direct current permanent magnet electric motor \cite{book:1107411}.
+%}
 
 \subsection{Weather Data}
 \label{sec:experiments-weather}
@@ -67,16 +67,16 @@ The states on the right hand side represent the
 summer states, while the states on the left represent winter states. The yearly timeline flows in the clockwise direction with the spring states residing on the bottom of the figure and the autumn
 states on the top.
 
-Interestingly, in this dataset, the rainfall and temperature are very correlated and the auto labeling feature
+Interestingly, in this dataset, the rainfall and temperature are highly correlated and the automatic labeling service
 choose high rainfall as the most significant feature of the summer states. This correlation can be seen
-from the attribute histogram shown in Figure \ref{fig:histograms-summer}.
+from the histograms in Figure \ref{fig:histograms-summer}.
 
-Using our model, we can clearly see how the summer and winter dynamics differ. While the summer states seem to be quite deterministic, with a high probability of jumping into the next state in the clockwise direction, the transition probabilities in the winter states are much more uniform, suggesting larger fluctuations in the weather during the winter.
+Using our model, we can clearly see how the summer and winter dynamics differ. While the summer states seem quite deterministic, with a high probability of jumping into the next state in the clockwise direction, the transition probabilities in the winter states are much more uniform, suggesting larger fluctuations in the weather during the winter.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\columnwidth]{histograms-summer}
-	\caption{Histograms of the signals in one of the summer states in the weather data shown in Figure \ref{fig:example-weather}. The histograms suggest a high correlation between the temperature and rainfall in the dataset.}
+	\caption{Histograms of all the attributes in one of the summer states of the weather example shown in Figure \ref{fig:example-weather}. The histograms suggest a high correlation of temperature and rainfall \lstopar{ in the dataset}.}
 	\label{fig:histograms-summer}
 \end{figure}
 
@@ -84,7 +84,7 @@ Using our model, we can clearly see how the summer and winter dynamics differ. W
 
 The second example was created using raw GPS coordinates collected using a smartphone between years 2012 and 2015.
 The data represents the everyday movement of a European computer science researcher. Figure \ref{fig:example-geo}
-shows our qualitative representation of this data on a high level with 8 states.
+shows our qualitative representation of this data on a high level with $9$ states.
 
 \begin{figure}[h!]
 	\centering
@@ -96,11 +96,11 @@ shows our qualitative representation of this data on a high level with 8 states.
 From the figure, we can see that the system was able to identify the most typical locations of this persons
 movements.
 
-They spent most of the time in the large green state representing Slovenia. On the European continent, the system was able to identify Germany, Sweden and Spain where the person frequently attends meetings as well as Italy, which represents a transition state \lstopar{airport}. The small state on the right is China, where they went for vacation in 2015. The states on the left represent the USA with the largest of the three representing New York city the person spent the 2014 summer and the smaller two states representing San Francisco and Austin, Texas.
+They spent most of the time in the large green state representing Slovenia. On the European continent, the system was able to identify Germany, Sweden and Spain where the person frequently attends meetings as well as Italy, which represents a transition state \lstopar{airport}. The small state on the right is China, where they went for vacation in 2015. The states on the left represent the USA with the largest of the three representing New York city where the person spent the 2014 summer and the smaller two states representing San Francisco and Austin, Texas.
 
 \subsection{Traffic Data}
 
-Our final example, shown in Figure \ref{fig:example-traffic-multiscale}, shows a multi-scale representation of two traffic counters positioned on a highway ring around Ljubljana, Slovenia. In this example, the data is the number of cars per hour passing each counter, sampled every $15$ minutes. \lstopar{In this example, we lifted the dataset, as suggested in Section \ref{sec:preliminaries}, into a four dimensional space by appending reading from three hours in the past to the current signal.} 
+Our final example, shown in Figure \ref{fig:example-traffic-multiscale}, shows a multi-scale representation of two traffic counters positioned on a highway ring around Ljubljana, Slovenia. In this example, the data is the number of cars per hour passing each counter, sampled every hour. \lstopar{In this example, we lifted the dataset, as suggested in Section \ref{sec:preliminaries}, into a four dimensional space by appending reading from three hours in the past to the current signal.} 
 
 \begin{figure}[h!]
   	\centering
@@ -124,16 +124,16 @@ Our final example, shown in Figure \ref{fig:example-traffic-multiscale}, shows a
 	  	\includegraphics[width=\columnwidth]{traffic-finest}
   		\caption{\label{fig:traffic-finest}}
 	\end{subfigure}
-  	\caption{A multi-scale representation of two traffic counters positioned on Ljubljana's highway ring from a coarse scale \ref{fig:traffic-coarcest} down to the finest scale \ref{fig:traffic-finest}. From our model we identified what we believe is the typical daily cycle on the ring flowing in the counter clockwise direction. On the finest scale in Figure \ref{fig:traffic-finest} one can clearly distinguish the nightly and daily dynamics with the nightly dynamics being very deterministic while there is a low of noise in the daily dynamics brought by various events.}
+  	\caption{A multi-scale representation of two traffic counters positioned on Ljubljana's highway ring from a coarse scale \ref{fig:traffic-coarcest} down to the finest scale \ref{fig:traffic-finest}. From our model we identified what we believe is the typical daily cycle on the ring flowing in the counter clockwise direction. On the finest scale in Figure \ref{fig:traffic-finest} one can clearly distinguish the nightly and daily dynamics with the nightly dynamics being very deterministic while various events introduce much noise in the day time.}
   	\label{fig:example-traffic-multiscale}
 \end{figure}
 
 On a coerce scale, with only three states, we were able to identify the typical daily cycle on the ring. The cycle starts with the leftmost state in Figure \ref{fig:traffic-coarcest} representing the night state with a low number of cars detected by both sensors lasting from approximately $9$PM to $6$AM. It then moves in the counter clockwise direction into the bottom state representing the morning. The morning state has a relatively high number of cars detected on both sensors, lasting from $7$ to approximately $9$AM. The state on the right of Figure \ref{fig:traffic-coarcest} represents the day state lasting from $10$AM to approximately $9$PM.
 
-When zooming into a finer scale, shown in Figure \ref{fig:traffic-coarcer}, the rightmost state gets split into two states. The top-left of the two new states (green) now represents noon and evening and has a moderate number of cars with an average of $907$ and $631$ cars per hour for the two counters respectively. From this state, the system goes either back into the night state or into the afternoon state on the right of Figure \ref{fig:traffic-coarcer} with the highest number of cars detected on both sensors, with an average of $1240$ and $1290$ cars per hour. This state lasts from approximately $3$PM to $6$PM when the system jumps back into the moderate day state.
+When zooming into a finer scale, shown in Figure \ref{fig:traffic-coarcer}, the rightmost state is split in two. The top-left of the two new states (green) now represents noon and evening and has a moderate number of cars, averaging $907$ and $631$ cars per hour for the two counters respectively. From this state, the system moves either back into the night state or into the afternoon state on the right of Figure \ref{fig:traffic-coarcer} with the highest number of cars detected on both sensors, with an average of $1240$ and $1290$ cars per hour. This state lasts from approximately $3$PM to $6$PM when the system jumps back into the moderate day state.
 
-When zooming even further into Figure \ref{fig:traffic-middle}, an interesting thing happens. The system detects a small state which typically occurs on Friday evening and is shown on the right of Figure \ref{fig:traffic-middle}. This is a time when most of the student leave the town and go home for the weekend and when people leave for weekend vacations.
-Finally when zooming in even further into Figure \ref{fig:traffic-finest} a new structure appears. Each state now represents a smaller time interval with the nightly states in the top left of the figure and the daily states on the bottom right. It is not surprising that the transitions in the nightly states seem a lot more deterministic than in the daily states. Indeed, at night not a lot of cars drive on the ring while during the day various events introduce noise into the system.
+When zooming even further into Figure \ref{fig:traffic-middle}, an interesting thing happens. The system detects a small state which typically occurs on Friday evening and is shown on the right of Figure \ref{fig:traffic-middle}. This is a time when most of the students leave town and go home for the weekend and when people in general leave for weekend vacations.
+Finally when zooming even further in Figure \ref{fig:traffic-finest} a new structure appears. Each state now represents a smaller time interval with the nightly states in the top left of the figure and the daily states on the bottom right. It is not surprising that the transitions in the nightly states seem a lot more deterministic than in the daily states. Indeed, at night not a lot of cars drive on the ring while during the day various events introduce noise into the system.
 
 \primoz{
 \begin{itemize}

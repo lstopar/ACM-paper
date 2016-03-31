@@ -65,6 +65,11 @@ E.-C. CORPORATION.
   Handbook}.
 \newblock Pergamon Press, 3rev ed edition, 1972.
 
+\bibitem{cox2000multidimensional}
+T.~F. Cox and M.~Cox.
+\newblock {\em Multidimensional Scaling, Second Edition}.
+\newblock Chapman and Hall/CRC, 2 edition, 2000.
+
 \bibitem{1207445}
 M.~C.~F. de~Oliveira and H.~Levkowitz.
 \newblock From visual data exploration to visual data mining: a survey.
@@ -174,8 +179,8 @@ F.~Murtagh.
 \bibitem{norris1998markov}
 J.~Norris.
 \newblock {\em Markov Chains}.
-\newblock Number {\v{s}}t. 2008 in Cambridge Series in Statistical and
-  Probabilistic Mathematics. Cambridge University Press, 1998.
+\newblock Cambridge Series in Statistical and Probabilistic Mathematics.
+  Cambridge University Press, 1998.
 
 \bibitem{pande-beauchamp-bowman:2010:methods:markov-model-review}
 V.~S. Pande, K.~Beauchamp, and G.~R. Bowman.
