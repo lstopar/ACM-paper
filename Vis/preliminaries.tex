@@ -21,7 +21,7 @@ is sampled from a probability distribution $\lambda$, called the initial distrib
 We define $p_{ij}(t)$ to be the probability of the process being in state $j$ at time $t$
 when starting from state $i$ at time $0$ and a family of stochastic matrices $\{P(t)\}_{t \ge 0}$,
 where the $(i,j)$-th element of $P_{ij}(t)$ equals $p_{ij}(t)$.
-Each row of $P(t)$ is thus a probability distribution over the state space $I$. In our work we assume $(X_t)_{t \ge 0}$ irreducible, non-explosive and has a finite number of states.
+Each row of $P(t)$ is thus a probability distribution over the state space $I$. In our work we assume $(X_t)_{t \ge 0}$ irreducible, non-explosive and has a finite number of states. \lstopar{we assume that $(X_t)_{t \ge 0}$  is irreducible ... ???}
 
 % \lstopar{
 % \begin{itemize}
@@ -43,7 +43,7 @@ distribution $\delta_i$ and is independent of $X_0, X_1, ..., X_m$.
 
 Continuous time Markov chains are a generalization of discrete time Markov chains as they
 fill the gap between the discrete time steps and can change states at any given moment.
-Continuous time Markov chains are closely related to Poisson processes. State transition can be seen as a Poisson arrival process which depends on the current state. 
+Continuous time Markov chains are closely related to Poisson processes. State transition \lstopar{transitions???} can be seen as a Poisson arrival process which depends on the current state. 
 %
  %Imagine a labyrinth
 %of corridors and chambers and associate each chamber with a single state from the state space
@@ -97,16 +97,16 @@ In our case, the stationary distribution is interesting because by the convergen
 each element $\pi_i$ represents the proportion of time the process spends in state $i$:
 \begin{equation}
 	\nonumber
-	\lim\limits_{t \rightarrow \infty} P(X_t = j) = \pi_j, \forall j \in I.
+	\lim\limits_{t \rightarrow \infty} P(X_t = i) = \pi_i, \forall i \in I.
 \end{equation}
 
 To go from our piecewise-linear (PL) input signal to a Markov chain, we consider a spatial discretization of the signal.
-We define a \emph{partition function} $g:\R^d\rightarrow I$, where $I$ is a finite, discrete set. This set then represents the states of Markov chain. If we assume our system is measurable on $\R^d$, then $g$ induces a measure on the set $I$, i.e., let $x(t)\in \R^d$ be the state of the system at time $t$. This induces a corresponding  state $a(t) = g(x(t)) \in I$. This function also defines transition probabililties between the different states. Let $a,b\in I$, then the joint distribution is
+We define a \emph{partition function} $g:\R^d\rightarrow I$, where $I$ is a finite, discrete set. This set then represents the states of the Markov chain. If we assume our system is measurable on $\R^d$, then $g$ induces a measure on the set $I$, i.e., let $x(t)\in \R^d$ be the state of the system at time $t$. This induces a corresponding  state $a(t) = g(x(t)) \in I$. This function also defines transition probabililties between the different states. Let $a,b\in I$, then the joint distribution is
     $$\mathbb{P}(a(t_1),b(t_2)) = \mathbb{P}\left(x(t_1)\in g^{-1}(a), y(t_2) \in g^{-1}(b)\right), 	 \quad t_1\leq t_2$$
  In general, this is not Markovian for continuous processes\footnote{This is not Markovian, even for Brownian motion if dimension$>1$ }. The Markovian assumption we make in this step represents the fundamental information loss in our approach\footnote{We can construct arbitrarily good approximations, however the processes do not converge in the limit.}.
 Formally, this allows us to define a second map from a measure in $\R^d$ to a Markov chain. However, to avoid overcomplicating the notation, we use $g$ for both. 
 
- A map between partitions $\phi: I_1 \rightarrow I_2$, is well-defined if it maps each cell of $I_1$ to precisely one cell of $I_2$. That is, for all $x\in\R^d$, ${\phi\circ g_1(x) =  g_2(x)}$. If this relationship holds, it follows that this induces a measurable map between $I_1$ and $I_2$. We use this map to construct a map between states of the Markov chains, which we denote $\Phi$.  We note that in our setting, $\Phi$ can be used to define a map between partitions, since there is a one-to-one correspondence between the partition cells and the states of the Markov chain.  
+ A map between partitions $\phi: I_1 \rightarrow I_2$, is well-defined if it maps each cell of $I_1$ to precisely one cell of $I_2$. That is, for all $x\in\R^d$, ${\phi\circ g_1(x) =  g_2(x)}$\lstopar{for some $g_1, g_2$}. If this relationship holds, it follows that this induces a measurable map between $I_1$ and $I_2$. We use this map to construct a map between states of the Markov chains, which we denote $\Phi$.  We note that in our setting, $\Phi$ can be used to define a map between partitions, since there is a one-to-one correspondence between the partition cells and the states of the Markov chain.  
 %\primoz{Last sentence, I am not 100 percent sure about. }
 % Let $S\subseteq \R^d$, be the support of our input signal. 
 
