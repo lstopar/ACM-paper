@@ -17,11 +17,11 @@ model must be computed for each state in the hierarchical structure. These state
 are independent and can potentially be parallelized.
 
 To measure the performance of the initialization procedure, we constructed several models on two datasets of sizes $155MB$ ($\approx 285k$ samples) and $500MB$ ($\approx 3M$ samples) respectively. A set of five attributes
-was randomly chosen for each dataset and was used in all the experiments. We then constructed models with 18, 38 and 78 states respectively and measured the initialization times, which we show in Figure \ref{fig:performance}.
+was randomly chosen for each dataset and was used in all the experiments. We then constructed models with 18, 38 and 78 states respectively and measured the initialization times, which we show in Figure~\ref{fig:performance}.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\columnwidth]{time-measurements}
-	\caption{A chart showing the dependence of model construction time to the dataset size and the number of states used in the model. \lstopar{From the chart we can see a clear dependence between the construction time and the number of states for \textcolor{red}{large} datasets}.}
+	\caption{A chart showing the dependence of model construction time to the dataset size and the number of states used in the model. For larger datasets, the construction time increases much faster for more initial states. This allows us to adapt computation time by creating a coarser or finer initial clustering depending on the data set size.} %\lstopar{From the chart we can see a clear dependence between the construction time and the number of states for \textcolor{red}{large} datasets}.}
 	\label{fig:performance}
 \end{figure}
 We can see that although the construction time increases with the number of states, the initialization

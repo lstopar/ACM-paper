@@ -12,9 +12,9 @@ From this point on we  assume that the image of $f$ defines a compact subset of 
 % It takes a time series and lifts it to $d$ dimensions by considering samples spaced at $\tau$ intervals. There is considerable amount of work on how to choose $\tau$, but in our case we often (a) have sufficiently many signals (b) almost any value of $\tau$ works. 
 
 
-Our main modeling tool is the continuous time Markov chain (CTMC). Markov processes are a special kind of stochastic processes with the characteristic of having no memory. This means that only its current state can influence where it goes next \cite{norris1998markov}. In this work we focus on a special kind of Markov processes called Markov chains that assume only a finite or countable number of states.
+Our main modeling tool is the continuous time Markov chain (CTMC). Markov processes are a special kind of stochastic processes with the characteristic of having no memory. This means that only its current state can influence where it goes next \cite{norris1998markov}. In this work, we focus on Markov chains, which are Markov processes with a finite or countable number of states.
 
-\lstopar{Markov chains can be used to model many phenomena of interest and have been used in many applications. What makes them particularly useful is that the memoryless property makes it feasible to predict future developments and compute probabilities and expected values to quantify that behavior.}
+Markov chains are ubiquitous in modeling over a wide range of phenomena and applications. What makes them particularly useful is that the memoryless property makes it computationally efficient to compute probabilities and expected values of future events.
 
 Formally, a Markov chain is a stochastic process $(X_t)_{t \ge 0}$ which can assume 
 only a finite or countable number of states $i \in I$. The starting state
