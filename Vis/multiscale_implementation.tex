@@ -1,4 +1,4 @@
-Here we present the specific choices we chose to incorporate into our system.  
+Here we present our specific choices incorporated into our system.  
 %This section presents the implementation of our three step methodology presented in Section \ref{sec:multiscale-framework}.
 %We start by describing the methods behind the initial state construction in Section \ref{sec:state-construction-impl}
 %and then continue to present implementation details of steps two and three in sections \ref{sec:transition-probs-impl}
@@ -13,7 +13,7 @@ The first step in the pipeline is the construction of the partition of the space
 There are many partitioning/clustering algorithms in the literature, including many that produce a hierarchical partition. % Most depend on a distance matrix between the data points, leading to a computational complexity of $O(n^2)$, rendering 
  %them unsuitable for large datasets.
 %Many of these algorithms construct a hierarchy which has $n$ levels,  
-We opt to first construct a partition and then the hierarchy. This is a design choice which decouples the choice of partition construction and the choice of aggregation strategy.  For larger datasets, this is also more computationally efficient, since after the initial partition is constructed, the complexity of constructing a partition is determined by the number of states in this partition rather than the number of data points.  	
+We opt to first construct a partition and then the hierarchy. This is a design choice which decouples the partition construction and the choice of aggregation strategy.  For larger datasets, this is also more computationally efficient, since after the initial partition is constructed, the complexity of constructing a partition is determined by the number of states in this partition rather than the number of data points.  	
 %To avoid , we first create a flat partition of the data space and later aggregate these
 %partitions to obtain a hierarchical structure.
 
@@ -44,7 +44,7 @@ initial construction time, meaning for large datasets we may want to limit the n
 
 Once the partition is computed, the new transition probabilities are computed using Equation~\ref{eq:transitions}.
 %
-The system enables users to select a subset of attributes which are used to model the transition rates. Since the
+The user may also model the transition rates based on a selected subset of attributes rather than all of them. Since the
 jump process in a Markov chain from state $i$ to state $j$ can be characterized as a Poisson process, we can model its
 transition rate $q_{ij}$ as a function of these attributes $q_{ij} = q_{ij}(x)$. We do this by discretizing the continuous time parameter into a discrete sequence $(0, \epsilon, 2\epsilon, ...)$ and
 estimate the transition rates as
