@@ -8,7 +8,7 @@ The system is used primarily to identify certain patterns in different types of 
 \subsection{Weather Data}
 \label{sec:experiments-weather}
 This is dataset represents monthly rainfall and temperature data
-collected over the course of 20 years between 1920 and 1940 in Nottingham, England\cite{}. 
+collected over the course of 20 years between 1920 and 1940 in Nottingham, \primoz{England\cite{}}. 
 The resulting model can be seen in Figure~\ref{fig:example-weather}. 
 
 \begin{figure}[h!]
@@ -19,7 +19,7 @@ The resulting model can be seen in Figure~\ref{fig:example-weather}.
 \end{figure}
 
 The model was generated using the raw rainfall and temperature data. This two dimensional dataset was first  lifted into a four dimensional space. This was done using the values of the current month and previous month as the four coordinates.
-By appending the previous sample to the current sample, effectively adding two new dimensions. This is a basic version of a time-delay embedding~\cite{} to obtain a better embedding of the data into Euclidean space.
+By appending the previous sample to the current sample, effectively adding two new dimensions. This is a basic version of a time-delay \primoz{embedding~\cite{}} to obtain a better embedding of the data into Euclidean space.
 
 First, we see the yearly cycle represented as a cycle in the graph of the Markov chain. 
 The states on the right hand side represent the 
@@ -27,7 +27,7 @@ summer states, while the states on the left represent winter states. The yearly 
 states on the top.
 
 Interestingly, in this dataset, the rainfall and temperature are highly correlated and the automatic labeling service
-choose high rainfall as the most significant feature of the summer states. This correlation can be seen
+chose high rainfall as the most significant feature of the summer states. This correlation can be seen
 from the histograms in Figure \ref{fig:histograms-summer}.
 
 Using our model, we can clearly see how the summer and winter dynamics differ. While the summer states seem quite deterministic, with a high probability of jumping into the next state in the clockwise direction, the transition probabilities in the winter states are much more uniform, suggesting larger fluctuations in the weather during the winter.
@@ -111,7 +111,7 @@ When zooming into a finer scale, shown in Figure \ref{fig:traffic-coarcer}, the 
 
 When zooming even further into Figure \ref{fig:traffic-middle}, interestingly, the system detects a small state which typically occurs on Friday evening and is shown on the right of Figure~\ref{fig:traffic-middle}. This is the time when most of the students leave the city and go home for the weekend and when people in general leave for weekend trips.
 
-Zooming even further in Figure~\ref{fig:traffic-finest}, each state now represents a small time interval with the nighttime states in the top left of the figure and the daytime states on the bottom right. We can clearly see the more deterministic transitions in the nighttime states  and the larger variation in the daytime states, sue to significantly higher traffic during the day.
+Zooming even further in Figure~\ref{fig:traffic-finest}, each state now represents a small time interval with the nighttime states in the top left of the figure and the daytime states on the bottom right. We can clearly see the more deterministic transitions in the nighttime states  and the larger variation in the daytime states, due to significantly higher traffic during the day.
 %It is not surprising that the transitions in the nightly states seem a lot more deterministic than in the daily states. Indeed, at night not a lot of cars drive on the ring while during the day various events introduce noise into the system.
 
 % \primoz{
