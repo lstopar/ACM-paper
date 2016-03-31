@@ -87,12 +87,7 @@ Our final real-world example, shown in Figure \ref{fig:example-traffic-multiscal
   	\label{fig:example-traffic-multiscale}
 \end{figure}
 
-On a coarse scale with only three states, we were able to identify the typical daily cycle on the ring. The cycle starts with the leftmost state in Figure~\ref{fig:traffic-coarcest} representing the night state with a low number of cars detected by both sensors lasting from approximately $9$PM to $6$AM. It then moves in the counter clockwise direction into the bottom state representing the morning. The morning state has a relatively high number of cars detected on both sensors, lasting from $7$ to approximately $9$AM. The state on the right of Figure~\ref{fig:traffic-coarcest} represents the day state lasting from $10$AM to approximately $9$PM.
-
-When zooming into a finer scale, shown in Figure \ref{fig:traffic-coarcer}, the rightmost state is split in two. The top-left of the two new states (green) now represents noon and evening and has a moderate number of cars, averaging $907$ and $631$ cars per hour for the two counters respectively. From this state, the system moves either back into the night state or into the afternoon state on the right of Figure \ref{fig:traffic-coarcer} with the highest number of cars detected on both sensors, with an average of $1240$ and $1290$ cars per hour. This state lasts from approximately $3$PM to $6$PM when the system jumps back into the moderate day state.
-
-
-\begin{figure*}[h!]
+\begin{figure*}[th!]
   	\centering
   	\begin{subfigure}[b]{.48\textwidth}
 	  	\centering
@@ -107,6 +102,12 @@ When zooming into a finer scale, shown in Figure \ref{fig:traffic-coarcer}, the 
   	\caption{Simulation of an electric motor plotted as a standard time-chart \ref{fig:simulation-chart} and our qualitative model \ref{fig:simulation-model}.}
   	\label{fig:example-motor}
 \end{figure*}
+
+On a coarse scale with only three states, we were able to identify the typical daily cycle on the ring. The cycle starts with the leftmost state in Figure~\ref{fig:traffic-coarcest} representing the night state with a low number of cars detected by both sensors lasting from approximately $9$PM to $6$AM. It then moves in the counter clockwise direction into the bottom state representing the morning. The morning state has a relatively high number of cars detected on both sensors, lasting from $7$ to approximately $9$AM. The state on the right of Figure~\ref{fig:traffic-coarcest} represents the day state lasting from $10$AM to approximately $9$PM.
+
+When zooming into a finer scale, shown in Figure \ref{fig:traffic-coarcer}, the rightmost state is split in two. The top-left of the two new states (green) now represents noon and evening and has a moderate number of cars, averaging $907$ and $631$ cars per hour for the two counters respectively. From this state, the system moves either back into the night state or into the afternoon state on the right of Figure \ref{fig:traffic-coarcer} with the highest number of cars detected on both sensors, with an average of $1240$ and $1290$ cars per hour. This state lasts from approximately $3$PM to $6$PM when the system jumps back into the moderate day state.
+
+
 
 When zooming even further into Figure \ref{fig:traffic-middle}, interestingly, the system detects a small state which typically occurs on Friday evening and is shown on the right of Figure~\ref{fig:traffic-middle}. This is the time when most of the students leave the city and go home for the weekend and when people in general leave for weekend trips.
 
