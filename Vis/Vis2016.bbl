@@ -131,6 +131,10 @@ J.~P. Huelsenbeck, F.~Ronquist, R.~Nielsen, and J.~P. Bollback.
   biology.
 \newblock {\em Science}, 294(5550):2310--2314, 2001.
 
+\bibitem{tsdl}
+R.~Hyndman.
+\newblock Time series data library.
+
 \bibitem{729555}
 C.-S. Jeong and A.~Pang.
 \newblock Reconfigurable disc trees for visualizing large hierarchical
@@ -194,6 +198,11 @@ W.~Peng, M.~O. Ward, and E.~A. Rundensteiner.
   dimension reordering.
 \newblock In {\em Information Visualization, 2004. INFOVIS 2004. IEEE Symposium
   on}, pages 89--96, 2004.
+
+\bibitem{sauer1991embedology}
+T.~Sauer, J.~A. Yorke, and M.~Casdagli.
+\newblock Embedology.
+\newblock {\em Journal of statistical Physics}, 65(3-4):579--616, 1991.
 
 \bibitem{Shannon:1948}
 C.~E. Shannon.
