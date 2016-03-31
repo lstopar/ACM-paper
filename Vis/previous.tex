@@ -1,6 +1,6 @@
 
-Visualization of large multivariate time series is an understudied area. In areas such as production and manufacturing lines, the common practice is to plot multiple signals in either the same window or in parallel windows. This makes interpretation difficult and does not scale \primoz{particularly }well to signals with a large number of variates or high sampling rates. %In the latter case, the appropriate time scale must be chosen a priori to enable a user to monitor the   
-This clutters the visualization and hinders data analysis. Further, as the number of observations increases, \primoz{implementing tools fast response times} becomes difficult, preventing interactive exploration.
+Visualization of large multivariate time series is an understudied area. In areas such as production and manufacturing lines, the common practice is to plot multiple signals in either the same window or in parallel windows. This makes interpretation difficult and does not scale well to signals with a large number of variates or high sampling rates. %In the latter case, the appropriate time scale must be chosen a priori to enable a user to monitor the   
+This clutters the visualization and hinders data analysis. Further, as the number of observations increases, implementing tools with fast response times becomes difficult, preventing interactive exploration.
 
 There is a large body of work to address this scalability problem.
 They can generally be classified into two groups: data abstraction and clutter reduction 
@@ -54,9 +54,9 @@ visualization of the extracted knowledge, discussing the question of how to sele
 technique.
 %
 Likewise, Keim \cite{981847} provides a classification of information visualization techniques used in data mining, which is based on
-the data type, \primoz{visualization technique and interaction and distortion technique}.
+the data type, visualization technique, and distortion technique.
 
-To address the temporal aspect of our data, we base our models on  Markov chains. Markov chains are \primoz{a }memoryless stochastic process\lstopar{es} and only consist of a countable number of states. These two properties make them useful for many applications as they allow the computation of predictions as
+To address the temporal aspect of our data, we base our models on  Markov chains. Markov chains are memoryless stochastic processes that only consist of a countable number of states. These two properties make them useful for many applications as they allow the computation of predictions as
 well as quantifying their behavior by calculating probabilities and expected values. Markov chains are widely used for modelling systems dating back to Andrey Markov himself~\cite{markov13} in 1913. Since then
 Markov chains have had many applications such as Shannon's application to information theory \cite{Shannon:1948},
 Baum's Hidden Markov Models (HMM) \cite{baum1970} and the application to web search by Sergey Brin and Larry Page \cite{Lawrence981}. 

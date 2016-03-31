@@ -1,7 +1,7 @@
 \label{sec:preliminaries}
 Our framework is aimed at visualizing multivariate time-series. Here, we introduce the tools required in our framework. We assume as input we are given samples of $d$ signals, which we interpret as one multi-dimensional signal:
 $$f: x(t)\mapsto \R^d$$
-For simplicity, we assume that the signals are continuous and real-valued as well as uniformly sampled. This means that all signals are sampled simultaneously \primoz{and }at constant intervals. These assumptions can be relaxed in practice, with a preprocessing resampling step.  Each sample then consists of a vector of samples from all input signals at time $t$. 
+For simplicity, we assume that the signals are continuous and real-valued as well as uniformly sampled. This means that all signals are sampled simultaneously and at constant intervals. These assumptions can be relaxed in practice, with a preprocessing resampling step.  Each sample then consists of a vector of samples from all input signals at time $t$. 
 From this point on we  assume that the image of $f$ defines a compact subset of Euclidean space. For our input, we assume a PL-reconstruction based on time-adjacent samples. 
 % MOVE TO DISCUSSION: If our system is intrinsically $d$-dimnesional, then by Whitney's embedding theorem\cite{}, if we have $2d+1$ independent signals, we should be able to reconstruct the system.
 
@@ -11,10 +11,7 @@ From this point on we  assume that the image of $f$ defines a compact subset of 
 % $$ f(x(t),d,\tau) = (x(t),x(t+\tau),\ldots,x(t+(d-1)\tau) )$$
 % It takes a time series and lifts it to $d$ dimensions by considering samples spaced at $\tau$ intervals. There is considerable amount of work on how to choose $\tau$, but in our case we often (a) have sufficiently many signals (b) almost any value of $\tau$ works. 
 
-
-\primoz{Our main modeling tool is the continuous time Markov chain (CTMC). Markov processes are a special kind of stochastic processes with the characteristic of having no memory. This means that only its current state can influence where it goes next \cite{norris1998markov}. In this work, we focus on Markov chains, which are Markov processes with a finite or countable number of states.}
-
-\lstopar{Our main modeling tool is the continuous time Markov chain (CTMC). Markov chains are a special kind of Markov processes with a finite or countable number of states. The main characteristic of a Markov process is that it has no memory. This means that only its current state can influence where it goes next \cite{norris1998markov}.}
+Our main modeling tool is the continuous time Markov chain (CTMC). Markov chains are Markov processes with a finite or countable number of states. The main characteristic of a Markov process is that it has no memory, which means that only its current state influences where it goes next \cite{norris1998markov}.
 
 Markov chains are ubiquitous in modeling over a wide range of phenomena and applications. What makes them particularly useful is that the memoryless property makes it computationally efficient to compute probabilities and expected values of future events.
 
@@ -24,9 +21,7 @@ is sampled from a probability distribution $\lambda$, called the initial distrib
 We define $p_{ij}(t)$ to be the probability of the process being in state $j$ at time $t$
 when starting from state $i$ at time $0$ and a family of stochastic matrices $\{P(t)\}_{t \ge 0}$,
 where the $(i,j)$-th element of $P_{ij}(t)$ equals $p_{ij}(t)$.
-Each row of $P(t)$ is thus a probability distribution over the state space $I$.\primoz{ In our
-work we assume that $P(t)$ is finite, recurrent, and non-explosive for every $t$.} %M, and that the process is non-explosive.
-\lstopar{In our work we assume $(X_t)_{t \ge 0}$ irreducible, non-explosive and has a finite number of states.}
+Each row of $P(t)$ is thus a probability distribution over the state space $I$. In our work we assume $(X_t)_{t \ge 0}$ irreducible, non-explosive and has a finite number of states.
 
 % \lstopar{
 % \begin{itemize}
