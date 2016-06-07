@@ -1,0 +1,67 @@
+==================================
+USE CASES:
+1.1) use cases are not clear
+- who are the users, what is their domain - explain the domain need, situation, problem and why the system is useful. For which criteria? - Figure this out and design an experiment!
+- what are their tasks, problems and needs
+1.2) Why is the visualization of multivariate time series challenging? What are the real problems within the given examples
+1.3) How much knowledge and expertise would be necessary to gain benefit from the system as it is currently presented?
+
+==================================
+EVALUATION
+2.1) system assessment is weak
+2.2) No clear empirical study
+2.3) On page 2 what does "Intuitively" mean? There is no study to assess the intuitiveness of the system.
+2.4) Evaluation is too high level and subjective.
+2.5) needs a more quantitative way to evaluate the model
+- for example comparing its accuracy with a baseline Markov model
+2.6) not feedback from domain experts
+
+==================================
+WRITING
+3.1) the writing should be improved
+- not convinced by the story of the paper
+3.2) has too much math for a reader from a visualization community (might be more suitable for a machine learning conference)
+3.3) lack of discussion of the multivariate part
+- I have not seen any discussion of how the system supports multivariate visualization and how many variables it could support
+3.4) the writing of some parts is not structured - especially the motivation part and the related work part
+3.5) lack of critical comments based on existing works, why do we need the 6-th paragraph (vis in data mining)
+3.6) Change the title of section 9 from "Discussion" to "Conclusion and Future Work"
+3.7) There are several mistakes and redundant information in the reference lists, such as [1], [5], [7], [9], [14], [28], etc.
+3.8) Some English errors:
+   p.1. This is the main three panel user interface of the system. (?)
+   p.1. …enables us to interpret various patters (?) in the data.
+   p.2. Overall, this system gives the user (users) a hierarchical view of
+   the dynamics as well as allow (allows) for analysis of the system.
+   p.4. This parameter also effects (affacts) the initial construction time,
+   meaning for large datasets we may want to limit the number of states.
+3.9) The paper falls somewhere between a technique (using interactive hierarchical Markov models for exploring multivariate timeseries) and a system which implements that technique along with a low of supporting interactinos
+3.10) A little too much time spent on on the theoretical underpinnings of the framework and too little detail on the effectiveness
+- how appropriate were the generated labels
+- how the decision tree and rule extraction integrated wtih the generated models
+- how well users could navigate the model to arrive at insights
+3.11)
+If this is a technique paper:
+- How does this technique compare to other (related) techniques?
+If it is a system paper
+- should be evaluated in real practice and to see which aspects were effective and which not
+
+==================================
+COMMUNITY
+4.1) The system seems to be more focused on generating (and visualizing) a Markov model at different scales than visualizing the data
+4.2) The paper should be sent to a different community.
+4.3) The paper needs a significant restructure on the system's visualization functions to be of intereset to InfoVis
+4.4) The paper reads a bit dry to a visualization audience.
+
+==================================
+CONTRIBUTIONS
+5.1) Should revise the types of contributions we are providing.
+- Is it a visualization tool? Machine learning algorithm? If it's a visualization tool, what does it visualize?
+5.2) The visualization does not seem very novel, it is a combination of existing techniques.
+
+==================================
+IDEAS
+6.1) The model itself could be a contribution.
+6.2) Mainly used for exploring the dataset. Like to see more discussion on the feedback from the visualization to hte backend model. For example when the users sees a state with no meaning, they might want to modify the states, which can be a prior condition for rebuilding the model - the machine and the user come up with a better solution.
+
+PITFALLS WHEN WRITING A VIS PAPER:
+https://www.cs.ubc.ca/labs/imager/tr/2008/pitfalls/pitfalls.pdf
