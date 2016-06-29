@@ -21,7 +21,7 @@ WRITING
 3.1) the writing should be improved
 - not convinced by the story of the paper
 3.2) has too much math for a reader from a visualization community (might be more suitable for a machine learning conference)
-3.4) the writing of some parts is not structured - especially the motivation part and the related work part
+
 
 3.9) The paper falls somewhere between a technique (using interactive hierarchical Markov models for exploring multivariate timeseries) and a system which implements that technique along with a lot of supporting interactinos
 3.10) A little too much time spent on on the theoretical underpinnings of the framework and too little detail on the effectiveness
