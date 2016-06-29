@@ -6,7 +6,7 @@ There is a large body of work to address this scalability problem.
 They can generally be classified into two groups: data abstraction and clutter reduction 
 techniques. Techniques for data abstraction include filtering \cite{conf/chi/AhlbergS94b}, clustering
 and sampling \cite{553159}. Clutter reduction assigns more space to interesting data and tries to hide less interesting data.
-The most common techniques for clutter reduction include zooming and distortion \cite{559215,1382895,1196005}.
+The most common techniques for clutter reduction include zooming and distortion \error{problematic citation [7] (cite\{559215\})} \cite{559215,1382895,1196005}.
 %
 %
 
@@ -57,12 +57,12 @@ Likewise, Keim \cite{981847} provides a classification of information visualizat
 the data type, visualization technique, and distortion technique.
 
 To address the temporal aspect of our data, we base our models on  Markov chains. Markov chains are memoryless stochastic processes that only consist of a countable number of states. These two properties make them useful for many applications as they allow the computation of predictions as
-well as quantifying their behavior by calculating probabilities and expected values. Markov chains are widely used for modelling systems dating back to Andrey Markov himself~\cite{markov13} in 1913. Since then
+well as quantifying their behavior by calculating probabilities and expected values. Markov chains are widely used for modelling systems dating back to Andrey Markov \error{himself~\cite{markov13}} in 1913. Since then
 Markov chains have had many applications such as Shannon's application to information theory \cite{Shannon:1948},
-Baum's Hidden Markov Models (HMM) \cite{baum1970} and the application to web search by Sergey Brin and Larry Page \cite{Lawrence981}. 
+Baum's Hidden Markov Models \error{(HMM) \cite{baum1970}} and the application to web search by Sergey Brin and Larry Page \cite{Lawrence981}. 
 %
 There are countless other applications including the simulation of protein folding \cite{pande-beauchamp-bowman:2010:methods:markov-model-review},
-analysis of biochemical networks \cite{Ciocchetta2009145},
+analysis of biochemical \error{networks \cite{Ciocchetta2009145}},
 genetics \cite{Huelsenbeck2310}, and 
 sensor networks \cite{DBLP:journals/corr/AlsheikhHNTL15}.%, agriculture, queuing theory, etc.
 
@@ -77,122 +77,29 @@ There has also been a large body on work on approximating Markov chains for Mont
 %10.2307/2246094,1512059}. 
 In this case, however, the emphasis is on reducing the mixing time to ensure fast convergence. In our case, we want to preserve as much of the dynamics as possible.
 
-\subsubsection{\lstopar{Clustering-Based Visualization}}
+\subsubsection{Clustering-Based Visualization}
 
-\lstopar{
+\lstopar{Visualization of clusters provides a convenient method for identifying and presenting dissimilarities in the data.}
 
-Visualization of clusters provides a convenient method for identifying and presenting dissimilarities in the data.
+\lstopar{- PRoblem with techniques: most of them discard temporal information when visualizing time series data.}
+\\*\\*
+\lstopar{Visualization of multivariate data refers to the visualization of datasets consisting of more than three variables. When dealing with such datasets, the \textit{course of dimension} becomes a troublesome issue in information visualization as most common plots only accommodate up to three dimensions adequately and the effectiveness of other visual elements, such as shape, color, etc. deteriorates as the number of dimensions increases. The techniques developed specifically for visualizing such data include \textbf{projection techniques}, such as scatter plots and trellis displays, which project data onto a lower-dimensional space before visualization. Similar techniques include parallel coordinates, representing each variable by a vertical axis and each data point by a horizontal polyline. These techniques however become cluttered as the dataset increases in size.}
 
-- PRoblem with techniques: most of them discard temporal information when visualizing time series data.
+\lstopar{Other techniques include \textbf{icon based techniques}, visualizing data values as features of icons or glyphs. Some of these include \textit{Chernoff faces}, \textit{stick figures}, \textit{star plots} and \textit{color icons}, these also get cluttered when used to visualize large datasets.}
 
-}
+\lstopar{\textbf{Pixel based techniques} alleviate this issue by mapping each data point to a pixel on the screen and representing values using color. These techniques include \textit{space filling curves}, \lstopar{recursive patterns}, \textit{spiral techniques} and the \textit{circle segment} technique. While being able to visualize larger volumes of data, pixel based techniques fail to reveal quantitative relationships between the dimensions.}
+
+\lstopar{\textbf{Hierarchical techniques} subdivide the data space into lower-dimensional spaces, presenting them in a hierarchical fashion. These include \textit{Cone Trees}, \textit{Treemap}, \textit{Dimensional stacking}, etc., which fail to handle large datasets and are difficult for interpretation. Moreover, they discard any temporal information present in the dataset.}
+
 
 \begin{itemize}
 	\item \lstopar{Pylvanen et. al. \cite{Pylvanen:2009:VTS:1813739.1813808} present a method, and visualization tool, for visualizing operational states in temporal data including the overall order of transitions. Their tool allows to find causes for abnormal behavior. To identify operational states, the authors cluster the data, applying k-means and associating operational states with the resulting clusters. They count the transitions between states. However when observing data on coarser (or finer) scales, their approach requires users to rebuild the model from scratch, resulting in perhaps a different structure of the model.}
 \end{itemize}
 
+\subsubsection{Multivariate Visualization}
 
-\begin{comment}
-Large multivariate datasets have become common in many applications, including production lines,
-monitoring systems, bioinformatics and social sciences. As the number of observations increases,
-existing tools become cluttered and unresponsive. This clutter saturates visualization and hinders
-data analysts as large response times make interactive exploration difficult.
+\begin{itemize}
+	\item \lstopar{[TODO to je patent] Stolze and Mueller \cite{stolze2005visualizing} visualize multivariate data by mapping data dimensions to properties of glyphs and visualizing them on a plane. For instance, dimensions can be mapped to the \textit{x} and \textit{y}, size and brightness of the glyph. Their method is however only suitable for visualizing small datasets or pre-filtered events as the display gets cluttered when displaying large datasets.}
+\end{itemize}
 
-Many techniques have been proposed in the literature that address this scalability problem.
-They can generally be classified into two groups: data abstraction and clutter reduction 
-techniques.
-
-Techniques for data abstraction include filtering [TODO cite], clustering
-and sampling [TODO cite].
-
-Clutter reduction assigns more space to interesting data and tries to hide less interesting data.
-The most common techniques for clutter reduction include zooming and distortion.
-
-This section starts by providing the state-of-the-art in clustering and Markov chain research and
-then continues with an overview of existing visualization techniques.
-
-
-
-\subsection{General Visualization Techniques}
-
-
-Shneiderman \cite{545307} proposes a task-by-data-type taxonomy of information visualizations of multi-dimensional
-data types as well as structured data which provides researchers and developers with a guideline for
-the design and implementation of visualization systems. His work highlights the importance of data
-abstraction operations such as summarization, filtering, zooming and extraction.
-
-Jeong and Pang \cite{729555} present a technique called reconfigurable disc trees for visualizing large 
-hierarchical data sets. The data is presented as a tree which can be laid out in two or three dimensions.
-Their visualization is based on discs around which the children of each node are placed and eliminates
-visual overlaps among subtrees.
-
-Johnson and Shneiderman \cite{Johnson:1991:TSA:949607.949654} present another technique for visualizing hierarchical
-information called TreeMaps. TreeMaps recursively partition the display into rectangular bounding boxes representing the 
-tree structure. The drawing of nodes within their bounding box is dependent on their content and can be interactively
-controlled.
-
-Fua et. al. \cite{Fua:2000:SBM:614278.614457} present a mechanism for navigating hierarchically organized structures
-called Structure-Based brushes. Brushing consists of painting sections of the display using a mouse or stylus, indicating
-data items to be selected. Their technique can be used to perform selection in datasets organized via hierarchical
-clustering and partitioning algorithms and serves to perform subset selection for further analysis. The technique defines
-the level of detail which can be e.g. the cluster size, volume of the level number which can be used to traverse the
-hierarchy.
-
-Elmqvist et. al. \cite{Elmqvist:2010:HAI:1749404.1749525} present a model for building, visualizing and interacting with
-multi-scale representations of visual information using hierarchical aggregation. Their model allows for augmenting visualization
-techniques into a multi-scale structure using hierarchical aggregation.
-
-In their work, Cui et. al. \cite{4015421} investigate data abstraction quality measures in multi-resolution
-visualization systems. Specifically, they propose a histogram difference measure and a Nearest neighbor
-measure to measure the quality of the abstraction.
-
-\subsection{Visualization in Data Mining}
-
-Visualization is an important tool in data mining as it \textcolor{red}{...}. Data mining is commonly defined
-as the extraction of patterns or models from data sets, usually as part of extracting high-level
-knowledge from low-level data. Visualization is an important tool in this area as it gives analysts a
-tool for exploring, understanding data and creating hypothesis.
-
-Visualization techniques used in data mining range from simple techniques for data exploration, such as
-scatter plots, box plots, heatmaps, etc., to visualization of more complex structures such as PCA \lstopar{[TODO cite]},
-association rules, decision trees \lstopar{[TODO cite]}, clusters and dendrograms.
-
-Oliveira and Levkowitz \cite{1207445} provide a survey of visualization tools used for data mining. Their survey focuses
-to visualization of tabular data and provides an overview of tools and techniques for data exploration,
-visualization of the extracted knowledge, discussing the question of how to select an appropriate visualization
-technique.
-
-Keim \cite{981847} provides a classification of information visualization techniques used in data mining, which is based on
-the data type, visualization technique and interaction and distortion technique.
-
-Benz et. al. \cite{Benz2004239} present a multi-resolution framework for analysis of image data, by exploring a hierarchical
-image object network and representing strongly linked objects using polygons and fuzzy systems.
-
-\subsection{Markov Chains}
-
-Markov chains are a special kind of stochastic process
-which can assume only a finite or countable number of states and have no memory of where they have been in the past.
-These two properties make them useful for many applications as they allow the computation of predictions as
-well as quantifying their behavior by calculating probabilities and expected values.
-
-The first application of Markov chains begins with Andrey Markov himself \cite{markov13} in 1913. Since then
-Markov chains have had many famous applications such as Shannon's application to information theory \cite{Shannon:1948},
-Baum's Hidden Markov Models (HMM) \cite{baum1970} and the application to web search by Sergey Brin and Larry Page \cite{Lawrence981}.
-
-Other applications include the simulation of protein folding \cite{pande-beauchamp-bowman:2010:methods:markov-model-review},
-analysis of biochemical networks \cite{Ciocchetta2009145},
-genetics \cite{Huelsenbeck2310}, sensor networks \cite{DBLP:journals/corr/AlsheikhHNTL15}, agriculture, queuing theory, etc.
-
-In their paper, Deng et. al. \cite{5746509} explored the aggregation of Markov chains using an information-theoretic
-approach. Their work focuses on model reduction of complex discrete time Markov chains, using Kullback-Leibler divergence
-rate to measure the difference between the original model and the approximation and provides a recursive bi-partitioning
-algorithm for partitioning discrete time Markov chains. Their work provides a state aggregation solution by averaging
-transition probabilities based on the stationary distribution. In our work we adapt this solution to the continuous time
-setting.
-
-\lstopar{Hierarchical structures are used in many real-world applications, as they are flexible in storing information
-and allow the user to zoom into detail high detail levels, while hiding these details on the upper levels.}
-
-\lstopar{We differ from the related work in that we summarize the information, instead of drawing the whole
-dataset. We also summarize the dynamics of the dataset.}
-\end{comment}
+\error{3.5) lack of critical comments based on existing works, why do we need the 6-th paragraph (vis in data mining)}

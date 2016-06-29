@@ -58,7 +58,7 @@ $\epsilon$.
 Suppose the process is in state $i$ at time $t$ and define the random variable 
 $$J_i = j \Leftrightarrow X_{t + \epsilon} = j.$$
 $J_i$  has a multinomial distribution with parameters $(p_{i1}, p_{i2}, ..., p_{in})$ which can be 
-modeled using a nominal logistic regression model~\cite{glm-introduction} to estimate $\tilde{p}_{ij}(x)$.
+modeled using a nominal logistic regression \error{model~\cite{glm-introduction}} to estimate $\tilde{p}_{ij}(x)$.
 The transition rate matrix is then constructed from a matrix of logistic regression models -- one for each possible transition. 
 
 Modeling and estimating the transitions in this way is computationally efficient and provides a basis for aggregation step described below. As we will show in our examples (Section~\ref{sec:experiments}), these provide an intuitive interpretation of the transitions helping us understand the dynamics. 	
