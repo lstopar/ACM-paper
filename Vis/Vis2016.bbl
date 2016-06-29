@@ -199,6 +199,14 @@ W.~Peng, M.~O. Ward, and E.~A. Rundensteiner.
 \newblock In {\em Information Visualization, 2004. INFOVIS 2004. IEEE Symposium
   on}, pages 89--96, 2004.
 
+\bibitem{Pylvanen:2009:VTS:1813739.1813808}
+M.~Pylv\"{a}nen, S.~\"{A}yr\"{a}m\"{o}, and T.~K\"{a}rkk\"{a}inen.
+\newblock Visualizing time series state changes with prototype based
+  clustering.
+\newblock In {\em Proceedings of the 9th International Conference on Adaptive
+  and Natural Computing Algorithms}, ICANNGA'09, pages 619--628, Berlin,
+  Heidelberg, 2009. Springer-Verlag.
+
 \bibitem{sauer1991embedology}
 T.~Sauer, J.~A. Yorke, and M.~Casdagli.
 \newblock Embedology.

@@ -33,7 +33,7 @@ partition  represents a  Voronoi cell around its centroid.
 % This shoudl come later}
 %
 The number of centroids (in case of $k$-means) or the cluster radius (in case of DP-means) should
-be chosen based on domain knowledge and the level of detail users desire. This parameter also effects the 
+be chosen based on domain knowledge and the level of detail users desire. This parameter also affects the 
 initial construction time, meaning for large datasets we may want to limit the number of states.
 
 %\subsection{Modeling Transition Probabilities}
@@ -118,7 +118,7 @@ The second aggregation method we propose is an extension of the algorithm propos
 
 The method then works iteratively, splitting the ``best" partition until we have the initial Markov chain.
 %
-The splitting procedure is based on spectral bi-partitioning of Markov chains using the sign-structure of the eigenvector, corresponding to the second largest eigenvalue of the \emph{symmetrized transition rate matrix} $Q_s$. Indeed,  the transition rate matrix of a continuous time Markov chain $Q$ is exactly the negative Laplacian of the corresponding directed weighted graph~\cite{Agaev2005157}.
+The splitting procedure is based on spectral bi-partitioning of Markov chains using the sign-structure of the eigenvector, corresponding to the second largest eigenvalue of the \emph{symmetrized transition rate matrix} $Q_s$. Indeed,  the transition rate matrix of a continuous time Markov chain $Q$ is exactly the negative Laplacian of the corresponding directed weighted \error{graph~\cite{Agaev2005157}}.
 %
 $Q$ in general will not be symmetric and so may have complex eigenvalues. We therefore first symmetrize $Q$,
 \begin{equation}

@@ -43,9 +43,9 @@
 \newcommand{\cP}{\mathcal{P}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\cM}{\mathcal{M}}
-\newcommand{\primoz}[1]{\textcolor{red}{#1}}
+\newcommand{\primoz}[1]{\textcolor{green}{#1}}
 \newcommand{\lstopar}[1]{\textcolor{blue}{#1}}
-\newcommand{\dunja}[1]{\textcolor{green}{#1}}
+\newcommand{\error}[1]{\textcolor{red}{#1}}
 
 \newcommand{\argmin}{\operatornamewithlimits{argmin}}
 \DeclareMathOperator{\Ima}{Im}
@@ -112,7 +112,7 @@ This paper presents StreamStory, a system for the analysis of multivariate time 
 
 A key feature is that it does not compute a single Markov chain model, but rather a hierarchy of models allowing the user to interactively find suitable scales for interpreting the data. We also introduce two new approaches to computing multiscale Markov chains: one considering the spatial properties of the data and the other considering properties of the computed Markov chain.
 
-Once computed, the system is fully interactive. We present an analysis of four different datasets, coming from weather data (e.g. rainfall and temperature), traffic monitoring sensors, GPS traces and (simulated) data of a motor in operation. We show that our system enables us to interpret various patters in the data. Finally, the system has the ability to visualize real-time streaming data by mapping it to a previously computed model. It can then provide predictions and alarms for different behaviors.  
+Once computed, the system is fully interactive. We present an analysis of four different datasets, coming from weather data (e.g. rainfall and temperature), traffic monitoring sensors, GPS traces and (simulated) data of a motor in operation. We show that our system \error{enables us to interpret various patters [TODO of what] in the data}. Finally, the system has the ability to visualize real-time streaming data by mapping it to a previously computed model. It can then provide predictions and alarms for different behaviors.  
 
 	% This paper presents a novel multi-scale methodology for modeling, visualization and summarization of a collection
 	% of continuously time-varying data streams. The proposed methodology represents such a collection in qualitative 
@@ -145,7 +145,7 @@ Once computed, the system is fully interactive. We present an analysis of four d
 	\caption{
   \label{fig:teaser}  
 	On the move: yearly travels of a European researcher. A multi-scale summary of GPS coordinates collected over the course of four years using a smartphone. Our system summarizes the dataset in a qualitative manner using states and transitions and models them in a hierarchical manner, allowing users to traverse the hierarchy using the zoom function. From the visual summary we were able to identify the typical locations the person visited, including the USA, Germany, China, Italy and Slovenia.
-	This is the main three panel user interface of the system.  The central panel shows the main visualization of the dynamics through a Markov chain model. The side and bottom panels provide additional information on the state which has been selected in the center panel. Here, the selected state is NY, corresponding to New York City. This can be inferred using the average geocoordinates in the right panel. In the bottom panel we see a timeline of when the system was in that state.  We see several distinct short trips to NY, with one longer stay shown in the center.
+	\error{This is the main three panel user interface of the system.}\lstopar{The figure shows the main three-panel user interface of our system} The central panel shows the main visualization of the dynamics through a Markov chain model. The side and bottom panels provide additional information on the state which has been selected in the center panel. Here, the selected state is NY, corresponding to New York City. This can be inferred using the average geocoordinates in the right panel. In the bottom panel we see a timeline of when the system was in that state.  We see several distinct short trips to NY, with one longer stay shown in the center.
 %	Our interface has several different views illustrating different aspects of the data.
 	}
 }
@@ -212,7 +212,7 @@ Once computed, the system is fully interactive. We present an analysis of four d
 \label{sec:experiments}
 \input{experiments.tex}
 
-\section{Discussion}
+\section{Conclusion and Future Work}
 \label{sec:discussion}
 \input{discussion.tex}
 

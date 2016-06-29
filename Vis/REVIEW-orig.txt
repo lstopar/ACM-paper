@@ -25,6 +25,7 @@ WRITING
 - I have not seen any discussion of how the system supports multivariate visualization and how many variables it could support
 3.4) the writing of some parts is not structured - especially the motivation part and the related work part
 3.5) lack of critical comments based on existing works, why do we need the 6-th paragraph (vis in data mining)
+3.6) Change the title of section 9 from "Discussion" to "Conclusion and Future Work"
 3.7) There are several mistakes and redundant information in the reference lists, such as [1], [5], [7], [9], [14], [28], etc.
 3.8) Some English errors:
    p.1. This is the main three panel user interface of the system. (?)

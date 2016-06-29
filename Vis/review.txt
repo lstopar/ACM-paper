@@ -3,8 +3,8 @@ USE CASES:
 1.1) use cases are not clear
 - who are the users, what is their domain - explain the domain need, situation, problem and why the system is useful. For which criteria? - Figure this out and design an experiment!
 - what are their tasks, problems and needs
+- How much knowledge and expertise would be necessary to gain benefit from the system as it is currently presented?
 1.2) Why is the visualization of multivariate time series challenging? What are the real problems within the given examples
-1.3) How much knowledge and expertise would be necessary to gain benefit from the system as it is currently presented?
 
 ==================================
 EVALUATION
@@ -14,7 +14,7 @@ EVALUATION
 2.4) Evaluation is too high level and subjective.
 2.5) needs a more quantitative way to evaluate the model
 - for example comparing its accuracy with a baseline Markov model
-2.6) not feedback from domain experts
+2.6) no feedback from domain experts
 
 ==================================
 WRITING
@@ -25,6 +25,7 @@ WRITING
 - I have not seen any discussion of how the system supports multivariate visualization and how many variables it could support
 3.4) the writing of some parts is not structured - especially the motivation part and the related work part
 3.5) lack of critical comments based on existing works, why do we need the 6-th paragraph (vis in data mining)
+3.6) Change the title of section 9 from "Discussion" to "Conclusion and Future Work"
 3.7) There are several mistakes and redundant information in the reference lists, such as [1], [5], [7], [9], [14], [28], etc.
 3.8) Some English errors:
    p.1. This is the main three panel user interface of the system. (?)

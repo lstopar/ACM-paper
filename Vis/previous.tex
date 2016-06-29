@@ -75,7 +75,21 @@ setting.
 %
 There has also been a large body on work on approximating Markov chains for Monte Carlo Markov Chain (MCMC) simulation \cite{RSSD:RSSD117,HASTINGS01041970}.
 %10.2307/2246094,1512059}. 
-In this case, however, the emphasis is on reducing the mixing time to ensure fast convergence. In our case, we want to preserve as much of the dynamics as possible. 
+In this case, however, the emphasis is on reducing the mixing time to ensure fast convergence. In our case, we want to preserve as much of the dynamics as possible.
+
+\subsubsection{\lstopar{Clustering-Based Visualization}}
+
+\lstopar{
+
+Visualization of clusters provides a convenient method for identifying and presenting dissimilarities in the data.
+
+- PRoblem with techniques: most of them discard temporal information when visualizing time series data.
+
+}
+
+\begin{itemize}
+	\item \lstopar{Pylvanen et. al. \cite{Pylvanen:2009:VTS:1813739.1813808} present a method, and visualization tool, for visualizing operational states in temporal data including the overall order of transitions. Their tool allows to find causes for abnormal behavior. To identify operational states, the authors cluster the data, applying k-means and associating operational states with the resulting clusters. They count the transitions between states. However when observing data on coarser (or finer) scales, their approach requires users to rebuild the model from scratch, resulting in perhaps a different structure of the model.}
+\end{itemize}
 
 
 \begin{comment}
